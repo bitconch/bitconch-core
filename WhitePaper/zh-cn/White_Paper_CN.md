@@ -1,3 +1,5 @@
+![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/BCOO_logo.png "BCOO Logo")
+
 #  BCOO CHAIN/贝克链
 **A New Distributed Web Protocol Based on an Innovative Proof of Reputation (PoR) Consensus Algorithm and Eco System**
 
