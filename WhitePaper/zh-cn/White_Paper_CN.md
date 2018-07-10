@@ -18,40 +18,51 @@ Copyright © 2018 bcoo.io
 ## 目录
 <!-- MarkdownTOC depth=4 autolink=true bracket=round list_bullets="-*+" -->
 
-- [1. 背景](#background)
-- [2. 区块链在落地应用中的挑战](#chanllenges-for-blockchain-applications)
-  * [2.1 高并发、高吞吐与可扩展性](#support-millions-of-users)
-  * [2.2 商业信誉与用户隐私](#reputation-and-privacy)
-  * [2.3 激励机制与交易成本](#incentive-mechanism-and-transaction-cost)
-  * [2.4 安全性与去中心化](#security-and-decentralization)
-  * [2.5 智能合约迭代](#upgrable-smart-contrct)
-  * [2.6 存储能力受限](#storage-limitation)
-- [3. 信誉共识](#proof-of-reputation-consensus-algorithm)
-  * [3.1 信任与共识](#reputation-and-consensus)
-  * [3.2 信誉是稀缺资源](#reputation-as-scarce-resources)
-  * [3.3 信誉模型和数学抽象](#math-model-and-abstract)
-    * [3.3.1 社交关系](#social-relationship)
-    * [3.3.2 互信节点](#transaction-validators)
-    * [3.3.3 信誉值量化](#quantization-of-reputation)
-  * [3.4 共识过程](#consensus-process)
-  * [3.5 诚信节点选择](#transaction-validator-list)
-  * [3.6 拜占庭容错过程](#BFT-process)
-  * [3.7 数据结构和交易关系](#datastructure-and-transaction-relationship)
-  * [3.8 信誉证明的系统激励](#system-incentives-for-POR)
-  * [3.9 PoR与各种共识机制的比较](#comparision-between-different-consensus-algorithms)
-- [4. 其他技术](#other-breakthroughs)
-  * [4.1 零知识验证/ZKP](#zero-knowledge-proof)
-  * [4.2 轻节点/Thin Client](#thin-client-architecture)
-  * [4.3 智能合约与分叉管理](#smart-contract-and-fork-mitigation)
-  * [4.4 量子级加密算法](#quntum-proof-encrytpion)
-  * [4.5 虚拟机和编程语言](#BVM-and-BO-Language)
-  * [4.6 侧链支持](#side-chain-support)
-- [5. 系统架构图](#system-architecture)
-- [6. 落地应用场景展望](#realworld-application-outlook)
-  * [6.1 轻节点——贝克钱包/BCOO PAY](#BCOOPAY-Wallet)
-  * [6.2 其他可能的应用及技术支持](#Other-applications)
-- [7. 结论](#conclusion)
-- [8. 参考文献](#references)
+- [1. 背景](#背景)
+- [2. 区块链在落地应用中的挑战](#区块链在落地应用中的挑战)
+  * [2.1 高并发、高吞吐与可扩展性](#高并发、高吞吐与可扩展性)
+  * [2.2 商业信誉与用户隐私](#商业信誉与用户隐私)
+  * [2.3 激励机制与交易成本](#激励机制与交易成本)
+  * [2.4 安全性与去中心化](#安全性与去中心化)
+  * [2.5 智能合约迭代](#智能合约迭代)
+  * [2.6 存储能力受限](#存储能力受限)
+- [3. 信誉共识](#信誉共识)
+  * [3.1 信任与共识](#信任与共识)
+  * [3.2 信誉是稀缺资源](#信誉是稀缺资源)
+  * [3.3 信誉模型和数学抽象](#信誉模型和数学抽象)
+    * [3.3.1 社交关系](#社交关系)
+    * [3.3.2 互信节点](#互信节点)
+    * [3.3.3 信誉值量化](#信誉值量化)
+  * [3.4 共识过程](#共识过程)
+  * [3.5 诚信节点选择](#诚信节点选择)
+  * [3.6 拜占庭容错过程](#拜占庭容错过程)
+  * [3.7 数据结构和交易关系](#数据结构和交易关系)
+  * [3.8 信誉证明的系统激励](#信誉证明的系统激励)
+  * [3.9 PoR与各种共识机制的比较](#PoR与各种共识机制的比较)
+- [4. 其他技术](#其他技术)
+  * [4.1 零知识验证/ZKP](#零知识验证/ZKP)
+  * [4.2 轻节点/Thin Client](#轻节点/Thin-Client)
+  * [4.3 智能合约与分叉管理](#智能合约与分叉管理)
+  * [4.4 量子级加密算法](#量子级加密算法)
+  * [4.5 虚拟机和编程语言](#虚拟机和编程语言)
+  * [4.6 侧链支持](#侧链支持)
+- [5. 系统架构图](#系统架构图)
+- [6. 落地应用场景展望](#落地应用场景展望)
+  * [6.1 轻节点——贝克钱包/BCOO PAY](#轻节点——贝克钱包/BCOO-PAY)
+  * [6.2 其他可能的应用及技术支持](#其他可能的应用及技术支持)
+- [7. 结论](#结论)
+- [8. 参考文献](#参考文献)
 
 
 <!-- /MarkdownTOC -->
+
+# 背景
+比特币的诞生使区块链技术从单纯的理论研究一跃成为全世界瞩目的创新科技，被寄予厚望，希望通过“区块链改变世界”。以太坊提出智能合约，使区块链的落地应用成为可能。但是，由于众多技术瓶颈的限制，目前区块链距离大规模的商业落地应用可能还需要解决以下技术瓶颈问题：
+- 可扩展性
+- 保持去中心化
+- 文件存储
+- 低交易手续费和有效激励
+- 智能合约可迭代
+- 用户信息保护
+- 系统安全性
+- 易用性
