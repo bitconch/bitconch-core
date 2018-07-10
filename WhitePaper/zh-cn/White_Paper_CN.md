@@ -15,4 +15,43 @@
 
 Copyright © 2018 bcoo.io
 
+## 目录
+<!-- MarkdownTOC depth=4 autolink=true bracket=round list_bullets="-*+" -->
 
+- [1. 背景](#background)
+- [2. 区块链在落地应用中的挑战](#chanllenges-for-blockchain-applications)
+  * [2.1 高并发、高吞吐与可扩展性](#support-millions-of-users)
+  * [2.2 商业信誉与用户隐私](#reputation-and-privacy)
+  * [2.3 激励机制与交易成本](#incentive-mechanism-and-transaction-cost)
+  * [2.4 安全性与去中心化](#security-and-decentralization)
+  * [2.5 智能合约迭代](#upgrable-smart-contrct)
+  * [2.6 存储能力受限](#storage-limitation)
+- [3. 信誉共识](#proof-of-reputation-consensus-algorithm)
+  * [3.1 信任与共识](#reputation-and-consensus)
+  * [3.2 信誉是稀缺资源](#reputation-as-scarce-resources)
+  * [3.3 信誉模型和数学抽象](#math-model-and-abstract)
+    * [3.3.1 社交关系](#social-relationship)
+    * [3.3.2 互信节点](#transaction-validators)
+    * [3.3.3 信誉值量化](#quantization-of-reputation)
+  * [3.4 共识过程](#consensus-process)
+  * [3.5 诚信节点选择](#transaction-validator-list)
+  * [3.6 拜占庭容错过程](#BFT-process)
+  * [3.7 数据结构和交易关系](#datastructure-and-transaction-relationship)
+  * [3.8 信誉证明的系统激励](#system-incentives-for-POR)
+  * [3.9 PoR与各种共识机制的比较](#comparision-between-different-consensus-algorithms)
+- [4. 其他技术](#other-breakthroughs)
+  * [4.1 零知识验证/ZKP](#zero-knowledge-proof)
+  * [4.2 轻节点/Thin Client](#thin-client-architecture)
+  * [4.3 智能合约与分叉管理](#smart-contract-and-fork-mitigation)
+  * [4.4 量子级加密算法](#quntum-proof-encrytpion)
+  * [4.5 虚拟机和编程语言](#BVM-and-BO-Language)
+  * [4.6 侧链支持](#side-chain-support)
+- [5. 系统架构图](#system-architecture)
+- [6. 落地应用场景展望](#realworld-application-outlook)
+  * [6.1 轻节点——贝克钱包/BCOO PAY](#BCOOPAY-Wallet)
+  * [6.2 其他可能的应用及技术支持](#Other-applications)
+- [7. 结论](#conclusion)
+- [8. 参考文献](#references)
+
+
+<!-- /MarkdownTOC -->
