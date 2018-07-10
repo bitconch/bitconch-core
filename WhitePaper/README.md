@@ -1,7 +1,7 @@
 # BCOO Technical White Paper
 
 - [English](en-us/White_Paper_EN.md)
-- [Chinese](zh-CN/White_Paper_CN.md) 
+- [Chinese](zh-cn/White_Paper_CN.md) 
 
 # BCOO Wiki
 
