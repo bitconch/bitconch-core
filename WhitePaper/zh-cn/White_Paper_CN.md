@@ -328,278 +328,928 @@ BVM相对于EVM有三大优势：
 贝克链为开发者创建友好的侧链和DApp开发环境。贝克基金会也将对重要的社交型应用提供技术支持，进行项目孵化，以帮助用户通过更多应用产品快速构建社交图谱和个人信誉。下表列出了某些可预见、可期待的应用产品，并对产品本身的技术需求和贝克链可提供的技术支持进行了分析和对比。
 
 
-<table border="1" width="0" cellspacing="0" cellpadding="0">
-<tbody>
-<tr>
-<td rowspan="2" width="89">
-<p><strong>应用类型</strong></p>
-</td>
-<td colspan="8" width="467">
-<p><strong>技术需求</strong></p>
-</td>
-</tr>
-<tr>
-<td width="68">
-<p><strong>社交图谱贡献度</strong></p>
-</td>
-<td width="57">
-<p><strong>高吞吐</strong></p>
-</td>
-<td width="57">
-<p><strong>高并发</strong></p>
-</td>
-<td width="57">
-<p><strong>文件</strong></p>
-<p><strong>存储</strong></p>
-</td>
-<td width="57">
-<p><strong>低交易</strong><strong>成本</strong></p>
-</td>
-<td width="57">
-<p><strong>用户信息保护</strong></p>
-</td>
-<td width="57">
-<p><strong>商业信誉需求</strong></p>
-</td>
-<td width="57">
-<p><strong>频繁</strong></p>
-<p><strong>迭代</strong></p>
-</td>
-</tr>
-<tr>
-<td width="89">
-<p>分布式聊天</p>
-</td>
-<td width="68">
-<p><span lang="EN-US">▲▲▲</span></p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p>★★★</p>
-</td>
-<td width="57">
-<p>★★★</p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-</tr>
-<tr>
-<td width="89">
-<p>自媒体</p>
-</td>
-<td width="68">
-<p>▲▲</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-</tr>
-<tr>
-<td width="89">
-<p>电商</p>
-</td>
-<td width="68">
-<p><span lang="EN-US">▲▲▲</span></p>
-</td>
-<td width="57">
-<p><span lang="EN-US">★★★</span></p>
-</td>
-<td width="57">
-<p><span lang="EN-US">★★★</span></p>
-</td>
-<td width="57">
-<p><span lang="EN-US">★★</span></p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p><span lang="EN-US">★★★</span></p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-</tr>
-<tr>
-<td width="89">
-<p>视频<span lang="EN-US">/</span>直播</p>
-</td>
-<td width="68">
-<p>▲</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p><span lang="EN-US">★★★</span></p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-</tr>
-<tr>
-<td width="89">
-<p>游戏</p>
-</td>
-<td width="68">
-<p>▲</p>
-</td>
-<td width="57">
-<p><span lang="EN-US">★★★</span></p>
-</td>
-<td width="57">
-<p><span lang="EN-US">★★★</span></p>
-</td>
-<td width="57">
-<p><span lang="EN-US">★★★</span></p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p><span lang="EN-US">★★★</span></p>
-</td>
-</tr>
-<tr>
-<td width="89">
-<p>区块链金融</p>
-</td>
-<td width="68">
-<p><span lang="EN-US">▲▲▲</span></p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p>★★★</p>
-</td>
-<td width="57">
-<p><span lang="EN-US">★★★</span></p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-</tr>
-<tr>
-<td width="89">
-<p>众包服务</p>
-</td>
-<td width="68">
-<p>▲▲</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p><span lang="EN-US">★★</span></p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p><span lang="EN-US">★★★</span></p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-</tr>
-<tr>
-<td width="89">
-<p>共享经济</p>
-</td>
-<td width="68">
-<p>▲▲</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p><span lang="EN-US">★★</span></p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-<td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p><span lang="EN-US">★★★</span></p>
-</td>
-<td width="57">
-<p>★</p>
-</td>
-</tr>
-</tbody>
-</table>
+<table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" width="0" style="border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+ mso-border-top-alt:solid windowtext .5pt;mso-border-bottom-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-border-insideh:.5pt solid windowtext">
+ <tbody><tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;height:5.7pt">
+  <td width="89" rowspan="2" style="width:66.4pt;border:solid #4F81BD 1.0pt;
+  background:#2E74B5;mso-background-themecolor:accent1;mso-background-themeshade:
+  191;padding:.75pt .75pt .75pt .75pt;height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><b style="mso-bidi-font-weight:normal"><span style="mso-bidi-font-size:12.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1;mso-font-kerning:0pt;mso-bidi-language:
+  AR">应用类型</span></b><b style="mso-bidi-font-weight:normal"><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:black"><o:p></o:p></span></b></p>
+  </td>
+  <td width="467" colspan="8" style="width:350.4pt;border-top:solid #4F81BD 1.0pt;
+  border-left:none;border-bottom:solid white 1.0pt;border-right:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;mso-border-alt:solid #4F81BD 1.0pt;
+  mso-border-bottom-alt:solid white .5pt;background:#2E74B5;mso-background-themecolor:
+  accent1;mso-background-themeshade:191;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><b style="mso-bidi-font-weight:normal"><span style="font-size:14.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1;mso-font-kerning:0pt;mso-bidi-language:
+  AR">技术需求</span></b><b style="mso-bidi-font-weight:normal"><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:black"><o:p></o:p></span></b></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:1;height:5.7pt">
+  <td width="68" style="width:51.3pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid white .5pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#2E74B5;mso-background-themecolor:
+  accent1;mso-background-themeshade:191;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><b style="mso-bidi-font-weight:normal"><span style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1;mso-font-kerning:0pt;mso-bidi-language:
+  AR">社交图谱贡献度</span></b><b style="mso-bidi-font-weight:normal"><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:white;mso-themecolor:background1"><o:p></o:p></span></b></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid white .5pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#2E74B5;mso-background-themecolor:
+  accent1;mso-background-themeshade:191;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><b style="mso-bidi-font-weight:normal"><span style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1;mso-font-kerning:0pt;mso-bidi-language:
+  AR">高吞吐</span></b><b style="mso-bidi-font-weight:normal"><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1"><o:p></o:p></span></b></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid white .5pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#2E74B5;mso-background-themecolor:
+  accent1;mso-background-themeshade:191;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><b style="mso-bidi-font-weight:normal"><span style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1;mso-font-kerning:0pt;mso-bidi-language:
+  AR">高并发</span></b><b style="mso-bidi-font-weight:normal"><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1"><o:p></o:p></span></b></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid white .5pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#2E74B5;mso-background-themecolor:
+  accent1;mso-background-themeshade:191;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><b style="mso-bidi-font-weight:normal"><span style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1;mso-font-kerning:0pt;mso-bidi-language:
+  AR">文件<span lang="EN-US"><o:p></o:p></span></span></b></p>
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><b style="mso-bidi-font-weight:normal"><span style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1;mso-font-kerning:0pt;mso-bidi-language:
+  AR">存储</span></b><b style="mso-bidi-font-weight:normal"><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1"><o:p></o:p></span></b></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid white .5pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#2E74B5;mso-background-themecolor:
+  accent1;mso-background-themeshade:191;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span class="GramE"><b style="mso-bidi-font-weight:normal"><span style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1;mso-font-kerning:0pt;mso-bidi-language:
+  AR">低交易</span></b></span><b style="mso-bidi-font-weight:normal"><span style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1;mso-font-kerning:0pt;mso-bidi-language:
+  AR">成本</span></b><b style="mso-bidi-font-weight:normal"><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1"><o:p></o:p></span></b></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid white .5pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#2E74B5;mso-background-themecolor:
+  accent1;mso-background-themeshade:191;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><b style="mso-bidi-font-weight:normal"><span style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1;mso-font-kerning:0pt;mso-bidi-language:
+  AR">用户信息保护</span></b><b style="mso-bidi-font-weight:normal"><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1"><o:p></o:p></span></b></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid white .5pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#2E74B5;mso-background-themecolor:
+  accent1;mso-background-themeshade:191;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><b style="mso-bidi-font-weight:normal"><span style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1;mso-font-kerning:0pt;mso-bidi-language:
+  AR">商业信誉需求</span></b><b style="mso-bidi-font-weight:normal"><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1"><o:p></o:p></span></b></p>
+  </td>
+  <td width="57" style="width:42.9pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid white .5pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#2E74B5;mso-background-themecolor:
+  accent1;mso-background-themeshade:191;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><b style="mso-bidi-font-weight:normal"><span style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1;mso-font-kerning:0pt;mso-bidi-language:
+  AR">频繁<span lang="EN-US"><o:p></o:p></span></span></b></p>
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><b style="mso-bidi-font-weight:normal"><span style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1;mso-font-kerning:0pt;mso-bidi-language:
+  AR">迭代</span></b><b style="mso-bidi-font-weight:normal"><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:white;mso-themecolor:background1"><o:p></o:p></span></b></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:2;height:5.7pt">
+  <td width="89" style="width:66.4pt;border:solid #4F81BD 1.0pt;border-top:none;
+  mso-border-top-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="left" style="text-align:left;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;
+  mso-bidi-language:AR">分布式聊天</span><span lang="EN-US" style="font-size:11.0pt;
+  line-height:150%;font-family:宋体;mso-bidi-font-family:宋体;color:black"><o:p></o:p></span></p>
+  </td>
+  <td width="68" style="width:51.3pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:宋体;color:gray;
+  mso-themecolor:background1;mso-themeshade:128;mso-font-kerning:0pt;
+  mso-bidi-language:AR">▲▲▲</span><span lang="EN-US" style="font-size:11.0pt;
+  line-height:150%;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:宋体;
+  color:gray;mso-themecolor:background1;mso-themeshade:128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.9pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:3;height:5.7pt">
+  <td width="89" style="width:66.4pt;border:solid #4F81BD 1.0pt;border-top:none;
+  mso-border-top-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="left" style="text-align:left;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;
+  mso-bidi-language:AR">自媒体</span><span lang="EN-US" style="font-size:11.0pt;
+  line-height:150%;font-family:宋体;mso-bidi-font-family:宋体;color:black"><o:p></o:p></span></p>
+  </td>
+  <td width="68" style="width:51.3pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">▲▲</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.9pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:4;height:5.7pt">
+  <td width="89" style="width:66.4pt;border:solid #4F81BD 1.0pt;border-top:none;
+  mso-border-top-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="left" style="text-align:left;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;
+  mso-bidi-language:AR">电商</span><span lang="EN-US" style="font-size:11.0pt;
+  line-height:150%;font-family:宋体;mso-bidi-font-family:宋体;color:black"><o:p></o:p></span></p>
+  </td>
+  <td width="68" style="width:51.3pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:宋体;color:gray;
+  mso-themecolor:background1;mso-themeshade:128;mso-font-kerning:0pt;
+  mso-bidi-language:AR">▲▲▲</span><span lang="EN-US" style="font-size:11.0pt;
+  line-height:150%;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:宋体;
+  color:gray;mso-themecolor:background1;mso-themeshade:128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.9pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:5;height:5.7pt">
+  <td width="89" style="width:66.4pt;border:solid #4F81BD 1.0pt;border-top:none;
+  mso-border-top-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="left" style="text-align:left;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;
+  mso-bidi-language:AR">视频<span lang="EN-US">/</span>直播</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
+  宋体;color:black"><o:p></o:p></span></p>
+  </td>
+  <td width="68" style="width:51.3pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">▲</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.9pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:6;height:5.7pt">
+  <td width="89" style="width:66.4pt;border:solid #4F81BD 1.0pt;border-top:none;
+  mso-border-top-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="left" style="text-align:left;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;
+  mso-bidi-language:AR">游戏</span><span lang="EN-US" style="font-size:11.0pt;
+  line-height:150%;font-family:宋体;mso-bidi-font-family:宋体;color:black"><o:p></o:p></span></p>
+  </td>
+  <td width="68" style="width:51.3pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">▲</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.9pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:7;height:5.7pt">
+  <td width="89" style="width:66.4pt;border:solid #4F81BD 1.0pt;border-top:none;
+  mso-border-top-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="left" style="text-align:left;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;
+  mso-bidi-language:AR">区块链金融</span><span lang="EN-US" style="font-size:11.0pt;
+  line-height:150%;font-family:宋体;mso-bidi-font-family:宋体;color:black"><o:p></o:p></span></p>
+  </td>
+  <td width="68" style="width:51.3pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:宋体;color:gray;
+  mso-themecolor:background1;mso-themeshade:128;mso-font-kerning:0pt;
+  mso-bidi-language:AR">▲▲▲</span><span lang="EN-US" style="font-size:11.0pt;
+  line-height:150%;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:宋体;
+  color:gray;mso-themecolor:background1;mso-themeshade:128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.9pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:8;height:5.7pt">
+  <td width="89" style="width:66.4pt;border:solid #4F81BD 1.0pt;border-top:none;
+  mso-border-top-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="left" style="text-align:left;mso-pagination:widow-orphan;
+  vertical-align:middle"><span class="GramE"><span style="font-size:11.0pt;
+  line-height:150%;font-family:宋体;mso-bidi-font-family:宋体;color:black;
+  mso-font-kerning:0pt;mso-bidi-language:AR">众包服务</span></span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:black"><o:p></o:p></span></p>
+  </td>
+  <td width="68" style="width:51.3pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">▲▲</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.9pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:white;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:9;mso-yfti-lastrow:yes;height:5.7pt">
+  <td width="89" style="width:66.4pt;border:solid #4F81BD 1.0pt;border-top:none;
+  mso-border-top-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="left" style="text-align:left;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:black;mso-font-kerning:0pt;
+  mso-bidi-language:AR">共享经济</span><span lang="EN-US" style="font-size:11.0pt;
+  line-height:150%;font-family:宋体;mso-bidi-font-family:宋体;color:black"><o:p></o:p></span></p>
+  </td>
+  <td width="68" style="width:51.3pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">▲▲</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.7pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span lang="EN-US" style="font-size:11.0pt;line-height:
+  150%;font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★★★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+  <td width="57" style="width:42.9pt;border-top:none;border-left:none;border-bottom:
+  solid #4F81BD 1.0pt;border-right:solid #4F81BD 1.0pt;mso-border-top-alt:solid #4F81BD 1.0pt;
+  mso-border-left-alt:solid #4F81BD 1.0pt;background:#B8CCE4;padding:.75pt .75pt .75pt .75pt;
+  height:5.7pt">
+  <p class="MsoNormal" align="center" style="text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle"><span style="font-size:11.0pt;line-height:150%;
+  font-family:宋体;mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;
+  mso-themeshade:128;mso-font-kerning:0pt;mso-bidi-language:AR">★</span><span lang="EN-US" style="font-size:11.0pt;line-height:150%;font-family:宋体;
+  mso-bidi-font-family:宋体;color:gray;mso-themecolor:background1;mso-themeshade:
+  128"><o:p></o:p></span></p>
+  </td>
+ </tr>
+</tbody></table>
 
 ▲：代表该应用在贝克链PoR共识中可能的贡献程度。三角数量越多，贡献度越大。
 
