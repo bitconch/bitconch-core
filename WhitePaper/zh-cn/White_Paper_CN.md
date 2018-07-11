@@ -307,6 +307,7 @@ BVM相对于EVM有三大优势：
  ![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-4-5-1.png "BVM虚拟机")
 
 ## 4.6 侧链支持
+
 贝克链支持不同的挂钩机制（Two-way Peg/双向锚地）实现主链和侧链的结合，并将为开发者提供侧链开发模板。在未来的应用场景中，贝克链作为主链将主要提供可信记账和信誉管理，更丰富的商业功能将开放并支持侧链进行实施。例如：贝克链将提供分布式存储功能，开发者可以在自己的侧链上实现文件存储、多媒体等功能。
 
 # 5. 系统架构图
@@ -315,3 +316,303 @@ BVM相对于EVM有三大优势：
 
 注：▲项为采用了当前最先进的技术或算法；
 ★项为贝克链具有自主知识创新和核心竞争力的技术或算法 
+
+# 6. 落地应用场景展望
+
+## 6.1 轻节点——贝克钱包/BCOO PAY
+
+目前，BCOO PAY由贝克链研发团队进行开发和运维，已经在IOS和安卓上线客户端。集成了密钥管理、智能支付、落地应用场景入口等多项功能。未来，贝克链主网上线后，BCOO PAY将会作为BCOO轻节点客户端迁移上链。
+
+## 6.2 其他可能的应用及技术支持
+
+贝克链为开发者创建友好的侧链和DApp开发环境。贝克基金会也将对重要的社交型应用提供技术支持，进行项目孵化，以帮助用户通过更多应用产品快速构建社交图谱和个人信誉。下表列出了某些可预见、可期待的应用产品，并对产品本身的技术需求和贝克链可提供的技术支持进行了分析和对比。
+
+
+<table border="1" width="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td rowspan="2" width="89">
+<p><strong>应用类型</strong></p>
+</td>
+<td colspan="8" width="467">
+<p><strong>技术需求</strong></p>
+</td>
+</tr>
+<tr>
+<td width="68">
+<p><strong>社交图谱贡献度</strong></p>
+</td>
+<td width="57">
+<p><strong>高吞吐</strong></p>
+</td>
+<td width="57">
+<p><strong>高并发</strong></p>
+</td>
+<td width="57">
+<p><strong>文件</strong></p>
+<p><strong>存储</strong></p>
+</td>
+<td width="57">
+<p><strong>低交易</strong><strong>成本</strong></p>
+</td>
+<td width="57">
+<p><strong>用户信息保护</strong></p>
+</td>
+<td width="57">
+<p><strong>商业信誉需求</strong></p>
+</td>
+<td width="57">
+<p><strong>频繁</strong></p>
+<p><strong>迭代</strong></p>
+</td>
+</tr>
+<tr>
+<td width="89">
+<p>分布式聊天</p>
+</td>
+<td width="68">
+<p>▲▲▲</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★★★</p>
+</td>
+<td width="57">
+<p>★★★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+</tr>
+<tr>
+<td width="89">
+<p>自媒体</p>
+</td>
+<td width="68">
+<p>▲▲</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+</tr>
+<tr>
+<td width="89">
+<p>电商</p>
+</td>
+<td width="68">
+<p>▲▲▲</p>
+</td>
+<td width="57">
+<p>★★★</p>
+</td>
+<td width="57">
+<p>★★★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★★★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+</tr>
+<tr>
+<td width="89">
+<p>视频/直播</p>
+</td>
+<td width="68">
+<p>▲</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★★★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+</tr>
+<tr>
+<td width="89">
+<p>游戏</p>
+</td>
+<td width="68">
+<p>▲</p>
+</td>
+<td width="57">
+<p>★★★</p>
+</td>
+<td width="57">
+<p>★★★</p>
+</td>
+<td width="57">
+<p>★★★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★★★</p>
+</td>
+</tr>
+<tr>
+<td width="89">
+<p>区块链金融</p>
+</td>
+<td width="68">
+<p>▲▲▲</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★★★</p>
+</td>
+<td width="57">
+<p>★★★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+</tr>
+<tr>
+<td width="89">
+<p>众包服务</p>
+</td>
+<td width="68">
+<p>▲▲</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★★★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+</tr>
+<tr>
+<td width="89">
+<p>共享经济</p>
+</td>
+<td width="68">
+<p>▲▲</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+<td width="57">
+<p>★★</p>
+</td>
+<td width="57">
+<p>★★★</p>
+</td>
+<td width="57">
+<p>★</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+▲：代表该应用在贝克链PoR共识中可能的贡献程度。三角数量越多，贡献度越大。
+
+★：代表该应用对某项需求的重要程度，五角星越多，需求性越高。
+
+贝克链主网与侧链的交互关系如图4所示，大部分的商业应用可能会通过侧链运行，交易信息被记录在主网上，同时为主网提供信誉数据喂养。各个应用产品自带流量的同时，用户之间不可避免的存在交互共享（见图5），勾勒了更加丰富的社交图谱和生态系统。商业应用开发者由于本身具有更多元的社交图谱和频繁交易，往往可以累积更高的信誉值，被选为“诚信节点”的概率也越高，获得的系统奖励也越多。
+
+![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-6-2-1.png "图4. 贝克链主网与侧链的交互关系图")
+
+图4. 贝克链主网与侧链的交互关系图
+
+![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-6-2-2.png "图5. 各种应用之间可能存在的流量交互共享")
+
+
+图5. 各种应用之间可能存在的流量交互共享
+
