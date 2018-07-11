@@ -191,19 +191,19 @@ L根据每个节点当前的R值和一个分布函数D来选择。对于节点x�
 
 贝克链采用一种无块无链的DAG有向无环图的数据结构。如图1（a）所示，Tx0为创世交易，即整个网络在运行时的第一笔交易，由一条特殊地址向初始用户分配BCOO。Tx1，Tx2，Tx3，Tx4，Tx5，Tx6，…，Txn为后续的交易。因为每笔交易存在时间（Time）和顺序（Order），构成DAG有方向且无环图。
 
-![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-3-7-1-1a.png "BCOO Logo")
+![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-3-7-1-1a.png "图1（a）DAG数型结构")
 
 图1（a）DAG数型结构
 
 Tx0是一条为节点N1充值的交易记录，对应着图1（b）中有了第一个用户N1。Tx1为第二笔交易N1N2，即N1向N2转账若干BCOO，社交图谱中用户N1至N2将增加一条边，即N1和N2开始建立起社交关系。随着交易Tx的增多，社交图谱中各个节点之间会有越来越多的边，社交网络趋向成熟。
 
-![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-3-7-1-1b.png "BCOO Logo")
+![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-3-7-1-1b.png "图1（b）社交图谱")
 
 图1（b）社交图谱
 
 图1（a）和（b）展示了DAG数据结构和社交图谱之间的互动关系。15个用户产生了从Tx0，Tx1到Tx13的14笔交易，构建了如（b）所示的社交关系。
 
-![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-3-7-1-2a.png "BCOO Logo")
+![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-3-7-1-2a.png "图2（a）新交易产生及验证")
 
 图2（a）新交易产生及验证
 
@@ -212,13 +212,13 @@ Tx0是一条为节点N1充值的交易记录，对应着图1（b）中有了第�
 如图2（a）所示，新交易Tx14和Tx15生成。其中Tx14表示N1向N4转账m个BCOO，Tx15表示N5向N1转账n个BCOO，如果m>n，根据公式（3），由于交易额度与E值正相关，对于N1的信用贡献，Tx14大于Tx15的权重。随着交易的不断增多，社交图谱中各个节点之间的联系不断增加，提供更多的社交数据喂养信誉值。
 
 
-![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-3-7-1-2b.png "BCOO Logo")
+![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-3-7-1-2b.png "图2（b）新交易对社交图谱的影响")
 
 图2（b）新交易对社交图谱的影响
 
 图2（a）还演示了系统处理并发交易的能力，当Tx14和Tx15同时产生时，系统可以并发多个拜占庭容错过程，提高交易验证的效率。
 
-![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-3-7-1-3.png "BCOO Logo")
+![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-3-7-1-3.png "图3 双花交易")
 
 图3 双花交易
 
@@ -264,6 +264,6 @@ Tx0是一条为节点N1充值的交易记录，对应着图1（b）中有了第�
 交易成本 | 高 | 高 | 低 | 低 | 低 | 低 
 矿工积极性 | 高 | 高 | 高，但仅限超级节点 | 低 | 低 | 高，全民参与
 
- ![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-3-9-1.png "BCOO Logo")
+ ![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-3-9-1.png "BCOO可扩展性")
 
 
