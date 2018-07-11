@@ -371,7 +371,7 @@ BVM相对于EVM有三大优势：
 <p>分布式聊天</p>
 </td>
 <td width="68">
-<p>▲▲▲</p>
+<p><span lang="EN-US">▲▲▲</span></p>
 </td>
 <td width="57">
 <p>★★</p>
@@ -429,25 +429,25 @@ BVM相对于EVM有三大优势：
 <p>电商</p>
 </td>
 <td width="68">
-<p>▲▲▲</p>
+<p><span lang="EN-US">▲▲▲</span></p>
 </td>
 <td width="57">
-<p>★★★</p>
+<p><span lang="EN-US">★★★</span></p>
 </td>
 <td width="57">
-<p>★★★</p>
+<p><span lang="EN-US">★★★</span></p>
 </td>
 <td width="57">
-<p>★★</p>
-</td>
-<td width="57">
-<p>★</p>
+<p><span lang="EN-US">★★</span></p>
 </td>
 <td width="57">
 <p>★</p>
 </td>
 <td width="57">
-<p>★★★</p>
+<p>★</p>
+</td>
+<td width="57">
+<p><span lang="EN-US">★★★</span></p>
 </td>
 <td width="57">
 <p>★</p>
@@ -455,7 +455,7 @@ BVM相对于EVM有三大优势：
 </tr>
 <tr>
 <td width="89">
-<p>视频/直播</p>
+<p>视频<span lang="EN-US">/</span>直播</p>
 </td>
 <td width="68">
 <p>▲</p>
@@ -467,7 +467,7 @@ BVM相对于EVM有三大优势：
 <p>★★</p>
 </td>
 <td width="57">
-<p>★★★</p>
+<p><span lang="EN-US">★★★</span></p>
 </td>
 <td width="57">
 <p>★★</p>
@@ -490,16 +490,13 @@ BVM相对于EVM有三大优势：
 <p>▲</p>
 </td>
 <td width="57">
-<p>★★★</p>
+<p><span lang="EN-US">★★★</span></p>
 </td>
 <td width="57">
-<p>★★★</p>
+<p><span lang="EN-US">★★★</span></p>
 </td>
 <td width="57">
-<p>★★★</p>
-</td>
-<td width="57">
-<p>★</p>
+<p><span lang="EN-US">★★★</span></p>
 </td>
 <td width="57">
 <p>★</p>
@@ -508,7 +505,10 @@ BVM相对于EVM有三大优势：
 <p>★</p>
 </td>
 <td width="57">
-<p>★★★</p>
+<p>★</p>
+</td>
+<td width="57">
+<p><span lang="EN-US">★★★</span></p>
 </td>
 </tr>
 <tr>
@@ -516,7 +516,7 @@ BVM相对于EVM有三大优势：
 <p>区块链金融</p>
 </td>
 <td width="68">
-<p>▲▲▲</p>
+<p><span lang="EN-US">▲▲▲</span></p>
 </td>
 <td width="57">
 <p>★</p>
@@ -534,7 +534,7 @@ BVM相对于EVM有三大优势：
 <p>★★★</p>
 </td>
 <td width="57">
-<p>★★★</p>
+<p><span lang="EN-US">★★★</span></p>
 </td>
 <td width="57">
 <p>★</p>
@@ -554,7 +554,7 @@ BVM相对于EVM有三大优势：
 <p>★★</p>
 </td>
 <td width="57">
-<p>★★</p>
+<p><span lang="EN-US">★★</span></p>
 </td>
 <td width="57">
 <p>★</p>
@@ -563,7 +563,7 @@ BVM相对于EVM有三大优势：
 <p>★</p>
 </td>
 <td width="57">
-<p>★★★</p>
+<p><span lang="EN-US">★★★</span></p>
 </td>
 <td width="57">
 <p>★</p>
@@ -583,7 +583,7 @@ BVM相对于EVM有三大优势：
 <p>★★</p>
 </td>
 <td width="57">
-<p>★★</p>
+<p><span lang="EN-US">★★</span></p>
 </td>
 <td width="57">
 <p>★</p>
@@ -592,7 +592,7 @@ BVM相对于EVM有三大优势：
 <p>★★</p>
 </td>
 <td width="57">
-<p>★★★</p>
+<p><span lang="EN-US">★★★</span></p>
 </td>
 <td width="57">
 <p>★</p>
