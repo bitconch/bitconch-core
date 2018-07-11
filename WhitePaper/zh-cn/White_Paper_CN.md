@@ -306,3 +306,12 @@ BVM相对于EVM有三大优势：
 
  ![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-4-5-1.png "BVM虚拟机")
 
+## 4.6 侧链支持
+贝克链支持不同的挂钩机制（Two-way Peg/双向锚地）实现主链和侧链的结合，并将为开发者提供侧链开发模板。在未来的应用场景中，贝克链作为主链将主要提供可信记账和信誉管理，更丰富的商业功能将开放并支持侧链进行实施。例如：贝克链将提供分布式存储功能，开发者可以在自己的侧链上实现文件存储、多媒体等功能。
+
+# 5. 系统架构图
+
+![alt text](https://raw.githubusercontent.com/BCOOCHAIN/BCOO/master/assets/Fig-5-1.png "系统架构图")
+
+注：▲项为采用了当前最先进的技术或算法；
+★项为贝克链具有自主知识创新和核心竞争力的技术或算法 
