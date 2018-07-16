@@ -1,5 +1,9 @@
 pragma solidity ^0.4.24;
 
+// Bitconch Coin ERC20 Token Issue Contract
+// Compiler: 0.4.24+commit.e67f0147.Emscripten.clang
+
+
 // @title SafeMath
 // @dev Math operations with safety checks that throw on error
 library SafeMath {
