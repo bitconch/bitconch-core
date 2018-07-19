@@ -289,7 +289,7 @@ contract Bcoo is Claimable, Contactable, HasNoEther, FreezableToken {
         name = "Bitconch Coin";
         symbol = "BUS";
         decimals = _decimals;
-        contactInformation = "Bitconch Coin Contact mail:info@bcoo.io";
+        contactInformation = "Bitconch Coin Contact Mail:info@bitconch.io";
     }
 }
 
