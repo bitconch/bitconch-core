@@ -3,7 +3,7 @@
 - [English](en-us/White_Paper_EN.md)
 - [Chinese](zh-cn/White_Paper_CN.md) 
 
-# BCOO Wiki
+# BUS Wiki
 
 - [English](https://github.com/BitConch/BUS/wiki)
 
