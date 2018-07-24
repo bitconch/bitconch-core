@@ -1,31 +1,35 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.4.11;
 
-// Bitconch Coin ERC20 Token Issue Contract
-// Compiler: 0.4.24+commit.e67f0147.Emscripten.clang
+// Token Issue Smart Contract for Bitconch Coin
+// Symbol       : BUS
+// Name         : Bitconch Coin
+// Total Supply : 50 Billion
+// Decimal      : 18
+// Compiler     : :0.4.11+commit.68ef5810.Emscripten.clang
 
 
 // @title SafeMath
 // @dev Math operations with safety checks that throw on error
 library SafeMath {
-    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+    function mul(uint256 a, uint256 b) internal constant returns (uint256) {
         uint256 c = a * b;
         assert(a == 0 || c / a == b);
         return c;
     }
 
-    function div(uint256 a, uint256 b) internal pure returns (uint256) {
+    function div(uint256 a, uint256 b) internal constant returns (uint256) {
         assert(b > 0);
         uint256 c = a / b;
         assert(a == b * c + a % b);
         return c;
     }
 
-    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+    function sub(uint256 a, uint256 b) internal constant returns (uint256) {
         assert(b <= a);
         return a - b;
     }
 
-    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+    function add(uint256 a, uint256 b) internal constant returns (uint256) {
         uint256 c = a + b;
         assert(c >= a);
         return c;
@@ -41,7 +45,7 @@ contract Ownable {
     address public owner;
 
     // @dev Constructor sets the original `owner` of the contract to the sender account.
-    constructor(Ownable) public {
+    function Ownable() {
         owner = msg.sender;
     }
 
@@ -54,7 +58,7 @@ contract Ownable {
 
     // @dev Allows the current owner to transfer control of the contract to a newOwner.
     // @param newOwner The address to transfer ownership to.
-    function transferOwnership(address newOwner) public onlyOwner {
+    function transferOwnership(address newOwner) onlyOwner {
         if (newOwner != address(0)) {
             owner = newOwner;
         }
@@ -79,12 +83,12 @@ contract Claimable is Ownable {
 
     // @dev Allows the current owner to set the pendingOwner address.
     // @param newOwner The address to transfer ownership to.
-    function transferOwnership(address newOwner) public onlyOwner {
+    function transferOwnership(address newOwner) onlyOwner {
         pendingOwner = newOwner;
     }
 
     // @dev Allows the pendingOwner address to finalize the transfer.
-    function claimOwnership() public onlyPendingOwner {
+    function claimOwnership() onlyPendingOwner {
         owner = pendingOwner;
         pendingOwner = 0x0;
     }
@@ -101,7 +105,7 @@ contract Contactable is Ownable{
 
     // @dev Allows the owner to set a string with their contact information.
     // @param info The contact information to attach to the contract.
-    function setContactInformation(string info) public onlyOwner{
+    function setContactInformation(string info) onlyOwner{
         contactInformation = info;
     }
 }
@@ -125,7 +129,7 @@ contract HasNoEther is Ownable {
     * constructor. By doing it this way we prevent a payable constructor from working. Alternatively
     * we could use assembly to access msg.value.
     */
-    constructor (HasNoEther) public payable {
+    function HasNoEther() payable {
         require(msg.value == 0);
     }
 
@@ -139,8 +143,7 @@ contract HasNoEther is Ownable {
      * @dev Transfer all Ether held by the contract to the owner.
      */
     function reclaimEther() external onlyOwner {
-      //  assert(owner.send(addressthis.balance));
-      assert(owner.send(address(this).balance));
+        assert(owner.send(this.balance));
     }
 }
 
@@ -162,28 +165,28 @@ contract ERC20 {
     event Approval(address indexed owner, address indexed spender, uint256 value);
 
     // @dev Get the total token supply
-    function totalSupply() constant public returns (uint256) {
+    function totalSupply() constant returns (uint256) {
         return _totalSupply;
     }
 
     // @dev Gets the balance of the specified address.
     // @param _owner The address to query the the balance of.
     // @return An uint256 representing the amount owned by the passed address.
-    function balanceOf(address _owner) constant public returns (uint256 balance) {
+    function balanceOf(address _owner) constant returns (uint256 balance) {
         return balances[_owner];
     }
 
     // @dev transfer token for a specified address
     // @param _to The address to transfer to.
     // @param _value The amount to be transferred.
-    function transfer(address _to, uint256 _value) public  returns (bool) {
+    function transfer(address _to, uint256 _value) returns (bool) {
         require(_to != 0x0 );
         require(_value > 0 );
 
         balances[msg.sender] = balances[msg.sender].sub(_value);
         balances[_to] = balances[_to].add(_value);
 
-        emit Transfer(msg.sender, _to, _value);
+        Transfer(msg.sender, _to, _value);
         return true;
     }
 
@@ -191,25 +194,25 @@ contract ERC20 {
     // @param _from address The address which you want to send tokens from
     // @param _to address The address which you want to transfer to
     // @param _value uint256 the amout of tokens to be transfered
-    function transferFrom(address _from, address _to, uint256 _value) public returns (bool) {
+    function transferFrom(address _from, address _to, uint256 _value) returns (bool) {
         require(_from != 0x0 );
         require(_to != 0x0 );
         require(_value > 0 );
 
-        uint256 _allowance = allowed[_from][msg.sender];
+        var _allowance = allowed[_from][msg.sender];
 
         balances[_to] = balances[_to].add(_value);
         balances[_from] = balances[_from].sub(_value);
         allowed[_from][msg.sender] = _allowance.sub(_value);
 
-        emit Transfer(_from, _to, _value);
+        Transfer(_from, _to, _value);
         return true;
     }
 
     // @dev Aprove the passed address to spend the specified amount of tokens on behalf of msg.sender.
     // @param _spender The address which will spend the funds.
     // @param _value The amount of tokens to be spent.
-    function approve(address _spender, uint256 _value) public returns (bool) {
+    function approve(address _spender, uint256 _value) returns (bool) {
         require(_spender != 0x0 );
         // To change the approve amount you first have to reduce the addresses`
         // allowance to zero by calling `approve(_spender, 0)` if it is not
@@ -219,7 +222,7 @@ contract ERC20 {
 
         allowed[msg.sender][_spender] = _value;
 
-        emit Approval(msg.sender, _spender, _value);
+        Approval(msg.sender, _spender, _value);
         return true;
     }
 
@@ -227,7 +230,7 @@ contract ERC20 {
     // @param _owner address The address which owns the funds.
     // @param _spender address The address which will spend the funds.
     // @return A uint256 specifing the amount of tokens still avaible for the spender.
-    function allowance(address _owner, address _spender) constant public  returns (uint256 remaining) {
+    function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
         return allowed[_owner][_spender];
     }
 }
@@ -237,7 +240,7 @@ contract StandardToken is ERC20 {
     string public symbol;
     uint256 public decimals;
 
-    function isToken() public pure returns (bool) {
+    function isToken() public constant returns (bool) {
         return true;
     }
 }
@@ -251,9 +254,9 @@ contract FreezableToken is StandardToken, Ownable {
     event FrozenFunds(address target, bool frozen);
 
     // @dev freeze account or unfreezen.
-    function freezeAccount(address target, bool freeze) public onlyOwner {
+    function freezeAccount(address target, bool freeze) onlyOwner {
         frozenAccounts[target] = freeze;
-        emit FrozenFunds(target, freeze);
+        FrozenFunds(target, freeze);
     }
 
     // @dev Limit token transfer if _sender is frozen.
@@ -263,24 +266,24 @@ contract FreezableToken is StandardToken, Ownable {
         _;
     }
 
-    function transfer(address _to, uint256 _value) canTransfer(msg.sender) public  returns (bool success) {
+    function transfer(address _to, uint256 _value) canTransfer(msg.sender) returns (bool success) {
         // Call StandardToken.transfer()
         return super.transfer(_to, _value);
     }
 
-    function transferFrom(address _from, address _to, uint256 _value) canTransfer(_from) public returns (bool success) {
+    function transferFrom(address _from, address _to, uint256 _value) canTransfer(_from) returns (bool success) {
         // Call StandardToken.transferForm()
         return super.transferFrom(_from, _to, _value);
     }
 }
 
 /**
- * @title Bitconch Coin
- * @dev The Bitconch Coin  contract is Claimable, and provides ERC20 standard token.
+ * @title BusToken
+ * @dev The BusToken contract is Claimable, and provides ERC20 standard token.
  */
-contract Bcoo is Claimable, Contactable, HasNoEther, FreezableToken {
+contract BusToken is Claimable, Contactable, HasNoEther, FreezableToken {
     // @dev Constructor initial token info
-    constructor(Bcoo) public {
+    function BusToken(){
         uint256 _decimals = 18;
         uint256 _supply = 50000000000*(10**_decimals);
 
@@ -289,12 +292,12 @@ contract Bcoo is Claimable, Contactable, HasNoEther, FreezableToken {
         name = "Bitconch Coin";
         symbol = "BUS";
         decimals = _decimals;
-        contactInformation = "Bitconch Coin Contact Mail:info@bitconch.io";
+        contactInformation = "Bitconch Contact Email:info@bitconch.io";
     }
 }
 
 
-contract BcooTokenLock is Ownable, HasNoEther {
+contract BusTokenLock is Ownable, HasNoEther {
     using SafeMath for uint256;
 
     // @dev How many investors we have now
@@ -334,7 +337,7 @@ contract BcooTokenLock is Ownable, HasNoEther {
      * @param _token Token contract address we are distributing
      *
      */
-    constructor(address _owner, address _token, BcooTokenLock) public {
+    function BusTokenLock(address _owner, address _token) {
         require(_owner != 0x0);
         require(_token != 0x0);
 
@@ -358,11 +361,11 @@ contract BcooTokenLock is Ownable, HasNoEther {
         // Do not lock if the given tokens are not on this contract
         require(token.balanceOf(address(this)) >= tokensAtLeastHold);
 
-        emit Invested(investor, amount, hour);
+        Invested(investor, amount, hour);
     }
 
     // @dev can only withdraw rest of investor's tokens
-    function withdrawLeftTokens() public onlyOwner {
+    function withdrawLeftTokens() onlyOwner {
         token.transfer(owner, token.balanceOf(address(this))-tokensAtLeastHold);
     }
 
@@ -373,7 +376,7 @@ contract BcooTokenLock is Ownable, HasNoEther {
     }
 
     // @dev Claim N bought tokens to the investor as the msg sender
-    function  claim() public {
+    function claim() {
         withdraw(msg.sender);
     }
 
@@ -400,6 +403,6 @@ contract BcooTokenLock is Ownable, HasNoEther {
         tokensAtLeastHold -= withdrawTotal;
         require(token.balanceOf(address(this)) >= tokensAtLeastHold);
 
-        emit Distributed(investor, withdrawTotal);
+        Distributed(investor, withdrawTotal);
     }
 }
