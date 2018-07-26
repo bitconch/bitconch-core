@@ -6,6 +6,7 @@ pragma solidity ^0.4.11;
 // Total Supply : 50 Billion
 // Decimal      : 18
 // Compiler     : 0.4.11+commit.68ef5810.Emscripten.clang
+// Optimazation : Yes
 
 
 // @title SafeMath
