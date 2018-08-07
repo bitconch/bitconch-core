@@ -18,12 +18,20 @@ Several technologies are used by the Bitconch blockchain to maintain the decentr
 
 - [1. BACKGROUND](#1-BACKGROUND)
 - [2. THE CHALLENGE OF BLOCKCHAIN IN APPLICATIONS](#2-THE-CHALLENGE-OF-BLOCKCHAIN-IN-APPLICATIONS)
+- [3. PROOF OF REPUTATION CONSENSUS ALGORITHM](#3-PROOF-OF-REPUTATION-CONSENSUS-ALGORITHM)
+- [4. OTHER BREAKTHROUGH](#4-OTHER-BREAKTHROUGH)
+- [5. SYSTEM ARCHITECTURE DIAGRAM](#5-OTHER-BREAKTHROUGH
+- [6. REAL-WORLD-APPLICATION SCENARIO OUTLOOK](
+- [7. CONCLUSION](
+- [8. REFERENCES](
+
 
 <!-- /MarkdownTOC -->
 
 # 1. BACKGROUND
 
 The birth of Bitcoin has made blockchain technology leap from pure theoretical research to the world's focal point of innovation and technology. Blockchain technology has initiated new ways to understand security and information usage and is now widely viewed as certain to dramatically change the world. The success of Ethereum and its Solidity language has permitted creation of Turing-complete smart contracts and allowed developers to create any kind of application to run on a blockchain.  However, the Merkle-tree architectures used by Ethereum, Bitcoin and others suffer from several limitations and these are what is holding them back from large-scale commercial adoption. These are:
+
 - Simultaneous support for scalability, decentralization and security in one architecture. Only two are possible with Merkle-tree architectures
 - Limited file storage
 - Low Transaction Cost combined with Effective Incentives
