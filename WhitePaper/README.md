@@ -1,7 +1,7 @@
 # BUS Technical White Paper
 
-- [English](en-us/White_Paper_EN.md)
-- [Chinese](zh-cn/White_Paper_CN.md) 
+- [English](en-us/white_paper_en.md)
+- [Chinese](zh-cn/white_paper_cn.md) 
 
 # BUS Wiki
 
