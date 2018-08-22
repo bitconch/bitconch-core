@@ -28,10 +28,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/ethereum/go-ethereum/swarm/api"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/crypto"
+	"github.com/Bitconch/BUS/rpc"
+	"github.com/Bitconch/BUS/swarm/api"
 )
 
 // TestNewSwarm validates Swarm fields in repsect to the provided configuration.

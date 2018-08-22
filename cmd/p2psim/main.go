@@ -45,12 +45,12 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/discover"
-	"github.com/ethereum/go-ethereum/p2p/simulations"
-	"github.com/ethereum/go-ethereum/p2p/simulations/adapters"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/Bitconch/BUS/crypto"
+	"github.com/Bitconch/BUS/p2p"
+	"github.com/Bitconch/BUS/p2p/discover"
+	"github.com/Bitconch/BUS/p2p/simulations"
+	"github.com/Bitconch/BUS/p2p/simulations/adapters"
+	"github.com/Bitconch/BUS/rpc"
 	"gopkg.in/urfave/cli.v1"
 )
 

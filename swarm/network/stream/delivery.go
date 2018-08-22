@@ -21,13 +21,13 @@ import (
 	"errors"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/p2p/discover"
-	"github.com/ethereum/go-ethereum/swarm/log"
-	"github.com/ethereum/go-ethereum/swarm/network"
-	"github.com/ethereum/go-ethereum/swarm/spancontext"
-	"github.com/ethereum/go-ethereum/swarm/storage"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/metrics"
+	"github.com/Bitconch/BUS/p2p/discover"
+	"github.com/Bitconch/BUS/swarm/log"
+	"github.com/Bitconch/BUS/swarm/network"
+	"github.com/Bitconch/BUS/swarm/spancontext"
+	"github.com/Bitconch/BUS/swarm/storage"
 	opentracing "github.com/opentracing/opentracing-go"
 )
 

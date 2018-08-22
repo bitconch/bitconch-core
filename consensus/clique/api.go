@@ -17,10 +17,10 @@
 package clique
 
 import (
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/consensus"
+	"github.com/Bitconch/BUS/core/types"
+	"github.com/Bitconch/BUS/rpc"
 )
 
 // API is a user facing RPC API to allow controlling the signer and voting

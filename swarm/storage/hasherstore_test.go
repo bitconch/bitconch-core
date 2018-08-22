@@ -21,9 +21,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/ethereum/go-ethereum/swarm/storage/encryption"
+	"github.com/Bitconch/BUS/swarm/storage/encryption"
 
-	"github.com/ethereum/go-ethereum/common"
+	"github.com/Bitconch/BUS/common"
 )
 
 func TestHasherStore(t *testing.T) {

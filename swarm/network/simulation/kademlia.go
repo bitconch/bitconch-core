@@ -21,11 +21,11 @@ import (
 	"encoding/hex"
 	"time"
 
-	"github.com/ethereum/go-ethereum/p2p/discover"
+	"github.com/Bitconch/BUS/p2p/discover"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/swarm/network"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/log"
+	"github.com/Bitconch/BUS/swarm/network"
 )
 
 // BucketKeyKademlia is the key to be used for storing the kademlia

@@ -27,11 +27,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ethereum/go-ethereum/contracts/ens"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/swarm/multihash"
-	"github.com/ethereum/go-ethereum/swarm/storage"
+	"github.com/Bitconch/BUS/contracts/ens"
+	"github.com/Bitconch/BUS/crypto"
+	"github.com/Bitconch/BUS/log"
+	"github.com/Bitconch/BUS/swarm/multihash"
+	"github.com/Bitconch/BUS/swarm/storage"
 )
 
 var (

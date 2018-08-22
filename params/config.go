@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/common"
+	"github.com/Bitconch/BUS/common"
 )
 
 // Genesis hashes to enforce below configs on.
@@ -90,7 +90,7 @@ var (
 		EIP158Block:         big.NewInt(3),
 		ByzantiumBlock:      big.NewInt(1035301),
 		ConstantinopleBlock: nil,
-		Bus: &BusConfig{
+		Buffett: &BuffettConfig{
 			Period: 15,
 			Epoch:  30000,
 		},
@@ -133,7 +133,7 @@ var (
 		nil,
 		nil,
 		&CliqueConfig{Period: 0, Epoch: 30000},
-		&BusConfig{Period: 0, Epoch: 30000}}
+		nil}
 
 	// TestChainConfig contains configuration for test chain.
 	TestChainConfig = &ChainConfig{
@@ -177,9 +177,9 @@ type ChainConfig struct {
 	ConstantinopleBlock *big.Int `json:"constantinopleBlock,omitempty"` // Constantinople switch block (nil = no fork, 0 = already activated)
 
 	// Various consensus engines
-	Ethash *EthashConfig `json:"ethash,omitempty"`
-	Clique *CliqueConfig `json:"clique,omitempty"`
-	Bus    *BusConfig    `json:"bus,omitempty"`
+	Ethash  *EthashConfig  `json:"ethash,omitempty"`
+	Clique  *CliqueConfig  `json:"clique,omitempty"`
+	Buffett *BuffettConfig `json:"buffett,omitempty"`
 }
 
 // EthashConfig is the consensus engine configs for proof-of-work based sealing.
@@ -196,20 +196,20 @@ type CliqueConfig struct {
 	Epoch  uint64 `json:"epoch"`  // Epoch length to reset votes and checkpoint
 }
 
-// BusConfig is the consensus engine configs for proof-of-reputation based sealing.
-type BusConfig struct {
-	Period uint64 `json:"period"` // Number of seconds between blocks to enforce
-	Epoch  uint64 `json:"epoch"`  // Epoch length to reset votes and checkpoint
-}
-
 // String implements the stringer interface, returning the consensus engine details.
 func (c *CliqueConfig) String() string {
 	return "clique"
 }
 
+// BuffettConfig is the consensus engine configs for proof-of-reputation based sealing.
+type BuffettConfig struct {
+	Period uint64 `json:"period"` // Number of seconds between blocks to enforce
+	Epoch  uint64 `json:"epoch"`  // Epoch length to reset votes and checkpoint
+}
+
 // String implements the stringer interface, returning the consensus engine detials.
-func (c *BusConfig) String() string {
-	return "bus"
+func (c *BuffettConfig) String() string {
+	return "buffett"
 }
 
 // String implements the fmt.Stringer interface.
@@ -220,8 +220,8 @@ func (c *ChainConfig) String() string {
 		engine = c.Ethash
 	case c.Clique != nil:
 		engine = c.Clique
-	case c.Bus != nil:
-		engine = c.Bus
+	case c.Buffett != nil:
+		engine = c.Buffett
 	default:
 		engine = "unknown"
 	}
