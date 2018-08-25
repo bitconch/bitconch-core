@@ -24,7 +24,6 @@ import (
 	"sync/atomic"
 	"time"
 
-	mapset "github.com/deckarep/golang-set"
 	"github.com/Bitconch/BUS/common"
 	"github.com/Bitconch/BUS/consensus"
 	"github.com/Bitconch/BUS/consensus/misc"
@@ -36,6 +35,7 @@ import (
 	"github.com/Bitconch/BUS/event"
 	"github.com/Bitconch/BUS/log"
 	"github.com/Bitconch/BUS/params"
+	mapset "github.com/deckarep/golang-set"
 )
 
 const (
@@ -287,13 +287,11 @@ func (self *worker) update() {
 				// Modified by BUS001
 				// If we're mining, but nothing is being processed, either is runing on
 				// clique or buffett, wake on new transactions
-                if self.config.Clique != nil && self.config.Clique.Period == 0 {
+				if self.config.Clique != nil && self.config.Clique.Period == 0 {
 					self.commitNewWork()
 				} else if self.config.Buffett != nil && self.config.Buffett.Period == 0 {
-	                self.commitNewWork()
-                }
-
-			}
+					self.commitNewWork()
+				}
 
 			}
 
