@@ -28,7 +28,7 @@ Once the dependencies are installed, run
     * Pull requests need to be based on and opened against the `master` branch.
     * Commit messages should be prefixed with the package(s) they modify.
       * E.g. "consensus: add new pckage buffett for POR consensus"
-
+10. Install Cygwin and you can build the whole project.
 
 ## Setup Env on Ubuntu
 
