@@ -191,7 +191,7 @@ func (ch nonceChange) dirtied() *common.Address {
 }
 
 func (ch reputationChange) revert(s *StateDB) {
-	s.getStateObject(*ch.account).setNonce(ch.prev)
+	s.getStateObject(*ch.account).setReputation(ch.prev)
 }
 
 func (ch reputationChange) dirtied() *common.Address {
