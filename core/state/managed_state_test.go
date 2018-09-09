@@ -21,6 +21,7 @@ import (
 
 	"github.com/Bitconch/BUS/common"
 	"github.com/Bitconch/BUS/ethdb"
+	"fmt"
 )
 
 var addr = common.BytesToAddress([]byte("test"))
@@ -28,8 +29,12 @@ var addr = common.BytesToAddress([]byte("test"))
 func create() (*ManagedState, *account) {
 	statedb, _ := New(common.Hash{}, NewDatabase(ethdb.NewMemDatabase()))
 	ms := ManageState(statedb)
-	ms.StateDB.SetNonce(addr, 100)
+	ms.SetNonce(addr,100)
 	ms.accounts[addr] = newAccount(ms.StateDB.getStateObject(addr))
+	fmt.Println("nonce:",ms.GetNonce(addr),"reputation:",ms.GetReputation(addr))
+	ms.SetReputation(addr,1)
+	ms.getAccount(addr)
+	fmt.Println("nonce:",ms.GetNonce(addr),"reputation:",ms.GetReputation(addr))
 	return ms, ms.accounts[addr]
 }
 

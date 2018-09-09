@@ -424,6 +424,7 @@ func (pool *TxPool) reset(oldHead, newHead *types.Header) {
 	for addr, list := range pool.pending {
 		txs := list.Flatten() // Heavy but will be cached and is needed by the miner anyway
 		pool.pendingState.SetNonce(addr, txs[len(txs)-1].Nonce()+1)
+		pool.pendingState.SetReputation(addr, txs[len(txs)-1].Reputation()+1)
 	}
 	// Check the queue and move transactions over to the pending if possible
 	// or remove those that have become invalid
@@ -748,6 +749,7 @@ func (pool *TxPool) promoteTx(addr common.Address, hash common.Hash, tx *types.T
 	// Set the potentially new pending nonce and notify any subsystems of the new tx
 	pool.beats[addr] = time.Now()
 	pool.pendingState.SetNonce(addr, tx.Nonce()+1)
+	pool.pendingState.SetReputation(addr, tx.Reputation()+1)
 
 	return true
 }
@@ -888,6 +890,10 @@ func (pool *TxPool) removeTx(hash common.Hash, outofbound bool) {
 			if nonce := tx.Nonce(); pool.pendingState.GetNonce(addr) > nonce {
 				pool.pendingState.SetNonce(addr, nonce)
 			}
+			// Update the account reputation if needed
+			if reputation := tx.Reputation(); pool.pendingState.GetReputation(addr) > reputation {
+				pool.pendingState.SetReputation(addr, reputation)
+			}
 			return
 		}
 	}
@@ -1004,6 +1010,10 @@ func (pool *TxPool) promoteExecutables(accounts []common.Address) {
 							if nonce := tx.Nonce(); pool.pendingState.GetNonce(offenders[i]) > nonce {
 								pool.pendingState.SetNonce(offenders[i], nonce)
 							}
+							// Update the account reputation to the dropped transaction
+							if reputation := tx.Reputation(); pool.pendingState.GetReputation(offenders[i]) > reputation {
+								pool.pendingState.SetReputation(offenders[i], reputation)
+							}
 							log.Trace("Removed fairness-exceeding pending transaction", "hash", hash)
 						}
 						pending--
@@ -1025,6 +1035,10 @@ func (pool *TxPool) promoteExecutables(accounts []common.Address) {
 						// Update the account nonce to the dropped transaction
 						if nonce := tx.Nonce(); pool.pendingState.GetNonce(addr) > nonce {
 							pool.pendingState.SetNonce(addr, nonce)
+						}
+						// Update the account reputation to the dropped transaction
+						if reputation := tx.Reputation(); pool.pendingState.GetReputation(addr) > reputation {
+							pool.pendingState.SetReputation(addr, reputation)
 						}
 						log.Trace("Removed fairness-exceeding pending transaction", "hash", hash)
 					}
