@@ -35,6 +35,8 @@ import (
 	"github.com/Bitconch/BUS/common/fdlimit"
 	"github.com/Bitconch/BUS/consensus"
 	"github.com/Bitconch/BUS/consensus/clique"
+	// add new package buffett, change for BUS001
+	"github.com/Bitconch/BUS/consensus/buffett"
 	"github.com/Bitconch/BUS/consensus/ethash"
 	"github.com/Bitconch/BUS/core"
 	"github.com/Bitconch/BUS/core/state"
@@ -1300,12 +1302,12 @@ func MakeChain(ctx *cli.Context, stack *node.Node) (chain *core.BlockChain, chai
 	*/
 	
 	// Add for tracking number BUS001
-	select {
-	case config.Clique != nil:
+
+	if config.Clique != nil && config.Buffett == nil {
 		engine = clique.New(config.Clique, chainDb)
-	case config.Buffett != nil:
+	} else if config.Clique == nil && config.Buffett != nil {
 		engine = buffett.New(config.Buffett, chainDb)
-	default:
+	} else {
 		engine = ethash.NewFaker()
 		if !ctx.GlobalBool(FakePoWFlag.Name) {
 			engine = ethash.New(ethash.Config{

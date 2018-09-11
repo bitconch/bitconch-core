@@ -218,12 +218,10 @@ func CreateConsensusEngine(ctx *node.ServiceContext, config *ethash.Config, chai
 		}
 	*/
 	// Modified for tracking number BUS001
-	select {
-	// If proof-of-authority is requested, set it up
-	case chainConfig.Clique != nil:
+
+	if chainConfig.Clique != nil && chainConfig.Buffett == nil {
 		return clique.New(chainConfig.Clique, db)
-	// If proof-of-reputation is requested, set it up
-	case chainConfig.Buffett != nil:
+	} else if chainConfig.Clique == nil && chainConfig.Buffett != nil {
 		return buffett.New(chainConfig.Buffett, db)
 	}
 
@@ -372,31 +370,6 @@ func (s *Ethereum) StartMining(local bool) error {
 		buffett.Authorize(eb, wallet.SignHash)
 	}
 
-	if local {
-		// If local (CPU) mining is started, we can disable the transaction rejection
-		// mechanism introduced to speed sync times. CPU mining on mainnet is ludicrous
-		// so none will ever hit this path, whereas marking sync done on CPU mining
-		// will ensure that private networks work in single miner mode too.
-		atomic.StoreUint32(&s.protocolManager.acceptTxs, 1)
-	}
-	go s.miner.Start(eb)
-	return nil
-}
-
-func (s *Ethereum) StartBusMining(local bool) error {
-	eb, err := s.Etherbase()
-	if err != nil {
-		log.Error("Cannot start mining without etherbase", "err", err)
-		return fmt.Errorf("etherbase missing: %v", err)
-	}
-	if clique, ok := s.engine.(*buffett.Buffett); ok {
-		wallet, err := s.accountManager.Find(accounts.Account{Address: eb})
-		if wallet == nil || err != nil {
-			log.Error("Etherbase account unavailable locally", "err", err)
-			return fmt.Errorf("signer missing: %v", err)
-		}
-		buffett.Authorize(eb, wallet.SignHash)
-	}
 	if local {
 		// If local (CPU) mining is started, we can disable the transaction rejection
 		// mechanism introduced to speed sync times. CPU mining on mainnet is ludicrous
