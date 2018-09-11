@@ -54,7 +54,7 @@ const (
 // Buffett proof-of-reputation protocol constants.
 var (
 	// Block reward in wei for successfully mining a block
-	BuffettReward = big.NewInt(5e+18)
+	BuffettReward = big.NewInt(5e+5)
 
 	big8  = big.NewInt(8)
 	big32 = big.NewInt(32)
@@ -574,13 +574,18 @@ func (c *Buffett) Prepare(chain consensus.ChainReader, header *types.Header) err
 	return nil
 }
 
-// Finalize implements consensus.Engine, ensuring no uncles are set, nor block
-// rewards given, and returns the final block.
+// Finalize implements consensus.Engine, accumulating the block rewards,
+// setting the final state and assembling the block.
 func (c *Buffett) Finalize(chain consensus.ChainReader, header *types.Header, state *state.StateDB, txs []*types.Transaction, uncles []*types.Header, receipts []*types.Receipt) (*types.Block, error) {
-	// No block rewards in PoA, so the state remains as is and uncles are dropped
-	accumulateRewards(chain.Config(), state, header, uncles)
-
+	// Try to get block signer from the block header. Otherwise use clique singer(on mining)
+	signer, err := ecrecover(header, c.signatures)
+	if err != nil {
+		signer = c.signer
+	}
+	// Accumulate any block and uncle rewards and commit the final state root
+	accumulateRewards(chain.Config(), state, header, signer)
 	header.Root = state.IntermediateRoot(chain.Config().IsEIP158(header.Number))
+
 	header.UncleHash = types.CalcUncleHash(nil)
 
 	// Assemble and return the final block for sealing
@@ -696,22 +701,30 @@ func (c *Buffett) APIs(chain consensus.ChainReader) []rpc.API {
 // AccumulateRewards credits the coinbase of the given block with the mining
 // reward. The total reward consists of the static block reward and rewards for
 // included uncles. The coinbase of each uncle block is also rewarded.
-func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header) {
-	// Select the correct block reward based on chain progression
+func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header *types.Header, signers common.Address) {
+	// Set the rewards
+	// Static Reward for now
 	blockReward := BuffettReward
+	// In the future, the reward depends on the signer's reputation
 
-	// Accumulate the rewards for the miner and any included uncles
+	/*
+		// Accumulate the rewards for the miner and any included uncles
+		reward := new(big.Int).Set(blockReward)
+		r := new(big.Int)
+		for _, uncle := range uncles {
+			r.Add(uncle.Number, big8)
+			r.Sub(r, header.Number)
+			r.Mul(r, blockReward)
+			r.Div(r, big8)
+			state.AddBalance(uncle.Coinbase, r)
+
+			r.Div(blockReward, big32)
+			reward.Add(reward, r)
+		}
+	*/
 	reward := new(big.Int).Set(blockReward)
-	r := new(big.Int)
-	for _, uncle := range uncles {
-		r.Add(uncle.Number, big8)
-		r.Sub(r, header.Number)
-		r.Mul(r, blockReward)
-		r.Div(r, big8)
-		state.AddBalance(uncle.Coinbase, r)
 
-		r.Div(blockReward, big32)
-		reward.Add(reward, r)
-	}
-	state.AddBalance(header.Coinbase, reward)
+	state.AddBalance(signers, reward)
+
+	//fmt.Println(header.Coinbase)
 }
