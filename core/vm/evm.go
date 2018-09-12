@@ -354,6 +354,7 @@ func (evm *EVM) create(caller ContractRef, code []byte, gas uint64, value *big.I
 	nonce := evm.StateDB.GetNonce(caller.Address())
 	evm.StateDB.SetNonce(caller.Address(), nonce+1)
 
+	// and new reputation,change for BUS002
 	reputation := evm.StateDB.GetReputation(caller.Address())
 	evm.StateDB.SetReputation(caller.Address(), reputation+1)
 
@@ -367,6 +368,7 @@ func (evm *EVM) create(caller ContractRef, code []byte, gas uint64, value *big.I
 	evm.StateDB.CreateAccount(address)
 	if evm.ChainConfig().IsEIP158(evm.BlockNumber) {
 		evm.StateDB.SetNonce(address, 1)
+		// and new reputation,change for BUS002
 		evm.StateDB.SetReputation(address, 1)
 	}
 	evm.Transfer(evm.StateDB, caller.Address(), address, value)

@@ -205,6 +205,7 @@ func (self *StateDB) GetNonce(addr common.Address) uint64 {
 	return 0
 }
 
+// and new reputation,change for BUS002
 func (self *StateDB) GetReputation(addr common.Address) uint64 {
 	stateObject := self.getStateObject(addr)
 	if stateObject != nil {
@@ -312,6 +313,7 @@ func (self *StateDB) SetNonce(addr common.Address, nonce uint64) {
 	}
 }
 
+// and new reputation,change for BUS002
 func (self *StateDB) SetReputation(addr common.Address, reputation uint64) {
 	stateObject := self.GetOrNewStateObject(addr)
 	if stateObject != nil {
@@ -421,7 +423,7 @@ func (self *StateDB) createObject(addr common.Address) (newobj, prev *stateObjec
 	prev = self.getStateObject(addr)
 	newobj = newObject(self, addr, Account{})
 	newobj.setNonce(0) // sets the object to dirty
-	newobj.setReputation(0) // sets the object to dirty
+	newobj.setReputation(0) // sets the object to dirty,change for BUS002
 	if prev == nil {
 		self.journal.append(createObjectChange{account: &addr})
 	} else {

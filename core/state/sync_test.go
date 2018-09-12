@@ -25,6 +25,7 @@ import (
 	"github.com/Bitconch/BUS/crypto"
 	"github.com/Bitconch/BUS/ethdb"
 	"github.com/Bitconch/BUS/trie"
+	"fmt"
 )
 
 // testAccount is the data associated with an account used by the state tests.
@@ -32,6 +33,7 @@ type testAccount struct {
 	address common.Address
 	balance *big.Int
 	nonce   uint64
+	reputation uint64
 	code    []byte
 }
 
@@ -53,10 +55,13 @@ func makeTestState() (Database, common.Hash, []*testAccount) {
 		obj.SetNonce(uint64(42 * i))
 		acc.nonce = uint64(42 * i)
 
+		obj.setReputation(uint64(1 * i))
+		acc.reputation = uint64(42 * i)
 		if i%3 == 0 {
 			obj.SetCode(crypto.Keccak256Hash([]byte{i, i, i, i, i}), []byte{i, i, i, i, i})
 			acc.code = []byte{i, i, i, i, i}
 		}
+		fmt.Println("reputation:",obj.Reputation())
 		state.updateStateObject(obj)
 		accounts = append(accounts, acc)
 	}

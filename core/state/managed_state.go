@@ -124,12 +124,13 @@ func (ms *ManagedState) GetReputation(addr common.Address) uint64 {
 	}
 }
 
-// SetReputation sets the new canonical reputation for the managed state
+// SetReputation sets the new canonical reputation for the managed state,change for BUS002
 func (ms *ManagedState) SetReputation(addr common.Address, reputation uint64) {
 	ms.mu.Lock()
 	defer ms.mu.Unlock()
 
 	so := ms.GetOrNewStateObject(addr)
+	// and new reputation,change for BUS002
 	so.SetReputation(reputation)
 
 	ms.accounts[addr] = newAccount(so)

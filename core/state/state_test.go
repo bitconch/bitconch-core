@@ -25,6 +25,7 @@ import (
 	"github.com/Bitconch/BUS/crypto"
 	"github.com/Bitconch/BUS/ethdb"
 	checker "gopkg.in/check.v1"
+	"fmt"
 )
 
 type StateSuite struct {
@@ -152,10 +153,11 @@ func TestSnapshot2(t *testing.T) {
 	so0.SetCode(crypto.Keccak256Hash([]byte{'c', 'a', 'f', 'e'}), []byte{'c', 'a', 'f', 'e'})
 	so0.suicided = false
 	so0.deleted = false
+	so0.setReputation(2)
 	state.setStateObject(so0)
-
 	root, _ := state.Commit(false)
 	state.Reset(root)
+	fmt.Println("nonce:",so0.Nonce(),"reputation:",so0.Reputation())
 
 	// and one with deleted == true
 	so1 := state.getStateObject(stateobjaddr1)
@@ -164,8 +166,9 @@ func TestSnapshot2(t *testing.T) {
 	so1.SetCode(crypto.Keccak256Hash([]byte{'c', 'a', 'f', 'e', '2'}), []byte{'c', 'a', 'f', 'e', '2'})
 	so1.suicided = true
 	so1.deleted = true
+	so1.setReputation(5)
 	state.setStateObject(so1)
-
+	fmt.Println("nonce1:",so1.Nonce(),"reputation1:",so1.Reputation())
 	so1 = state.getStateObject(stateobjaddr1)
 	if so1 != nil {
 		t.Fatalf("deleted object not nil when getting")

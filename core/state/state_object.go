@@ -97,7 +97,7 @@ func (s *stateObject) empty() bool {
 // These objects are stored in the main account trie.
 type Account struct {
 	Nonce    uint64
-	Reputation uint64
+	Reputation uint64// and new reputation,change for BUS002
 	Balance  *big.Int
 	Root     common.Hash // merkle root of the storage trie
 	CodeHash []byte
@@ -340,6 +340,7 @@ func (self *stateObject) setNonce(nonce uint64) {
 	self.data.Nonce = nonce
 }
 
+// and new reputation,change for BUS002
 func (self *stateObject) SetReputation(reputation uint64) {
 	self.db.journal.append(reputationChange{
 		account: &self.address,
@@ -348,6 +349,7 @@ func (self *stateObject) SetReputation(reputation uint64) {
 	self.setReputation(reputation)
 }
 
+// and new reputation,change for BUS002
 func (self *stateObject) setReputation(reputation uint64) {
 	self.data.Reputation = reputation
 }

@@ -106,6 +106,7 @@ type (
 		account *common.Address
 		prev    uint64
 	}
+	// and new reputation,change for BUS002
 	reputationChange struct {
 		account *common.Address
 		prev    uint64
@@ -190,10 +191,12 @@ func (ch nonceChange) dirtied() *common.Address {
 	return ch.account
 }
 
+// and new reputationChange,change for BUS002
 func (ch reputationChange) revert(s *StateDB) {
 	s.getStateObject(*ch.account).setReputation(ch.prev)
 }
 
+// and new reputationChange,change for BUS002
 func (ch reputationChange) dirtied() *common.Address {
 	return ch.account
 }

@@ -34,6 +34,7 @@ type StateDB interface {
 	GetNonce(common.Address) uint64
 	SetNonce(common.Address, uint64)
 
+	// and new reputation,change for BUS002
 	GetReputation(common.Address) uint64
 	SetReputation(common.Address, uint64)
 

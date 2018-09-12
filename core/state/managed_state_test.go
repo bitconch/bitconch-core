@@ -32,6 +32,7 @@ func create() (*ManagedState, *account) {
 	ms.SetNonce(addr,100)
 	ms.accounts[addr] = newAccount(ms.StateDB.getStateObject(addr))
 	fmt.Println("nonce:",ms.GetNonce(addr),"reputation:",ms.GetReputation(addr))
+	// and new reputation,change for BUS002
 	ms.SetReputation(addr,1)
 	ms.getAccount(addr)
 	fmt.Println("nonce:",ms.GetNonce(addr),"reputation:",ms.GetReputation(addr))
