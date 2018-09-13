@@ -583,6 +583,7 @@ func (c *Buffett) Finalize(chain consensus.ChainReader, header *types.Header, st
 		signer = c.signer
 	}
 	// Accumulate any block and uncle rewards and commit the final state root
+	//fmt.Println(signer.String()), String will return the 0x... string representation of an address
 	accumulateRewards(chain.Config(), state, header, signer)
 	header.Root = state.IntermediateRoot(chain.Config().IsEIP158(header.Number))
 
