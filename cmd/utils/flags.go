@@ -29,35 +29,37 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/accounts/keystore"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/fdlimit"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/consensus/clique"
-	"github.com/ethereum/go-ethereum/consensus/ethash"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/dashboard"
-	"github.com/ethereum/go-ethereum/eth"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/eth/gasprice"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/ethstats"
-	"github.com/ethereum/go-ethereum/les"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/metrics/influxdb"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/discover"
-	"github.com/ethereum/go-ethereum/p2p/discv5"
-	"github.com/ethereum/go-ethereum/p2p/nat"
-	"github.com/ethereum/go-ethereum/p2p/netutil"
-	"github.com/ethereum/go-ethereum/params"
-	whisper "github.com/ethereum/go-ethereum/whisper/whisperv6"
+	"github.com/Bitconch/BUS/accounts"
+	"github.com/Bitconch/BUS/accounts/keystore"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/common/fdlimit"
+	"github.com/Bitconch/BUS/consensus"
+	"github.com/Bitconch/BUS/consensus/clique"
+	// add new package buffett, change for BUS001
+	"github.com/Bitconch/BUS/consensus/buffett"
+	"github.com/Bitconch/BUS/consensus/ethash"
+	"github.com/Bitconch/BUS/core"
+	"github.com/Bitconch/BUS/core/state"
+	"github.com/Bitconch/BUS/core/vm"
+	"github.com/Bitconch/BUS/crypto"
+	"github.com/Bitconch/BUS/dashboard"
+	"github.com/Bitconch/BUS/eth"
+	"github.com/Bitconch/BUS/eth/downloader"
+	"github.com/Bitconch/BUS/eth/gasprice"
+	"github.com/Bitconch/BUS/ethdb"
+	"github.com/Bitconch/BUS/ethstats"
+	"github.com/Bitconch/BUS/les"
+	"github.com/Bitconch/BUS/log"
+	"github.com/Bitconch/BUS/metrics"
+	"github.com/Bitconch/BUS/metrics/influxdb"
+	"github.com/Bitconch/BUS/node"
+	"github.com/Bitconch/BUS/p2p"
+	"github.com/Bitconch/BUS/p2p/discover"
+	"github.com/Bitconch/BUS/p2p/discv5"
+	"github.com/Bitconch/BUS/p2p/nat"
+	"github.com/Bitconch/BUS/p2p/netutil"
+	"github.com/Bitconch/BUS/params"
+	whisper "github.com/Bitconch/BUS/whisper/whisperv6"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -1281,6 +1283,7 @@ func MakeChain(ctx *cli.Context, stack *node.Node) (chain *core.BlockChain, chai
 		Fatalf("%v", err)
 	}
 	var engine consensus.Engine
+	/*
 	if config.Clique != nil {
 		engine = clique.New(config.Clique, chainDb)
 	} else {
@@ -1296,6 +1299,28 @@ func MakeChain(ctx *cli.Context, stack *node.Node) (chain *core.BlockChain, chai
 			})
 		}
 	}
+	*/
+	
+	// Add for tracking number BUS001
+
+	if config.Clique != nil && config.Buffett == nil {
+		engine = clique.New(config.Clique, chainDb)
+	} else if config.Clique == nil && config.Buffett != nil {
+		engine = buffett.New(config.Buffett, chainDb)
+	} else {
+		engine = ethash.NewFaker()
+		if !ctx.GlobalBool(FakePoWFlag.Name) {
+			engine = ethash.New(ethash.Config{
+				CacheDir:       stack.ResolvePath(eth.DefaultConfig.Ethash.CacheDir),
+				CachesInMem:    eth.DefaultConfig.Ethash.CachesInMem,
+				CachesOnDisk:   eth.DefaultConfig.Ethash.CachesOnDisk,
+				DatasetDir:     stack.ResolvePath(eth.DefaultConfig.Ethash.DatasetDir),
+				DatasetsInMem:  eth.DefaultConfig.Ethash.DatasetsInMem,
+				DatasetsOnDisk: eth.DefaultConfig.Ethash.DatasetsOnDisk,
+			})
+		}
+	}
+
 	if gcmode := ctx.GlobalString(GCModeFlag.Name); gcmode != "full" && gcmode != "archive" {
 		Fatalf("--%s must be either 'full' or 'archive'", GCModeFlag.Name)
 	}

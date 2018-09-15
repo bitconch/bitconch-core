@@ -25,13 +25,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/core/state"
+	"github.com/Bitconch/BUS/core/types"
+	"github.com/Bitconch/BUS/event"
+	"github.com/Bitconch/BUS/log"
+	"github.com/Bitconch/BUS/metrics"
+	"github.com/Bitconch/BUS/params"
 	"gopkg.in/karalabe/cookiejar.v2/collections/prque"
 )
 

@@ -25,13 +25,13 @@ import (
 	"sync"
 	"time"
 
-	ethereum "github.com/ethereum/go-ethereum"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/rpc"
+	ethereum "github.com/Bitconch/BUS"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/common/hexutil"
+	"github.com/Bitconch/BUS/core/types"
+	"github.com/Bitconch/BUS/ethdb"
+	"github.com/Bitconch/BUS/event"
+	"github.com/Bitconch/BUS/rpc"
 )
 
 var (

@@ -25,30 +25,31 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/consensus/clique"
-	"github.com/ethereum/go-ethereum/consensus/ethash"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/bloombits"
-	"github.com/ethereum/go-ethereum/core/rawdb"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/eth/filters"
-	"github.com/ethereum/go-ethereum/eth/gasprice"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/internal/ethapi"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/miner"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/Bitconch/BUS/accounts"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/common/hexutil"
+	"github.com/Bitconch/BUS/consensus"
+	"github.com/Bitconch/BUS/consensus/buffett"
+	"github.com/Bitconch/BUS/consensus/clique"
+	"github.com/Bitconch/BUS/consensus/ethash"
+	"github.com/Bitconch/BUS/core"
+	"github.com/Bitconch/BUS/core/bloombits"
+	"github.com/Bitconch/BUS/core/rawdb"
+	"github.com/Bitconch/BUS/core/types"
+	"github.com/Bitconch/BUS/core/vm"
+	"github.com/Bitconch/BUS/eth/downloader"
+	"github.com/Bitconch/BUS/eth/filters"
+	"github.com/Bitconch/BUS/eth/gasprice"
+	"github.com/Bitconch/BUS/ethdb"
+	"github.com/Bitconch/BUS/event"
+	"github.com/Bitconch/BUS/internal/ethapi"
+	"github.com/Bitconch/BUS/log"
+	"github.com/Bitconch/BUS/miner"
+	"github.com/Bitconch/BUS/node"
+	"github.com/Bitconch/BUS/p2p"
+	"github.com/Bitconch/BUS/params"
+	"github.com/Bitconch/BUS/rlp"
+	"github.com/Bitconch/BUS/rpc"
 )
 
 type LesServer interface {
@@ -210,11 +211,19 @@ func CreateDB(ctx *node.ServiceContext, config *Config, name string) (ethdb.Data
 
 // CreateConsensusEngine creates the required type of consensus engine instance for an Ethereum service
 func CreateConsensusEngine(ctx *node.ServiceContext, config *ethash.Config, chainConfig *params.ChainConfig, db ethdb.Database) consensus.Engine {
-	// If proof-of-authority is requested, set it up
-	if chainConfig.Clique != nil {
-		return clique.New(chainConfig.Clique, db)
-	}
+	/*
+		// If proof-of-authority is requested, set it up
+		if chainConfig.Clique != nil {
+			return clique.New(chainConfig.Clique, db)
+		}
+	*/
+	// Modified for tracking number BUS001
 
+	if chainConfig.Clique != nil && chainConfig.Buffett == nil {
+		return clique.New(chainConfig.Clique, db)
+	} else if chainConfig.Clique == nil && chainConfig.Buffett != nil {
+		return buffett.New(chainConfig.Buffett, db)
+	}
 
 	// Otherwise assume proof-of-work
 	switch config.PowMode {
@@ -334,6 +343,7 @@ func (s *Ethereum) SetEtherbase(etherbase common.Address) {
 	s.miner.SetEtherbase(etherbase)
 }
 
+// StartMining star the mining process
 func (s *Ethereum) StartMining(local bool) error {
 	eb, err := s.Etherbase()
 	if err != nil {
@@ -348,24 +358,10 @@ func (s *Ethereum) StartMining(local bool) error {
 		}
 		clique.Authorize(eb, wallet.SignHash)
 	}
-	if local {
-		// If local (CPU) mining is started, we can disable the transaction rejection
-		// mechanism introduced to speed sync times. CPU mining on mainnet is ludicrous
-		// so none will ever hit this path, whereas marking sync done on CPU mining
-		// will ensure that private networks work in single miner mode too.
-		atomic.StoreUint32(&s.protocolManager.acceptTxs, 1)
-	}
-	go s.miner.Start(eb)
-	return nil
-}
 
-func (s *Ethereum) StartBusMining(local bool) error {
-	eb, err := s.Etherbase()
-	if err != nil {
-		log.Error("Cannot start mining without etherbase", "err", err)
-		return fmt.Errorf("etherbase missing: %v", err)
-	}
-	if clique, ok := s.engine.(*buffett.Buffett); ok {
+	// Modified for tracking number BUS001
+	// if Proof-of-Reputtion is requested, set up mining for it
+	if buffett, ok := s.engine.(*buffett.Buffett); ok {
 		wallet, err := s.accountManager.Find(accounts.Account{Address: eb})
 		if wallet == nil || err != nil {
 			log.Error("Etherbase account unavailable locally", "err", err)
@@ -373,6 +369,7 @@ func (s *Ethereum) StartBusMining(local bool) error {
 		}
 		buffett.Authorize(eb, wallet.SignHash)
 	}
+
 	if local {
 		// If local (CPU) mining is started, we can disable the transaction rejection
 		// mechanism introduced to speed sync times. CPU mining on mainnet is ludicrous

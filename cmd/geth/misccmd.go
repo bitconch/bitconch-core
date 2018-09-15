@@ -23,10 +23,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	"github.com/ethereum/go-ethereum/consensus/ethash"
-	"github.com/ethereum/go-ethereum/eth"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/Bitconch/BUS/cmd/utils"
+	"github.com/Bitconch/BUS/consensus/ethash"
+	"github.com/Bitconch/BUS/eth"
+	"github.com/Bitconch/BUS/params"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -122,6 +122,7 @@ func version(ctx *cli.Context) error {
 	return nil
 }
 
+/* Chnge for BUS004
 func license(_ *cli.Context) error {
 	fmt.Println(`Geth is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -136,4 +137,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with geth. If not, see <http://www.gnu.org/licenses/>.`)
 	return nil
+*/
+
+func license(_ *cli.Context) error {
+	fmt.Println(`Bitconch Blockchain MVP is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+You should have received a copy of the GNU General Public License
+along with geth. If not, see <http://www.gnu.org/licenses/>.`)
+	return nil
+
 }

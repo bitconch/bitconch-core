@@ -25,11 +25,11 @@ import (
 	"net"
 	"time"
 
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/p2p/nat"
-	"github.com/ethereum/go-ethereum/p2p/netutil"
-	"github.com/ethereum/go-ethereum/rlp"
+	"github.com/Bitconch/BUS/crypto"
+	"github.com/Bitconch/BUS/log"
+	"github.com/Bitconch/BUS/p2p/nat"
+	"github.com/Bitconch/BUS/p2p/netutil"
+	"github.com/Bitconch/BUS/rlp"
 )
 
 // Errors

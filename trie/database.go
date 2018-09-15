@@ -22,11 +22,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/rlp"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/ethdb"
+	"github.com/Bitconch/BUS/log"
+	"github.com/Bitconch/BUS/metrics"
+	"github.com/Bitconch/BUS/rlp"
 )
 
 var (

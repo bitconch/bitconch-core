@@ -17,9 +17,9 @@
 package runtime
 
 import (
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/vm"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/core"
+	"github.com/Bitconch/BUS/core/vm"
 )
 
 func NewEnv(cfg *Config) *vm.EVM {

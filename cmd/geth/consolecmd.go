@@ -24,28 +24,15 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	"github.com/ethereum/go-ethereum/console"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/Bitconch/BUS/cmd/utils"
+	"github.com/Bitconch/BUS/console"
+	"github.com/Bitconch/BUS/node"
+	"github.com/Bitconch/BUS/rpc"
 	"gopkg.in/urfave/cli.v1"
 )
 
 var (
 	consoleFlags = []cli.Flag{utils.JSpathFlag, utils.ExecFlag, utils.PreloadJSFlag}
-
-	// New CLI command, bus, is introduced which will start the POR mode.
-	busCommand = cli.Command{
-		Action:   utils.MigrateFlags(busConsole),
-		Name:     "bus",
-		Usage:    "Start an interactive JavaScript environment",
-		Flags:    append(append(append(nodeFlags, rpcFlags...), consoleFlags...), whisperFlags...),
-		Category: "CONSOLE COMMANDS",
-		Description: `
-Create a node  Geth console is an interactive shell for the JavaScript runtime environment
-which exposes a node admin interface as well as the Ðapp JavaScript API.
-See https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console.`,
-	}
 
 	consoleCommand = cli.Command{
 		Action:   utils.MigrateFlags(localConsole),
@@ -56,7 +43,7 @@ See https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console.`,
 		Description: `
 The Geth console is an interactive shell for the JavaScript runtime environment
 which exposes a node admin interface as well as the Ðapp JavaScript API.
-See https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console.`,
+See https://github.com/Bitconch/BUS/wiki/JavaScript-Console.`,
 	}
 
 	attachCommand = cli.Command{
@@ -69,7 +56,7 @@ See https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console.`,
 		Description: `
 The Geth console is an interactive shell for the JavaScript runtime environment
 which exposes a node admin interface as well as the Ðapp JavaScript API.
-See https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console.
+See https://github.com/Bitconch/BUS/wiki/JavaScript-Console.
 This command allows to open a console on a running geth node.`,
 	}
 
@@ -82,47 +69,9 @@ This command allows to open a console on a running geth node.`,
 		Category:  "CONSOLE COMMANDS",
 		Description: `
 The JavaScript VM exposes a node admin interface as well as the Ðapp
-JavaScript API. See https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console`,
+JavaScript API. See https://github.com/Bitconch/BUS/wiki/JavaScript-Console`,
 	}
 )
-
-// busConsole starts a new bus node, attaching a JavaScript console to it at the
-// same time.
-func busConsole(ctx *cli.Context) error {
-	// Create and start the node based on the CLI flags
-	node := makeFullNode(ctx)
-	startBusNode(ctx, node)
-	defer node.Stop()
-
-	// Attach to the newly started node and start the JavaScript console
-	client, err := node.Attach()
-	if err != nil {
-		utils.Fatalf("Failed to attach to the inproc geth: %v", err)
-	}
-	config := console.Config{
-		DataDir: utils.MakeDataDir(ctx),
-		DocRoot: ctx.GlobalString(utils.JSpathFlag.Name),
-		Client:  client,
-		Preload: utils.MakeConsolePreloads(ctx),
-	}
-
-	console, err := console.New(config)
-	if err != nil {
-		utils.Fatalf("Failed to start the JavaScript console: %v", err)
-	}
-	defer console.Stop(false)
-
-	// If only a short execution was requested, evaluate and return
-	if script := ctx.GlobalString(utils.ExecFlag.Name); script != "" {
-		console.Evaluate(script)
-		return nil
-	}
-	// Otherwise print the welcome screen and enter interactive mode
-	console.Welcome()
-	console.Interactive()
-
-	return nil
-}
 
 // localConsole starts a new geth node, attaching a JavaScript console to it at the
 // same time.

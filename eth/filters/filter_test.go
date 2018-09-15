@@ -23,15 +23,15 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/consensus/ethash"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/rawdb"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/consensus/ethash"
+	"github.com/Bitconch/BUS/core"
+	"github.com/Bitconch/BUS/core/rawdb"
+	"github.com/Bitconch/BUS/core/types"
+	"github.com/Bitconch/BUS/crypto"
+	"github.com/Bitconch/BUS/ethdb"
+	"github.com/Bitconch/BUS/event"
+	"github.com/Bitconch/BUS/params"
 )
 
 func makeReceipt(addr common.Address) *types.Receipt {

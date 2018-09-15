@@ -21,11 +21,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/discover"
-	"github.com/ethereum/go-ethereum/swarm/log"
-	"github.com/ethereum/go-ethereum/swarm/state"
+	"github.com/Bitconch/BUS/common/hexutil"
+	"github.com/Bitconch/BUS/p2p"
+	"github.com/Bitconch/BUS/p2p/discover"
+	"github.com/Bitconch/BUS/swarm/log"
+	"github.com/Bitconch/BUS/swarm/state"
 )
 
 /*

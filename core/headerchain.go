@@ -26,13 +26,13 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/core/rawdb"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/consensus"
+	"github.com/Bitconch/BUS/core/rawdb"
+	"github.com/Bitconch/BUS/core/types"
+	"github.com/Bitconch/BUS/ethdb"
+	"github.com/Bitconch/BUS/log"
+	"github.com/Bitconch/BUS/params"
 	"github.com/hashicorp/golang-lru"
 )
 

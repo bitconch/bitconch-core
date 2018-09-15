@@ -33,15 +33,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/swarm/api"
-	swarm "github.com/ethereum/go-ethereum/swarm/api/client"
-	"github.com/ethereum/go-ethereum/swarm/multihash"
-	"github.com/ethereum/go-ethereum/swarm/storage"
-	"github.com/ethereum/go-ethereum/swarm/storage/mru"
-	"github.com/ethereum/go-ethereum/swarm/testutil"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/crypto"
+	"github.com/Bitconch/BUS/log"
+	"github.com/Bitconch/BUS/swarm/api"
+	swarm "github.com/Bitconch/BUS/swarm/api/client"
+	"github.com/Bitconch/BUS/swarm/multihash"
+	"github.com/Bitconch/BUS/swarm/storage"
+	"github.com/Bitconch/BUS/swarm/storage/mru"
+	"github.com/Bitconch/BUS/swarm/testutil"
 )
 
 func init() {

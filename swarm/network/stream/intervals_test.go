@@ -27,15 +27,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/discover"
-	"github.com/ethereum/go-ethereum/p2p/simulations/adapters"
-	"github.com/ethereum/go-ethereum/swarm/network"
-	"github.com/ethereum/go-ethereum/swarm/network/simulation"
-	"github.com/ethereum/go-ethereum/swarm/state"
-	"github.com/ethereum/go-ethereum/swarm/storage"
+	"github.com/Bitconch/BUS/log"
+	"github.com/Bitconch/BUS/node"
+	"github.com/Bitconch/BUS/p2p"
+	"github.com/Bitconch/BUS/p2p/discover"
+	"github.com/Bitconch/BUS/p2p/simulations/adapters"
+	"github.com/Bitconch/BUS/swarm/network"
+	"github.com/Bitconch/BUS/swarm/network/simulation"
+	"github.com/Bitconch/BUS/swarm/state"
+	"github.com/Bitconch/BUS/swarm/storage"
 )
 
 func TestIntervals(t *testing.T) {

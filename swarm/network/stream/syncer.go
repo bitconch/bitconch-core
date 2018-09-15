@@ -22,9 +22,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/swarm/log"
-	"github.com/ethereum/go-ethereum/swarm/storage"
+	"github.com/Bitconch/BUS/metrics"
+	"github.com/Bitconch/BUS/swarm/log"
+	"github.com/Bitconch/BUS/swarm/storage"
 )
 
 const (

@@ -20,9 +20,9 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/ethdb"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/core/types"
+	"github.com/Bitconch/BUS/ethdb"
 )
 
 // Tests that positional lookup metadata can be stored and retrieved.

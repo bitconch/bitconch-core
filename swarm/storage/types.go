@@ -27,9 +27,9 @@ import (
 	"io"
 	"sync"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/crypto/sha3"
-	"github.com/ethereum/go-ethereum/swarm/bmt"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/crypto/sha3"
+	"github.com/Bitconch/BUS/swarm/bmt"
 )
 
 const MaxPO = 16

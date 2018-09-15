@@ -28,9 +28,12 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/ethereum/go-ethereum/internal/jsre"
-	"github.com/ethereum/go-ethereum/internal/web3ext"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/Bitconch/BUS/internal/jsre"
+	"github.com/Bitconch/BUS/internal/web3ext"
+	"github.com/Bitconch/BUS/rpc"
+
+	// add for BUS004
+
 	"github.com/mattn/go-colorable"
 	"github.com/peterh/liner"
 	"github.com/robertkrimen/otto"
@@ -275,13 +278,28 @@ func (c *Console) AutoCompleteInput(line string, pos int) (string, []string, str
 // console's available modules.
 func (c *Console) Welcome() {
 	// Print some generic Geth metadata
-	fmt.Fprintf(c.printer, "Welcome to the Geth JavaScript console!\n\n")
+	// change for BUS004
+	//fmt.Fprintf(c.printer, "Welcome to the Geth JavaScript console!\n\n")
+	fmt.Fprintf(c.printer, "Welcome to the Bitconch Blockchain Javascript console!\n\n")
+
+	/*
+		c.jsre.Run(`
+			console.log("instance: " + web3.version.node);
+			console.log("coinbase: " + eth.coinbase);
+			console.log("at block: " + eth.blockNumber + " (" + new Date(1000 * eth.getBlock(eth.blockNumber).timestamp) + ")");
+			console.log(" datadir: " + admin.datadir);
+		`)
+	*/
+
+	// change for BUS004
+	//printSoloStartupMessage()
 	c.jsre.Run(`
 		console.log("instance: " + web3.version.node);
 		console.log("coinbase: " + eth.coinbase);
 		console.log("at block: " + eth.blockNumber + " (" + new Date(1000 * eth.getBlock(eth.blockNumber).timestamp) + ")");
 		console.log(" datadir: " + admin.datadir);
 	`)
+
 	// List all the supported modules for the user to call
 	if apis, err := c.client.SupportedModules(); err == nil {
 		modules := make([]string, 0, len(apis))
@@ -440,3 +458,49 @@ func (c *Console) Stop(graceful bool) error {
 	c.jsre.Stop(graceful)
 	return nil
 }
+
+/*
+// Print some fancy startup information
+// Change for BUS004
+func printSoloStartupMessage(
+	gene *genesis.Genesis,
+	chain *chain.Chain,
+	dataDir string,
+	apiURL string,
+) {
+	tableHead := `
+┌────────────────────────────────────────────┬────────────────────────────────────────────────────────────────────┐
+│                   Address                  │                             Private Key                            │`
+	tableContent := `
+├────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────┤
+│ %v │ %v │`
+	tableEnd := `
+└────────────────────────────────────────────┴────────────────────────────────────────────────────────────────────┘`
+
+	bestBlock := chain.BestBlock()
+
+	info := fmt.Sprintf(`Starting %v
+    Network     [ %v %v ]
+    Best block  [ %v #%v @%v ]
+    Data dir    [ %v ]
+    API portal  [ %v ]`,
+		common.MakeName("Bitconch Blockchain MVP", params.VersionWithMeta),
+		gene.ID(), gene.Name(),
+		bestBlock.Header().ID(), bestBlock.Header().Number(), time.Unix(int64(bestBlock.Header().Timestamp()), 0),
+		dataDir,
+		apiURL)
+
+	info += tableHead
+
+	for _, a := range genesis.DevAccounts() {
+		info += fmt.Sprintf(tableContent,
+			a.Address,
+			thor.BytesToBytes32(crypto.FromECDSA(a.PrivateKey)),
+		)
+	}
+	info += tableEnd + "\r\n"
+
+	fmt.Print(info)
+}
+
+*/

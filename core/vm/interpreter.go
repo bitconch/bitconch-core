@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"github.com/ethereum/go-ethereum/common/math"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/Bitconch/BUS/common/math"
+	"github.com/Bitconch/BUS/params"
 )
 
 // Config are the configuration options for the Interpreter

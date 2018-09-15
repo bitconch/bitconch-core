@@ -30,10 +30,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ethereum/go-ethereum/swarm/api"
-	"github.com/ethereum/go-ethereum/swarm/storage"
+	"github.com/Bitconch/BUS/swarm/api"
+	"github.com/Bitconch/BUS/swarm/storage"
 
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/Bitconch/BUS/log"
 
 	colorable "github.com/mattn/go-colorable"
 )

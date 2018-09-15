@@ -24,18 +24,18 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/consensus"
+	"github.com/Bitconch/BUS/consensus/misc"
+	"github.com/Bitconch/BUS/core"
+	"github.com/Bitconch/BUS/core/state"
+	"github.com/Bitconch/BUS/core/types"
+	"github.com/Bitconch/BUS/core/vm"
+	"github.com/Bitconch/BUS/ethdb"
+	"github.com/Bitconch/BUS/event"
+	"github.com/Bitconch/BUS/log"
+	"github.com/Bitconch/BUS/params"
 	mapset "github.com/deckarep/golang-set"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/consensus/misc"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/params"
 )
 
 const (
@@ -278,10 +278,21 @@ func (self *worker) update() {
 				self.updateSnapshot()
 				self.currentMu.Unlock()
 			} else {
+
 				// If we're mining, but nothing is being processed, wake on new transactions
+				//if self.config.Clique != nil && self.config.Clique.Period == 0 {
+				//	self.commitNewWork()
+				//}
+
+				// Modified by BUS001
+				// If we're mining, but nothing is being processed, either is runing on
+				// clique or buffett, wake on new transactions
 				if self.config.Clique != nil && self.config.Clique.Period == 0 {
 					self.commitNewWork()
+				} else if self.config.Buffett != nil && self.config.Buffett.Period == 0 {
+					self.commitNewWork()
 				}
+
 			}
 
 		// System stopped

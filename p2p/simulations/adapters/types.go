@@ -26,11 +26,11 @@ import (
 	"strconv"
 
 	"github.com/docker/docker/pkg/reexec"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/discover"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/Bitconch/BUS/crypto"
+	"github.com/Bitconch/BUS/node"
+	"github.com/Bitconch/BUS/p2p"
+	"github.com/Bitconch/BUS/p2p/discover"
+	"github.com/Bitconch/BUS/rpc"
 )
 
 // Node represents a node in a simulation network which is created by a

@@ -25,10 +25,10 @@ import (
 	"sort"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/mclock"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/common/mclock"
+	"github.com/Bitconch/BUS/crypto"
+	"github.com/Bitconch/BUS/log"
 )
 
 const (

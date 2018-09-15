@@ -19,9 +19,9 @@ package misc
 import (
 	"fmt"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/core/types"
+	"github.com/Bitconch/BUS/params"
 )
 
 // VerifyForkHashes verifies that blocks conforming to network hard-forks do have

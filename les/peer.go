@@ -26,13 +26,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/eth"
-	"github.com/ethereum/go-ethereum/les/flowcontrol"
-	"github.com/ethereum/go-ethereum/light"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/rlp"
+	"github.com/Bitconch/BUS/common"
+	"github.com/Bitconch/BUS/core/types"
+	"github.com/Bitconch/BUS/eth"
+	"github.com/Bitconch/BUS/les/flowcontrol"
+	"github.com/Bitconch/BUS/light"
+	"github.com/Bitconch/BUS/p2p"
+	"github.com/Bitconch/BUS/rlp"
 )
 
 var (
