@@ -27,7 +27,6 @@ import (
 type journalEntry interface {
 	// revert undoes the changes introduced by this journal entry.
 	revert(*StateDB)
-
 	// dirtied returns the Ethereum address modified by this journal entry.
 	dirtied() *common.Address
 }
@@ -104,6 +103,11 @@ type (
 		prev    *big.Int
 	}
 	nonceChange struct {
+		account *common.Address
+		prev    uint64
+	}
+	// and new reputation,change for BUS002
+	reputationChange struct {
 		account *common.Address
 		prev    uint64
 	}
@@ -184,6 +188,16 @@ func (ch nonceChange) revert(s *StateDB) {
 }
 
 func (ch nonceChange) dirtied() *common.Address {
+	return ch.account
+}
+
+// and new reputationChange,change for BUS002
+func (ch reputationChange) revert(s *StateDB) {
+	s.getStateObject(*ch.account).setReputation(ch.prev)
+}
+
+// and new reputationChange,change for BUS002
+func (ch reputationChange) dirtied() *common.Address {
 	return ch.account
 }
 
