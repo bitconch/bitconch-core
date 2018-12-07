@@ -22,7 +22,15 @@ import (
 
 	"github.com/Bitconch/BUS/common/math"
 	"github.com/Bitconch/BUS/params"
+
+	"github.com/Bitconch/BUS/common"
+	"hash"
 )
+
+type keccakState interface {
+	hash.Hash
+	Read([]byte) (int, error)
+}
 
 // Config are the configuration options for the Interpreter
 type Config struct {
@@ -74,8 +82,10 @@ type EVMInterpreter struct {
 	gasTable params.GasTable
 	intPool  *intPool
 
-	readOnly   bool   // Whether to throw on stateful modifications
-	returnData []byte // Last CALL's return data for subsequent reuse
+	readOnly   bool        // Whether to throw on stateful modifications
+	returnData []byte      // Last CALL's return data for subsequent reuse
+	hasher     keccakState // Keccak256 hasher instance shared across opcodes
+	hasherBuf  common.Hash
 }
 
 // NewEVMInterpreter returns a new instance of the Interpreter.
