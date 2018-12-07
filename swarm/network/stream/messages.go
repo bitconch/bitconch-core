@@ -26,9 +26,10 @@ import (
 	"github.com/Bitconch/BUS/metrics"
 	"github.com/Bitconch/BUS/swarm/log"
 	bv "github.com/Bitconch/BUS/swarm/network/bitvector"
+	"github.com/opentracing/opentracing-go"
 	"github.com/Bitconch/BUS/swarm/spancontext"
 	"github.com/Bitconch/BUS/swarm/storage"
-	opentracing "github.com/opentracing/opentracing-go"
+
 )
 
 // Stream defines a unique stream identifier.
@@ -198,12 +199,20 @@ func (p *Peer) handleOfferedHashesMsg(ctx context.Context, req *OfferedHashesMsg
 		return err
 	}
 	hashes := req.Hashes
-	want, err := bv.New(len(hashes) / HashSize)
+
+	//bus006
+	lenHashes := len(hashes)
+	if lenHashes%HashSize != 0 {
+		return fmt.Errorf("error invalid hashes length (len: %v)", lenHashes)
+	}
+	want, err := bv.New(lenHashes / HashSize)
+
+
 	if err != nil {
-		return fmt.Errorf("error initiaising bitvector of length %v: %v", len(hashes)/HashSize, err)
+		return fmt.Errorf("error initiaising bitvector of length %v: %v", lenHashes/HashSize, err)
 	}
 	wg := sync.WaitGroup{}
-	for i := 0; i < len(hashes); i += HashSize {
+	for i := 0; i < lenHashes; i += HashSize {
 		hash := hashes[i : i+HashSize]
 
 		if wait := c.NeedData(ctx, hash); wait != nil {
