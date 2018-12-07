@@ -23,6 +23,7 @@ import (
 	"time"
 	"github.com/Bitconch/BUS/crypto/sha3"
 	p2ptest "github.com/Bitconch/BUS/p2p/testing"
+	"errors"
 )
 
 func TestStreamerSubscribe(t *testing.T) {
