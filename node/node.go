@@ -549,11 +549,25 @@ func (n *Node) IPCEndpoint() string {
 
 // HTTPEndpoint retrieves the current HTTP endpoint used by the protocol stack.
 func (n *Node) HTTPEndpoint() string {
+	//change for BUS006
+	n.lock.Lock()
+	defer n.lock.Unlock()
+	if n.httpListener != nil {
+		return n.httpListener.Addr().String()
+	}
+
 	return n.httpEndpoint
 }
 
 // WSEndpoint retrieves the current WS endpoint used by the protocol stack.
 func (n *Node) WSEndpoint() string {
+	//change for BUS006
+	n.lock.Lock()
+	defer n.lock.Unlock()
+	if n.wsListener != nil {
+		return n.wsListener.Addr().String()
+	}
+
 	return n.wsEndpoint
 }
 
