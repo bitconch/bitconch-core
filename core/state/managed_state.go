@@ -26,6 +26,7 @@ type account struct {
 	stateObject *stateObject
 	nstart      uint64
 	nonces      []bool
+	reputation  uint64
 }
 
 type ManagedState struct {
@@ -108,6 +109,33 @@ func (ms *ManagedState) SetNonce(addr common.Address, nonce uint64) {
 	ms.accounts[addr] = newAccount(so)
 }
 
+// GetReputation returns the canonical reputation for the managed or unmanaged account.
+//
+// Because GetReputation mutates the DB, we must take a write lock.
+func (ms *ManagedState) GetReputation(addr common.Address) uint64 {
+	ms.mu.Lock()
+	defer ms.mu.Unlock()
+
+	if ms.hasAccount(addr) {
+		account := ms.getAccount(addr)
+		return account.reputation
+	} else {
+		return ms.StateDB.GetReputation(addr)
+	}
+}
+
+// SetReputation sets the new canonical reputation for the managed state,change for BUS002
+func (ms *ManagedState) SetReputation(addr common.Address, reputation uint64) {
+	ms.mu.Lock()
+	defer ms.mu.Unlock()
+
+	so := ms.GetOrNewStateObject(addr)
+	// and new reputation,change for BUS002
+	so.SetReputation(reputation)
+
+	ms.accounts[addr] = newAccount(so)
+}
+
 // HasAccount returns whether the given address is managed or not
 func (ms *ManagedState) HasAccount(addr common.Address) bool {
 	ms.mu.RLock()
@@ -139,5 +167,5 @@ func (ms *ManagedState) getAccount(addr common.Address) *account {
 }
 
 func newAccount(so *stateObject) *account {
-	return &account{so, so.Nonce(), nil}
+	return &account{so, so.Nonce(), nil,so.Reputation()}
 }

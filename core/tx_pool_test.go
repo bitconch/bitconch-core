@@ -166,6 +166,8 @@ func (c *testChain) State() (*state.StateDB, error) {
 		c.statedb, _ = state.New(common.Hash{}, state.NewDatabase(ethdb.NewMemDatabase()))
 		// simulate that the new head block included tx0 and tx1
 		c.statedb.SetNonce(c.address, 2)
+		// and new reputation,change for BUS002
+		c.statedb.SetReputation(c.address, 2)
 		c.statedb.SetBalance(c.address, new(big.Int).SetUint64(params.Ether))
 		*c.trigger = false
 	}
@@ -243,6 +245,8 @@ func TestInvalidTransactions(t *testing.T) {
 	}
 
 	pool.currentState.SetNonce(from, 1)
+	// and new reputation,change for BUS002
+	pool.currentState.SetReputation(from, 1)
 	pool.currentState.AddBalance(from, big.NewInt(0xffffffffffffff))
 	tx = transaction(0, 100000, key)
 	if err := pool.AddRemote(tx); err != ErrNonceTooLow {
@@ -279,6 +283,8 @@ func TestTransactionQueue(t *testing.T) {
 	tx = transaction(1, 100, key)
 	from, _ = deriveSender(tx)
 	pool.currentState.SetNonce(from, 2)
+	// and new reputation,change for BUS002
+	pool.currentState.SetReputation(from, 2)
 	pool.enqueueTx(tx.Hash(), tx)
 	pool.promoteExecutables([]common.Address{from})
 	if _, ok := pool.pending[from].txs.items[tx.Nonce()]; ok {
@@ -438,7 +444,10 @@ func TestTransactionNonceRecovery(t *testing.T) {
 
 	addr := crypto.PubkeyToAddress(key.PublicKey)
 	pool.currentState.SetNonce(addr, n)
+	// and new reputation,change for BUS002
+	pool.currentState.SetReputation(addr, n)
 	pool.currentState.AddBalance(addr, big.NewInt(100000000000000))
+	fmt.Println("reputation0:", pool.currentState.GetReputation(addr))
 	pool.lockedReset(nil, nil)
 
 	tx := transaction(n, 100000, key)
@@ -447,6 +456,9 @@ func TestTransactionNonceRecovery(t *testing.T) {
 	}
 	// simulate some weird re-order of transactions and missing nonce(s)
 	pool.currentState.SetNonce(addr, n-1)
+	// and new reputation,change for BUS002
+	pool.currentState.SetReputation(addr, n-1)
+	fmt.Println("reputation1:", pool.currentState.GetReputation(addr))
 	pool.lockedReset(nil, nil)
 	if fn := pool.pendingState.GetNonce(addr); fn != n-1 {
 		t.Errorf("expected nonce to be %d, got %d", n-1, fn)
@@ -1631,6 +1643,8 @@ func testTransactionJournaling(t *testing.T, nolocals bool) {
 	// Terminate the old pool, bump the local nonce, create a new pool and ensure relevant transaction survive
 	pool.Stop()
 	statedb.SetNonce(crypto.PubkeyToAddress(local.PublicKey), 1)
+	// and new reputation,change for BUS002
+	statedb.SetReputation(crypto.PubkeyToAddress(local.PublicKey), 1)
 	blockchain = &testBlockChain{statedb, 1000000, new(event.Feed)}
 
 	pool = NewTxPool(config, params.TestChainConfig, blockchain)
