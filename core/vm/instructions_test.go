@@ -30,6 +30,26 @@ type twoOperandTest struct {
 	expected string
 }
 
+func BenchmarkOpSHA3(bench *testing.B) {
+	var (
+		env            = NewEVM(Context{}, nil, params.TestChainConfig, Config{})
+		stack          = newstack()
+		mem            = NewMemory()
+		evmInterpreter = NewEVMInterpreter(env, env.vmConfig)
+	)
+	env.interpreter = evmInterpreter
+	evmInterpreter.intPool = poolOfIntPools.get()
+	mem.Resize(32)
+	pc := uint64(0)
+	start := big.NewInt(0)
+	bench.ResetTimer()
+	for i := 0; i < bench.N; i++ {
+		stack.pushN(big.NewInt(32), start)
+		opSha3(&pc, evmInterpreter, nil, mem, stack)
+	}
+	poolOfIntPools.put(evmInterpreter.intPool)
+}
+
 func testTwoOperandOp(t *testing.T, tests []twoOperandTest, opFn func(pc *uint64, interpreter *EVMInterpreter, contract *Contract, memory *Memory, stack *Stack) ([]byte, error)) {
 	var (
 		env            = NewEVM(Context{}, nil, params.TestChainConfig, Config{})
