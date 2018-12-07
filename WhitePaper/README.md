@@ -5,7 +5,7 @@
 
 # BUS Wiki
 
-- [English](https://github.com/BitConch/BUS/wiki)
+- [English](https://github.com/Bitconch/BUS/wiki)
 
 # Translation Guide
 

@@ -37,7 +37,7 @@ type StateDB interface {
 	// and new reputation,change for BUS002
 	GetReputation(common.Address) uint64
 	SetReputation(common.Address, uint64)
-
+  
 	GetCodeHash(common.Address) common.Hash
 	GetCode(common.Address) []byte
 	SetCode(common.Address, []byte)
