@@ -1,4 +1,4 @@
-![alt text](https://github.com/caesarchad/MVP/blaze_gpu/img/cuda-downloads-sc18.png "Nvidia GPU Roadmap")
+![alt text](https://github.com/caesarchad/BUS/blob/master/MVP/blaze_gpu/img/cuda-downloads-sc18.png "Nvidia GPU Roadmap")
 
 # solana-perf-libs
 CUDA, and more!
