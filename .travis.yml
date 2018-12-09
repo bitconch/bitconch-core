@@ -1,5 +1,5 @@
 language: go
-go_import_path: github.com/ethereum/go-ethereum
+go_import_path: github.com/Bitconch/BUS
 sudo: false
 matrix:
   include:
@@ -42,27 +42,10 @@ matrix:
       env:
         - lint
       git:
-        submodules: false # avoid cloning ethereum/tests
+        submodules: false # avoid cloning bitconch/tests
       script:
         - go run build/ci.go lint
 
-    # This builder does the Ubuntu PPA upload
-    - os: linux
-      dist: trusty
-      go: 1.10.x
-      env:
-        - ubuntu-ppa
-      git:
-        submodules: false # avoid cloning ethereum/tests
-      addons:
-        apt:
-          packages:
-            - devscripts
-            - debhelper
-            - dput
-            - fakeroot
-      script:
-        - go run build/ci.go debsrc -signer "Go Ethereum Linux Builder <geth-ci@ethereum.org>" -upload ppa:ethereum/ethereum
 
     # This builder does the Linux Azure uploads
     - os: linux
@@ -72,7 +55,7 @@ matrix:
       env:
         - azure-linux
       git:
-        submodules: false # avoid cloning ethereum/tests
+        submodules: false # avoid cloning bitconch/tests
       addons:
         apt:
           packages:
@@ -106,7 +89,7 @@ matrix:
       env:
         - azure-linux-mips
       git:
-        submodules: false # avoid cloning ethereum/tests
+        submodules: false # avoid cloning bitconch/tests
       script:
         - go run build/ci.go xgo --alltools -- --targets=linux/mips --ldflags '-extldflags "-static"' -v
         - for bin in build/bin/*-linux-mips; do mv -f "${bin}" "${bin/-linux-mips/}"; done
@@ -144,7 +127,7 @@ matrix:
         - azure-android
         - maven-android
       git:
-        submodules: false # avoid cloning ethereum/tests
+        submodules: false # avoid cloning bitconch/tests
       before_install:
         - curl https://storage.googleapis.com/golang/go1.10.3.linux-amd64.tar.gz | tar -xz
         - export PATH=`pwd`/go/bin:$PATH
@@ -157,8 +140,8 @@ matrix:
         - mv android-ndk-r17b $HOME
         - export ANDROID_NDK=$HOME/android-ndk-r17b
 
-        - mkdir -p $GOPATH/src/github.com/ethereum
-        - ln -s `pwd` $GOPATH/src/github.com/ethereum
+        - mkdir -p $GOPATH/src/github.com/Bitconch
+        - ln -s `pwd` $GOPATH/src/github.com/Bitconch
         - go run build/ci.go aar -signer ANDROID_SIGNING_KEY -deploy https://oss.sonatype.org -upload gethstore/builds
 
     # This builder does the OSX Azure, iOS CocoaPods and iOS Azure uploads
@@ -169,7 +152,7 @@ matrix:
         - azure-ios
         - cocoapods-ios
       git:
-        submodules: false # avoid cloning ethereum/tests
+        submodules: false # avoid cloning bitconch/tests
       script:
         - go run build/ci.go install
         - go run build/ci.go archive -type tar -signer OSX_SIGNING_KEY -upload gethstore/builds
@@ -196,7 +179,7 @@ matrix:
       env:
         - azure-purge
       git:
-        submodules: false # avoid cloning ethereum/tests
+        submodules: false # avoid cloning bitconch/tests
       script:
         - go run build/ci.go purge -store gethstore/builds -days 14
 

@@ -405,7 +405,7 @@ func (s *Server) handleMultipartUpload(req *Request, boundary string, mw *api.Ma
 		}
 
 		var size int64
-		var reader io.Reader = part
+		var reader io.Reader
 		if contentLength := part.Header.Get("Content-Length"); contentLength != "" {
 			size, err = strconv.ParseInt(contentLength, 10, 64)
 			if err != nil {
