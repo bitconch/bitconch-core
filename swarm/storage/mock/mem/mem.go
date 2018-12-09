@@ -70,6 +70,21 @@ func (s *GlobalStore) Get(addr common.Address, key []byte) (data []byte, err err
 	return data, nil
 }
 
+func (s *GlobalStore) Delete(addr common.Address, key []byte) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	var count int
+	if _, ok := s.nodes[string(key)]; ok {
+		delete(s.nodes[string(key)], addr)
+		count = len(s.nodes[string(key)])
+	}
+	if count == 0 {
+		delete(s.data, string(key))
+	}
+	return nil
+}
+
 // Put saves the chunk data for node with address addr.
 func (s *GlobalStore) Put(addr common.Address, key []byte, data []byte) error {
 	s.mu.Lock()

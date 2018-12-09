@@ -78,6 +78,12 @@ func (s *GlobalStore) Get(addr common.Address, key []byte) (data []byte, err err
 	return
 }
 
+func (s *GlobalStore) Delete(addr common.Address, key []byte) error {
+	batch := new(leveldb.Batch)
+	batch.Delete(nodeDBKey(addr, key))
+	return s.db.Write(batch, nil)
+}
+
 // Put saves the chunk data for node with address addr.
 func (s *GlobalStore) Put(addr common.Address, key []byte, data []byte) error {
 	batch := new(leveldb.Batch)
