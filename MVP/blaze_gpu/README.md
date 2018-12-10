@@ -16,6 +16,14 @@ One of our latest tools in our cutting edge arsenal to help us to build the next
 https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#virtual-architecture-feature-list
 
 
+| GPU Feature List     | Features |
+| ------------- | ------------- |
+| sm_35  | + Dynamic parallelism support  |
+| sm_50, sm_52, and sm_53  | + Maxwell support  |
+| sm_60, sm_61, and sm_62	  | + Pascal support  |
+| sm_70 and sm_72 | + Volta support  |
+| sm_75 | + Turing support  |
+
 
 
 ## Building
