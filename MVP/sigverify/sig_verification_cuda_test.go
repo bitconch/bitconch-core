@@ -16,28 +16,33 @@
 
 package sigverify
 
-
 //create a function test_layout
-func test_layout(){}
-
+func test_layout() {}
 
 //create a function make_packet_from_transaction
-func make_packet_from_transaction(){}
+func make_packet_from_transaction() {}
 
 //create a function test_verify_n
-func test_verify_n(){}
-
-//create a function test_verify_zero, call test_verify_n(0,)
-func test_verify_zero(){
-	test_verify_n(0)
-}
-
-//create a function test_verify_one, call test_verify_n(1)
-func test_verify_one(1){
+func test_verify_n() {
 
 }
 
-//create a function test_verify_seventy_one, call test_verify_n(71)
+//create a function test_verify_zero, call test_verify_n(0,false)
+func test_verify_zero() {
+	test_verify_n(0, false)
+}
 
+//create a function test_verify_one, call test_verify_n(1,false)
+func test_verify_one() {
+	test_verify_n(1, false)
+}
+
+//create a function test_verify_seventy_one, call test_verify_n(71,false)
+func test_verify_zero() {
+	test_verify_n(71, false)
+}
 
 //create a function ]test_verify_fail, call test_verify_n(5,true)
+func test_verify_zero() {
+	test_verify_n(5, true)
+}

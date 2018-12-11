@@ -16,28 +16,40 @@
 
 package sigverify
 
+import (
+	"fmt"
+)
 
-//create a function test_layout
-func test_layout(){}
+//define a struct "Elems"
 
+//call extern C code inline
 
-//create a function make_packet_from_transaction
-func make_packet_from_transaction(){}
+//create a public function Init, for golang, function starts with capital letter
+func Init() {
 
-//create a function test_verify_n
-func test_verify_n(){}
+	ed25519_set_verbose(true)
 
-//create a function test_verify_zero, call test_verify_n(0,)
-func test_verify_zero(){
-	test_verify_n(0)
+	if !ed25519_init() {
+		fmt.Errorf("Initialization Failed for ed25519_init")
+	}
+	ed25519_set_verbose(false)
+
 }
 
-//create a function test_verify_one, call test_verify_n(1)
-func test_verify_one(1){
+//create a function verify_packet
+func verify_packet() {}
 
-}
+//create a function verify_packet_disabled
+func verify_packet_disabled() {}
 
-//create a function test_verify_seventy_one, call test_verify_n(71)
+//create a function batch_size
+func batch_size() {}
 
+//create a public function ed25519_verify_cpu
+func Verify_Ed2551_Cpu9() {}
 
-//create a function ]test_verify_fail, call test_verify_n(5,true)
+//create a public function ed25519_verify_disabled
+func Verify_Ed25519_Disabled() {}
+
+//create a public function ed25519_verify
+func Verify_Ed25519() {}
