@@ -48,17 +48,22 @@ func Init(){
 
 
 //create a function verify_packet 
-func verify_packet
+func verify_packet(){}
+
 
 
 //create a function verify_packet_disabled
+func verify_packet_disabled(){}
 
 //create a function batch_size
+func batch_size(){}
+
 
 //create a public function ed25519_verify_cpu
+func Verify_Ed2551_Cpu9(){}
 
 //create a public function ed25519_verify_disabled
+func Verify_Ed25519_Disabled(){}
 
 //create a public function ed25519_verify
-
-//
+func Verify_Ed25519(){}
