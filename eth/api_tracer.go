@@ -376,6 +376,13 @@ func (api *PrivateDebugAPI) TraceBlock(ctx context.Context, blob []byte, config 
 	return api.traceBlock(ctx, block, config)
 }
 
+func (api *PrivateDebugAPI) TraceBadBlock(ctx context.Context, index int, config *TraceConfig) ([]*txTraceResult, error) {
+	if blocks := api.eth.blockchain.BadBlocks(); index < len(blocks) {
+		return api.traceBlock(ctx, blocks[index], config)
+	}
+	return nil, fmt.Errorf("index out of range")
+}
+
 // TraceBlockFromFile returns the structured logs created during the execution of
 // EVM and returns them as a JSON object.
 func (api *PrivateDebugAPI) TraceBlockFromFile(ctx context.Context, file string, config *TraceConfig) ([]*txTraceResult, error) {
