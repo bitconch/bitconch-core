@@ -56,6 +56,9 @@ var (
 	qosConfidenceCap = 10   // Number of peers above which not to modify RTT confidence
 	qosTuningImpact  = 0.25 // Impact that a new tuning target has on the previous value
 
+	reorgProtThreshold   = 48 // Threshold number of recent blocks to disable mini reorg protection
+	reorgProtHeaderDelay = 2  // Number of headers to delay delivering to cover mini reorgs
+
 	maxQueuedHeaders  = 32 * 1024 // [eth/62] Maximum number of headers to queue for import (DOS protection)
 	maxHeadersProcess = 2048      // Number of header download results to import at once into the chain
 	maxResultsProcess = 2048      // Number of content download results to import at once into the chain
@@ -843,6 +846,30 @@ func (d *Downloader) fetchHeaders(p *peerConnection, from uint64, pivot uint64) 
 				}
 				headers = filled[proced:]
 				from += uint64(proced)
+			} else {
+				// If we're closing in on the chain head, but haven't yet reached it, delay
+				// the last few headers so mini reorgs on the head don't cause invalid hash
+				// chain errors.
+				if n := len(headers); n > 0 {
+					// Retrieve the current head we're at
+					head := uint64(0)
+					if d.mode == LightSync {
+						head = d.lightchain.CurrentHeader().Number.Uint64()
+					} else {
+						head = d.blockchain.CurrentFastBlock().NumberU64()
+						if full := d.blockchain.CurrentBlock().NumberU64(); head < full {
+							head = full
+						}
+					}
+					// If the head is way older than this batch, delay the last few headers
+					if head+uint64(reorgProtThreshold) < headers[n-1].Number.Uint64() {
+						delay := reorgProtHeaderDelay
+						if delay > n {
+							delay = n
+						}
+						headers = headers[:n-delay]
+					}
+				}
 			}
 			// Insert all the new headers and fetch the next batch
 			if len(headers) > 0 {
@@ -853,8 +880,18 @@ func (d *Downloader) fetchHeaders(p *peerConnection, from uint64, pivot uint64) 
 					return errCancelHeaderFetch
 				}
 				from += uint64(len(headers))
+				getHeaders(from)
+			} else {
+				// No headers delivered, or all of them being delayed, sleep a bit and retry
+				p.log.Trace("All headers delayed, waiting")
+				select {
+				case <-time.After(fsHeaderContCheck):
+					getHeaders(from)
+					continue
+				case <-d.cancelCh:
+					return errCancelHeaderFetch
+				}
 			}
-			getHeaders(from)
 
 		case <-timeout.C:
 			if d.dropPeer == nil {
