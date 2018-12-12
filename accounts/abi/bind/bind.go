@@ -29,7 +29,7 @@ import (
 	"unicode"
 
 	"github.com/Bitconch/BUS/accounts/abi"
-	"golang.org/x/tools/imports"
+	"go/format"
 )
 
 // Lang is a target programming language selector to generate bindings for.
@@ -147,7 +147,7 @@ func Bind(types []string, abis []string, bytecodes []string, pkg string, lang La
 	}
 	// For Go bindings pass the code through goimports to clean it up and double check
 	if lang == LangGo {
-		code, err := imports.Process(".", buffer.Bytes(), nil)
+		code, err := format.Source(buffer.Bytes())
 		if err != nil {
 			return "", fmt.Errorf("%v\n%s", err, buffer)
 		}
