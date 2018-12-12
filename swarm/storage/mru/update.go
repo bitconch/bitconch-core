@@ -42,7 +42,7 @@ const chunkPrefixLength = 2 + 2
 //
 // Minimum size is Header + 1 (minimum data length, enforced)
 const minimumUpdateDataLength = updateHeaderLength + 1
-const maxUpdateDataLength = chunkSize - signatureLength - updateHeaderLength - chunkPrefixLength
+const MaxUpdateDataLength = chunk.DefaultSize - signatureLength - idLength - headerLength
 
 // binaryPut serializes the resource update information into the given slice
 func (r *resourceUpdate) binaryPut(serializedData []byte) error {
@@ -51,9 +51,9 @@ func (r *resourceUpdate) binaryPut(serializedData []byte) error {
 		return NewError(ErrInvalidValue, "cannot update a resource with no data")
 	}
 
-	if datalength > maxUpdateDataLength {
-		return NewErrorf(ErrInvalidValue, "data is too big (length=%d). Max length=%d", datalength, maxUpdateDataLength)
-	}
+	if datalength > MaxUpdateDataLength {
+ 		return NewErrorf(ErrInvalidValue, "feed update data is too big (length=%d). Max length=%d", datalength, MaxUpdateDataLength)
+ 	}
 
 	if len(serializedData) != r.binaryLength() {
 		return NewErrorf(ErrInvalidValue, "slice passed to putBinary must be of exact size. Expected %d bytes", r.binaryLength())
