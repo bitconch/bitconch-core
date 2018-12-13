@@ -1,6 +1,21 @@
+//! The `crdt` module defines a data structure that is shared by all the nodes in the network over
+//! a gossip control plane.  The goal is to share small bits of off-chain information and detect and
+//! repair partitions.
+//!
+//! This CRDT only supports a very limited set of types.  A map of Pubkey -> Versioned Struct.
+//! The last version is always picked during an update.
+//!
+//! The network is arranged in layers:
+//!
+//! * layer 0 - Leader.
+//! * layer 1 - As many nodes as we can fit
+//! * layer 2 - Everyone else, if layer 1 is `2^10`, layer 2 should be able to fit `2^20` number of nodes.
+//!
+//! Bank needs to provide an interface for us to query the stake weight
+
+package crdt
+
 import (
-	"fmt"
-	"math"
 	"os"
 	godebug "runtime/debug"
 	"sort"
@@ -8,6 +23,11 @@ import (
 	"strings"
 	"time"
 	"net"
+	"github.com/ethereum/go-ethereum/p2p/enode"
+	"github.com/ethereum/go-ethereum/p2p/enr"
+	"crypto/ecdsa"
+	"github.com/ethereum/go-ethereum/crypto"
+	"golang.org/x/crypto/ed25519/internal/edwards25519"
 )
 
 const (
@@ -63,7 +83,17 @@ pub struct ContactInfo {
     /// addresses if they haven't changed.
     version int64
 }	
-	
+
+type Sockets struct {
+	gossip UdpSocket
+	requests UdpSocket
+	replicate []UdpSocket
+	transaction []UdpSocket
+	respond UdpSocket
+	broadcast UdpSocket
+	retransmit UdpSocket
+}
+
 type NodeInfo struct {
 	id []byte
     /// If any of the bits change, update increment this value
@@ -74,6 +104,11 @@ type NodeInfo struct {
     pub leader_id []byte
     /// information about the state of the ledger
     pub ledger_state LedgerState
+}
+
+type Node struct {
+	info NodeInfo
+	sockets Sockets
 }
 
 
@@ -124,7 +159,7 @@ func (nodeinfo *NodeInfo) next_port(addr , nxt int16) (SocketAddr string){
 	socketaddr(host,ParseInt(port) + nxt)
 
 	
-func (nodeinfo * NodeInfo) new_with_pubkey_socketaddr(pubkey []byte, bind_addr string) NodeInfo{
+func (nodeinfo *NodeInfo) new_with_pubkey_socketaddr(pubkey []byte, bind_addr string) NodeInfo{
 	transactions_addr = bind_addr
 	gossip_addr = nodeinfo.next_port(bind_addr,1)
 	replicate_addr = nodeinfo.next_port(bind_addr,2)
@@ -140,5 +175,13 @@ func (nodeinfo * NodeInfo) new_with_pubkey_socketaddr(pubkey []byte, bind_addr s
 }
 
 func (nodeinfo *NodeInfo) new_with_socketaddr(bind_addr string) NodeInfo{
-	nodeinfo.new_with_pubkey_socketaddr(bind_addr)
+	pub, _, _ := GenerateKey(rand.Reader)
+	nodeinfo.new_with_pubkey_socketaddr(pub, bind_addr)
 }
+
+func (nodeinfo *NodeInfo) new_entry_point(gossip_addr string) NodeInfo{
+	addr = socketaddr('0.0.0.0','0')
+	pub, _, _ := GenerateKey(rand.Reader)
+	nodeinfo.new(pub, *gossip_addr, daddr, daddr, daddr, daddr)
+}
+
