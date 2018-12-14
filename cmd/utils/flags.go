@@ -1019,8 +1019,11 @@ func checkExclusive(ctx *cli.Context, args ...interface{}) {
 				// Extended flag, expand the name and shift the arguments
 				if ctx.GlobalString(flag.GetName()) == option {
 					name += "=" + option
+					set = append(set, "--"+name)
+
 				}
 				i++
+				continue
 
 			case cli.Flag:
 			default:
