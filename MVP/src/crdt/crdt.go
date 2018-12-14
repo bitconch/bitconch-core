@@ -33,7 +33,7 @@ import (
 )
 
 const (
-	FULLNODE_PORT_RANGE = []uint16{8000, 10_000}
+	FULLNODE_PORT_RANGE = []uint16{8000, 10000}
 	
 	/// milliseconds we sleep for between gossip requests
 	GOSSIP_SLEEP_MILLIS = 100;
@@ -252,10 +252,57 @@ func (node *Node) new_localhost_with_pubkey(pubkey []byte) Node {
 func (node *Node) new_with_external_ip(pubkey []byte], ncp &net.UDPAddr) {
 	inc := func bind() -> (u16, UdpSocket) {
 		bind_in_range(FULLNODE_PORT_RANGE).expect("Failed to bind")
-	}
+    }
+    
+    gossip_port, gossip = if ncp.Port != 0 {
+        (ncp.port(), bind_to(ncp.port(), false).expect("ncp bind"))
+    } else {
+        bind()
+    };
+
+    let (replicate_port, replicate_sockets) =
+        multi_bind_in_range(FULLNODE_PORT_RANGE, 8).expect("tvu multi_bind");
+
+    let (requests_port, requests) = bind();
+
+    let (transaction_port, transaction_sockets) =
+        multi_bind_in_range(FULLNODE_PORT_RANGE, 32).expect("tpu multi_bind");
+
+    let (_, repair) = bind();
+    let (_, broadcast) = bind();
+    let (_, retransmit) = bind();
+    let (storage_port, _) = bind();
+
+    // Responses are sent from the same Udp port as requests are received
+    // from, in hopes that a NAT sitting in the middle will route the
+    // response Udp packet correctly back to the requester.
+    let respond = requests.try_clone().unwrap();
+
+    info = NodeInfo.new(
+        pubkey,
+        net.UDPAddr{IP: ncp.IP, Port: gossip_port},
+        net.UDPAddr{IP: ncp.IP, Port: replicate_port},
+        net.UDPAddr{IP: ncp.IP, Port: requests_port},
+        net.UDPAddr{IP: ncp.IP, Port: transaction_port},
+        net.UDPAddr{IP: ncp.IP, Port: storage_port}
+    )
+
+    Node {
+        info,
+        sockets: Sockets {
+            gossip,
+            requests,
+            replicate: replicate_sockets,
+            transaction: transaction_sockets,
+            respond,
+            broadcast,
+            repair,
+            retransmit,
+        }
+    }
 }
 
-func bind_in_range(range (int16, int16)) (int16, net.UDPConn) {
+func bind_in_range(range [2]int) (int16, net.UDPConn) {
     let sock = udp_socket(false)?;
 
     let (start, end) = range;
