@@ -25,6 +25,8 @@ import (
 	"net"
 	"github.com/ethereum/go-ethereum/p2p/enode"
 	"github.com/ethereum/go-ethereum/p2p/enr"
+	"github.com/ethereum/go-ethereum/p2p/discover"
+	"github.com/ethereum/go-ethereum/common/"
 	"crypto/ecdsa"
 	"github.com/ethereum/go-ethereum/crypto"
 	"golang.org/x/crypto/ed25519/internal/edwards25519"
@@ -61,11 +63,31 @@ const (
     BadGossipAddress CrdtError = "BadGossipAddress"
 )
 	
+/// Structure to be replicated by the network
+type ContactInfo struct{
+    /// gossip address
+    ncp net.UDPAddr
+    /// address to connect to for replication
+    tvu net.UDPAddr
+    /// address to connect to when this node is leader
+    rpu net.UDPAddr
+    /// transactions address
+    tpu net.UDPAddr
+    /// storage data address
+    storage_addr net.UDPAddr
+    /// if this struture changes update this value as well
+    /// Always update `NodeInfo` version too
+    /// This separate version for addresses allows us to use the `Vote`
+    /// as means of updating the `NodeInfo` table without touching the
+    /// addresses if they haven't changed.
+    version int64
+}
+
 type LedgerState struct {
-	last_id []int8
+	last_id [32]byte
 }
 	
-pub struct ContactInfo {
+type ContactInfo struct {
     /// gossip address
     ncp string
     /// address to connect to for replication
@@ -85,13 +107,13 @@ pub struct ContactInfo {
 }	
 
 type Sockets struct {
-	gossip UdpSocket
-	requests UdpSocket
-	replicate []UdpSocket
-	transaction []UdpSocket
-	respond UdpSocket
-	broadcast UdpSocket
-	retransmit UdpSocket
+	gossip net.UDPConn
+	requests net.UDPConn
+	replicate []net.UDPConn
+	transaction []net.UDPConn
+	respond net.UDPConn
+	broadcast net.UDPConn
+	retransmit net.UDPConn
 }
 
 type NodeInfo struct {
@@ -99,11 +121,11 @@ type NodeInfo struct {
     /// If any of the bits change, update increment this value
     version int64
     /// network addresses
-    pub contact_info ContactInfo
+    contact_info ContactInfo
     /// current leader identity
-    pub leader_id []byte
+    leader_id []byte
     /// information about the state of the ledger
-    pub ledger_state LedgerState
+    ledger_state LedgerState
 }
 
 type Node struct {
@@ -114,11 +136,11 @@ type Node struct {
 
 func (nodeinfo *NodeInfo) new(
         id []byte,
-        ncp string,
-        tvu string,
-        rpu string,
-        tpu string,
-        storage_addr string,
+        ncp net.UDPAddr,
+        tvu net.UDPAddr,
+        rpu net.UDPAddr,
+        tpu net.UDPAddr,
+        storage_addr net.UDPAddr,
     ) NodeInfo {
 	NodeInfo{
 		 id : id,
@@ -131,9 +153,9 @@ func (nodeinfo *NodeInfo) new(
             storage_addr : storage_addr,
             version: 0,
         },
-        leader_id: Pubkey.default(),
+        leader_id: common.BytesToHash('0')
         ledger_state: LedgerState {
-			last_id: Hash.default(),
+			last_id: common.BytesToHash('0')
         },
 	}
 }
@@ -185,3 +207,72 @@ func (nodeinfo *NodeInfo) new_entry_point(gossip_addr string) NodeInfo{
 	nodeinfo.new(pub, *gossip_addr, daddr, daddr, daddr, daddr)
 }
 
+
+
+func (node *Node) new_localhost() Node {
+	pub, _, _ := GenerateKey(rand.Reader)
+	node.new_localhost_with_pubkey(pub)
+}
+
+
+func (node *Node) new_localhost_with_pubkey(pubkey []byte) Node {
+	transaction = net.ListenUDP("udp", net.UDPAddr{IP: net.ParseIP("127.0.0.1"), Port: 0})
+	gossip = net.ListenUDP("udp", net.UDPAddr{IP: net.ParseIP("127.0.0.1"), Port: 0})
+	replicate = net.ListenUDP("udp", net.UDPAddr{IP: net.ParseIP("127.0.0.1"), Port: 0})
+	requests = net.ListenUDP("udp", net.UDPAddr{IP: net.ParseIP("127.0.0.1"), Port: 0})
+	repair = net.ListenUDP("udp", net.UDPAddr{IP: net.ParseIP("127.0.0.1"), Port: 0})
+
+	respond = net.ListenUDP("udp", net.UDPAddr{IP: net.IPv4zero, Port: 0})
+	broadcast = net.ListenUDP("udp", net.UDPAddr{IP: net.IPv4zero, Port: 0})
+	retransmit = net.ListenUDP("udp", net.UDPAddr{IP: net.IPv4zero, Port: 0})
+	storage = net.ListenUDP("udp", net.UDPAddr{IP: net.IPv4zero, Port: 0})
+	info = NodeInfo.new(
+		pubkey
+		gossip
+		replicate
+		requests
+		transaction
+		storage
+	)
+	 Node {
+            info
+            sockets: Sockets {
+                gossip
+                requests
+                replicate: vec![replicate],
+                transaction: vec![transaction],
+                respond,
+                broadcast,
+                repair,
+                retransmit,
+            },
+        }
+}
+
+func (node *Node) new_with_external_ip(pubkey []byte], ncp &net.UDPAddr) {
+	inc := func bind() -> (u16, UdpSocket) {
+		bind_in_range(FULLNODE_PORT_RANGE).expect("Failed to bind")
+	}
+}
+
+func bind_in_range(range (int16, int16)) (int16, net.UDPConn) {
+    let sock = udp_socket(false)?;
+
+    let (start, end) = range;
+    let mut tries_left = end - start;
+    loop {
+        let rand_port = thread_rng().gen_range(start, end);
+        let addr = SocketAddr::new(IpAddr::V4(Ipv4Addr::new(0, 0, 0, 0)), rand_port);
+
+        match sock.bind(&SockAddr::from(addr)) {
+            Ok(_) => {
+                let sock = sock.into_udp_socket();
+                break Result::Ok((sock.local_addr().unwrap().port(), sock));
+            }
+            Err(err) => if err.kind() != io::ErrorKind::AddrInUse || tries_left == 0 {
+                return Err(err);
+            },
+        }
+        tries_left -= 1;
+    }
+}
