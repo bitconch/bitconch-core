@@ -256,7 +256,7 @@ func (node *Node) new_with_external_ip(pubkey []byte, ncp &net.UDPAddr) {
     }
     
     gossip_port, gossip = if ncp.Port != 0 {
-        ncp.Port, bind_to(ncp.Port, false)
+        ncp.Port, bind_to(ncp.Port)
     } else {
         bind()
     };
@@ -303,13 +303,13 @@ func (node *Node) new_with_external_ip(pubkey []byte, ncp &net.UDPAddr) {
     }
 }
 
-func bind_in_range(range []int) (int16, net.UDPConn) {
-    start, end = range[0], range[1];
+func bind_in_range(rang []int) (int16, net.UDPConn) {
+    start, end = rang[0], rang[1];
     tries_left = end - start;
     for {
         rand.Seed(time.Now().Unix())
         rand_port = rand.Intn(end - start) + start
-        addr = net.UDPAddr{IP: net.IPv4zero, rand_port}
+        addr = net.UDPAddr{IP: net.IPv4zero, Port: rand_port}
         con, error = net.UDPConn.DialUDP("udp", net.UDPAddr{IP: net.IPv4zero, Port: 0})
         if error == nil {
             return con.local_addr, con
@@ -320,4 +320,22 @@ func bind_in_range(range []int) (int16, net.UDPConn) {
        
         tries_left -= 1;
     }
+}
+
+
+func multi_bind_in_range(rang []int16, num uintptr) -> (int16, []net.UDPConn) {
+    udpconns := make([]net.UDPConn, num)
+    port, _ = bind_in_range(rang)
+
+    for i := 0; i < num; i++ {
+        conn, error = net.UDPConn.DialUDP("udp", net.UDPAddr{IP: net.IPv4zero, Port: port})
+        udpconns = append(udpconns, con)
+    }
+
+    return port, udpconns
+}
+
+func bind_to(port int16) net.UDPConn {
+    conn, _ = net.UDPConn.DialUDP("udp", net.UDPAddr{IP: net.IPv4zero, Port: port})
+    return conn
 }
