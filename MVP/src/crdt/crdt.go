@@ -16,8 +16,10 @@
 package crdt
 
 import (
-	"os"
-	godebug "runtime/debug"
+    "os"
+    "errors"
+    godebug "runtime/debug"
+    "fmt"
 	"sort"
 	"strconv"
 	"strings"
@@ -53,6 +55,31 @@ func socketaddr_any() {
 	socketaddr('0','0')
 }
 
+type Crdt struct {
+    /// table of everyone in the network
+    table map[Pubkey]NodeInfo
+        /// Value of my update index when entry in table was updated.
+    /// Nodes will ask for updates since `update_index`, and this node
+    /// should respond with all the identities that are greater then the
+    /// request's `update_index` in this list
+    local map[Pubkey]int64
+    /// The value of the remote update index that I have last seen
+    /// This Node will ask external nodes for updates since the value in this list
+    remote map[Pubkey]int64
+    /// last time the public key had sent us a message
+    alive map[Pubkey]int64
+    update_index int64
+    id Pubkey
+    /// last time we heard from anyone getting a message fro this public key
+    /// these are rumers and shouldn't be trusted directly
+    external_liveness map[Pubkey]map[Pubkey]int64
+    /// TODO: Clearly not the correct implementation of this, but a temporary abstraction
+    /// for testing
+    scheduled_leaders map[int64]Pubkey
+    // TODO: Is there a better way to do this? We didn't make this a constant because
+    // we want to be able to set it in integration tests so that the tests don't time out.
+    leader_rotation_interval int64,
+}
 
 type CrdtError string
 
@@ -339,3 +366,51 @@ func bind_to(port int16) net.UDPConn {
     conn, _ = net.UDPConn.DialUDP("udp", net.UDPAddr{IP: net.IPv4zero, Port: port})
     return conn
 }
+
+
+func (crdt *Crdt) new(node_info NodeInfo) Crdt {
+    if node_info.version != 0 {
+        return errors.New(fmt.Sprintf(CrdtError.BadNodeInfo))
+    }
+    me = Crdt {
+        table: make(map[Pubkey]NodeInfo),
+        local: make(map[Pubkey]int64),
+        remote: make(map[Pubkey]int64),
+        alive: make(map[Pubkey]int64),
+        update_index: 1,
+        id node_info.id,
+        external_liveness: make(map[Pubkey]map[Pubkey]int64),
+        scheduled_leaders: make(map[int64]Pubkey),
+        leader_rotation_interval 100,
+    }
+    me.local[node_info.id] = me.update_index
+    me.table[node_info] = node_info
+    return me
+}
+
+func (crdt *Crdt) my_data() &NodeInfo {
+    return crdt.table[&crdt.id]
+}
+
+func (crdt *Crdt) leader_data() &NodeInfo {
+    leader_id = crdt.table[&crdt.id].leader_id
+
+    if leader_id == Pubkey.default(){
+        return nil
+    }
+
+    return crdt.table[&leader_id]
+}
+
+func (crdet *Crdt) node_info_trace() string {
+    leader_id = crdt.table[&crdt.id].leader_id
+    nodes = 
+}
+
+func (crdet *Crdt) set_leader(key Pubkey) {
+    me = crdt.my_data()
+    me.leader_id = key
+    me.version += 1
+    crdt.insert(&me)
+}
+
