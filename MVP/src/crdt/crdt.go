@@ -16,8 +16,10 @@
 package crdt
 
 import (
-	"os"
-	godebug "runtime/debug"
+    "os"
+    "errors"
+    godebug "runtime/debug"
+    "fmt"
 	"sort"
 	"strconv"
 	"strings"
@@ -29,7 +31,8 @@ import (
 	"github.com/ethereum/go-ethereum/common/"
 	"crypto/ecdsa"
 	"github.com/ethereum/go-ethereum/crypto"
-	"golang.org/x/crypto/ed25519/internal/edwards25519"
+    "golang.org/x/crypto/ed25519/internal/edwards25519"
+    "math/rand"
 )
 
 const (
@@ -52,6 +55,31 @@ func socketaddr_any() {
 	socketaddr('0','0')
 }
 
+type Crdt struct {
+    /// table of everyone in the network
+    table map[Pubkey]NodeInfo
+        /// Value of my update index when entry in table was updated.
+    /// Nodes will ask for updates since `update_index`, and this node
+    /// should respond with all the identities that are greater then the
+    /// request's `update_index` in this list
+    local map[Pubkey]int64
+    /// The value of the remote update index that I have last seen
+    /// This Node will ask external nodes for updates since the value in this list
+    remote map[Pubkey]int64
+    /// last time the public key had sent us a message
+    alive map[Pubkey]int64
+    update_index int64
+    id Pubkey
+    /// last time we heard from anyone getting a message fro this public key
+    /// these are rumers and shouldn't be trusted directly
+    external_liveness map[Pubkey]map[Pubkey]int64
+    /// TODO: Clearly not the correct implementation of this, but a temporary abstraction
+    /// for testing
+    scheduled_leaders map[int64]Pubkey
+    // TODO: Is there a better way to do this? We didn't make this a constant because
+    // we want to be able to set it in integration tests so that the tests don't time out.
+    leader_rotation_interval int64,
+}
 
 type CrdtError string
 
@@ -249,34 +277,34 @@ func (node *Node) new_localhost_with_pubkey(pubkey []byte) Node {
         }
 }
 
-func (node *Node) new_with_external_ip(pubkey []byte], ncp &net.UDPAddr) {
-	inc := func bind() -> (u16, UdpSocket) {
-		bind_in_range(FULLNODE_PORT_RANGE).expect("Failed to bind")
+func (node *Node) new_with_external_ip(pubkey []byte, ncp &net.UDPAddr) {
+	bind := func() (int16, net.UDPConn) {
+		bind_in_range(FULLNODE_PORT_RANGE)
     }
     
     gossip_port, gossip = if ncp.Port != 0 {
-        (ncp.port(), bind_to(ncp.port(), false).expect("ncp bind"))
+        ncp.Port, bind_to(ncp.Port)
     } else {
         bind()
     };
 
-    let (replicate_port, replicate_sockets) =
-        multi_bind_in_range(FULLNODE_PORT_RANGE, 8).expect("tvu multi_bind");
+    replicate_port, replicate_sockets =
+        multi_bind_in_range(FULLNODE_PORT_RANGE, 8)
 
-    let (requests_port, requests) = bind();
+    requests_port, requests = bind()
 
-    let (transaction_port, transaction_sockets) =
-        multi_bind_in_range(FULLNODE_PORT_RANGE, 32).expect("tpu multi_bind");
+    transaction_port, transaction_sockets =
+        multi_bind_in_range(FULLNODE_PORT_RANGE, 32)
 
-    let (_, repair) = bind();
-    let (_, broadcast) = bind();
-    let (_, retransmit) = bind();
-    let (storage_port, _) = bind();
+    _, repair = bind()
+    _, broadcast = bind()
+    _, retransmit = bind()
+    storage_port, _ = bind()
 
     // Responses are sent from the same Udp port as requests are received
     // from, in hopes that a NAT sitting in the middle will route the
     // response Udp packet correctly back to the requester.
-    let respond = requests.try_clone().unwrap();
+    respond = requests.try_clone();
 
     info = NodeInfo.new(
         pubkey,
@@ -302,24 +330,87 @@ func (node *Node) new_with_external_ip(pubkey []byte], ncp &net.UDPAddr) {
     }
 }
 
-func bind_in_range(range [2]int) (int16, net.UDPConn) {
-    let sock = udp_socket(false)?;
-
-    let (start, end) = range;
-    let mut tries_left = end - start;
-    loop {
-        let rand_port = thread_rng().gen_range(start, end);
-        let addr = SocketAddr::new(IpAddr::V4(Ipv4Addr::new(0, 0, 0, 0)), rand_port);
-
-        match sock.bind(&SockAddr::from(addr)) {
-            Ok(_) => {
-                let sock = sock.into_udp_socket();
-                break Result::Ok((sock.local_addr().unwrap().port(), sock));
-            }
-            Err(err) => if err.kind() != io::ErrorKind::AddrInUse || tries_left == 0 {
-                return Err(err);
-            },
+func bind_in_range(rang []int) (int16, net.UDPConn) {
+    start, end = rang[0], rang[1];
+    tries_left = end - start;
+    for {
+        rand.Seed(time.Now().Unix())
+        rand_port = rand.Intn(end - start) + start
+        addr = net.UDPAddr{IP: net.IPv4zero, Port: rand_port}
+        con, error = net.UDPConn.DialUDP("udp", net.UDPAddr{IP: net.IPv4zero, Port: 0})
+        if error == nil {
+            return con.local_addr, con
         }
+        if error != nil && tries_left == 0 {
+            return error
+        }
+       
         tries_left -= 1;
     }
 }
+
+
+func multi_bind_in_range(rang []int16, num uintptr) -> (int16, []net.UDPConn) {
+    udpconns := make([]net.UDPConn, num)
+    port, _ = bind_in_range(rang)
+
+    for i := 0; i < num; i++ {
+        conn, error = net.UDPConn.DialUDP("udp", net.UDPAddr{IP: net.IPv4zero, Port: port})
+        udpconns = append(udpconns, con)
+    }
+
+    return port, udpconns
+}
+
+func bind_to(port int16) net.UDPConn {
+    conn, _ = net.UDPConn.DialUDP("udp", net.UDPAddr{IP: net.IPv4zero, Port: port})
+    return conn
+}
+
+
+func (crdt *Crdt) new(node_info NodeInfo) Crdt {
+    if node_info.version != 0 {
+        return errors.New(fmt.Sprintf(CrdtError.BadNodeInfo))
+    }
+    me = Crdt {
+        table: make(map[Pubkey]NodeInfo),
+        local: make(map[Pubkey]int64),
+        remote: make(map[Pubkey]int64),
+        alive: make(map[Pubkey]int64),
+        update_index: 1,
+        id node_info.id,
+        external_liveness: make(map[Pubkey]map[Pubkey]int64),
+        scheduled_leaders: make(map[int64]Pubkey),
+        leader_rotation_interval 100,
+    }
+    me.local[node_info.id] = me.update_index
+    me.table[node_info] = node_info
+    return me
+}
+
+func (crdt *Crdt) my_data() &NodeInfo {
+    return crdt.table[&crdt.id]
+}
+
+func (crdt *Crdt) leader_data() &NodeInfo {
+    leader_id = crdt.table[&crdt.id].leader_id
+
+    if leader_id == Pubkey.default(){
+        return nil
+    }
+
+    return crdt.table[&leader_id]
+}
+
+func (crdet *Crdt) node_info_trace() string {
+    leader_id = crdt.table[&crdt.id].leader_id
+    nodes = 
+}
+
+func (crdet *Crdt) set_leader(key Pubkey) {
+    me = crdt.my_data()
+    me.leader_id = key
+    me.version += 1
+    crdt.insert(&me)
+}
+
