@@ -98,7 +98,7 @@ extern crate serde_json;
 extern crate serde_cbor;
 extern crate sha2;
 extern crate socket2;
-extern crate solana_jsonrpc_core as jsonrpc_core;
+extern crate solana_jsonrpc_core as json_core;
 extern crate solana_jsonrpc_http_server as jsonrpc_http_server;
 #[macro_use]
 extern crate solana_jsonrpc_macros as jsonrpc_macros;

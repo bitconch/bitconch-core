@@ -1,6 +1,8 @@
-# A Simple Guide to Port from Rust to Go
+# A Simple Go And Rust Dev  (ASGARD)
 
 ## Package Similarity
+This table is part of our ongoing effort to bring our community a good grasp on the top two popular and awesome programming languages in crypto community, one is Golang, and the other is Rust.
+This is a compiled list about some of the most commonly used packages (or crates in Rust) we have found so far, following its counter part in Golang.
 
 | Rust Packge         | Go Equals           | Notes  |
 | ------------- |:-------------:| -----:|
@@ -17,8 +19,8 @@
 | use rand::{thread_rng, Rng}; |   |   |
 | use rayon::prelude::*; |   |   |
 | use result::{Error, Result}; |   |   |
-| use signature::{Keypair, KeypairUtil}; |   |   |
-| use solana_program_interface::pubkey::Pubkey; |   |   |
+| use signature::{Keypair, KeypairUtil}; | geth/crypto |   |
+| use solana_program_interface::pubkey::Pubkey; |  MVP/common | New  |
 | use std; |   |   |
 | use std::collections::HashMap; |   |   |
 | use std::net::{IpAddr, Ipv4Addr, SocketAddr, UdpSocket}; |   |   |

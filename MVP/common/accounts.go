@@ -12,4 +12,4 @@
 //  new return a struct with input values
 //	func new(tokens int64, space uintptr, program_id  Pubkey) Account{
 //
-//}
+//
