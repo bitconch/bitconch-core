@@ -14,30 +14,6 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the bitconch-bus library. If not, see <http://www.gnu.org/licenses/>.
 
-package sigverify
+// Package crdt implements the Ethereum p2p network protocols.
 
-
-//create a function test_layout
-func test_layout(){}
-
-
-//create a function make_packet_from_transaction
-func make_packet_from_transaction(){}
-
-//create a function test_verify_n
-func test_verify_n(){}
-
-//create a function test_verify_zero, call test_verify_n(0,)
-func test_verify_zero(){
-	test_verify_n(0)
-}
-
-//create a function test_verify_one, call test_verify_n(1)
-func test_verify_one(1){
-
-}
-
-//create a function test_verify_seventy_one, call test_verify_n(71)
-
-
-//create a function ]test_verify_fail, call test_verify_n(5,true)
+package crdt
