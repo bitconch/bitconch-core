@@ -74,6 +74,7 @@ func New(services map[string]ServiceFunc) (s *Simulation) {
 
 	adapterServices := make(map[string]adapters.ServiceFunc, len(services))
 	for name, serviceFunc := range services {
+		name, serviceFunc := name, serviceFunc
 		s.serviceNames = append(s.serviceNames, name)
 		adapterServices[name] = func(ctx *adapters.ServiceContext) (node.Service, error) {
 			b := new(sync.Map)
