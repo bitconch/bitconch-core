@@ -39,20 +39,26 @@ const (
 	FULLNODE_PORT_RANGE = []uint16{8000, 10000}
 	
 	/// milliseconds we sleep for between gossip requests
-	GOSSIP_SLEEP_MILLIS = 100;
-	GOSSIP_PURGE_MILLIS = 15000;
+	GOSSIP_SLEEP_MILLIS = 100
+	GOSSIP_PURGE_MILLIS = 15000
 
 	//minimum membership table size before we start purging dead nodes
-	MIN_TABLE_SIZE = 2;
+    MIN_TABLE_SIZE = 2
+    
+    // default value of pubkey
+    PUBKEY_DEFAULT_VALUE = [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
 )
 
+type Pubkey struct {
 
-func socketaddr(ip string, port string) {
+}
+
+func SocketAddr(ip string, port string) string {
 	net.JoinHostPort(net.parseIPv4(ip), port)
 }
 
-func socketaddr_any() {
-	socketaddr('0','0')
+func Socketaddr_any() string {
+	SocketAddr(net.IPv4zero,'0')
 }
 
 type Crdt struct {
@@ -115,25 +121,6 @@ type LedgerState struct {
 	last_id [32]byte
 }
 	
-type ContactInfo struct {
-    /// gossip address
-    ncp string
-    /// address to connect to for replication
-    tvu string
-    /// address to connect to when this node is leader
-    rpu string
-    /// transactions address
-    tpu string
-    /// storage data address
-    storage_addr string
-    /// if this struture changes update this value as well
-    /// Always update `NodeInfo` version too
-    /// This separate version for addresses allows us to use the `Vote`
-    /// as means of updating the `NodeInfo` table without touching the
-    /// addresses if they haven't changed.
-    version int64
-}	
-
 type Sockets struct {
 	gossip net.UDPConn
 	requests net.UDPConn
@@ -162,7 +149,7 @@ type Node struct {
 }
 
 
-func (nodeinfo *NodeInfo) new(
+func (nodeinfo *NodeInfo) New(
         id []byte,
         ncp net.UDPAddr,
         tvu net.UDPAddr,
@@ -188,32 +175,32 @@ func (nodeinfo *NodeInfo) new(
 	}
 }
 
-func (nodeinfo *NodeInfo) new_localhost(id Pubkey) NodeInfo {
+func (nodeinfo *NodeInfo) New_LocalHost(id Pubkey) NodeInfo {
 	nodeinfo.new(
 		id,
-		socketaddr("127.0.0.1","1234"),
-		socketaddr("127.0.0.1","1235"),
-		socketaddr("127.0.0.1","1236"),
-		socketaddr("127.0.0.1","1237"),
-		socketaddr("127.0.0.1","1238"),
+		SocketAddr("127.0.0.1","1234"),
+		SocketAddr("127.0.0.1","1235"),
+		SocketAddr("127.0.0.1","1236"),
+		SocketAddr("127.0.0.1","1237"),
+		SocketAddr("127.0.0.1","1238"),
 	)
 }
 // NodeInfo with unspecified addresses for adversarial testing.
-func (nodeinfo *NodeInfo) new_unspecified() NodeInfo {
-	addr = socketaddr("0","0")
+func (nodeinfo *NodeInfo) New_Unspecified() NodeInfo {
+	addr = SocketAddr(net.parseIPv4,"0")
 	nodeinfo.new(,addr, addr, addr, addr, addr)
 }
 
-func (nodeinfo *NodeInfo) next_port(addr , nxt int16) (SocketAddr string){
+func (nodeinfo *NodeInfo) Next_Port(addr , nxt int16) (SocketAddr string){
 	host, port, _ = net.SplitHostPort(addr)
 	socketaddr(host,ParseInt(port) + nxt)
 
 	
-func (nodeinfo *NodeInfo) new_with_pubkey_socketaddr(pubkey []byte, bind_addr string) NodeInfo{
+func (nodeinfo *NodeInfo) New_With_Pubkey_Socketaddr(pubkey []byte, bind_addr string) NodeInfo{
 	transactions_addr = bind_addr
-	gossip_addr = nodeinfo.next_port(bind_addr,1)
-	replicate_addr = nodeinfo.next_port(bind_addr,2)
-	requests_addr = nodeinfo.next_port(bind_addr,3)
+	gossip_addr = nodeinfo.Next_Port(bind_addr,1)
+	replicate_addr = nodeinfo.Next_Port(bind_addr,2)
+	requests_addr = nodeinfo.Next_Port(bind_addr,3)
 	nodeinfo.new(
 		pubkey,
 		gossip_addr,
@@ -224,12 +211,12 @@ func (nodeinfo *NodeInfo) new_with_pubkey_socketaddr(pubkey []byte, bind_addr st
 	)
 }
 
-func (nodeinfo *NodeInfo) new_with_socketaddr(bind_addr string) NodeInfo{
+func (nodeinfo *NodeInfo) New_With_Socketaddr(bind_addr string) NodeInfo{
 	pub, _, _ := GenerateKey(rand.Reader)
-	nodeinfo.new_with_pubkey_socketaddr(pub, bind_addr)
+	nodeinfo.New_With_Pubkey_Socketaddr(pub, bind_addr)
 }
 
-func (nodeinfo *NodeInfo) new_entry_point(gossip_addr string) NodeInfo{
+func (nodeinfo *NodeInfo) New_Entry_Point(gossip_addr string) NodeInfo{
 	addr = socketaddr('0.0.0.0','0')
 	pub, _, _ := GenerateKey(rand.Reader)
 	nodeinfo.new(pub, *gossip_addr, daddr, daddr, daddr, daddr)
@@ -237,13 +224,13 @@ func (nodeinfo *NodeInfo) new_entry_point(gossip_addr string) NodeInfo{
 
 
 
-func (node *Node) new_localhost() Node {
+func (node *Node) New_LocalHost() Node {
 	pub, _, _ := GenerateKey(rand.Reader)
-	node.new_localhost_with_pubkey(pub)
+	node.New_Localhost_With_Pubkey(pub)
 }
 
 
-func (node *Node) new_localhost_with_pubkey(pubkey []byte) Node {
+func (node *Node) New_Localhost_With_Pubkey(pubkey []byte) Node {
 	transaction = net.ListenUDP("udp", net.UDPAddr{IP: net.ParseIP("127.0.0.1"), Port: 0})
 	gossip = net.ListenUDP("udp", net.UDPAddr{IP: net.ParseIP("127.0.0.1"), Port: 0})
 	replicate = net.ListenUDP("udp", net.UDPAddr{IP: net.ParseIP("127.0.0.1"), Port: 0})
@@ -277,24 +264,24 @@ func (node *Node) new_localhost_with_pubkey(pubkey []byte) Node {
         }
 }
 
-func (node *Node) new_with_external_ip(pubkey []byte, ncp &net.UDPAddr) {
+func (node *Node) New_With_External_Ip(pubkey []byte, ncp &net.UDPAddr) {
 	bind := func() (int16, net.UDPConn) {
-		bind_in_range(FULLNODE_PORT_RANGE)
+		Bind_In_Range(FULLNODE_PORT_RANGE)
     }
     
     gossip_port, gossip = if ncp.Port != 0 {
-        ncp.Port, bind_to(ncp.Port)
+        ncp.Port, Bind_To(ncp.Port)
     } else {
         bind()
     };
 
     replicate_port, replicate_sockets =
-        multi_bind_in_range(FULLNODE_PORT_RANGE, 8)
+        Multi_Bind_In_Range(FULLNODE_PORT_RANGE, 8)
 
     requests_port, requests = bind()
 
     transaction_port, transaction_sockets =
-        multi_bind_in_range(FULLNODE_PORT_RANGE, 32)
+        Multi_Bind_In_Range(FULLNODE_PORT_RANGE, 32)
 
     _, repair = bind()
     _, broadcast = bind()
@@ -330,7 +317,7 @@ func (node *Node) new_with_external_ip(pubkey []byte, ncp &net.UDPAddr) {
     }
 }
 
-func bind_in_range(rang []int) (int16, net.UDPConn) {
+func Bind_In_Range(rang []int) (int16, net.UDPConn) {
     start, end = rang[0], rang[1];
     tries_left = end - start;
     for {
@@ -350,9 +337,9 @@ func bind_in_range(rang []int) (int16, net.UDPConn) {
 }
 
 
-func multi_bind_in_range(rang []int16, num uintptr) -> (int16, []net.UDPConn) {
+func Multi_Bind_In_Range(rang []int16, num uintptr) -> (int16, []net.UDPConn) {
     udpconns := make([]net.UDPConn, num)
-    port, _ = bind_in_range(rang)
+    port, _ = Bind_In_Range(rang)
 
     for i := 0; i < num; i++ {
         conn, error = net.UDPConn.DialUDP("udp", net.UDPAddr{IP: net.IPv4zero, Port: port})
@@ -362,13 +349,13 @@ func multi_bind_in_range(rang []int16, num uintptr) -> (int16, []net.UDPConn) {
     return port, udpconns
 }
 
-func bind_to(port int16) net.UDPConn {
+func Bind_To(port int16) net.UDPConn {
     conn, _ = net.UDPConn.DialUDP("udp", net.UDPAddr{IP: net.IPv4zero, Port: port})
     return conn
 }
 
 
-func (crdt *Crdt) new(node_info NodeInfo) Crdt {
+func (crdt *Crdt) New(node_info NodeInfo) Crdt {
     if node_info.version != 0 {
         return errors.New(fmt.Sprintf(CrdtError.BadNodeInfo))
     }
@@ -388,11 +375,11 @@ func (crdt *Crdt) new(node_info NodeInfo) Crdt {
     return me
 }
 
-func (crdt *Crdt) my_data() &NodeInfo {
+func (crdt *Crdt) My_Data() &NodeInfo {
     return crdt.table[&crdt.id]
 }
 
-func (crdt *Crdt) leader_data() &NodeInfo {
+func (crdt *Crdt) Leader_Data() &NodeInfo {
     leader_id = crdt.table[&crdt.id].leader_id
 
     if leader_id == Pubkey.default(){
@@ -402,15 +389,331 @@ func (crdt *Crdt) leader_data() &NodeInfo {
     return crdt.table[&leader_id]
 }
 
-func (crdet *Crdt) node_info_trace() string {
+func (crdt *Crdt) Node_Info_Trace() string {
     leader_id = crdt.table[&crdt.id].leader_id
     nodes = 
 }
 
-func (crdet *Crdt) set_leader(key Pubkey) {
-    me = crdt.my_data()
+func (crdt *Crdt) Set_Leader(key Pubkey) {
+    me = crdt.My_Data()
     me.leader_id = key
     me.version += 1
     crdt.insert(&me)
 }
 
+ // TODO: Dummy leader scheduler, need to implement actual leader scheduling.
+ func (crdt *Crdt) Get_Scheduled_Leader( entry_height int64) Pubkey {
+    match crdt.scheduled_leaders.get(&entry_height) {
+        Some(x) => Some(*x),
+        None => Some(crdt.My_Data().leader_id),
+    }
+}
+
+func (crdt *Crdt) Set_Leader_Rotation_Interval(leader_rotation_interval int64) {
+    crdt.leader_rotation_interval = leader_rotation_interval;
+}
+
+func (crdt *Crdt) Get_Leader_Rotation_Interval() -> int64 {
+    return crdt.leader_rotation_interval
+}
+
+// TODO: Dummy leader schedule setter, need to implement actual leader scheduling.
+func (crdt *Crdt) Set_Scheduled_Leader(entry_height int64, new_leader_id Pubkey) {
+    crdt.scheduled_leaders[entry_height] = new_leader_id
+}
+
+func (crdt *Crdt) Get_Valid_Peers() -> []NodeInfo {
+    var me := crdt.My_Data().id
+    var nodeinfos = make([]NodeInfo)
+    _, nodeinfo := range crdt.table {
+        if nodeinfo.id != me && crdt.is_valid_address(&nodeinfo.contact_info.rpu) {
+            nodeinfos = append(nodeinfos, val)
+        }
+    }
+    return nodeinfos
+}
+
+func (crdt *Crdt) Get_External_Liveness_Entry(key &Pubkey) -> map[Pubkey]int64 {
+    crdt.external_liveness.get(key)
+}
+
+func (crdt *Crdt) Insert_Vote(pubkey &Pubkey, v &Vote, last_id Hash) {
+    if crdt.table[pubkey] == nil() {
+        warn!("{}: VOTE for unknown id: {}", crdt.id, pubkey)
+        return
+    }
+    if v.contact_info_version > self.table[pubkey].contact_info.version {
+        warn!(
+            "{}: VOTE for new address version from: {} ours: {} vote: {:?}",
+            crdt.id, pubkey, crdt.table[pubkey].contact_info.version, v,
+        )
+        return
+    }
+    if *pubkey == crdt.My_Data().leader_id {
+        info!("{}: LEADER_VOTED! {}", crdt.id, pubkey);
+        inc_new_counter_info!("crdt-insert_vote-leader_voted", 1);
+    }
+
+    if v.version <= crdt.table[pubkey].version {
+        debug!("{}: VOTE for old version: {}", crdt.id, pubkey);
+        crdt.Update_Liveness(*pubkey);
+        return;
+    } else {
+        var data := crdt.table[pubkey];
+        data.version = v.version;
+        data.ledger_state.last_id = last_id;
+
+        debug!("{}: INSERTING VOTE! for {}", self.id, data.id);
+        crdt.Update_Liveness(data.id);
+        crdt.insert(&data);
+    }
+}
+
+
+func (crdt *Crdt) Insert_Votes(votes &[(Pubkey, Vote, Hash)]) {
+    inc_new_counter_info!("crdt-vote-count", votes.len());
+    if !votes.is_empty() {
+        info!("{}: INSERTING VOTES {}", crdt.id, votes.len());
+    }
+    for v in votes {
+        crdt.Insert_Vote(&v.0, &v.1, v.2);
+    }
+}
+
+func (crdt *Crdt) Insert(v: &NodeInfo) -> uintptr {
+    // TODO check that last_verified types are always increasing
+    // update the peer table
+    if crdt.table[&v.id] ==nil || (v.version > self.table[&v.id].version) {
+        //somehow we signed a message for our own identity with a higher version than
+        // we have stored ourselves
+        trace!("{}: insert v.id: {} version: {}", crdt.id, v.id, v.version);
+        if crdt.table[&v.id] == nil {
+            inc_new_counter_info!("crdt-insert-new_entry", 1, 1);
+        }
+
+        crdt.update_index += 1;
+        _ = crdt.table.insert(v.id, v.clone());
+        _ = crdt.local.insert(v.id, crdt.update_index);
+        crdt.Update_Liveness(v.id);
+        1
+    } else {
+        trace!(
+            "{}: INSERT FAILED data: {} new.version: {} me.version: {}",
+            crdt.id,
+            v.id,
+            v.version,
+            crdt.table[&v.id].version
+        );
+        0
+    }
+}
+
+func (crdt *Crdt) Update_Liveness(id Pubkey) {
+    //update the liveness table
+    now = timestamp();
+    trace!("{} updating liveness {} to {}", crdt.id, id, now);
+    *crdt.alive.entry(id).or_insert(now) = now;
+}
+
+/// purge old validators
+func (crdt *Crdt) Purge(now uint64) {
+    if len(crdt.table) <= MIN_TABLE_SIZE {
+        trace!("purge: skipped: table too small: {}", crdt.table.len());
+        return;
+    }
+    if self.leader_data() == nil {
+        trace!("purge: skipped: no leader_data");
+        return;
+    }
+    var leader_id := crdt.leader_data().id;
+    var limit := GOSSIP_PURGE_MILLIS;
+    var dead_ids = make([]Pubkey)
+    k, v = range crdt.alive {
+        if k != crdt.id && (now - v) > limit {
+            dead_ids = append(dead_ids, k)
+        }
+    }
+
+    inc_new_counter_info!("crdt-purge-count", len(dead_ids));
+    for _, id := range dead_ids {
+        delete(crdt.alive, id)
+        delete(crdt.table, id)
+        delete(crdt.remote, id)
+        delete(crdt.external_liveness, id)
+        info!("{}: PURGE {}", crdt.id, id);
+        
+        for _, v := crdt.external_liveness {
+            delete(v, id)
+        }
+        if *id == leader_id {
+            info!("{}: PURGE LEADER {}", crdt.id, id,);
+            inc_new_counter_info!("crdt-purge-purged_leader", 1, 1);
+            crdt.set_leader(PUBKEY_DEFAULT_VALUE);
+        }
+    }
+}
+
+
+/// compute broadcast table
+/// # Remarks
+func (crdt *Crdt) Compute_Broadcast_Table() -> []NodeInfo {
+
+    //thread_rng().shuffle(&mut live);
+    me := &crdt.table[&crdt.id];
+    var cloned_table []NodeInfo
+    for key, value = range crdt.alive {
+        if crdt.table[key].id == me.id {
+            //do nothing ,filter myself
+        }
+        else if crdt.is_valid_address(crdt.table[key].contact_info.tvu) {
+            trace!(
+                "{}:broadcast skip not listening {} {}",
+                me.id,
+                v.id,
+                v.contact_info.tvu,
+            )
+        }
+        else {
+            cloned_table = append(cloned_table, )
+        }
+    }
+   
+    return cloned_table
+}
+
+/// broadcast messages from the leader to layer 1 nodes
+/// # Remarks
+/// We need to avoid having obj locked while doing any io, such as the `send_to`
+func (crdt *Crdt) BroadCast(
+    crdt: &Arc<RwLock<Crdt>>,
+    leader_rotation_interval: uint64,
+    me: &NodeInfo,
+    broadcast_table: &[NodeInfo],
+    window: &SharedWindow,
+    s: &UdpSocket,
+    transmit_index: &mut WindowIndex,
+    received_index: uint64,
+) {
+    if len(broadcast_table) == 0 {
+        warn!("{}:not enough peers in crdt table", me.id);
+        inc_new_counter_info!("crdt-broadcast-not_enough_peers_error", 1);
+        Err(CrdtError::NoPeers)?;
+    }
+    trace!(
+        "{} transmit_index: {:?} received_index: {} broadcast_len: {}",
+        me.id,
+        *transmit_index,
+        received_index,
+        len(broadcast_table)
+    );
+
+    old_transmit_index := transmit_index.data;
+
+    // enumerate all the blobs in the window, those are the indices
+    // transmit them to nodes, starting from a different node. Add one
+    // to the capacity in case we want to send an extra blob notifying the
+    // next leader about the blob right before leader rotation
+    //orders := Vec::with_capacity((received_index - transmit_index.data + 1) as usize);
+    orders := make([], received_index - transmit_index.data + 1)
+    let window_l = window.read().unwrap();
+
+    let mut br_idx = transmit_index.data as usize % broadcast_table.len();
+
+    for idx in transmit_index.data..received_index {
+        let w_idx = idx as usize % window_l.len();
+
+        trace!(
+            "{} broadcast order data w_idx {} br_idx {}",
+            me.id,
+            w_idx,
+            br_idx
+        );
+
+        // Make sure the next leader in line knows about the last entry before rotation
+        // so he can initiate repairs if necessary
+        let entry_height = idx + 1;
+        if entry_height % leader_rotation_interval == 0 {
+            let next_leader_id = crdt.read().unwrap().get_scheduled_leader(entry_height);
+            if next_leader_id.is_some() && next_leader_id != Some(me.id) {
+                let info_result = broadcast_table
+                    .iter()
+                    .position(|n| n.id == next_leader_id.unwrap());
+                if let Some(index) = info_result {
+                    orders.push((window_l[w_idx].data.clone(), &broadcast_table[index]));
+                }
+            }
+        }
+
+        orders.push((window_l[w_idx].data.clone(), &broadcast_table[br_idx]));
+        br_idx += 1;
+        br_idx %= broadcast_table.len();
+    }
+
+    for idx in transmit_index.coding..received_index {
+        let w_idx = idx as usize % window_l.len();
+
+        // skip over empty slots
+        if window_l[w_idx].coding.is_none() {
+            continue;
+        }
+
+        trace!(
+            "{} broadcast order coding w_idx: {} br_idx  :{}",
+            me.id,
+            w_idx,
+            br_idx,
+        );
+
+        orders.push((window_l[w_idx].coding.clone(), &broadcast_table[br_idx]));
+        br_idx += 1;
+        br_idx %= broadcast_table.len();
+    }
+
+    trace!("broadcast orders table {}", orders.len());
+    let errs: Vec<_> = orders
+        .into_iter()
+        .map(|(b, v)| {
+            // only leader should be broadcasting
+            assert!(me.leader_id != v.id);
+            let bl = b.unwrap();
+            let blob = bl.read().unwrap();
+            //TODO profile this, may need multiple sockets for par_iter
+            trace!(
+                "{}: BROADCAST idx: {} sz: {} to {},{} coding: {}",
+                me.id,
+                blob.get_index().unwrap(),
+                blob.meta.size,
+                v.id,
+                v.contact_info.tvu,
+                blob.is_coding()
+            );
+            assert!(blob.meta.size <= BLOB_SIZE);
+            let e = s.send_to(&blob.data[..blob.meta.size], &v.contact_info.tvu);
+            trace!(
+                "{}: done broadcast {} to {} {}",
+                me.id,
+                blob.meta.size,
+                v.id,
+                v.contact_info.tvu
+            );
+            e
+        }).collect();
+
+    trace!("broadcast results {}", errs.len());
+    for e in errs {
+        if let Err(e) = &e {
+            trace!("broadcast result {:?}", e);
+        }
+        e?;
+        if transmit_index.data < received_index {
+            transmit_index.data += 1;
+        }
+    }
+    inc_new_counter_info!(
+        "crdt-broadcast-max_idx",
+        (transmit_index.data - old_transmit_index) as usize
+    );
+    transmit_index.coding = transmit_index.data;
+
+    Ok(())
+}
