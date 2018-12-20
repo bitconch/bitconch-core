@@ -49,9 +49,6 @@ const (
     PUBKEY_DEFAULT_VALUE = [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
 )
 
-type Pubkey struct {
-
-}
 
 func SocketAddr(ip string, port string) string {
 	net.JoinHostPort(net.parseIPv4(ip), port)
@@ -588,7 +585,7 @@ func (crdt *Crdt) BroadCast(
     crdt: &Arc<RwLock<Crdt>>,
     leader_rotation_interval: uint64,
     me: &NodeInfo,
-    broadcast_table: &[NodeInfo],
+    broadcast_table: &[]NodeInfo,
     window: &SharedWindow,
     s: &UdpSocket,
     transmit_index: &mut WindowIndex,
@@ -607,20 +604,20 @@ func (crdt *Crdt) BroadCast(
         len(broadcast_table)
     );
 
-    old_transmit_index := transmit_index.data;
+    old_transmit_index := transmit_index.data
 
     // enumerate all the blobs in the window, those are the indices
     // transmit them to nodes, starting from a different node. Add one
     // to the capacity in case we want to send an extra blob notifying the
     // next leader about the blob right before leader rotation
     //orders := Vec::with_capacity((received_index - transmit_index.data + 1) as usize);
-    orders := make([], received_index - transmit_index.data + 1)
-    let window_l = window.read().unwrap();
+    orders := make([]struct{Blob;NodeInfo}, received_index - transmit_index.data + 1)
+    window_l := window.read().unwrap();
 
-    let mut br_idx = transmit_index.data as usize % broadcast_table.len();
-
-    for idx in transmit_index.data..received_index {
-        let w_idx = idx as usize % window_l.len();
+    br_idx = transmit_index.data % len(broadcast_table)
+    
+    for idx := transmit_index.data; idx <= received_index; idx++ {
+        w_idx := idx % len(window_l);
 
         trace!(
             "{} broadcast order data w_idx {} br_idx {}",
@@ -631,29 +628,32 @@ func (crdt *Crdt) BroadCast(
 
         // Make sure the next leader in line knows about the last entry before rotation
         // so he can initiate repairs if necessary
-        let entry_height = idx + 1;
+        entry_height := idx + 1;
         if entry_height % leader_rotation_interval == 0 {
-            let next_leader_id = crdt.read().unwrap().get_scheduled_leader(entry_height);
-            if next_leader_id.is_some() && next_leader_id != Some(me.id) {
-                let info_result = broadcast_table
-                    .iter()
-                    .position(|n| n.id == next_leader_id.unwrap());
-                if let Some(index) = info_result {
-                    orders.push((window_l[w_idx].data.clone(), &broadcast_table[index]));
+            next_leader_id := crdt.get_scheduled_leader(entry_height);
+            if next_leader_id != nil && next_leader_id != me.id {
+                var index uintptr
+                for p, n = range broadcast_table{
+                    if n.id == next_leader_id {
+                        index = p
+                        break
+                    }
+                }
+                if index != nil {
+                    // you can access the element inside orders by orders[index].Blob or orders[index].NodeInfo
+                    orders = append(orders, struct{Blob;NodeInfo}{window_l[w_idx].data; &broadcast_table[index]})
                 }
             }
         }
-
-        orders.push((window_l[w_idx].data.clone(), &broadcast_table[br_idx]));
-        br_idx += 1;
-        br_idx %= broadcast_table.len();
+        orders = append(orders, struct{Blob;NodeInfo}{window_l[w_idx].data; &broadcast_table[br_idx]})
+        br_idx += 1
+        br_idx %= len(broadcast_table)
     }
-
-    for idx in transmit_index.coding..received_index {
-        let w_idx = idx as usize % window_l.len();
+    for idx := transmit_index.coding; idx <= received_index; idx++ {
+        w_idx = idx % len(window_l);
 
         // skip over empty slots
-        if window_l[w_idx].coding.is_none() {
+        if len(window_l[w_idx].coding) <= 0 {
             continue;
         }
 
@@ -664,31 +664,29 @@ func (crdt *Crdt) BroadCast(
             br_idx,
         );
 
-        orders.push((window_l[w_idx].coding.clone(), &broadcast_table[br_idx]));
+        orders = append(orders, struct{Blob;NodeInfo}{window_l[w_idx].data; &broadcast_table[br_idx]})
         br_idx += 1;
-        br_idx %= broadcast_table.len();
+        br_idx %= len(broadcast_table)
     }
 
-    trace!("broadcast orders table {}", orders.len());
-    let errs: Vec<_> = orders
-        .into_iter()
-        .map(|(b, v)| {
-            // only leader should be broadcasting
-            assert!(me.leader_id != v.id);
-            let bl = b.unwrap();
-            let blob = bl.read().unwrap();
-            //TODO profile this, may need multiple sockets for par_iter
+    trace!("broadcast orders table {}", len(orders));
+    for b, v = range orders {
+        if me.leader_id != v.id {
+            blob := b.read()
+
             trace!(
                 "{}: BROADCAST idx: {} sz: {} to {},{} coding: {}",
                 me.id,
-                blob.get_index().unwrap(),
+                blob.get_index(),
                 blob.meta.size,
                 v.id,
                 v.contact_info.tvu,
                 blob.is_coding()
-            );
-            assert!(blob.meta.size <= BLOB_SIZE);
-            let e = s.send_to(&blob.data[..blob.meta.size], &v.contact_info.tvu);
+            )
+            if blob.meta.size <= BLOB_SIZE {
+                return error
+            }
+            e := s.send_to(&blob.data[..blob.meta.size], &v.contact_info.tvu);
             trace!(
                 "{}: done broadcast {} to {} {}",
                 me.id,
@@ -697,7 +695,8 @@ func (crdt *Crdt) BroadCast(
                 v.contact_info.tvu
             );
             e
-        }).collect();
+        }
+    }
 
     trace!("broadcast results {}", errs.len());
     for e in errs {
