@@ -26,8 +26,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Bitconch/BUS/common"
-	"github.com/Bitconch/BUS/common/hexutil"
+	"github.com/caesarchad/BUS/common"
+	"github.com/caesarchad/BUS/common/hexutil"
 )
 
 var testAddrHex = "970e8128ab834e8eac17ab8e3812f010678cf791"
