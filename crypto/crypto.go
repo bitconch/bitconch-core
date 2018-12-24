@@ -28,10 +28,10 @@ import (
 	"math/big"
 	"os"
 
-	"github.com/Bitconch/BUS/common"
-	"github.com/Bitconch/BUS/common/math"
-	"github.com/Bitconch/BUS/crypto/sha3"
-	"github.com/Bitconch/BUS/rlp"
+	"github.com/caesarchad/BUS/common"
+	"github.com/caesarchad/BUS/common/math"
+	"github.com/caesarchad/BUS/crypto/sha3"
+	"github.com/caesarchad/BUS/rlp"
 )
 
 var (
@@ -40,6 +40,18 @@ var (
 )
 
 var errInvalidPubkey = errors.New("invalid secp256k1 public key")
+
+// Ed25519 calculates and returns the Ed25519 hash of the input data.
+func Ed25519(data ...[]byte) []byte {
+	d := sha3.NewKeccak256()
+	for _, b := range data {
+		d.Write(b)
+	}
+	return d.Sum(nil)
+}
+
+// Ed25519Hash calculates and returns the Ed25519 hash of the input data,
+// converting it to an internal Hash data structure
 
 // Keccak256 calculates and returns the Keccak256 hash of the input data.
 func Keccak256(data ...[]byte) []byte {
@@ -78,9 +90,15 @@ func CreateAddress(b common.Address, nonce uint64) common.Address {
 
 // CreateAddress2 creates an ethereum address given the address bytes, initial
 // contract code and a salt.
-func CreateAddress2(b common.Address, salt [32]byte, inithash []byte) common.Address {
-	return common.BytesToAddress(Keccak256([]byte{0xff}, b.Bytes(), salt[:], inithash)[12:])
+func CreateAddress2(b common.Address, salt common.Hash, code []byte) common.Address {
+	return common.BytesToAddress(Keccak256([]byte{0xff}, b.Bytes(), salt.Bytes(), code)[12:])
 }
+
+// ToEd25519 creates a private key with the given D value.
+
+// ToEd25519Unsafe
+
+// toEd25519 creates a private key with the given D value.
 
 // ToECDSA creates a private key with the given D value.
 func ToECDSA(d []byte) (*ecdsa.PrivateKey, error) {
