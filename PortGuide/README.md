@@ -1,5 +1,5 @@
-# A Simple Guide to Port from Rust to Go
-
+# A Simple Go And Rust Dev  (ASGARD)
+Both 
 
 ## 1. Function
 
@@ -134,6 +134,13 @@ for i, x := range indexes {
     
 ```
 
-## 7. Package 
+
+
+# 7. Enum
+
+**Golang**
+
+
+## 99. Package 
 
 

@@ -22,9 +22,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Bitconch/BUS/common"
-	"github.com/Bitconch/BUS/common/hexutil"
-	"github.com/Bitconch/BUS/common/math"
+	"github.com/caesarchad/BUS/common"
+	"github.com/caesarchad/BUS/common/hexutil"
+	"github.com/caesarchad/BUS/common/math"
 )
 
 var (
@@ -105,6 +105,8 @@ func TestDecompressPubkey(t *testing.T) {
 }
 
 func TestCompressPubkey(t *testing.T) {
+
+	t.Log("Say bye")
 	key := &ecdsa.PublicKey{
 		Curve: S256(),
 		X:     math.MustParseBig256("0xe32df42865e97135acfb65f3bae71bdc86f4d49150ad6a440b6f15878109880a"),
