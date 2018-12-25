@@ -1,0 +1,29 @@
+cargo:rustc-flags=-l psapi
+TARGET = Some("x86_64-pc-windows-msvc")
+OPT_LEVEL = Some("0")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running: "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/W4" "/Foe:\\mvp\\target\\rls\\debug\\build\\sys-info-8c2ed34a2885b4fa\\out\\c\\windows.o" "/c" "c/windows.c"
+windows.c
+c/windows.c(29): warning C4996: 'GetVersionExA': 被声明为已否决
+C:\Program Files (x86)\Windows Kits\8.1\include\um\sysinfoapi.h(433): note: 参见“GetVersionExA”的声明
+c/windows.c(33): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\include\10.0.10240.0\ucrt\string.h(346): note: 参见“strncpy”的声明
+c/windows.c(60): warning C4244: “return”: 从“DWORD64”转换到“unsigned long”，可能丢失数据
+c/windows.c(90): warning C4101: “size”: 未引用的局部变量
+c/windows.c(115): warning C4244: “=”: 从“double”转换到“unsigned __int64”，可能丢失数据
+c/windows.c(116): warning C4244: “=”: 从“double”转换到“unsigned __int64”，可能丢失数据
+exit code: 0
+running: "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\lib.exe" "/OUT:e:\\mvp\\target\\rls\\debug\\build\\sys-info-8c2ed34a2885b4fa\\out\\libinfo.a" "/nologo" "e:\\mvp\\target\\rls\\debug\\build\\sys-info-8c2ed34a2885b4fa\\out\\c\\windows.o"
+exit code: 0
+cargo:rustc-link-search=native=C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\atlmfc\lib\amd64
+cargo:rustc-link-lib=static=info
+cargo:rustc-link-search=native=e:\mvp\target\rls\debug\build\sys-info-8c2ed34a2885b4fa\out
