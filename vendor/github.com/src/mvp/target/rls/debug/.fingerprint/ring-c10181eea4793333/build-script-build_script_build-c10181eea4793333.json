@@ -1,0 +1,1 @@
+{"rustc":8831843561138700622,"features":"[\"default\", \"dev_urandom_fallback\", \"use_heap\"]","target":4944179213620976468,"profile":7282077418741342047,"path":16831899777490595105,"deps":[["cc v1.0.25","cc",15738990713931927813]],"local":[{"Precalculated":"0.13.3"}],"rustflags":[],"edition":"Edition2015"}

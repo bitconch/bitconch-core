@@ -1,0 +1,11 @@
+e:\mvp\target\rls\debug\deps\ucd_util-d7923359cd7d2def.rmeta: C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\lib.rs C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\hangul.rs C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\ideograph.rs C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\name.rs C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\property.rs C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\unicode_tables\mod.rs C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\unicode_tables\jamo_short_name.rs
+
+e:\mvp\target\rls\debug\deps\ucd_util-d7923359cd7d2def.d: C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\lib.rs C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\hangul.rs C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\ideograph.rs C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\name.rs C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\property.rs C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\unicode_tables\mod.rs C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\unicode_tables\jamo_short_name.rs
+
+C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\lib.rs:
+C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\hangul.rs:
+C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\ideograph.rs:
+C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\name.rs:
+C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\property.rs:
+C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\unicode_tables\mod.rs:
+C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ucd-util-0.1.2\src\unicode_tables\jamo_short_name.rs:
