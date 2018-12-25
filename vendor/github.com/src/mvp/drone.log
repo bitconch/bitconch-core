@@ -1,0 +1,39 @@
+   Compiling buffett v0.10.0 (file:///home/mvp)
+    Finished release [optimized] target(s) in 3.21s
+     Running `target/release/buffett-drone --keypair /home/mvp/config-private/mint.json --network '127.0.0.1:8001'`
+Drone started. Listening on: 0.0.0.0:9900
+Airdrop requested...
+ INFO 2018-09-30T14:38:59.003082759Z: buffett::counter: COUNTER:{"name": "crdt-insert-new_entry", "counts": 2, "samples": 1,  "now": 1538318339003, "events": 1}
+ INFO 2018-09-30T14:38:59.013333478Z: buffett::crdt: ReceiveUpdates took: 10 ms  len: 1
+ WARN 2018-09-30T14:38:59.102957643Z: buffett::crdt: 2QmaRmSbBLJsn6D42VuNvf3Kph9cTWzqUrtWZXfVFMcK: LEADER_UPDATE TO 12eXi8QU3NjRTxKsv9VbkmGVrtcGespLNhnHcNW6CNRy from 11111111111111111111111111111111
+ INFO 2018-09-30T14:38:59.203666035Z: buffett::drone: Requesting airdrop of 50 to 12eXi8QU3NjRTxKsv9VbkmGVrtcGespLNhnHcNW6CNRy
+Airdrop sent!
+Airdrop tx signature: 3w5s7zf5CLTwPgZHeRVZ6YUXRaeBfaAT5ovqcgCTyivoJYDfzT9N8ahdPNanoi7a657mPMBGNWV6ZC8HH3kQou8V
+Airdrop requested...
+ INFO 2018-09-30T14:46:43.296358778Z: buffett::counter: COUNTER:{"name": "crdt-insert-new_entry", "counts": 3, "samples": 2,  "now": 1538318803296, "events": 1}
+ INFO 2018-09-30T14:46:43.297775307Z: buffett::counter: COUNTER:{"name": "crdt-insert-new_entry", "counts": 4, "samples": 3,  "now": 1538318803297, "events": 1}
+ INFO 2018-09-30T14:46:43.297817534Z: buffett::counter: COUNTER:{"name": "crdt-insert-new_entry", "counts": 5, "samples": 4,  "now": 1538318803297, "events": 1}
+ INFO 2018-09-30T14:46:43.297828731Z: buffett::counter: COUNTER:{"name": "crdt-insert-new_entry", "counts": 6, "samples": 5,  "now": 1538318803297, "events": 1}
+ INFO 2018-09-30T14:46:43.297835038Z: buffett::counter: COUNTER:{"name": "crdt-insert-new_entry", "counts": 7, "samples": 6,  "now": 1538318803297, "events": 1}
+ WARN 2018-09-30T14:46:43.397679097Z: buffett::crdt: HqYRK2SYDV2CP6HozYfjkAGY9THLzJXQzPqXJW7UxB4D: LEADER_UPDATE TO 12eXi8QU3NjRTxKsv9VbkmGVrtcGespLNhnHcNW6CNRy from 11111111111111111111111111111111
+ INFO 2018-09-30T14:46:43.498833423Z: buffett::drone: Requesting airdrop of 50 to BKtaV4K2bNheFF3YipRHcpj6S6JMD5bcop4aMVAyXBSs
+Airdrop requested...
+Airdrop sent!
+Airdrop tx signature: 29Gzv2jMyAEWxFmZgqdQkroGevvKZXkNgRAS4cYHc5sjQx3qNUBcB8VJiTbxUdxw3X98YKAoXeDgJtAo91HLSBoP
+ INFO 2018-09-30T15:01:34.925250965Z: buffett::counter: COUNTER:{"name": "crdt-insert-new_entry", "counts": 8, "samples": 7,  "now": 1538319694925, "events": 1}
+ INFO 2018-09-30T15:01:34.926620519Z: buffett::counter: COUNTER:{"name": "crdt-insert-new_entry", "counts": 9, "samples": 8,  "now": 1538319694926, "events": 1}
+ INFO 2018-09-30T15:01:34.926665156Z: buffett::counter: COUNTER:{"name": "crdt-insert-new_entry", "counts": 10, "samples": 9,  "now": 1538319694926, "events": 1}
+ INFO 2018-09-30T15:01:34.926673103Z: buffett::counter: COUNTER:{"name": "crdt-insert-new_entry", "counts": 11, "samples": 10,  "now": 1538319694926, "events": 1}
+ WARN 2018-09-30T15:01:35.025351141Z: buffett::crdt: E6pdYma8YKNZtvtmzsjVTiDxssPtRE8KFRhnC4Vg2cVD: LEADER_UPDATE TO 12eXi8QU3NjRTxKsv9VbkmGVrtcGespLNhnHcNW6CNRy from 11111111111111111111111111111111
+ INFO 2018-09-30T15:01:35.126333098Z: buffett::drone: Requesting airdrop of 10000000 to K6KvcgUud8Vz75twNDecxb9zEH3FPSYQxU78FsdTpy3
+Airdrop requested...
+Airdrop sent!
+ INFO 2018-09-30T15:14:18.572755606Z: buffett::counter: COUNTER:{"name": "crdt-insert-new_entry", "counts": 12, "samples": 11,  "now": 1538320458572, "events": 1}
+Airdrop tx signature: 4xeD1puysNDQDBxxDJ2dKuHc8pFoDyrMbUyrHELqVxTiXkPRTBxEAhDnF2yXEh3iQSD8BYBVBBA8AUyfVszRwSsa
+ INFO 2018-09-30T15:14:18.573467118Z: buffett::counter: COUNTER:{"name": "crdt-insert-new_entry", "counts": 13, "samples": 12,  "now": 1538320458573, "events": 1}
+ INFO 2018-09-30T15:14:18.573487540Z: buffett::counter: COUNTER:{"name": "crdt-insert-new_entry", "counts": 14, "samples": 13,  "now": 1538320458573, "events": 1}
+ INFO 2018-09-30T15:14:18.573491593Z: buffett::counter: COUNTER:{"name": "crdt-insert-new_entry", "counts": 15, "samples": 14,  "now": 1538320458573, "events": 1}
+ WARN 2018-09-30T15:14:18.672374708Z: buffett::crdt: 1mefnEwQSdMTra38ZTtZaDk87gqi36zAPfZfRjF5B2C: LEADER_UPDATE TO 12eXi8QU3NjRTxKsv9VbkmGVrtcGespLNhnHcNW6CNRy from 11111111111111111111111111111111
+ INFO 2018-09-30T15:14:18.775606567Z: buffett::drone: Requesting airdrop of 1 to 6GkXLbyUNkdgGuQe9FEwejyNVeALKyZwANTnkRujacGC
+Airdrop sent!
+Airdrop tx signature: 5V96PxBZYGykTdDTkpXH17hbjqRVBFAPBYv6iMKyrqRJCSiB1rbudKAs6ppNLR68WPCkjobWhWAhCGsyEHBWdvZW

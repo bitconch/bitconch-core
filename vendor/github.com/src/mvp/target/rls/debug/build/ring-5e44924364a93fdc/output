@@ -1,0 +1,384 @@
+#ENVTSLOGSSS21116: 13694368
+ALLUSERSPROFILE: C:\ProgramData
+AMD_ENTRYPOINT: vs/workbench/node/extensionHostProcess
+APPDATA: C:\Users\luhuimao\AppData\Roaming
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: true
+ASL.LOG: Destination=file
+CARGO: \\?\C:\Users\luhuimao\.rustup\toolchains\stable-x86_64-pc-windows-msvc\bin\rls.exe
+CARGO_CFG_DEBUG_ASSERTIONS: 
+CARGO_CFG_PROC_MACRO: 
+CARGO_CFG_TARGET_ARCH: x86_64
+CARGO_CFG_TARGET_ENDIAN: little
+CARGO_CFG_TARGET_ENV: msvc
+CARGO_CFG_TARGET_FAMILY: windows
+CARGO_CFG_TARGET_FEATURE: fxsr,sse,sse2
+CARGO_CFG_TARGET_OS: windows
+CARGO_CFG_TARGET_POINTER_WIDTH: 64
+CARGO_CFG_WINDOWS: 
+CARGO_FEATURE_DEFAULT: 1
+CARGO_FEATURE_DEV_URANDOM_FALLBACK: 1
+CARGO_FEATURE_USE_HEAP: 1
+CARGO_HOME: C:\Users\luhuimao\.cargo
+CARGO_MAKEFLAGS: --jobserver-fds=__rust_jobserver_semaphore_976058898 --jobserver-auth=__rust_jobserver_semaphore_976058898
+CARGO_MANIFEST_DIR: C:\Users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ring-0.13.3
+CARGO_MANIFEST_LINKS: ring-asm
+CARGO_PKG_AUTHORS: Brian Smith <brian@briansmith.org>
+CARGO_PKG_DESCRIPTION: Safe, fast, small crypto using Rust.
+CARGO_PKG_HOMEPAGE: 
+CARGO_PKG_NAME: ring
+CARGO_PKG_VERSION: 0.13.3
+CARGO_PKG_VERSION_MAJOR: 0
+CARGO_PKG_VERSION_MINOR: 13
+CARGO_PKG_VERSION_PATCH: 3
+CARGO_PKG_VERSION_PRE: 
+CHOCOLATEYINSTALL: C:\ProgramData\chocolatey
+CHOCOLATEYLASTPATHUPDATE: å‘¨å…­ 7æœˆ 21 17:47:11 2018
+CHOCOLATEYTOOLSLOCATION: C:\tools
+COMMONPROGRAMFILES: C:\Program Files\Common Files
+COMMONPROGRAMFILES(X86): C:\Program Files (x86)\Common Files
+COMMONPROGRAMW6432: C:\Program Files\Common Files
+COMPOSE_CONVERT_WINDOWS_PATHS: true
+COMPUTERNAME: LENOVO-PC
+COMSPEC: C:\WINDOWS\system32\cmd.exe
+CONFIGSETROOT: C:\WINDOWS\ConfigSetRoot
+DEBUG: true
+DOCKER_CERT_PATH: C:\Users\luhuimao\.docker\machine\machines\default
+DOCKER_HOST: tcp://192.168.99.100:2376
+DOCKER_MACHINE_NAME: default
+DOCKER_TLS_VERIFY: 1
+DOCKER_TOOLBOX_INSTALL_PATH: d:\Program Files\Docker Toolbox
+DRIVERDATA: C:\Windows\System32\Drivers\DriverData
+ELECTRON_RUN_AS_NODE: 1
+ERLANG_HOME: G:\Program Files\erl8.1
+ETHEREUM_SOCKET: \\.\pipe\geth.ipc
+FPS_BROWSER_APP_PROFILE_STRING: Internet Explorer
+FPS_BROWSER_USER_PROFILE_STRING: Default
+FP_NO_HOST_CHECK: NO
+GOOGLE_API_KEY: AIzaSyAQfxPJiounkhOjODEO5ZieffeBv6yft2Q
+GOPATH: C:\Users\luhuimao\gopath
+GOROOT: C:\Go
+HOMEDRIVE: C:
+HOMEPATH: \Users\luhuimao
+HOST: x86_64-pc-windows-msvc
+LD_LIBRARY_PATH: C:\Users\luhuimao\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib
+LOCALAPPDATA: C:\Users\luhuimao\AppData\Local
+LOGONSERVER: \\LENOVO-PC
+MOZ_PLUGIN_PATH: G:\Program Files (x86)\Foxit Software\Foxit Reader\plugins\
+NLS_LANG: AMERICAN_AMERICA.ZHS16GBK 
+NO_PROXY: 192.168.99.100
+NUMBER_OF_PROCESSORS: 4
+NUM_JOBS: 4
+ONEDRIVE: C:\Users\luhuimao\OneDrive
+OPT_LEVEL: 0
+OS: Windows_NT
+OUT_DIR: e:\mvp\target\rls\debug\build\ring-5e44924364a93fdc\out
+PATH: e:\mvp\target\rls\debug\deps;C:\Users\luhuimao\.rustup\toolchains\stable-x86_64-pc-windows-msvc\bin;C:\Users\luhuimao\.cargo\bin;C:\Users\luhuimao\.rustup\toolchains\stable-x86_64-pc-windows-msvc\bin;C:\Perl64\site\bin;C:\Perl64\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\ProgramData\Lenovo\ReadyApps;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Python27;C:\Python27\Scripts;C:\Users\luhuimao\Anaconda3;C:\Users\luhuimao\Anaconda3\Scripts;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;G:\Program Files\Redis\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\tools\go\bin;C:\TDM-GCC-64\bin;C:\Program Files\Microsoft VS Code\bin;D:\Program Files\nodejs\;C:\Users\luhuimao\.cargo\bin;C:\Users\luhuimao\.cargo\bin;C:\Users\luhuimao\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\ProgramData\Oracle\Java\javapath;E:\app\luhuimao\product\11.2.0\client_1;E:\app\luhuimao\product\11.2.0\dbhome_3\bin;E:\app\luhuimao\product\11.2.0\dbhome_1\bin;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\ProgramData\Lenovo\ReadyApps;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files;C:\Go\bin;
+PATHEXT: .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+PIPE_LOGGING: true
+PROCESSOR_ARCHITECTURE: AMD64
+PROCESSOR_IDENTIFIER: Intel64 Family 6 Model 69 Stepping 1, GenuineIntel
+PROCESSOR_LEVEL: 6
+PROCESSOR_REVISION: 4501
+PROFILE: debug
+PROGRAMDATA: C:\ProgramData
+PROGRAMFILES: C:\Program Files
+PROGRAMFILES(X86): C:\Program Files (x86)
+PROGRAMW6432: C:\Program Files
+PSMODULEPATH: C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\PowerShell\Modules\
+PUBLIC: C:\Users\Public
+READYAPPS: C:\ProgramData\Lenovo\ReadyApps
+RUSTC: rustc
+RUSTDOC: rustdoc
+RUSTFLAGS: 
+RUSTUP_HOME: C:\Users\luhuimao\.rustup
+RUSTUP_TOOLCHAIN: stable-x86_64-pc-windows-msvc
+RUST_RECURSION_COUNT: 1
+RUST_SRC_PATH: C:\Users\luhuimao\.rustup\toolchains\stable-x86_64-pc-windows-msvc/lib/rustlib/src/rust/src
+SESSIONNAME: Console
+SQL SERVER: C:\Program Files (x86)\Microsoft SQL Server
+SYSTEMDRIVE: C:
+SYSTEMROOT: C:\WINDOWS
+TARGET: x86_64-pc-windows-msvc
+TEMP: C:\Users\luhuimao\AppData\Local\Temp
+TMP: C:\Users\luhuimao\AppData\Local\Temp
+TNS_ADMIN: G:\app\luhuimao\product\11.2.0\dbhome_1\NETWORK\ADMIN
+TVT: C:\Program Files (x86)\Lenovo
+USERDOMAIN: Lenovo-PC
+USERDOMAIN_ROAMINGPROFILE: Lenovo-PC
+USERNAME: luhuimao
+USERPROFILE: C:\Users\luhuimao
+VBOX_MSI_INSTALL_PATH: C:\Program Files\Oracle\VirtualBox\
+VERBOSE_LOGGING: true
+VS110COMNTOOLS: G:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\Tools\
+VS140COMNTOOLS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\
+VSCODE_CWD: C:\Program Files\Microsoft VS Code
+VSCODE_HANDLES_UNCAUGHT_ERRORS: true
+VSCODE_IPC_HOOK: \\.\pipe\6d7654ef6ac2428f60aa3c097a8c1bc1-1.28.2-main-sock
+VSCODE_IPC_HOOK_EXTHOST: \\.\pipe\vscode-ipc-049e05d7-9fc3-4a22-8e5b-e024fc2c532e-sock
+VSCODE_LOGS: C:\Users\luhuimao\AppData\Roaming\Code\logs\20181113T110709
+VSCODE_LOG_LEVEL: undefined
+VSCODE_LOG_STACK: false
+VSCODE_NLS_CONFIG: {"locale":"zh-cn","availableLanguages":{},"_languagePackSupport":true}
+VSCODE_NODE_CACHED_DATA_DIR_1144: C:\Users\luhuimao\AppData\Roaming\Code\CachedData\7f3ce96ff4729c91352ae6def877e59c561f4850
+VSCODE_PID: 1144
+WINDIR: C:\WINDOWS
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\aes.obj" "crypto/fipsmodule/aes/aes.c"
+aes.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\exponentiation.obj" "crypto/fipsmodule/bn/exponentiation.c"
+exponentiation.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\generic.obj" "crypto/fipsmodule/bn/generic.c"
+generic.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\montgomery.obj" "crypto/fipsmodule/bn/montgomery.c"
+montgomery.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\montgomery_inv.obj" "crypto/fipsmodule/bn/montgomery_inv.c"
+montgomery_inv.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\shift.obj" "crypto/fipsmodule/bn/shift.c"
+shift.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\e_aes.obj" "crypto/fipsmodule/cipher/e_aes.c"
+e_aes.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\crypto.obj" "crypto/crypto.c"
+crypto.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\ecp_nistz.obj" "crypto/fipsmodule/ec/ecp_nistz.c"
+ecp_nistz.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\ecp_nistz256.obj" "crypto/fipsmodule/ec/ecp_nistz256.c"
+ecp_nistz256.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\gfp_p256.obj" "crypto/fipsmodule/ec/gfp_p256.c"
+gfp_p256.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\gfp_p384.obj" "crypto/fipsmodule/ec/gfp_p384.c"
+gfp_p384.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\limbs.obj" "crypto/limbs/limbs.c"
+limbs.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\mem.obj" "crypto/mem.c"
+mem.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\gcm.obj" "crypto/fipsmodule/modes/gcm.c"
+gcm.c
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\curve25519.obj" "third_party/fiat/curve25519.c"
+curve25519.c
+c:\users\luhuimao\.cargo\registry\src\github.com-1ecc6299db9ec823\ring-0.13.3\third_party\fiat\./curve25519_tables.h: warning C4819: ¸ÃÎÄ¼þ°üº¬²»ÄÜÔÚµ±Ç°´úÂëÒ³(936)ÖÐ±íÊ¾µÄ×Ö·û¡£Çë½«¸ÃÎÄ¼þ±£´æÎª Unicode ¸ñÊ½ÒÔ·ÀÖ¹Êý¾Ý¶ªÊ§
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\cpu-intel.obj" "crypto/cpu-intel.c"
+cpu-intel.c
+running: "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\lib.exe" "/OUT:e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\libring-core.a" "/nologo" "C:\\Users\\luhuimao\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.3\\pregenerated\\aes-x86_64-nasm.obj" "C:\\Users\\luhuimao\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.3\\pregenerated\\aesni-x86_64-nasm.obj" "C:\\Users\\luhuimao\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.3\\pregenerated\\vpaes-x86_64-nasm.obj" "C:\\Users\\luhuimao\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.3\\pregenerated\\x86_64-mont-nasm.obj" "C:\\Users\\luhuimao\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.3\\pregenerated\\x86_64-mont5-nasm.obj" "C:\\Users\\luhuimao\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.3\\pregenerated\\chacha-x86_64-nasm.obj" "C:\\Users\\luhuimao\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.3\\pregenerated\\p256-x86_64-asm-nasm.obj" "C:\\Users\\luhuimao\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.3\\pregenerated\\aesni-gcm-x86_64-nasm.obj" "C:\\Users\\luhuimao\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.3\\pregenerated\\ghash-x86_64-nasm.obj" "C:\\Users\\luhuimao\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.3\\pregenerated\\poly1305-x86_64-nasm.obj" "C:\\Users\\luhuimao\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.3\\pregenerated\\sha512-x86_64-nasm.obj" "C:\\Users\\luhuimao\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.3\\pregenerated\\sha256-x86_64-nasm.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\aes.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\exponentiation.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\generic.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\montgomery.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\montgomery_inv.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\shift.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\e_aes.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\crypto.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\ecp_nistz.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\ecp_nistz256.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\gfp_p256.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\gfp_p384.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\limbs.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\mem.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\gcm.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\curve25519.obj" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\cpu-intel.obj"
+exit code: 0
+cargo:rustc-link-lib=static=ring-core
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-pc-windows-msvc")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\cl.exe" "/nologo" "/MD" "/Z7" "/I" "include" "/W4" "/GS" "/Gy" "/EHsc" "/GR-" "/Zc:wchar_t" "/Zc:forScope" "/Zc:inline" "/Zc:rvalueCast" "/sdl" "/Wall" "/wd4127" "/wd4464" "/wd4514" "/wd4710" "/wd4711" "/wd4820" "/wd5045" "/Od" "/RTCsu" "-c" "/Foe:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\constant_time_test.obj" "crypto/constant_time_test.c"
+constant_time_test.c
+running: "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\bin\\amd64\\lib.exe" "/OUT:e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\libring-test.a" "/nologo" "e:\\mvp\\target\\rls\\debug\\build\\ring-5e44924364a93fdc\\out\\constant_time_test.obj"
+exit code: 0
+cargo:rustc-link-lib=static=ring-test
+cargo:rustc-link-search=native=e:\mvp\target\rls\debug\build\ring-5e44924364a93fdc\out

@@ -1,0 +1,22 @@
+[package]
+name = "solana_program_interface"
+version = "0.1.0"
+authors = [
+    "Anatoly Yakovenko <anatoly@solana.com>",
+    "Greg Fitzgerald <greg@solana.com>",
+    "Stephen Akridge <stephen@solana.com>",
+    "Michael Vines <mvines@solana.com>",
+    "Rob Walker <rob@solana.com>",
+    "Pankaj Garg <pankaj@solana.com>",
+    "Tyera Eulberg <tyera@solana.com>",
+    "Jack May <jack@solana.com>",
+]
+
+[dependencies]
+bincode = "1.0.0"
+bs58 = "0.2.0"
+generic-array = { version = "0.12.0", default-features = false, features = ["serde"] }
+serde = "1.0.27"
+serde_derive = "1.0.27"
+
+

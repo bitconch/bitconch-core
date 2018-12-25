@@ -1,0 +1,2 @@
+cargo:rerun-if-changed=target/perf-libs
+cargo:rerun-if-changed=build.rs
