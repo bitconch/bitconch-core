@@ -14,7 +14,15 @@ package pgminterface
 
 import (
 	"fmt"
+	"encoding/hex"
 )
+
+//PubkeyArray is a struct
+type PubkeyArray struct {
+	T	[]uint8
+	N 	uint32
+	Cap uint32
+}
 
 //Pubkey returns an array struct of uint8, with the size of uint32
 //search ""
@@ -62,12 +70,23 @@ clone_from_slice returns a generci array wiht input from pubkey_vec
 // New is a method of sturct Pubkey, return a Pubkey struct, refer to clone_from_slice method
 //  input  :an uint8 array
 //  output :an array (slice ) of
-func New(size uint32) []uint8 {
-	//create a new array(slice) out of the
-	GenericArray := make([]uint8, size)
-	//populate the array
-	//return the array
-	return GenericArray
+func New(pubkeyVec []uint8, arrayCapacity uint32) (*PubkeyArray, error) {
+	//error check:
+	if arrayCapacity < uint32(len(pubkeyVec)){
+		return nil, fmt.Errorf("The array length excceds the capacity, consider reduce the size of the array")
+	}
+	//use make to create a new slice, each item is int8 type, 0 lengh, the cap is arrayCapacity uint32 type
+	newArry := make([]uint8, 0, arrayCapacity)
+	//use append to add item to the slice
+	newArry = append(newArry, newArry[:]...)
+	//use new keyword to create a new Array
+	pubkeyArry := new(PubkeyArray)
+	pubkeyArry.T = newArry
+	//use uint, len keyword
+	pubkeyArry.N = uint32(len(pubkeyArry.T))
+	//cap keyword
+	pubkeyArry.Cap = uint32(cap(pubkeyArry.T))
+	return pubkeyArry, nil
 }
 
 //Asref
@@ -82,7 +101,9 @@ impl AsRef<[u8]> for Pubkey {
 // https://doc.rust-lang.org/stable/book/ch10-02-traits.html Implementing a trait on a type is similar to implementing regular methods.
 // the Asref can be thought as a method for Pubkey
 // Notes: search ":AsRef" in MVP, no where it is used, just ignore this one
-func (arguments Pubkey) Asref() {}
+func (arguments Pubkey) Asref() []uint8{
+	return arguments[0:];
+}
 
 //Debug
 /*
@@ -92,7 +113,11 @@ impl fmt::Debug for Pubkey {
     }
 }*/
 // Notes: search ":Debug" in MVP, no where it is used, just ignore this one
-func (arguments Pubkey) Debug() {}
+func (arguments Pubkey) Debug() {
+	//encoding := base58.FlickrEncoding // or RippleEncoding or BitcoinEncoding
+	//fmt.Println("{}", encoding.encode(arguments[0]))
+	fmt.Println("{}", hex.EncodeToString(arguments))
+}
 
 //Display
 /*
@@ -101,7 +126,10 @@ impl fmt::Display for Pubkey {
         write!(f, "{}", bs58::encode(self.0).into_string())
     }
 }
-
 */
 // Notes: search ":Debug" in MVP, no where it is used, just ignore this one
-func (arguments Pubkey) Display() {}
+func (arguments Pubkey) Display() {
+	//encoding := base58.FlickrEncoding // or RippleEncoding or BitcoinEncoding
+	//fmt.Println("{}", encoding.encode(arguments[0]))
+	fmt.Println("{}", hex.EncodeToString(arguments))
+}

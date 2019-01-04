@@ -62,3 +62,7 @@ pub struct KeyedAccount<'a> {
     pub account: &'a mut Account,
 }
 */
+type KeyedAccount struct {
+	Key *Pubkey
+	Account Account
+}
