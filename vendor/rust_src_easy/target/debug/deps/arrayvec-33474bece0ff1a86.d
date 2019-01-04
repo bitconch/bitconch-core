@@ -1,0 +1,11 @@
+C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\debug\deps\libarrayvec-33474bece0ff1a86.rlib: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\maybe_uninit.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\array.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\array_string.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\char.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\range.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\errors.rs
+
+C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\debug\deps\arrayvec-33474bece0ff1a86.d: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\maybe_uninit.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\array.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\array_string.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\char.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\range.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\errors.rs
+
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\lib.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\maybe_uninit.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\array.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\array_string.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\char.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\range.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\arrayvec-0.4.10\src\errors.rs:

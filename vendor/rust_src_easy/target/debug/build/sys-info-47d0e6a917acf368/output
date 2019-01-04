@@ -1,0 +1,28 @@
+cargo:rustc-flags=-l psapi
+TARGET = Some("x86_64-pc-windows-msvc")
+OPT_LEVEL = Some("0")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-msvc = None
+CC_x86_64_pc_windows_msvc = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-msvc = None
+CFLAGS_x86_64_pc_windows_msvc = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\\Tools\\MSVC\\14.16.27023\\bin\\HostX64\\x64\\cl.exe" "/nologo" "/MD" "/Z7" "/W4" "/FoC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\debug\\build\\sys-info-47d0e6a917acf368\\out\\c\\windows.o" "/c" "c/windows.c"
+windows.c
+c/windows.c(29): warning C4996: 'GetVersionExA': was declared deprecated
+C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\um\sysinfoapi.h(378): note: see declaration of 'GetVersionExA'
+c/windows.c(33): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\ucrt\string.h(338): note: see declaration of 'strncpy'
+c/windows.c(60): warning C4244: 'return': conversion from 'DWORD64' to 'unsigned long', possible loss of data
+c/windows.c(90): warning C4101: 'size': unreferenced local variable
+c/windows.c(115): warning C4244: '=': conversion from 'double' to 'unsigned __int64', possible loss of data
+c/windows.c(116): warning C4244: '=': conversion from 'double' to 'unsigned __int64', possible loss of data
+exit code: 0
+running: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\\Tools\\MSVC\\14.16.27023\\bin\\HostX64\\x64\\lib.exe" "/OUT:C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\debug\\build\\sys-info-47d0e6a917acf368\\out\\libinfo.a" "/nologo" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\debug\\build\\sys-info-47d0e6a917acf368\\out\\c\\windows.o"
+exit code: 0
+cargo:rustc-link-lib=static=info
+cargo:rustc-link-search=native=C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\debug\build\sys-info-47d0e6a917acf368\out

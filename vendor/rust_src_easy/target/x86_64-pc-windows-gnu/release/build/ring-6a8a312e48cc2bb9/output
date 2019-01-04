@@ -1,0 +1,344 @@
+ALLUSERSPROFILE: C:\ProgramData
+APPDATA: C:\Users\Jacky\AppData\Roaming
+ASL.LOG: Destination=file
+CARGO: \\?\C:\Users\Jacky\.rustup\toolchains\stable-x86_64-pc-windows-msvc\bin\cargo.exe
+CARGO_CFG_DEBUG_ASSERTIONS: 
+CARGO_CFG_PROC_MACRO: 
+CARGO_CFG_TARGET_ARCH: x86_64
+CARGO_CFG_TARGET_ENDIAN: little
+CARGO_CFG_TARGET_ENV: gnu
+CARGO_CFG_TARGET_FAMILY: windows
+CARGO_CFG_TARGET_FEATURE: fxsr,sse,sse2
+CARGO_CFG_TARGET_OS: windows
+CARGO_CFG_TARGET_POINTER_WIDTH: 64
+CARGO_CFG_WINDOWS: 
+CARGO_FEATURE_DEFAULT: 1
+CARGO_FEATURE_DEV_URANDOM_FALLBACK: 1
+CARGO_FEATURE_USE_HEAP: 1
+CARGO_HOME: C:\Users\Jacky\.cargo
+CARGO_MAKEFLAGS: --jobserver-fds=__rust_jobserver_semaphore_1748072555 --jobserver-auth=__rust_jobserver_semaphore_1748072555
+CARGO_MANIFEST_DIR: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\ring-0.13.5
+CARGO_MANIFEST_LINKS: ring-asm
+CARGO_PKG_AUTHORS: Brian Smith <brian@briansmith.org>
+CARGO_PKG_DESCRIPTION: Safe, fast, small crypto using Rust.
+CARGO_PKG_HOMEPAGE: 
+CARGO_PKG_NAME: ring
+CARGO_PKG_REPOSITORY: https://github.com/briansmith/ring
+CARGO_PKG_VERSION: 0.13.5
+CARGO_PKG_VERSION_MAJOR: 0
+CARGO_PKG_VERSION_MINOR: 13
+CARGO_PKG_VERSION_PATCH: 5
+CARGO_PKG_VERSION_PRE: 
+CHOCOLATEYINSTALL: C:\ProgramData\chocolatey
+CHOCOLATEYLASTPATHUPDATE: Thu Jun 14 11:50:53 2018
+CHOCOLATEYTOOLSLOCATION: C:\tools
+COMMONPROGRAMFILES: C:\Program Files\Common Files
+COMMONPROGRAMFILES(X86): C:\Program Files (x86)\Common Files
+COMMONPROGRAMW6432: C:\Program Files\Common Files
+COMPUTERNAME: WORKINGPC
+COMSPEC: C:\WINDOWS\system32\cmd.exe
+CUDA_PATH: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\
+CUDA_PATH_V5_0: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\
+DEBUG: true
+DRIVERDATA: C:\Windows\System32\Drivers\DriverData
+ETHEREUM_SOCKET: \\.\pipe\geth.ipc
+FP_NO_HOST_CHECK: NO
+GIT_LFS_PATH: C:\Program Files\Git LFS
+GOPATH: C:\Users\Jacky\gopath
+GOROOT: C:\Go\
+GYP_MSVS_VERSION: 2015
+HOMEDRIVE: C:
+HOMEPATH: \Users\Jacky
+HOST: x86_64-pc-windows-msvc
+INTELLIJ IDEA COMMUNITY EDITION: C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2018.3.2\bin;
+LANG: en_US.UTF-8
+LD_LIBRARY_PATH: C:\Users\Jacky\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib
+LOCALAPPDATA: C:\Users\Jacky\AppData\Local
+LOGONSERVER: \\WORKINGPC
+NUMBER_OF_PROCESSORS: 4
+NUM_JOBS: 4
+NVCUDASAMPLES5_0_ROOT: C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.0\
+NVCUDASAMPLES_ROOT: C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.0\
+NVTOOLSEXT_PATH: C:\Program Files\NVIDIA GPU Computing Toolkit\nvToolsExt\
+ONEDRIVE: C:\Users\Jacky\OneDrive
+ONLINESERVICES: Online Services
+OPT_LEVEL: 3
+OS: Windows_NT
+OUT_DIR: C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\x86_64-pc-windows-gnu\release\build\ring-6a8a312e48cc2bb9\out
+PATH: C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\release\deps;C:\Users\Jacky\.rustup\toolchains\stable-x86_64-pc-windows-msvc\bin;C:\Users\Jacky\.cargo\bin;C:\Users\Jacky\.rustup\toolchains\stable-x86_64-pc-windows-msvc\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\libnvvp\;C:\ffmpeg\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Hewlett-Packard\SimplePass\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\QuickTime\QTSystem\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files\nodejs;C:\androidSDK\platform-tools;C:\Program Files\Windows Media Components\Too;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\tools\mingw64\bin;C:\Program Files\nodejs\;C:\Go\bin;C:\Program Files\Git LFS;C:\Python3\Scripts\;C:\Python3\;C:\Users\Jacky\.cargo\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\libnvvp\;C:\ffmpeg\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Hewlett-Packard\SimplePass\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\QuickTime\QTSystem\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files\nodejs;C:\androidSDK\platform-tools;C:\Program Files\Windows Media Components\Too;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\tools\mingw64\bin;C:\Program Files\nodejs\;C:\Go\bin;C:\Program Files\Git LFS;;C:\Users\Jacky\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Jacky\AppData\Roaming\npm;C:\Users\Jacky\gopath\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2018.3.2\bin;;C:\Users\Jacky\AppData\Roaming\Python\Python37\Scripts;
+PATHEXT: .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+PLATFORM: MCD
+PLATFORMCODE: KV
+PROCESSOR_ARCHITECTURE: AMD64
+PROCESSOR_IDENTIFIER: Intel64 Family 6 Model 61 Stepping 4, GenuineIntel
+PROCESSOR_LEVEL: 6
+PROCESSOR_REVISION: 3d04
+PROFILE: release
+PROGRAMDATA: C:\ProgramData
+PROGRAMFILES: C:\Program Files
+PROGRAMFILES(X86): C:\Program Files (x86)
+PROGRAMW6432: C:\Program Files
+PSMODULEPATH: C:\Users\Jacky\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\
+PUBLIC: C:\Users\Public
+RUSTC: rustc
+RUSTDOC: rustdoc
+RUSTUP_HOME: C:\Users\Jacky\.rustup
+RUSTUP_TOOLCHAIN: stable-x86_64-pc-windows-msvc
+RUST_RECURSION_COUNT: 1
+SESSIONNAME: Console
+SYSTEMDRIVE: C:
+SYSTEMROOT: C:\WINDOWS
+TARGET: x86_64-pc-windows-gnu
+TEMP: C:\Users\Jacky\AppData\Local\Temp
+TERM_PROGRAM: vscode
+TERM_PROGRAM_VERSION: 1.30.1
+TMP: C:\Users\Jacky\AppData\Local\Temp
+USERDOMAIN: workingpc
+USERDOMAIN_ROAMINGPROFILE: workingpc
+USERNAME: Jacky
+USERPROFILE: C:\Users\Jacky
+VBOX_MSI_INSTALL_PATH: C:\Program Files\Oracle\VirtualBox\
+VS140COMNTOOLS: C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\
+VSCODE_CWD: C:\Users\Jacky\AppData\Local\Programs\Microsoft VS Code
+WINDIR: C:\WINDOWS
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\aes.o" "crypto/fipsmodule/aes/aes.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\exponentiation.o" "crypto/fipsmodule/bn/exponentiation.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\generic.o" "crypto/fipsmodule/bn/generic.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\montgomery.o" "crypto/fipsmodule/bn/montgomery.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\montgomery_inv.o" "crypto/fipsmodule/bn/montgomery_inv.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\shift.o" "crypto/fipsmodule/bn/shift.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\e_aes.o" "crypto/fipsmodule/cipher/e_aes.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\crypto.o" "crypto/crypto.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\ecp_nistz.o" "crypto/fipsmodule/ec/ecp_nistz.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\ecp_nistz256.o" "crypto/fipsmodule/ec/ecp_nistz256.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\gfp_p256.o" "crypto/fipsmodule/ec/gfp_p256.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\gfp_p384.o" "crypto/fipsmodule/ec/gfp_p384.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\limbs.o" "crypto/limbs/limbs.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\mem.o" "crypto/mem.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\gcm.o" "crypto/fipsmodule/modes/gcm.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\curve25519.o" "third_party/fiat/curve25519.c"
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\cpu-intel.o" "crypto/cpu-intel.c"
+running: "ar" "crs" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\libring-core.a" "C:\\Users\\Jacky\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.5\\pregenerated\\aes-x86_64-nasm.obj" "C:\\Users\\Jacky\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.5\\pregenerated\\aesni-x86_64-nasm.obj" "C:\\Users\\Jacky\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.5\\pregenerated\\vpaes-x86_64-nasm.obj" "C:\\Users\\Jacky\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.5\\pregenerated\\x86_64-mont-nasm.obj" "C:\\Users\\Jacky\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.5\\pregenerated\\x86_64-mont5-nasm.obj" "C:\\Users\\Jacky\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.5\\pregenerated\\chacha-x86_64-nasm.obj" "C:\\Users\\Jacky\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.5\\pregenerated\\p256-x86_64-asm-nasm.obj" "C:\\Users\\Jacky\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.5\\pregenerated\\aesni-gcm-x86_64-nasm.obj" "C:\\Users\\Jacky\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.5\\pregenerated\\ghash-x86_64-nasm.obj" "C:\\Users\\Jacky\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.5\\pregenerated\\poly1305-x86_64-nasm.obj" "C:\\Users\\Jacky\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.5\\pregenerated\\sha512-x86_64-nasm.obj" "C:\\Users\\Jacky\\.cargo\\registry\\src\\github.com-1ecc6299db9ec823\\ring-0.13.5\\pregenerated\\sha256-x86_64-nasm.obj" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\aes.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\exponentiation.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\generic.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\montgomery.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\montgomery_inv.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\shift.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\e_aes.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\crypto.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\ecp_nistz.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\ecp_nistz256.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\gfp_p256.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\gfp_p384.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\limbs.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\mem.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\gcm.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\curve25519.o" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\cpu-intel.o"
+exit code: 0
+cargo:rustc-link-lib=static=ring-core
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-pc-windows-gnu")
+HOST = Some("x86_64-pc-windows-msvc")
+CC_x86_64-pc-windows-gnu = None
+CC_x86_64_pc_windows_gnu = None
+TARGET_CC = None
+CC = None
+CFLAGS_x86_64-pc-windows-gnu = None
+CFLAGS_x86_64_pc_windows_gnu = None
+TARGET_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running "gcc.exe" "-O3" "-ffunction-sections" "-fdata-sections" "-g" "-fno-omit-frame-pointer" "-m64" "-I" "include" "-Wall" "-Wextra" "-std=c1x" "-Wbad-function-cast" "-Wmissing-prototypes" "-Wnested-externs" "-Wstrict-prototypes" "-pedantic" "-pedantic-errors" "-Wall" "-Wextra" "-Wcast-align" "-Wcast-qual" "-Wenum-compare" "-Wfloat-equal" "-Wformat=2" "-Winline" "-Winvalid-pch" "-Wmissing-declarations" "-Wmissing-field-initializers" "-Wmissing-include-dirs" "-Wredundant-decls" "-Wshadow" "-Wsign-compare" "-Wundef" "-Wuninitialized" "-Wwrite-strings" "-fno-strict-aliasing" "-fvisibility=hidden" "-Wno-cast-align" "-g3" "-D_XOPEN_SOURCE=700" "-c" "-oC:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\constant_time_test.o" "crypto/constant_time_test.c"
+running: "ar" "crs" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\libring-test.a" "C:\\Users\\Jacky\\gopath\\src\\github.com\\caesarchad\\rustelo\\vendor\\rust_src_easy\\target\\x86_64-pc-windows-gnu\\release\\build\\ring-6a8a312e48cc2bb9\\out\\constant_time_test.o"
+exit code: 0
+cargo:rustc-link-lib=static=ring-test
+cargo:rustc-link-search=native=C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\x86_64-pc-windows-gnu\release\build\ring-6a8a312e48cc2bb9\out

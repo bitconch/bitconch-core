@@ -1,0 +1,12 @@
+C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\debug\deps\libnet2-7452d1b7c28645dd.rlib: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\tcp.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\udp.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\socket.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\ext.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\utils.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\sys\windows\mod.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\sys\windows\impls.rs
+
+C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\debug\deps\net2-7452d1b7c28645dd.d: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\tcp.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\udp.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\socket.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\ext.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\utils.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\sys\windows\mod.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\sys\windows\impls.rs
+
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\lib.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\tcp.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\udp.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\socket.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\ext.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\utils.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\sys\windows\mod.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\net2-0.2.33\src\sys\windows\impls.rs:

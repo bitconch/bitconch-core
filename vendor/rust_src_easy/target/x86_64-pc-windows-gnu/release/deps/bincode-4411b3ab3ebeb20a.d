@@ -1,0 +1,11 @@
+C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\x86_64-pc-windows-gnu\release\deps\libbincode-4411b3ab3ebeb20a.rlib: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\config.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\ser\mod.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\error.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\de\mod.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\de\read.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\internal.rs
+
+C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\x86_64-pc-windows-gnu\release\deps\bincode-4411b3ab3ebeb20a.d: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\config.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\ser\mod.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\error.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\de\mod.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\de\read.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\internal.rs
+
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\lib.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\config.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\ser\mod.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\error.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\de\mod.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\de\read.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\bincode-1.0.1\src\internal.rs:

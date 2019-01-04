@@ -1,0 +1,10 @@
+C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\x86_64-pc-windows-gnu\release\deps\libcrc32fast-6566f9c9171cfd54.rlib: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\baseline.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\combine.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\specialized\mod.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\table.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\specialized\pclmulqdq.rs
+
+C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\x86_64-pc-windows-gnu\release\deps\crc32fast-6566f9c9171cfd54.d: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\baseline.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\combine.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\specialized\mod.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\table.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\specialized\pclmulqdq.rs
+
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\lib.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\baseline.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\combine.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\specialized\mod.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\table.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\crc32fast-1.1.2\src\specialized\pclmulqdq.rs:

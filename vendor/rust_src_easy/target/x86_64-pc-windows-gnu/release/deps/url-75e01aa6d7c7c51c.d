@@ -1,0 +1,13 @@
+C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\x86_64-pc-windows-gnu\release\deps\liburl-75e01aa6d7c7c51c.rlib: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\encoding.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\host.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\origin.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\path_segments.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\parser.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\slicing.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\form_urlencoded.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\quirks.rs
+
+C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\x86_64-pc-windows-gnu\release\deps\url-75e01aa6d7c7c51c.d: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\encoding.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\host.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\origin.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\path_segments.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\parser.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\slicing.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\form_urlencoded.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\quirks.rs
+
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\lib.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\encoding.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\host.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\origin.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\path_segments.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\parser.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\slicing.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\form_urlencoded.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\url-1.7.2\src\quirks.rs:

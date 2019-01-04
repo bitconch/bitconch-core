@@ -1,0 +1,1 @@
+cargo:rustc-link-lib=dylib=ws2_32

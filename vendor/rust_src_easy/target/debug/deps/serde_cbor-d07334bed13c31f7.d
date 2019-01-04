@@ -1,0 +1,12 @@
+C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\debug\deps\libserde_cbor-d07334bed13c31f7.rlib: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\read.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\de.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\error.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\ser.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\value\mod.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\value\value.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\value\ser.rs
+
+C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\debug\deps\serde_cbor-d07334bed13c31f7.d: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\read.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\de.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\error.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\ser.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\value\mod.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\value\value.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\value\ser.rs
+
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\lib.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\read.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\de.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\error.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\ser.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\value\mod.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\value\value.rs:
+C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\serde_cbor-0.9.0\src\value\ser.rs:
