@@ -1,8 +1,9 @@
 [package]
-name = "rust_src_easy"
+name = "rustelo_easy"
 publish = false
 version = "0.0.0"
 edition = "2018"
+description = "Call Rust Code in Go, in an easy way."
 
 [lib]
 crate-type = ["staticlib"] #staticlib make sure Cargo build mode, refer to https://doc.rust-lang.org/reference/linkage.html

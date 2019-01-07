@@ -11,3 +11,8 @@ import "unsafe"
 type ASimpleStruct struct {
 	inner C.HederaSecretKey
 }
+
+
+func CallMainEntry (){
+	defer C.main_entry()
+}

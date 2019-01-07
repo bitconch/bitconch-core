@@ -23,8 +23,10 @@ use std::process::exit;
 use std::thread::sleep;
 use std::time::Duration;
 
+use std::ffi::c_void; //use ffi c_void
+
 #[no_mangle]
-pub extern "C" fn main_entry() -> () {
+pub extern "C" fn main_entry(p: *mut c_void) {
     logger::setup();
     set_panic_hook("fullnode");
     let matches = App::new("fullnode")

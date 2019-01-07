@@ -2,6 +2,7 @@
 """
 Use Python3.5 and Shell to build  
 
+1. 
 """
 import os, re, argparse, sys
 from subprocess import Popen, check_call, PIPE, check_output, CalledProcessError
@@ -9,7 +10,7 @@ from shutil import copy2, copytree, rmtree
 
 
 
-def sh(command, silent=False, cwd=None, shell=True, env=None):
+def execute_shell(command, silent=False, cwd=None, shell=True, env=None):
     if env is not None:
         env = dict(**os.environ, **env)
 
@@ -28,13 +29,13 @@ def update_submodules():
     print(" :: use git to fetch the latest source cdoes")
 
     # Ensure the submodule is initialized
-    sh("git submodule update --init", silent=True)
+    execute_shell("git submodule update --init", silent=True)
 
     # Fetch upstream changes
-    sh("git submodule foreach git fetch", silent=True)
+    execute_shell("git submodule foreach git fetch", silent=True)
 
     # Reset to upstream
-    sh("git submodule foreach git reset --hard origin/HEAD", silent=True)
+    execute_shell("git submodule foreach git reset --hard origin/HEAD", silent=True)
 
     # Update include/
     #rmtree("include")
@@ -45,7 +46,7 @@ def update_submodules():
 
 
 def build(release=False):
-    target_list = sh("rustup target list", silent=True).decode()
+    target_list = execute_shell("rustup target list", silent=True).decode()
     m = re.search(r"(.*?)\s*\(default\)", target_list)
 
     default_target =m[1]
@@ -79,13 +80,13 @@ def build(release=False):
             print(f" :: build rust source file for {target}")
 
             if target != default_target:
-                sh(["rustup", "target", "add", target],
+                execute_shell(["rustup", "target", "add", target],
                    shell=False,
                    silent=True,
                    cwd="vendor/rust_src")
 
             profile = "--release" if release else ''
-            sh(f"cargo build --target {target} {profile}",
+            execute_shell(f"cargo build --target {target} {profile}",
                cwd="vendor/rust_src",
                env={
                    "CC": f"{prefix[target]}gcc",
@@ -94,11 +95,11 @@ def build(release=False):
                })
 
             if target.endswith("-apple-darwin"):
-                sh(f"strip -Sx {artifact[target]}",
+                execute_shell(f"strip -Sx {artifact[target]}",
                    cwd=f"vendor/rust_src/target/{target}/release", silent=True)
 
             else:
-                sh(f"{prefix[target]}strip --strip-unneeded -d -x {artifact[target]}",
+                execute_shell(f"{prefix[target]}strip --strip-unneeded -d -x {artifact[target]}",
                    cwd=f"vendor/rust_src/target/{target}/release")
 
             copy2(f"vendor/rust_src/target/{target}/release/{artifact[target]}", f"libs/{target}/")
@@ -108,19 +109,19 @@ def build(release=False):
 
         # For development; build only the _default_ target
         print(f" :: build the rust+c source code for {target}")
-        sh(f"cargo build  --target {target}", cwd="vendor/rust_src")
+        execute_shell(f"cargo build  --target {target}", cwd="vendor/rust_src")
 
         # Copy _default_ lib over
         copy2(f"vendor/rust_src/target/{target}/debug/{artifact[target]}", f"libs/{target}/")
 
 
 def commit():
-    sha = sh("git rev-parse --short HEAD", cwd="vendor/rust_src", silent=True).decode().strip()
-    sh("git add ./vendor/rust_src ./libs ./include")
+    sha = execute_shell("git rev-parse --short HEAD", cwd="vendor/rust_src", silent=True).decode().strip()
+    execute_shell("git add ./vendor/rust_src ./libs ./include")
 
     try:
-        sh(f"git commit -m \"build libs/ and sync include/ from hedera-sdk-c#{sha}\"")
-        sh("git push")
+        execute_shell(f"git commit -m \"build libs/ and sync include/ from hedera-sdk-c#{sha}\"")
+        execute_shell("git push")
 
     except CalledProcessError:
         # Commit likely failed because there was nothing to commit
