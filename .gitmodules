@@ -9,3 +9,7 @@
 [submodule "vendor/rustelo-complex"]
 	path = vendor/rustelo-complex
 	url = https://github.com/caesarchad/rustelo-complex
+
+[submodule "vendor/buffett"]
+	path = vendor/buffett
+	url = https://github.com/caesarchad/buffett
