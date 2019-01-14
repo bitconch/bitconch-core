@@ -1,1 +1,0 @@
-{"rustc":139380249969508205,"features":"[]","target":9416157734218553690,"profile":11870183705523825133,"path":16470399897013843733,"deps":[["paste-impl v0.1.4","paste_impl",7995571114880390357],["proc-macro-hack v0.5.4","proc_macro_hack",2433904466135557883]],"local":[{"Precalculated":"0.1.4"}],"rustflags":[],"edition":"Edition2015"}

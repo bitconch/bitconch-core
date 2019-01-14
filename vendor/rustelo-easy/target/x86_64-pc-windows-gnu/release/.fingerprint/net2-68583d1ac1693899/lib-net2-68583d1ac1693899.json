@@ -1,1 +1,0 @@
-{"rustc":16506240824610328313,"features":"[\"default\", \"duration\"]","target":972861179308920168,"profile":3477403659398680810,"path":15356302464225865323,"deps":[["cfg-if v0.1.6","cfg_if",11785759744193203138],["winapi v0.3.6","winapi",1464512841237082466]],"local":[{"Precalculated":"0.2.33"}],"rustflags":[],"edition":"Edition2015"}

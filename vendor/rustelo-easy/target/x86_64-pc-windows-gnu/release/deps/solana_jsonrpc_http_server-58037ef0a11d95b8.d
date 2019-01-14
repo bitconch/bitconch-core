@@ -1,8 +1,0 @@
-C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\x86_64-pc-windows-gnu\release\deps\libsolana_jsonrpc_http_server-58037ef0a11d95b8.rlib: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-http-server-0.1.2\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-http-server-0.1.2\src\handler.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-http-server-0.1.2\src\response.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-http-server-0.1.2\src\utils.rs
-
-C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\x86_64-pc-windows-gnu\release\deps\solana_jsonrpc_http_server-58037ef0a11d95b8.d: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-http-server-0.1.2\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-http-server-0.1.2\src\handler.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-http-server-0.1.2\src\response.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-http-server-0.1.2\src\utils.rs
-
-C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-http-server-0.1.2\src\lib.rs:
-C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-http-server-0.1.2\src\handler.rs:
-C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-http-server-0.1.2\src\response.rs:
-C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-http-server-0.1.2\src\utils.rs:

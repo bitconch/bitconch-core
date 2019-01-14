@@ -1,9 +1,0 @@
-C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\x86_64-pc-windows-gnu\release\deps\libsolana_jsonrpc_macros-7ff6725b209e9760.rlib: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\auto_args.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\delegates.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\util.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\pubsub.rs
-
-C:\Users\Jacky\gopath\src\github.com\caesarchad\rustelo\vendor\rust_src_easy\target\x86_64-pc-windows-gnu\release\deps\solana_jsonrpc_macros-7ff6725b209e9760.d: C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\lib.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\auto_args.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\delegates.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\util.rs C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\pubsub.rs
-
-C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\lib.rs:
-C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\auto_args.rs:
-C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\delegates.rs:
-C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\util.rs:
-C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\solana-jsonrpc-macros-0.1.3\src\pubsub.rs:

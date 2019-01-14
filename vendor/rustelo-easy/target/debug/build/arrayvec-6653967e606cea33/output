@@ -1,3 +1,0 @@
-cargo:rerun-if-changed=build.rs
-cargo:rustc-cfg=has_manually_drop_in_union
-cargo:rustc-cfg=has_union_feature

@@ -1,2 +1,0 @@
-cargo:rerun-if-env-changed=WINAPI_NO_BUNDLED_LIBRARIES
-cargo:rustc-link-search=native=C:\Users\Jacky\.cargo\registry\src\github.com-1ecc6299db9ec823\winapi-x86_64-pc-windows-gnu-0.4.0\lib

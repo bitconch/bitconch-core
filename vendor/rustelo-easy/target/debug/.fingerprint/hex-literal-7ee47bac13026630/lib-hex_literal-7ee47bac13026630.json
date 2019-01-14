@@ -1,1 +1,0 @@
-{"rustc":16506240824610328313,"features":"[]","target":18153867764658396205,"profile":11870183705523825133,"path":4031309744031241866,"deps":[["hex-literal-impl v0.1.1","hex_literal_impl",15860042158317401614],["proc-macro-hack v0.4.1","proc_macro_hack",12131140712547755532]],"local":[{"Precalculated":"0.1.1"}],"rustflags":[],"edition":"Edition2015"}
