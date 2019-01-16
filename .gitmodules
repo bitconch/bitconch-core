@@ -9,3 +9,6 @@
 [submodule "vendor/buffett"]
 	path = vendor/buffett
 	url = https://github.com/caesarchad/buffett
+[submodule "rustelo-rust"]
+	path = rustelo-rust
+	url = https://github.com/caesarchad/rustelo-rust
