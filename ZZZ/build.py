@@ -120,7 +120,7 @@ def commit():
     execute_shell("git add ./vendor/rust_src ./libs ./include")
 
     try:
-        execute_shell(f"git commit -m \"build libs/ and sync include/ from hedera-sdk-c#{sha}\"")
+        execute_shell(f"git commit -m \"build libs/ and sync include/ from rustelo#{sha}\"")
         execute_shell("git push")
 
     except CalledProcessError:
