@@ -3,11 +3,11 @@
 	url = https://github.com/Bitconch/bus-rust
 
 [submodule "vendor/rustelo-rust"]
-	path = vendor/rustelo-rust
+	path = ZZZ/vendor/rustelo-rust
 	url = https://github.com/caesarchad/rustelo-rust
 
 [submodule "vendor/buffett"]
-	path = vendor/buffett
+	path = ZZZ/vendor/buffett
 	url = https://github.com/caesarchad/buffett
 [submodule "rustelo-rust"]
 	path = rustelo-rust
