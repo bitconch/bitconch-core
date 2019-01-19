@@ -80,13 +80,13 @@ def update_submodules():
     prnt_warn('This repo uses submodules to manage the codes')
     prnt_run("Use git to update the submodules")
     # Ensure the submodule is initialized
-    sub01_execute_shell("git submodule update --init --recursive", silent=True)
+    sub01_execute_shell("git submodule update --init --recursive", silent=False)
 
     # Fetch upstream changes
-    sub01_execute_shell("git submodule foreach --recursive git fetch ", silent=True)
+    sub01_execute_shell("git submodule foreach --recursive git fetch ", silent=False)
 
     # Reset to upstream
-    sub01_execute_shell("git submodule foreach git reset --hard origin/HEAD", silent=True)
+    sub01_execute_shell("git submodule foreach git reset --hard origin/HEAD", silent=False)
 
     # Update include/
     if os.path.exists("include"):
@@ -100,7 +100,7 @@ def update_submodules():
 
 
 def build(release=False):
-    target_list = sub01_execute_shell("rustup target list", silent=True).decode()
+    target_list = sub01_execute_shell("rustup target list", silent=False).decode()
     m = re.search(r"(.*?)\s*\(default\)", target_list)
 
     default_target =m[1]

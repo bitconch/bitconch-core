@@ -1,4 +1,4 @@
-package rustelo
+package bus
 
 
 // #cgo CFLAGS: -I ./include

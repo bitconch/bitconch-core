@@ -1,5 +1,5 @@
 [package]
-name = "hello"
+name = "hellolib"
 version = "0.1.0"
 
 [lib]

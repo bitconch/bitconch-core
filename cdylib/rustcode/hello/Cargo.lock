@@ -1,5 +1,5 @@
 [[package]]
-name = "hello"
+name = "hellolib"
 version = "0.1.0"
 dependencies = [
  "libc 0.2.47 (registry+https://github.com/rust-lang/crates.io-index)",

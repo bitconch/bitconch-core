@@ -7,3 +7,4 @@
 build/_workspace
 build/_bin
 tests/testdata
+vendor/rustelo-rust/target

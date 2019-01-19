@@ -1,6 +1,7 @@
+# this appveyor running script needs to be updated
 os: Visual Studio 2015
 
-# Clone directly into GOPATH.
+
 clone_folder: C:\gopath\src\github.com\Bitconch\BUS
 clone_depth: 5
 version: "{branch}.{build}"
