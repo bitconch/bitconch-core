@@ -100,7 +100,7 @@ def update_submodules():
 
 
 def build(release=False):
-    target_list = sub01_execute_shell("rustup target list", silent=False).decode()
+    target_list = sub01_execute_shell("rustup target list", silent=True).decode()
     m = re.search(r"(.*?)\s*\(default\)", target_list)
 
     default_target =m[1]
@@ -114,19 +114,22 @@ def build(release=False):
     target_list = [
         "x86_64-pc-windows-gnu",
         "x86_64-unknown-linux-musl",
+        "x86_64-unknown-linux-gnu",
         "x86_64-apple-darwin"
     ]
 
     prefix = {
         "x86_64-pc-windows-gnu": "x86_64-w64-mingw32-",
         "x86_64-unknown-linux-musl": "x86_64-linux-musl-",
+        "x86_64-unknown-linux-gnu": "x86_64-linux-gnu-",
          "x86_64-apple-darwin": ""
     }
 
     artifact = {
-        "x86_64-pc-windows-gnu": "rusteleo.a",
-        "x86_64-unknown-linux-musl": "libhedera.a",
-        "x86_64-apple-darwin": "libhedera.a"
+        "x86_64-pc-windows-gnu": "rustelo.dll",
+        "x86_64-unknown-linux-musl": "librustelo.so",
+        "x86_64-unknown-linux-gnu": "librustelo.so",
+        "x86_64-apple-darwin": "librustelo.dylib"
     }
 
     if release:
@@ -163,9 +166,14 @@ def build(release=False):
 
         # For development; build only the _default_ target
         prnt_run(f"build the rust+c code in vendor/rustelo-rust for {target}")
+        sub01_execute_shell(f"cargo build  --target {target}", cwd="vendor/rustelo-rust/buffett")
         sub01_execute_shell(f"cargo build  --target {target}", cwd="vendor/rustelo-rust")
 
         # Copy _default_ lib over
+        prnt_run(f"check the lib folder, if not , create one ")
+        if not os.path.exists(f"libs/{target}/"):
+            os.makedirs(f"libs/{target}/")
+        prnt_run(f"copy the generated artifact file")
         copy2(f"vendor/rustelo-rust/target/{target}/debug/{artifact[target]}", f"libs/{target}/")
 
 
