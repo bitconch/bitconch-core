@@ -31,7 +31,7 @@ EOF
 }
 
 #go build the binaries
-eval $go_build_buffett_helloworld
+ 
 eval $go_build_buffett_bench_tps
 eval $go_build_buffett_wallet
 eval $go_build_buffett_drone
@@ -40,8 +40,10 @@ eval $go_build_buffett_fullnode_config
 eval $go_build_buffett_fullnode_cuda
 eval $go_build_buffett_genesis
 eval $go_build_buffett_keygen
+echo $go_build_buffett_ledger_tool
 eval $go_build_buffett_ledger_tool
 
+echo "Building completed, should check the build result."
 
 ip_address_arg=-l
 num_tokens=1000000000

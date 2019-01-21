@@ -7,6 +7,8 @@
 # shellcheck disable=2034
 #
 
+root_dir="$( cd "$(dirname "$0")" ; pwd -P )"
+
 rsync=rsync
 leader_logger="tee leader.log"
 validator_logger="tee validator.log"
@@ -64,7 +66,7 @@ else
     fi
     
     #printf "cargo run $maybe_release --bin buffett-%s %s -- " "$program" "$features"
-    printf "go build -o ./cmd/buffett-%s -v -x -a -i -compiler gccgo ./gobin/%s" "$program" "$program"
+    printf "go build -o ./cmd/buffett-%s -ldflags='-r $root_dir/libs/x86_64-unknown-linux-gnu'  ./gobin/%s" "$program" "$program"
   }
   if [[ -n $BUFFETT_CUDA ]]; then
     # shellcheck disable=2154 # 'here' is referenced but not assigned
@@ -86,7 +88,7 @@ print_bin_name() {
 
 
 
-buffett_helloworld=$(print_bin_name helloworld)
+
 buffett_bench_tps=$(print_bin_name benchmarker)
 buffett_wallet=$(print_bin_name wallet)
 buffett_drone=$(print_bin_name coincaster)
@@ -97,7 +99,7 @@ buffett_genesis=$(print_bin_name genesis)
 buffett_keygen=$(print_bin_name keymaker)
 buffett_ledger_tool=$(print_bin_name ledger-tool)
 
-go_build_buffett_helloworld=$(print_go_build_command helloworld)
+
 go_build_buffett_bench_tps=$(print_go_build_command benchmarker)
 go_build_buffett_wallet=$(print_go_build_command wallet)
 go_build_buffett_drone=$(print_go_build_command coincaster)
