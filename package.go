@@ -17,8 +17,8 @@ func handleLastError() error {
 
 	err_str_bytes  := C.rustelo_handle_error()
 	
-	defer C.free(unsafe.Pointer(err_str_byes))
-	err_str_string := C.GoString(err_str_byes)
+	defer C.free(unsafe.Pointer(err_str_bytes))
+	err_str_string := C.GoString(err_str_bytes)
 
 	return errors.New(err_str_string)
 }

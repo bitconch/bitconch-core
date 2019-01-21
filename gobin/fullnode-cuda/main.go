@@ -8,6 +8,6 @@ import (
 
 func main() {
 
-	rustelo.FullNodeCudaMainEntry()
+	bus.FullNodeCudaMainEntry()
 	
 }

@@ -8,6 +8,6 @@ import (
 
 func main() {
 
-	rustelo.GenesisMainEntry()
+	bus.GenesisMainEntry()
 	
 }

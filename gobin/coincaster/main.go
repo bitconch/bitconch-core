@@ -8,6 +8,6 @@ import (
 
 func main() {
 
-	rustelo.CoinCasterMainEntry()
+	bus.CoinCasterMainEntry()
 	
 }

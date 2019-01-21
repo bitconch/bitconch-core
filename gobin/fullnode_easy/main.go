@@ -9,7 +9,7 @@ import (
 
 func main() {
 
-	//execute the main_entry func in rustelo
-	rustelo.main_entry()
+	 
+	bus.main_entry()
 	
 }

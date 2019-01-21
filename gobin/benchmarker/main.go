@@ -8,6 +8,7 @@ import (
 
 func main() {
 
-	rustelo.CalllBenchmarker()
+	fmt.Println("Execute Bench Marker Program to test the TPS")
+	bus.CalllBenchmarker()
 	
 }
