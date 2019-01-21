@@ -30,6 +30,19 @@ EOF
   exit $exitcode
 }
 
+#go build the binaries
+eval $go_build_buffett_helloworld
+eval $go_build_buffett_bench_tps
+eval $go_build_buffett_wallet
+eval $go_build_buffett_drone
+eval $go_build_buffett_fullnode
+eval $go_build_buffett_fullnode_config
+eval $go_build_buffett_fullnode_cuda
+eval $go_build_buffett_genesis
+eval $go_build_buffett_keygen
+eval $go_build_buffett_ledger_tool
+
+
 ip_address_arg=-l
 num_tokens=1000000000
 node_type_leader=true

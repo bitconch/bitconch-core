@@ -26,7 +26,7 @@ if [[ $(uname) != Linux ]]; then
 fi
 
 if [[ -d $SNAP ]]; then # Running inside a Linux Snap?
-  buffett_program() {
+  print_go_build_command() {
     declare program="$1"
     printf "%s/command-%s.wrapper" "$SNAP" "$program"
   }
@@ -40,19 +40,19 @@ if [[ -d $SNAP ]]; then # Running inside a Linux Snap?
   mkdir -p "$SNAP_DATA"/{drone,leader,validator}
 
 elif [[ -n $USE_SNAP ]]; then # Use the Linux Snap binaries
-  buffett_program() {
+  print_go_build_command() {
     declare program="$1"
     printf "buffett.%s" "$program"
   }
 elif [[ -n $USE_INSTALL ]]; then # Assume |cargo install| was run
-  buffett_program() {
+  print_go_build_command() {
     declare program="$1"
     printf "buffett-%s" "$program"
   }
   # CUDA was/wasn't selected at build time, can't affect CUDA state here
   unset BUFFETT_CUDA
 else
-  buffett_program() {
+  print_go_build_command() {
     declare program="$1"
     declare features=""
     if [[ "$program" =~ ^(.*)-cuda$ ]]; then
@@ -63,8 +63,8 @@ else
       maybe_release=--release
     fi
     
-    printf "cargo run $maybe_release --bin buffett-%s %s -- " "$program" "$features"
-    printf "go build /gobin ./cmd/swarm"
+    #printf "cargo run $maybe_release --bin buffett-%s %s -- " "$program" "$features"
+    printf "go build -o ./cmd/buffett-%s -v -x -a -i -compiler gccgo ./gobin/%s" "$program" "$program"
   }
   if [[ -n $BUFFETT_CUDA ]]; then
     # shellcheck disable=2154 # 'here' is referenced but not assigned
@@ -79,15 +79,34 @@ else
   fi
 fi
 
-buffett_bench_tps=$(buffett_program bench-tps)
-buffett_wallet=$(buffett_program wallet)
-buffett_drone=$(buffett_program drone)
-buffett_fullnode=$(buffett_program fullnode)
-buffett_fullnode_config=$(buffett_program fullnode-config)
-buffett_fullnode_cuda=$(buffett_program fullnode-cuda)
-buffett_genesis=$(buffett_program genesis)
-buffett_keygen=$(buffett_program keygen)
-buffett_ledger_tool=$(buffett_program ledger-tool)
+print_bin_name() {
+  declare program="$1"
+  printf "./cmd/buffett-%s" "$program" 
+}
+
+
+
+buffett_helloworld=$(print_bin_name helloworld)
+buffett_bench_tps=$(print_bin_name benchmarker)
+buffett_wallet=$(print_bin_name wallet)
+buffett_drone=$(print_bin_name coincaster)
+buffett_fullnode=$(print_bin_name fullnode)
+buffett_fullnode_config=$(print_bin_name fullnode-config)
+buffett_fullnode_cuda=$(print_bin_name fullnode-cuda)
+buffett_genesis=$(print_bin_name genesis)
+buffett_keygen=$(print_bin_name keymaker)
+buffett_ledger_tool=$(print_bin_name ledger-tool)
+
+go_build_buffett_helloworld=$(print_go_build_command helloworld)
+go_build_buffett_bench_tps=$(print_go_build_command benchmarker)
+go_build_buffett_wallet=$(print_go_build_command wallet)
+go_build_buffett_drone=$(print_go_build_command coincaster)
+go_build_buffett_fullnode=$(print_go_build_command fullnode)
+go_build_buffett_fullnode_config=$(print_go_build_command fullnode-config)
+go_build_buffett_fullnode_cuda=$(print_go_build_command fullnode-cuda)
+go_build_buffett_genesis=$(print_go_build_command genesis)
+go_build_buffett_keygen=$(print_go_build_command keymaker)
+go_build_buffett_ledger_tool=$(print_go_build_command ledger-tool)
 
 export RUST_LOG=${RUST_LOG:-buffett=info} # if RUST_LOG is unset, default to info
 export RUST_BACKTRACE=1
