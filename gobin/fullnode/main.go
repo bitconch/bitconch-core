@@ -10,6 +10,6 @@ import (
 func main() {
 
 	 
-	bus.FullNodeMainEntry()
+	bus.CallFullnode()
 	
 }
