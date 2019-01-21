@@ -8,6 +8,6 @@ import (
 
 func main() {
 
-	bus.LedgerToolMainEntry()
+	bus.CallLedgerTool()
 	
 }
