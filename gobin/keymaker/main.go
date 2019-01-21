@@ -8,6 +8,6 @@ import (
 
 func main() {
 
-	bus.KeygenMainEntry()
+	bus.CallKeymaker()
 	
 }

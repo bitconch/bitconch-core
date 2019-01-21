@@ -8,6 +8,6 @@ import (
 
 func main() {
 
-	bus.WalletMainEntry()
+	bus.CallWallet()
 	
 }
