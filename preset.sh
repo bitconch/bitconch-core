@@ -83,8 +83,10 @@ install_openssl() {
 	echo "Starting to install openssl"
 	if [ $PKG = "Ubuntu" ] ; then
 		sudo apt-get install openssl -y
+		sudo apt install libssl-dev -y
 	elif [ $PKG = "Debian" ] ; then
 		yum apt-get install openssl -y
+		yum apt install libssl-dev -y
 	fi
 	openssl version
 	echo "openssl installed"
