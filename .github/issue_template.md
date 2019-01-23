@@ -1,5 +1,5 @@
 Hi there,
-This is an issue tempolates, please follow it when you try to open a new issue.
+This is an issue templates, please follow it when you try to open a new issue.
 
 #### System information
 
