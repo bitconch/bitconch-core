@@ -105,15 +105,17 @@ done
 
 if $node_type_client; then
   client_id_path="$BUFFETT_CONFIG_PRIVATE_DIR"/client-id.json
+  echo "Evoke keymaker to create some stuff on client"
   $buffett_keygen -o "$client_id_path"
   ls -lhR "$BUFFETT_CONFIG_PRIVATE_DIR"/
 fi
 
 if $node_type_leader; then
+  echo "Evoke keymaker to create some stuff on leader"  
   leader_address_args=("$ip_address_arg")
   leader_id_path="$BUFFETT_CONFIG_PRIVATE_DIR"/leader-id.json
   mint_path="$BUFFETT_CONFIG_PRIVATE_DIR"/mint.json
-
+  echo $leader_id_path
   $buffett_keygen -o "$leader_id_path"
 
   echo "Creating $mint_path with $num_tokens tokens"

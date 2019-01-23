@@ -7,8 +7,9 @@
 # shellcheck disable=2034
 #
 
-root_dir="$( cd "$(dirname "$0")" ; pwd -P )"
-
+#root_dir="$( cd "$(dirname "$0")" ; pwd -P )"
+root_dir="$PWD"
+echo $root_dir
 rsync=rsync
 leader_logger="tee leader.log"
 validator_logger="tee validator.log"
