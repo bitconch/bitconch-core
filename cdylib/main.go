@@ -3,51 +3,15 @@ package main
 /*
 #cgo CFLAGS: -I ./include
 #cgo LDFLAGS: -lhellolib
-#cgo LDFLAGS: -L lib/x86_64-unknown-linux-gnu
+#cgo linux LDFLAGS: -L lib
+#cgo windows LDFLAGS: -L lib/x86_64-pc-windows-msvc -l ws2_32 -l iphlpapi -l dbghelp -l userenv
 #include <stdlib.h>
 #include "hello.h"
 */
 import "C"
 
-import (
-	"fmt"
-	"os"
-
-	"github.com/bitconch/bus/gobin/utils"
-	"gopkg.in/urfave/cli.v1"
-)
-
-const (
-	defaultKeyfileName = "keyfile.json"
-)
-
-// Git SHA1 commit hash of the release (set via linker flags)
-var gitCommit = ""
-
-var app *cli.App
-
-func init() {
-	app = utils.NewApp(gitCommit, "an Ethereum key manager")
-	app.Commands = []cli.Command{
-		commandGenerate,
-	}
-}
-
-// Commonly used command line flags.
-var (
-	passphraseFlag = cli.StringFlag{
-		Name:  "passwordfile",
-		Usage: "the file that contains the passphrase for the keyfile",
-	}
-	jsonFlag = cli.BoolFlag{
-		Name:  "json",
-		Usage: "output JSON instead of human-readable format",
-	}
-)
-
 func main() {
-	if err := app.Run(os.Args); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
+	C.hello(C.CString("Hello Dummy"))
+	//C.hello_dummy()
+	C.rustcode_clap_cli()
 }

@@ -7,7 +7,7 @@ extern "C" {
 
 void hello(char *name);
 //void hello_dummy();
-
+extern void rustcode_clap_cli();
 #ifdef __cplusplus
 }
 #endif
