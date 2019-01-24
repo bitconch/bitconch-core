@@ -1,13 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"github.com/Bitconch/bus"
+	"github.com/bitconch/bus"
 )
-
 
 func main() {
 
 	bus.CallFullnodeConfig()
-	
+
 }
