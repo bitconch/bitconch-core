@@ -5,3 +5,4 @@
 [submodule "vendor/rustelo-rust"]
 	path = vendor/rustelo-rust
 	url = https://github.com/caesarchad/rustelo-rust
+	branch = fixissue85
