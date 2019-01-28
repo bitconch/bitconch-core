@@ -60,4 +60,4 @@ copy2(f"rustcode/hello/target/{target}/release/{artifact[target]}", f"lib/{targe
 #sh(f"go build ", cwd="xi4win/gobin/cli")
 #copy the executable and lib into the same folder
 print(f">>>go build the source")
-sh(f"go build -o lib\{target}\main.exe -x -v -a main.go")
+sh(f"go build -o lib\{target}\main.exe -x -v -a cli/main.go")
