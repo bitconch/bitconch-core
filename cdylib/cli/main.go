@@ -4,14 +4,17 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/bitconch/bus/cdylib"
 	"github.com/bitconch/bus/gobin/utils"
 	"gopkg.in/urfave/cli.v1"
-	"github.com/bitconch/bus/cdylib"
 )
 
 const (
 	defaultKeyfileName = "keyfile.json"
 )
+
+type Argument struct {
+}
 
 var (
 	// NetWorkEntryPoint represent the network entry point
@@ -90,15 +93,12 @@ var (
 
 //init define subcommand and flags linked to cli
 func init() {
-	// clapcli is the action function
-	app.Action = benchMarkerCli
 
 	// define the sub commands
-	/*
-		app.Commands = []cli.Command{
-			commandGenerate,
-		}
-	*/
+
+	app.Commands = []cli.Command{
+		commandGenerate,
+	}
 
 	// define the flags
 	app.Flags = []cli.Flag{
@@ -112,6 +112,28 @@ func init() {
 		sustainedFlag,
 		txCountFlag,
 	}
+
+	app.Before = func(c *cli.Context) error {
+		fmt.Fprintf(c.App.Writer, "HEEEERE GOES\n")
+		return nil
+	}
+	app.After = func(c *cli.Context) error {
+		fmt.Fprintf(c.App.Writer, "Phew!\n")
+		return nil
+	}
+	app.CommandNotFound = commandNotFind
+
+	app.OnUsageError = func(c *cli.Context, err error, isSubcommand bool) error {
+		if isSubcommand {
+			return err
+		}
+
+		fmt.Fprintf(c.App.Writer, "WRONG: %#v\n", err)
+		return nil
+	}
+	// clapcli is the action function
+	app.Action = benchMarkerCli
+
 }
 
 func main() {
@@ -127,25 +149,39 @@ func main() {
 	}
 }
 
+// command not find action
+func commandNotFind(c *cli.Context, command string) {
+	//fmt.Fprintf(c.App.Writer, "Thar be no %q here.\n", command)
+	fmt.Println("Invalid command: %q here.\n", command)
+}
+
 // cli is the main entry point into the system if no special subcommand is ran.
 func benchMarkerCli(ctx *cli.Context) error {
-	if args := ctx.Args(); len(args) > 0 {
-		return fmt.Errorf("invalid command: %q", args[0])
-	}
-
-	// handle the arguments
+	var arg010 Proc010Arguments
 	/*
-		if KeyFilePath == "" {
-			fmt.Println("Default path:", username)
-		} else {
-			fmt.Println("New path:", KeyFilePath, " for：", username, " ")
+		if args := ctx.Args(); len(args) > 0 {
+			return fmt.Errorf("invalid command: %q", args[0])
 		}
 	*/
+	fmt.Println("--- print flag names ---")
+	fmt.Println(ctx.FlagNames())
+	fmt.Println("--- print global flag names ---")
+	fmt.Println(ctx.GlobalFlagNames())
+	fmt.Println("--- print number of arguments ---")
+	fmt.Println(ctx.NArg())
+	fmt.Println("--- print arguments ---")
+	fmt.Println(ctx.Args())
+	fmt.Println("--- print the 0th argument ---")
+	fmt.Println(ctx.Args().Get(0))
+	fmt.Println("--- print number of flags ---")
+	fmt.Println(ctx.NumFlags())
+	fmt.Println("--- print number of subcomand ---")
+	fmt.Println(ctx.NArg())
+	fmt.Println("--- print the parent context ---")
+	fmt.Println(ctx.Parent())
 
-	// evoke the benchmarker, passing the parameters
-	// bus.CalllBenchmarker()
-	fmt.Println("Do some stuff")
-	cdylib.CallRustcodeHello(NetWorkEntryPoint,IdentityFile,NodeThreshold)
+	cdylib.CallRustcodeHello(NetWorkEntryPoint, IdentityFile, NodeThreshold)
+
 	return nil
 
 }

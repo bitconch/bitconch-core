@@ -48,6 +48,7 @@ If you want to encrypt an existing private key, it can be specified by setting
 	},
 	Action: func(ctx *cli.Context) error {
 		// Check if keyfile path given and make sure it doesn't already exist.
+		fmt.Println("Execute sub command: generate")
 		keyfilepath := ctx.Args().First()
 		if keyfilepath == "" {
 			keyfilepath = defaultKeyfileName

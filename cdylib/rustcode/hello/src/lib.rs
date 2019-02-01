@@ -2,16 +2,16 @@ extern crate libc;
 #[macro_use]
 extern crate clap;
 
+mod rustelo_error;
+
+#[macro_use]
+mod macros;
+
 use std::ffi::CStr;
 use std::ffi::c_void;
 use std::error;
 use clap::{App, Arg};
-
-#[repr(u8)]
-pub enum RusteloResult {
-    Success = 0,
-    Failure = 1,
-}
+use rustelo_error::RusteloResult;
 
 #[no_mangle]
 pub extern "C" fn hello(param1: *const libc::c_char,
@@ -127,9 +127,59 @@ pub extern "C" fn rustcode_clap_cli(network: *const libc::c_char,
     */
     RusteloResult::Success
 }
+
 /*
 #[no_mangle]
 pub extern "C" fn hello_dummy(){
     println!("Hello Dummy");
 }
 */
+
+//define a struct for argument 
+#[derive(Debug, PartialEq, Clone, Copy)]
+#[repr(C)]
+pub struct CArgument {
+    network:   *const libc::c_char,
+    identity:  *const libc::c_char,
+    threshold: *const libc::c_char,
+
+}
+
+pub struct S010arg01 {
+    network:   *const libc::c_char,
+    identity:  *const libc::c_char,
+    threshold: *const libc::c_char,
+}
+
+impl S010arg01 {
+    pub fn new() -> Result<Self, Error> {
+
+    
+    Ok(Self {
+            network,
+            identity,
+            threshold,
+        })
+    }
+}
+
+#[no_mangle]
+pub extern "C" fn rustelo_s010arg01_new(out: *mut *mut S010arg01) -> RusteloResult {
+    
+    let s010arg01 = try_ffi!(S010arg01::new());
+
+        unsafe {
+            *out = Box::into_raw(Box::new(s010arg01));
+        }
+
+    RusteloResult::Success
+}
+   
+#[no_mangle]
+pub unsafe extern "C" fn rustcode_clap_cli_struct(args : *mut CArgument) -> RusteloResult{  
+    println!("This is a simple CLI created by Clap");
+    println!("The network is {:?}", (&mut *args).network);
+    println!("The network is {:?}", (&mut *args).identity);
+    println!("The network is {:?}", (&mut *args).threshold);
+    RusteloResult::Success
+}

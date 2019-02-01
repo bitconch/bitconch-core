@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import subprocess
 import os, re, argparse, sys
 from subprocess import Popen, check_call, PIPE, check_output, CalledProcessError
 from shutil import copy2, copytree, rmtree
@@ -60,4 +61,5 @@ copy2(f"rustcode/hello/target/{target}/release/{artifact[target]}", f"lib/{targe
 #sh(f"go build ", cwd="xi4win/gobin/cli")
 #copy the executable and lib into the same folder
 print(f">>>go build the source")
-sh(f"go build -o lib\{target}\main.exe -x -v -a cli/main.go")
+#sh(f"go build -o lib\{target}\main.exe -x -v -a cli")
+subprocess.run(f"go build -o lib\{target}\main.exe -x -v -a github.com/bitconch/bus/cdylib/cli", shell=True)

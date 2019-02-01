@@ -22,14 +22,7 @@ func handleLastError() error {
 }
 
 
-func CalllBenchmarker(){
-	C.benchmarker_main_entry()
-}
 
-func CallCoinCaster(){
-	C.coincaster_main_entry()
-
-}
 
 func CallFullnode(){
 	C.fullnode_main_entry()
