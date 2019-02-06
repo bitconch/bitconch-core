@@ -14,7 +14,7 @@ const (
 )
 
 var (
-	// NetWorkEntryPoint represent the network entry point
+	// NetworkEntryPoint represent the network entry point
 	NetworkEntryPoint string
 	// KeypairFile stores the coincaster's keypair
 	KeypairFile string
@@ -32,7 +32,6 @@ var (
 var (
 	networkFlag = cli.StringFlag{
 		Name:        "network,n",
-		Value:       "127.0.0.1:8001",
 		Usage:       "Connect to the network entry point `HOST:PORT` ; defaults to 127.0.0.1:8001 ",
 		Destination: &NetworkEntryPoint,
 	}
@@ -45,13 +44,13 @@ var (
 
 	sliceTimeFlag = cli.StringFlag{
 		Name:        "slice",
-		Usage:       "Casting time for coincast spell in `SECS`",
+		Usage:       "Time interval during which the `SECS`",
 		Destination: &SliceTime,
 	}
 
 	reqCapNumFlag = cli.StringFlag{
-		Name:        "reject-extra-node",
-		Usage:       "Casting requests' upper limit",
+		Name:        "cap",
+		Usage:       "Request cap number per time slice",
 		Destination: &ReqCapNum,
 	}
 )
@@ -96,8 +95,12 @@ func coinCasterCli(ctx *cli.Context) error {
 	// evoke the benchmarker, passing the parameters
 	// bus.CalllBenchmarker()
 	fmt.Println("Do some stuff")
-	bus.CalllCoincaster(&NetworkEntryPoint,
-		&KeypairFile, &SliceTime, &ReqCapNum)
+	bus.CallCoincaster(
+		&NetworkEntryPoint,
+		&KeypairFile,
+		&SliceTime,
+		&ReqCapNum,
+	)
 	return nil
 
 }

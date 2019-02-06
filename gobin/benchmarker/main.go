@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/bitconch/bus"
 	"github.com/bitconch/bus/gobin/utils"
 	"gopkg.in/urfave/cli.v1"
 )
@@ -13,18 +14,26 @@ const (
 )
 
 var (
-	// NetWorkEntryPoint represent the network entry point
+	// NetworkEntryPoint represent the network entry point
 	NetworkEntryPoint string
 	// IdentityFile stores the keypair of users
-	IdentityFile     string
-	NodeThreshold    string
-	RejectExtraNode  bool
-	ThreadsNum       string
-	DurationTime     string
-	ConvergeOnly     bool
-	SustainedMode    bool
+	IdentityFile string
+	// NodeThreshold number of nodes
+	NodeThreshold string
+	// RejectExtraNode node or not, default:FALSE, can be set to TRUE
+	RejectExtraNode string
+	// ThreadsNum number
+	ThreadsNum string
+	// DurationTime is the interval time for benchmarking
+	DurationTime string
+	// ConvergeOnly specify , default: FALSE, can be set to TRUE
+	ConvergeOnly string
+	// SustainedMode specify whether is in Safe Mode for testing,
+	// default value is FALSE (TRUE or FALSE)
+	SustainedMode string
+	// TransactionCount is the number of transaction sent per batch
 	TransactionCount string
-	// Git SHA1 commit hash of the release (set via linker flags)
+	// gitCommit is the git SHA1 commit hash of the release (set via linker flags)
 	gitCommit = ""
 	// add new App with description
 	app = utils.NewApp(gitCommit, "Bitconch chain benchmark CLI")
@@ -34,7 +43,6 @@ var (
 var (
 	networkFlag = cli.StringFlag{
 		Name:        "network,n",
-		Value:       "127.0.0.1:8001",
 		Usage:       "Connect to the network entry point `HOST:PORT` ; defaults to 127.0.0.1:8001 ",
 		Destination: &NetworkEntryPoint,
 	}
@@ -94,9 +102,7 @@ func init() {
 	app.Action = benchMarkerCli
 
 	// define the sub commands
-	app.Commands = []cli.Command{
-		commandGenerate,
-	}
+	app.Commands = []cli.Command{}
 
 	// define the flags
 	app.Flags = []cli.Flag{
@@ -127,16 +133,18 @@ func benchMarkerCli(ctx *cli.Context) error {
 
 	// handle the arguments
 
-	if KeyFilePath == "" {
-		fmt.Println("Default path:", username)
-	} else {
-		fmt.Println("New path:", KeyFilePath, " for：", username, " ")
-	}
-
 	// evoke the benchmarker, passing the parameters
-	// bus.CalllBenchmarker()
 	fmt.Println("Do some stuff")
-
+	bus.CallBenchmarker(NetworkEntryPoint,
+		IdentityFile,
+		NodeThreshold,
+		RejectExtraNode,
+		ThreadsNum,
+		DurationTime,
+		ConvergeOnly,
+		SustainedMode,
+		TransactionCount,
+	)
 	return nil
 
 }
