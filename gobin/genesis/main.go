@@ -71,9 +71,11 @@ func genesisCli(ctx *cli.Context) error {
 	fmt.Println("Do some stuff")
 	// start the full node instance
 	bus.CallGenesis(
-		&TokenAmt,
-		&LedgerLocation,
+		TokenAmt,
+		LedgerLocation,
 	)
+
+	return nil
 }
 
 /*

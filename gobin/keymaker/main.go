@@ -62,6 +62,8 @@ func keymakerCli(ctx *cli.Context) error {
 	fmt.Println("Do some stuff")
 	// start the full node instance
 	bus.CallKeymaker(
-		&OutFile,
+		OutFile,
 	)
+
+	return nil
 }

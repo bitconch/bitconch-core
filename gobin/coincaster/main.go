@@ -96,10 +96,10 @@ func coinCasterCli(ctx *cli.Context) error {
 	// bus.CalllBenchmarker()
 	fmt.Println("Do some stuff")
 	bus.CallCoincaster(
-		&NetworkEntryPoint,
-		&KeypairFile,
-		&SliceTime,
-		&ReqCapNum,
+		NetworkEntryPoint,
+		KeypairFile,
+		SliceTime,
+		ReqCapNum,
 	)
 	return nil
 

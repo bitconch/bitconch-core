@@ -89,9 +89,10 @@ func fullnodeConfigCli(ctx *cli.Context) error {
 	fmt.Println("Do some stuff")
 	// start the full node instance
 	bus.CallFullnodeConfig(
-		&LocalMode,
-		&KeypairFile,
-		&PublicMode,
-		&BindPortNum,
+		LocalMode,
+		KeypairFile,
+		PublicMode,
+		BindPortNum,
 	)
+	return nil
 }

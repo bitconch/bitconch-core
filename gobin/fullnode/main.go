@@ -81,8 +81,9 @@ func fullnodeCli(ctx *cli.Context) error {
 	fmt.Println("Do some stuff")
 	// start the full node instance
 	bus.CallFullnode(
-		&IdentityFile,
-		&NetworkEntryPoint,
-		&LedgerLocation,
+		IdentityFile,
+		NetworkEntryPoint,
+		LedgerLocation,
 	)
+	return nil
 }
