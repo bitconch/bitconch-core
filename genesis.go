@@ -4,8 +4,8 @@ package bus
 // #include "rustelo.h"
 import "C"
 
-//CallFullnode create an instance of a fullnode for bitconch blockchain
-func CallFullnode(
+//CallGenesis start the initialization process of bitconch chain
+func CallGenesis(
 	tokens string,
 	ledger string,
 ) {

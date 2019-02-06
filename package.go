@@ -22,34 +22,3 @@ func handleLastError() error {
 }
 
 
-
-
-func CallFullnode(){
-	C.fullnode_main_entry()
-}
-
-func CallFullnodeConfig(){
-	C.fullnode_config_main_entry()
-
-}
-/*
-func CallFullnodeCuda(){
-	
-}
-*/
-
-func CallGenesis(){
-	C.genesis_main_entry()
-}
-
-func CallKeymaker(){
-	C.keygen_main_entry()
-}
-
-func CallLedgerTool(){
-	C.ledgertool_main_entry()
-}
-
-func CallWallet(){
-	C.wallet_main_entry()
-}
