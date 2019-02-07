@@ -141,7 +141,7 @@ func benchMarkerCli(ctx *cli.Context) error {
 	fmt.Println("--- print the parent context ---")
 	fmt.Println(ctx.Parent())
 
-	cdylib.CallRustcodeHello(NetWorkEntryPoint, IdentityFile, NodeThreshold)
+	cdylib.CallRustcodeHello(&NetWorkEntryPoint, &IdentityFile, &NodeThreshold)
 
 	return nil
 
