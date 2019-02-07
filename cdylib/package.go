@@ -36,9 +36,9 @@ func CallRustcodeHello(network *string,
 	//C.rustcode_clap_cli(C.CString("some arguments"),)
 	//C.rustcode_clap_cli(C.CString(""),)
 
-	CNetwork := C.CString(&network)
-	CIdentity := C.CString(&identity)
-	CNodethreshold := C.CString(&nodethreshold)
+	CNetwork := C.CString(*network)
+	CIdentity := C.CString(*identity)
+	CNodethreshold := C.CString(*nodethreshold)
 	C.rustcode_clap_cli(CNetwork,CIdentity,CNodethreshold)
  
 }

@@ -50,11 +50,11 @@ pub extern "C" fn rustcode_clap_cli(network: *const libc::c_char,
     let mut path = dirs::home_dir().expect("home directory");
     println!("Marker 1");
     let network_str_ =  unsafe { CStr::from_ptr(network) .to_str().unwrap()};
-    println!("Marker 1");
-    let identity_str_ =  unsafe { CStr::from_ptr(identity) }.to_str().unwrap();
     println!("Marker 2");
-    let threshold_str_ =  unsafe { CStr::from_ptr(threshold) }.to_str().unwrap();
+    let identity_str_ =  unsafe { CStr::from_ptr(identity) }.to_str().unwrap();
     println!("Marker 3");
+    let threshold_str_ =  unsafe { CStr::from_ptr(threshold) }.to_str().unwrap();
+    println!("Marker 4");
      
     // handle network 
     let network_id = if !network_str_.is_empty() {
