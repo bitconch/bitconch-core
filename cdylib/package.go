@@ -43,7 +43,7 @@ func CallRustcodeHello(network string,
  
 }
 
-
+/*
 //define a struct 
 type S010Arg01 struct {
 	inner *C.RusteloArguments
@@ -70,3 +70,4 @@ func CallRustcodeHelloStruct(cliargument Argument) {
 	C.rustcode_clap_cli_struct(cliArgument.inner)
 
 }
+*/

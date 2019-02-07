@@ -157,7 +157,7 @@ func commandNotFind(c *cli.Context, command string) {
 
 // cli is the main entry point into the system if no special subcommand is ran.
 func benchMarkerCli(ctx *cli.Context) error {
-	var arg010 Proc010Arguments
+
 	/*
 		if args := ctx.Args(); len(args) > 0 {
 			return fmt.Errorf("invalid command: %q", args[0])
