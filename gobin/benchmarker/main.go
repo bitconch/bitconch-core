@@ -59,7 +59,7 @@ var (
 		Destination: &NodeThreshold,
 	}
 
-	rejectExtraNodeFlag = cli.BoolFlag{
+	rejectExtraNodeFlag = cli.StringFlag{
 		Name:        "reject-extra-node",
 		Usage:       "Requires exact `num-nodes` of nodes to run, for dev only",
 		Destination: &RejectExtraNode,
@@ -77,13 +77,13 @@ var (
 		Destination: &DurationTime,
 	}
 
-	convergeOnlyFlag = cli.BoolFlag{
+	convergeOnlyFlag = cli.StringFlag{
 		Name:        "converge-only",
 		Usage:       "Exit immediately after converging",
 		Destination: &ConvergeOnly,
 	}
 
-	sustainedFlag = cli.BoolFlag{
+	sustainedFlag = cli.StringFlag{
 		Name:        "sustained",
 		Usage:       "Use sustained performance mode vs. peak mode. This overlaps the tx generation with transfers.",
 		Destination: &SustainedMode,
