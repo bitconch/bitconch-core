@@ -39,55 +39,22 @@ var (
 	networkFlag = cli.StringFlag{
 		Name:        "network,n",
 		Usage:       "Connect to the network entry point `HOST:PORT` ; defaults to 127.0.0.1:8001 ",
+		Value:       "",
 		Destination: &NetWorkEntryPoint,
 	}
 
 	identityFlag = cli.StringFlag{
 		Name:        "identity,i",
 		Usage:       "Specify the user identity file location `PATH`",
+		Value:       "",
 		Destination: &IdentityFile,
 	}
 
 	nodeThresholdFlag = cli.StringFlag{
 		Name:        "num-nodes,N",
 		Usage:       "Specify the minimum number of nodes `NUM` for the network to work properly",
+		Value:       "",
 		Destination: &NodeThreshold,
-	}
-
-	rejectExtraNodeFlag = cli.BoolFlag{
-		Name:        "reject-extra-node",
-		Usage:       "Requires exact number nodes to run as specified by num-ndes, for dev only",
-		Destination: &RejectExtraNode,
-	}
-
-	threadsFlag = cli.StringFlag{
-		Name:        "threads,t",
-		Usage:       "Specify the number of threads `NUM` during benchmarking",
-		Destination: &ThreadsNum,
-	}
-
-	durationFlag = cli.StringFlag{
-		Name:        "duration",
-		Usage:       "Duration time `SEC` for benchmarking, default is forever",
-		Destination: &DurationTime,
-	}
-
-	convergeOnlyFlag = cli.BoolFlag{
-		Name:        "converge-only",
-		Usage:       "Exit immediately after converging",
-		Destination: &ConvergeOnly,
-	}
-
-	sustainedFlag = cli.BoolFlag{
-		Name:        "sustained",
-		Usage:       "Use sustained performance mode vs. peak mode. This overlaps the tx generation with transfers.",
-		Destination: &SustainedMode,
-	}
-
-	txCountFlag = cli.StringFlag{
-		Name:        "tx_count",
-		Usage:       "Number of transactions `NUM` to send per batch",
-		Destination: &TransactionCount,
 	}
 )
 
@@ -105,12 +72,6 @@ func init() {
 		networkFlag,
 		identityFlag,
 		nodeThresholdFlag,
-		rejectExtraNodeFlag,
-		threadsFlag,
-		durationFlag,
-		convergeOnlyFlag,
-		sustainedFlag,
-		txCountFlag,
 	}
 
 	app.Before = func(c *cli.Context) error {
