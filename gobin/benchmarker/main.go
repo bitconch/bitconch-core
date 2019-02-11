@@ -80,13 +80,13 @@ var (
 		Destination: &DurationTime,
 	}
 
-	convergeOnlyFlag = cli.StringFlag{
+	convergeOnlyFlag = cli.BoolFlag{
 		Name:        "converge-only",
 		Usage:       "Exit immediately after converging",
 		Destination: &ConvergeOnly,
 	}
 
-	sustainedFlag = cli.StringFlag{
+	sustainedFlag = cli.BoolFlag{
 		Name:        "sustained",
 		Usage:       "Use sustained performance mode vs. peak mode. This overlaps the tx generation with transfers.",
 		Destination: &SustainedMode,
