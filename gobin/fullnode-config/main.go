@@ -11,11 +11,13 @@ import (
 
 var (
 	// LocalMode can TRUE of FALSE, when in local mode, process will fetch configuration from local machine
-	LocalMode string
+	LocalMode    bool
+	LocalModeStr string
 	// KeypairFile is the client keypair file, which stores
 	KeypairFile string
 	// PublicMode: TRUE or FALSE,  is the location of the ledger file
-	PublicMode string
+	PublicMode    bool
+	PublicModeStr string
 	// BindPortNum the port number needed to be binded with
 	BindPortNum string
 
@@ -26,7 +28,7 @@ var (
 
 // Flags to be used in the cli
 var (
-	localModeFlag = cli.StringFlag{
+	localModeFlag = cli.BoolFlag{
 		Name:        "local,l",
 		Usage:       "Local mode or not, fetch configuration from local machine(127.0.0.1)",
 		Destination: &LocalMode,
@@ -38,7 +40,7 @@ var (
 		Destination: &KeypairFile,
 	}
 
-	publicModeFlag = cli.StringFlag{
+	publicModeFlag = cli.BoolFlag{
 		Name:        "public,p",
 		Usage:       "Ledger file location",
 		Destination: &PublicMode,
@@ -86,12 +88,21 @@ func fullnodeConfigCli(ctx *cli.Context) error {
 	}
 
 	// handle the arguments
-	fmt.Println("Do some stuff")
+	if LocalMode == true&PublicMode == false {
+		LocalModeStr = "TRUE"
+	} else {
+		LocalModeStr = "FALSE"
+	}
+	if PublicMode == true&LocalMode == true {
+		PublicModeStr = "TRUE"
+	} else {
+		PublicModeStr = "FALSE"
+	}
 	// start the full node instance
 	bus.CallFullnodeConfig(
-		LocalMode,
+		LocalModeStr,
 		KeypairFile,
-		PublicMode,
+		PublicModeStr,
 		BindPortNum,
 	)
 	return nil

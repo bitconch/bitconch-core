@@ -21,16 +21,19 @@ var (
 	// NodeThreshold number of nodes
 	NodeThreshold string
 	// RejectExtraNode node or not, default:FALSE, can be set to TRUE
-	RejectExtraNode string
+	RejectExtraNode    bool
+	RejectExtraNodeStr string
 	// ThreadsNum number
 	ThreadsNum string
 	// DurationTime is the interval time for benchmarking
 	DurationTime string
 	// ConvergeOnly specify , default: FALSE, can be set to TRUE
-	ConvergeOnly string
+	ConvergeOnly    bool
+	ConvergeOnlyStr string
 	// SustainedMode specify whether is in Safe Mode for testing,
 	// default value is FALSE (TRUE or FALSE)
-	SustainedMode string
+	SustainedMode    bool
+	SustainedModeStr string
 	// TransactionCount is the number of transaction sent per batch
 	TransactionCount string
 	// gitCommit is the git SHA1 commit hash of the release (set via linker flags)
@@ -59,7 +62,7 @@ var (
 		Destination: &NodeThreshold,
 	}
 
-	rejectExtraNodeFlag = cli.StringFlag{
+	rejectExtraNodeFlag = cli.BoolFlag{
 		Name:        "reject-extra-node",
 		Usage:       "Requires exact `num-nodes` of nodes to run, for dev only",
 		Destination: &RejectExtraNode,
@@ -132,17 +135,34 @@ func benchMarkerCli(ctx *cli.Context) error {
 	}
 
 	// handle the arguments
+	if RejectExtraNode == true {
+		RejectExtraNodeStr = "TRUE"
+	} else {
+		RejectExtraNodeStr = "FALSE"
+	}
+
+	if ConvergeOnly == true {
+		ConvergeOnlyStr = "TRUE"
+	} else {
+		ConvergeOnlyStr = "FALSE"
+	}
+
+	if SustainedMode == true {
+		SustainedModeStr = "TRUE"
+	} else {
+		SustainedModeStr = "FALSE"
+	}
 
 	// evoke the benchmarker, passing the parameters
 	fmt.Println("Do some stuff")
 	bus.CallBenchmarker(NetworkEntryPoint,
 		IdentityFile,
 		NodeThreshold,
-		RejectExtraNode,
+		RejectExtraNodeStr,
 		ThreadsNum,
 		DurationTime,
-		ConvergeOnly,
-		SustainedMode,
+		ConvergeOnlyStr,
+		SustainedModeStr,
 		TransactionCount,
 	)
 	return nil
