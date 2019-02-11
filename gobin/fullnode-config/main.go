@@ -88,12 +88,12 @@ func fullnodeConfigCli(ctx *cli.Context) error {
 	}
 
 	// handle the arguments
-	if LocalMode == true&PublicMode == false {
+	if LocalMode == true && PublicMode == false {
 		LocalModeStr = "TRUE"
 	} else {
 		LocalModeStr = "FALSE"
 	}
-	if PublicMode == true&LocalMode == true {
+	if PublicMode == true && LocalMode == true {
 		PublicModeStr = "TRUE"
 	} else {
 		PublicModeStr = "FALSE"
