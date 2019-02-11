@@ -104,14 +104,18 @@ for i in "$BUFFETT_CONFIG_DIR" "$BUFFETT_CONFIG_VALIDATOR_DIR" "$BUFFETT_CONFIG_
 done
 
 if $node_type_client; then
+  echo "================================================="
+  echo "= Evoke keymaker to create some stuff on client ="
+  echo "================================================="
   client_id_path="$BUFFETT_CONFIG_PRIVATE_DIR"/client-id.json
-  echo "Evoke keymaker to create some stuff on client"
   $buffett_keygen -o "$client_id_path"
   ls -lhR "$BUFFETT_CONFIG_PRIVATE_DIR"/
 fi
 
 if $node_type_leader; then
-  echo "Evoke keymaker to create some stuff on leader"  
+  echo "================================================="
+  echo "= Evoke keymaker to create some stuff on leader ="  
+  echo "================================================="
   leader_address_args=("$ip_address_arg")
   leader_id_path="$BUFFETT_CONFIG_PRIVATE_DIR"/leader-id.json
   mint_path="$BUFFETT_CONFIG_PRIVATE_DIR"/mint.json
@@ -133,9 +137,11 @@ fi
 
 
 if $node_type_validator; then
+  echo "================================================="
+  echo "= Evoke keymaker to create some stuff on voter  ="  
+  echo "================================================="
   validator_address_args=("$ip_address_arg" -b 9000)
   validator_id_path="$BUFFETT_CONFIG_PRIVATE_DIR"/validator-id.json
-
   $buffett_keygen -o "$validator_id_path"
 
   echo "Creating $BUFFETT_CONFIG_VALIDATOR_DIR/validator.json"
