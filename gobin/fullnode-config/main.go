@@ -20,8 +20,9 @@ var (
 	PublicModeStr string
 	// BindPortNum the port number needed to be binded with
 	BindPortNum string
-
-	gitCommit = ""
+	// OutfilePath the path for generated id file
+	OutfilePath string
+	gitCommit   = ""
 	// add new App with description
 	app = utils.NewApp(gitCommit, "Bitconch chain fullnode config CLI")
 )
@@ -51,6 +52,12 @@ var (
 		Usage:       "Bind to port number (local mode) or an address (public mode)",
 		Destination: &BindPortNum,
 	}
+
+	outfileFlag = cli.StringFlag{
+		Name:        "outfile,o",
+		Usage:       "Output file for generated id file",
+		Destination: &OutfilePath,
+	}
 )
 
 //init define subcommand and flags linked to cli
@@ -69,6 +76,7 @@ func init() {
 		keypairFlag,
 		publicModeFlag,
 		bindFlag,
+		outfileFlag,
 	}
 }
 
@@ -104,6 +112,7 @@ func fullnodeConfigCli(ctx *cli.Context) error {
 		KeypairFile,
 		PublicModeStr,
 		BindPortNum,
+		OutfilePath,
 	)
 	return nil
 }

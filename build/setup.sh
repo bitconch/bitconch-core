@@ -129,7 +129,7 @@ if $node_type_leader; then
   $buffett_genesis --tokens="$num_tokens" --ledger "$BUFFETT_CONFIG_DIR"/ledger < "$mint_path"
 
   echo "Creating $BUFFETT_CONFIG_DIR/leader.json"
-  $buffett_fullnode_config --keypair="$leader_id_path" "${leader_address_args[@]}" > "$BUFFETT_CONFIG_DIR"/leader.json
+  $buffett_fullnode_config --keypair="$leader_id_path" "${leader_address_args[@]}" -o "$BUFFETT_CONFIG_DIR"/leader.json
 
   ls -lhR "$BUFFETT_CONFIG_DIR"/
   ls -lhR "$BUFFETT_CONFIG_PRIVATE_DIR"/
@@ -145,7 +145,7 @@ if $node_type_validator; then
   $buffett_keygen -o "$validator_id_path"
 
   echo "Creating $BUFFETT_CONFIG_VALIDATOR_DIR/validator.json"
-  $buffett_fullnode_config --keypair="$validator_id_path" "${validator_address_args[@]}" > "$BUFFETT_CONFIG_VALIDATOR_DIR"/validator.json
+  $buffett_fullnode_config --keypair="$validator_id_path" "${validator_address_args[@]}" -o "$BUFFETT_CONFIG_VALIDATOR_DIR"/validator.json
 
   ls -lhR "$BUFFETT_CONFIG_VALIDATOR_DIR"/
 fi
