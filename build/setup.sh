@@ -113,22 +113,30 @@ if $node_type_client; then
 fi
 
 if $node_type_leader; then
-  echo "================================================="
-  echo "= On Voter Node                                 ="  
-  echo "================================================="
   leader_address_args=("$ip_address_arg")
   leader_id_path="$BUFFETT_CONFIG_PRIVATE_DIR"/leader-id.json
   mint_path="$BUFFETT_CONFIG_PRIVATE_DIR"/mint.json
-  echo $leader_id_path
+  echo "================================================="
+  echo "= On Leader Node                                ="  
+  echo "================================================="
+  echo " Utility    : keymaker "
+  echo " Out File   : $leader_id_path "
+  echo "================================================="
   $buffett_keygen -o "$leader_id_path"
 
-  echo "Creating $mint_path with $num_tokens tokens"
+  echo " Utility    : keymaker "
+  echo " Out File   : $mint_path with $num_tokens tokens"
+  echo "================================================="
   $buffett_keygen -o "$mint_path"
 
-  echo "Creating $BUFFETT_CONFIG_DIR/ledger"
+  echo " Utility    : genesis tool "
+  echo " Out File   : $BUFFETT_CONFIG_DIR/ledger"
+  echo "================================================="
   $buffett_genesis --tokens="$num_tokens" --ledger "$BUFFETT_CONFIG_DIR"/ledger < "$mint_path"
 
-  echo "Creating $BUFFETT_CONFIG_DIR/leader.json"
+  echo " Utility    : fullnode configuration tool "
+  echo " Out File   : $BUFFETT_CONFIG_DIR/leader.json"
+  echo "================================================="
   $buffett_fullnode_config --keypair="$leader_id_path" "${leader_address_args[@]}" -o "$BUFFETT_CONFIG_DIR"/leader.json
 
   ls -lhR "$BUFFETT_CONFIG_DIR"/
