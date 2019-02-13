@@ -114,7 +114,7 @@ fi
 
 if $node_type_leader; then
   echo "================================================="
-  echo "= Evoke keymaker to create some stuff on leader ="  
+  echo "= On Voter Node                                 ="  
   echo "================================================="
   leader_address_args=("$ip_address_arg")
   leader_id_path="$BUFFETT_CONFIG_PRIVATE_DIR"/leader-id.json
@@ -138,13 +138,19 @@ fi
 
 if $node_type_validator; then
   echo "================================================="
-  echo "= Evoke keymaker to create some stuff on voter  ="  
+  echo "= On Voter Node                                 ="  
+  echo "================================================="
+  echo " Utility    : keymaker "
+  echo " Out File   : $validator_id_path "
   echo "================================================="
   validator_address_args=("$ip_address_arg" -b 9000)
   validator_id_path="$BUFFETT_CONFIG_PRIVATE_DIR"/validator-id.json
   $buffett_keygen -o "$validator_id_path"
 
-  echo "Creating $BUFFETT_CONFIG_VALIDATOR_DIR/validator.json"
+  echo " Utility    : fullnode config "
+  echo " In File    : $BUFFETT_CONFIG_VALIDATOR_DIR/validator.json "
+  echo " Out File   : $validator_id_path"
+  echo "================================================="
   $buffett_fullnode_config --keypair="$validator_id_path" "${validator_address_args[@]}" -o "$BUFFETT_CONFIG_VALIDATOR_DIR"/validator.json
 
   ls -lhR "$BUFFETT_CONFIG_VALIDATOR_DIR"/
