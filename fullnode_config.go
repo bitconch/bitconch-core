@@ -10,7 +10,7 @@ func CallFullnodeConfig(
 	keypair string,
 	publicmode string,
 	bindportnum string,
-	oufilepath string,
+	outfilepath string,
 ) {
 
 	//convert string to CString pointer
