@@ -10,6 +10,7 @@ func CallFullnodeConfig(
 	keypair string,
 	publicmode string,
 	bindportnum string,
+	oufilepath string,
 ) {
 
 	//convert string to CString pointer
@@ -17,11 +18,13 @@ func CallFullnodeConfig(
 	CKeypairFile := C.CString(keypair)
 	CPublicMode := C.CString(publicmode)
 	CBindPortNum := C.CString(bindportnum)
+	COutFilePath := C.CString(outfilepath)
 
 	C.fullnode_config_main_entry(
 		CLocalMode,
 		CKeypairFile,
 		CPublicMode,
 		CBindPortNum,
+		COutFilePath,
 	)
 }
