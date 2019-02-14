@@ -80,17 +80,44 @@ install_rust() {
 }
 
 install_openssl() {
-	echo "Starting to install openssl"
+	echo "Starting to install the dev package of openssl"
 	if [ $PKG = "Ubuntu" ] ; then
-		sudo apt-get install openssl -y
+		sudo apt-get install libssl-dev -y
 		sudo apt install libssl-dev -y
 	elif [ $PKG = "Debian" ] ; then
-		yum apt-get install openssl -y
+		yum apt-get install libssl-dev -y
 		yum apt install libssl-dev -y
 	fi
-	openssl version
+	apt-cache search libssl-dev
 	echo "openssl installed"
 }
+
+install_pkgconfig() {
+	echo "Starting to install the pkg-config"
+	if [ $PKG = "Ubuntu" ] ; then
+		sudo apt-get install pkg-config -y
+		sudo apt install pkg-config -y
+	elif [ $PKG = "Debian" ] ; then
+		yum apt-get install pkg-config -y
+		yum apt install pkg-config -y
+	fi
+	apt-cache search pkg-config
+	echo "openssl installed"
+}
+
+install_zlib1g_dev() {
+	echo "Starting to install the zlib1g-dev"
+	if [ $PKG = "Ubuntu" ] ; then
+		sudo apt-get install zlib1g-dev -y
+		sudo apt install zlib1g-dev -y
+	elif [ $PKG = "Debian" ] ; then
+		yum apt-get install zlib1g-dev -y
+		yum apt install zlib1g-dev -y
+	fi
+	apt-cache search zlib1g-dev
+	echo "zlib1g-dev installed"
+}
+
 
 install_influxdb() {
         echo "Starting to install influxdb"
@@ -139,4 +166,7 @@ install_openssl
 echo "----------------------------------------------------------------------------------------"
 install_influxdb
 echo "----------------------------------------------------------------------------------------"
-install_SNAP
+install_pkgconfig
+echo "----------------------------------------------------------------------------------------"
+install_zlib1g_dev
+echo "----------------------------------------------------------------------------------------"
