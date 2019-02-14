@@ -40,8 +40,7 @@ If you want to encrypt an existing private key, it can be specified by setting
 --privatekey with the location of the file containing the private key.
 `,
 	Flags: []cli.Flag{
-		passphraseFlag,
-		jsonFlag,
+
 		cli.StringFlag{
 			Name:  "privatekey",
 			Usage: "file containing a raw private key to encrypt",

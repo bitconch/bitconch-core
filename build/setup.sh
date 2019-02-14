@@ -104,28 +104,40 @@ for i in "$BUFFETT_CONFIG_DIR" "$BUFFETT_CONFIG_VALIDATOR_DIR" "$BUFFETT_CONFIG_
 done
 
 if $node_type_client; then
+  echo "================================================="
+  echo "= Evoke keymaker to create some stuff on client ="
+  echo "================================================="
   client_id_path="$BUFFETT_CONFIG_PRIVATE_DIR"/client-id.json
-  echo "Evoke keymaker to create some stuff on client"
   $buffett_keygen -o "$client_id_path"
   ls -lhR "$BUFFETT_CONFIG_PRIVATE_DIR"/
 fi
 
 if $node_type_leader; then
-  echo "Evoke keymaker to create some stuff on leader"  
   leader_address_args=("$ip_address_arg")
   leader_id_path="$BUFFETT_CONFIG_PRIVATE_DIR"/leader-id.json
   mint_path="$BUFFETT_CONFIG_PRIVATE_DIR"/mint.json
-  echo $leader_id_path
+  echo "================================================="
+  echo "= On Leader Node                                ="  
+  echo "================================================="
+  echo " Utility    : keymaker "
+  echo " Out File   : $leader_id_path "
+  echo "================================================="
   $buffett_keygen -o "$leader_id_path"
 
-  echo "Creating $mint_path with $num_tokens tokens"
+  echo " Utility    : keymaker "
+  echo " Out File   : $mint_path with $num_tokens tokens"
+  echo "================================================="
   $buffett_keygen -o "$mint_path"
 
-  echo "Creating $BUFFETT_CONFIG_DIR/ledger"
+  echo " Utility    : genesis tool "
+  echo " Out File   : $BUFFETT_CONFIG_DIR/ledger"
+  echo "================================================="
   $buffett_genesis --tokens="$num_tokens" --ledger "$BUFFETT_CONFIG_DIR"/ledger < "$mint_path"
 
-  echo "Creating $BUFFETT_CONFIG_DIR/leader.json"
-  $buffett_fullnode_config --keypair="$leader_id_path" "${leader_address_args[@]}" > "$BUFFETT_CONFIG_DIR"/leader.json
+  echo " Utility    : fullnode configuration tool "
+  echo " Out File   : $BUFFETT_CONFIG_DIR/leader.json"
+  echo "================================================="
+  $buffett_fullnode_config --keypair="$leader_id_path" "${leader_address_args[@]}" -o "$BUFFETT_CONFIG_DIR"/leader.json
 
   ls -lhR "$BUFFETT_CONFIG_DIR"/
   ls -lhR "$BUFFETT_CONFIG_PRIVATE_DIR"/
@@ -133,13 +145,21 @@ fi
 
 
 if $node_type_validator; then
+  echo "================================================="
+  echo "= On Voter Node                                 ="  
+  echo "================================================="
+  echo " Utility    : keymaker "
+  echo " Out File   : $validator_id_path "
+  echo "================================================="
   validator_address_args=("$ip_address_arg" -b 9000)
   validator_id_path="$BUFFETT_CONFIG_PRIVATE_DIR"/validator-id.json
-
   $buffett_keygen -o "$validator_id_path"
 
-  echo "Creating $BUFFETT_CONFIG_VALIDATOR_DIR/validator.json"
-  $buffett_fullnode_config --keypair="$validator_id_path" "${validator_address_args[@]}" > "$BUFFETT_CONFIG_VALIDATOR_DIR"/validator.json
+  echo " Utility    : fullnode config "
+  echo " In File    : $BUFFETT_CONFIG_VALIDATOR_DIR/validator.json "
+  echo " Out File   : $validator_id_path"
+  echo "================================================="
+  $buffett_fullnode_config --keypair="$validator_id_path" "${validator_address_args[@]}" -o "$BUFFETT_CONFIG_VALIDATOR_DIR"/validator.json
 
   ls -lhR "$BUFFETT_CONFIG_VALIDATOR_DIR"/
 fi
