@@ -30,17 +30,38 @@ This repo is the official implementation of the Bitconch Chain protocol.
 
 ### Ubuntu
 
-*WIP*
 
 1. run preset.sh to install environment
 
-2. run deploy.py to build 
+```
+preset.sh
+```
+
+2. pre-compile source files
+
+```
+python3 deploy.py
+```
+
+3. compile and build binaries to ./cmd folder
+```
+./build/setup.sh
+
+```
+4. create a leader node
+
+```
+./build/leader.sh
+
+```
+
+5. Open another terminal, create a voter node
 
 
+```
+./build/voter-x.sh
 
-
-
----
+```
 
 ### Windows
 
