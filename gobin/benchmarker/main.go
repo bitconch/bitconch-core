@@ -75,7 +75,7 @@ var (
 	}
 
 	durationFlag = cli.StringFlag{
-		Name:        "duration,t",
+		Name:        "duration,d",
 		Usage:       "Duration time for benchmarking, default is forever",
 		Destination: &DurationTime,
 	}
