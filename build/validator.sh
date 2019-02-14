@@ -73,7 +73,7 @@ else
   port=9000
   (((port += ($$ % 1000)) && (port == 9000) && port++))
 
-  $buffett_fullnode_config --keypair="$validator_id_path" -l -b "$port" > "$validator_json_path"
+  $buffett_fullnode_config --keypair="$validator_id_path" -l -b "$port"  -o "$validator_json_path"
 
   BUFFETT_LEADER_CONFIG_DIR=$BUFFETT_CONFIG_VALIDATOR_DIR/leader-config-x$$
 fi
