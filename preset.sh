@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+set -ex
+
 check_os() {
 	if [[ "$(uname -v)" == *"Linux"* ]] ; then
 		PKG="linux"   # linux is my default 
@@ -16,7 +19,7 @@ check_os() {
 }
 
 update() {
-	echo -e "Starting to update && upgrade"
+	echo -e "Start to update && upgrade"
 	if [ $PKG = "Ubuntu" ] ; then
                 sudo apt update -y && sudo apt upgrade -y
         elif [ $PKG = "Debian" ] ; then
@@ -26,7 +29,7 @@ update() {
 }
 
 install_python3() {
-	echo "Starting to install python3"
+	echo "Start to install python3"
 	if [ $PKG = "Ubuntu" ] ; then
 		sudo apt-get install python3
 	elif [ $PKG = "Debian" ] ; then
@@ -37,7 +40,7 @@ install_python3() {
 }
 
 install_clang() {
-	echo "Starting to install clang"
+	echo "Start to install clang"
 	if [ $PKG = "Ubuntu" ] ; then
 		sudo apt-get install clang -y
 	elif [ $PKG = "Debian" ] ; then
@@ -48,7 +51,7 @@ install_clang() {
 }
 
 install_gccgo() {
-	echo "Starting to install gccgo"
+	echo "Start to install gccgo"
 	if [ $PKG = "Ubuntu" ] ; then
 		sudo apt-get install gccgo -y
 	elif [ $PKG = "Debian" ] ; then
@@ -59,7 +62,7 @@ install_gccgo() {
 }
 
 install_golang() {
-	echo "Starting to install gccgo"
+	echo "Start to install gccgo"
 	if [ $PKG = "Ubuntu" ] ; then
 		sudo apt-get install golang
 	elif [ $PKG = "Debian" ] ; then
@@ -70,7 +73,7 @@ install_golang() {
 }
 
 install_rust() {
-	echo "Starting to install rust"
+	echo "Start to install rust"
 	curl https://sh.rustup.rs -sSf | sh -s -- -y
 	source $HOME/.cargo/env
 	rustup -V
@@ -80,7 +83,7 @@ install_rust() {
 }
 
 install_openssl() {
-	echo "Starting to install the dev package of openssl"
+	echo "Start to install the dev package of openssl"
 	if [ $PKG = "Ubuntu" ] ; then
 		sudo apt-get install libssl-dev -y
 		sudo apt install libssl-dev -y
@@ -93,7 +96,7 @@ install_openssl() {
 }
 
 install_pkgconfig() {
-	echo "Starting to install the pkg-config"
+	echo "Start to install the pkg-config"
 	if [ $PKG = "Ubuntu" ] ; then
 		sudo apt-get install pkg-config -y
 		sudo apt install pkg-config -y
@@ -106,7 +109,7 @@ install_pkgconfig() {
 }
 
 install_zlib1g_dev() {
-	echo "Starting to install the zlib1g-dev"
+	echo "Start to install the zlib1g-dev"
 	if [ $PKG = "Ubuntu" ] ; then
 		sudo apt-get install zlib1g-dev -y
 		sudo apt install zlib1g-dev -y
@@ -120,7 +123,7 @@ install_zlib1g_dev() {
 
 
 install_influxdb() {
-        echo "Starting to install influxdb"
+    echo "Start to install influxdb"
         if [ $PKG = "Ubuntu" ] ; then
                 curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
 		source /etc/lsb-release
@@ -140,7 +143,7 @@ install_influxdb() {
 }
 
 install_SNAP() {
-        echo "Starting to install SNAP"
+        echo "Start to install SNAP"
         if [ $PKG = "Ubuntu" ] ; then
 		sudo apt install snapd
         elif [ $PKG = "Debian" ] ; then
@@ -148,6 +151,31 @@ install_SNAP() {
         fi
         snap version
         echo "SNAP installed"
+}
+
+install_nodejs(){
+	echo "Start to install nodejs10"
+	curl -sL https://deb.nodesource.com/setup_10.x | bash -
+	apt-get install -y nodejs
+	node --version
+	npm --version
+}
+
+install_yarn(){
+	echo "Start to install nodejs10"
+	curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+	echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+	apt-get update -qq
+	apt-get install -y yarn
+	yarn --version
+}
+
+install_redis(){
+	echo "Start to install redis"
+	[[ $(uname) = Linux ]] || exit 1
+	[[ $USER = root ]] || exit 1
+
+	apt-get --assume-yes install redis
 }
 
 check_os
@@ -170,3 +198,8 @@ install_pkgconfig
 echo "----------------------------------------------------------------------------------------"
 install_zlib1g_dev
 echo "----------------------------------------------------------------------------------------"
+install_nodejs
+echo "----------------------------------------------------------------------------------------"
+install_yarn
+echo "----------------------------------------------------------------------------------------"
+install_redis
