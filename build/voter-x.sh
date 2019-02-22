@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Start a dynamically-configured validator node
+# Start a dynamically-configured voter node
 #
 
 here=$(dirname "$0")
