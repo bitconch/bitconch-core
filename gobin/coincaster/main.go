@@ -7,6 +7,8 @@ import (
 	"github.com/bitconch/bus"
 	"github.com/bitconch/bus/gobin/utils"
 	"gopkg.in/urfave/cli.v1"
+
+	"github.com/pkg/profile"
 )
 
 const (
@@ -75,7 +77,8 @@ func init() {
 }
 
 func main() {
-
+	defer profile.Start().Stop()
+	
 	//bus.CallCoinCaster()
 	if err := app.Run(os.Args); err != nil {
 		fmt.Fprintln(os.Stderr, err)

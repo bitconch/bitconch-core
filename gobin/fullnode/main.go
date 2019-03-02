@@ -8,6 +8,8 @@ import (
 	"github.com/bitconch/bus"
 	"github.com/bitconch/bus/gobin/utils"
 	"gopkg.in/urfave/cli.v1"
+
+	"github.com/pkg/profile"
 )
 
 var (
@@ -63,7 +65,7 @@ func init() {
 }
 
 func main() {
-
+	defer profile.Start().Stop()
 	//bus.CallFullnode()
 	if err := app.Run(os.Args); err != nil {
 		fmt.Fprintln(os.Stderr, err)
