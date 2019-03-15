@@ -1,26 +1,76 @@
 # Bitconch 
-A New Distributed Web Protocol for Smart Contracts and DApps. Bitconch is the official golang implementation of the Bitconch Chain protocol.
+A New Distributed Web Protocol for Smart Contracts and DApps. 
 
-# Build the source
-You can build your bus the Bitconch CLI command. Building bus requires both a Go (version 1.7 or later) and a C compiler.
-You can install them using your favourite package manager. If you are a windows guy, you can follow the Contribution guide below to install Chocolatey.
-Once the dependencies are installed, run
+This repo is the official implementation of the Bitconch Chain protocol.
 
-  make bus
+## File Structure
 
-# How to contribute (Bitconch Improvement Proposal - BUSIP)
-People wishing to submit BUSIPs, first should propose their idea or document to the caesar@bitconch.io mailing list. After discussion, please open a PR. After copy-editing and acceptance, it will be published here.
+```
+|___blaze_gpu\
+|___build\
+|___cdylib\
+|___common\
+|___core\
+|___crypto\
+|___docs\
+|___gobin\
+|___scripts\
+|___smart_contract\
+|___tokenissue\
+|___vendor\
+|___whitepaper\
+|___deploy.py
+|___preset.sh
 
-We are fairly liberal with approving BIPs, and try not to be too involved in decision making on behalf of the community. The exception is in very rare cases of dispute resolution when a decision is contentious and cannot be agreed upon. In those cases, the conservative option will always be preferred.
+```
 
-Having a BIP here does not make it a formally accepted standard until its status becomes Final or Active.
+## Build
+
+---
+
+### Ubuntu
 
 
-## Setup Env on Windows10/8/7
+1. run preset.sh to install environment
+
+```
+preset.sh
+```
+
+2. pre-compile source files
+
+```
+python3 deploy.py
+```
+
+3. compile and build binaries to ./cmd folder
+```
+./build/setup.sh
+
+```
+4. create a leader node
+
+```
+./build/leader.sh
+
+```
+
+5. Open another terminal, create a voter node
 
 
+```
+./build/voter-x.sh
+
+```
+
+### Windows
+
+
+*WIP*
+
+**For first time user on windows**
 1. Download and install Chcolate https://chocolatey.org/
-2. Install mingw and go using chocolatey
+2. Install mingw, go, rust
 3. Download and install Visutal Studio Code https://code.visualstudio.com/
 4. Register an account on Github.com
 5. Download the Github desktop client from https://desktop.github.com
@@ -34,11 +84,18 @@ Having a BIP here does not make it a formally accepted standard until its status
     * Pull requests need to be based on and opened against the `master` branch.
     * Commit messages should be prefixed with the package(s) they modify.
       * E.g. "consensus: add new pckage buffett for POR consensus"
-10. Install Cygwin and you can build the whole project.
 
-## Setup Env on Ubuntu
 
-WIP.
+# How to contribute (Bitconch Improvement Proposal - BUSIP)
+
+---
+
+People wishing to submit BUSIPs, first should propose their idea or document to the caesar@bitconch.io mailing list. After discussion, please open a PR. After copy-editing and acceptance, it will be published here.
+
+We are fairly liberal with approving BIPs, and try not to be too involved in decision making on behalf of the community. The exception is in very rare cases of dispute resolution when a decision is contentious and cannot be agreed upon. In those cases, the conservative option will always be preferred.
+
+Having a BIP here does not make it a formally accepted standard until its status becomes Final or Active.
+
 
 # Magna Carta of Bitconch
-Bitconch is dedicated to build a global community of developers. Aneyone
+Bitconch is dedicated to build a global community of developers. This part is still in *WIP*, please send your email to caesar@bitconch.io if you have any good ideas.

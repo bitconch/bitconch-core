@@ -1,3 +1,4 @@
+#this travisci run script needs to be updated
 language: go
 go_import_path: github.com/Bitconch/BUS
 sudo: false
