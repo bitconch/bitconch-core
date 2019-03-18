@@ -7,7 +7,7 @@ use std::env;
 fn main() {
     // default with "http://127.0.0.1:8086", db with "test"
     //let client = Client::default().set_authentication("caesar", "zaq12wsx");
-    let mut client = Client::new_with_option("47.103.38.208", "", None)
+    let mut client = Client::new_with_option("https://localhost:8086", "dashboard01", None)
             .set_authentication("caesar", "zaq12wsx");
     println!("step1");
     let mut point = point!("test1");
@@ -30,7 +30,8 @@ fn main() {
     println!("step2");
     // if Precision is None, the default is second
     // Multiple write
-    let _ = client.write_points(points, Some(Precision::Seconds), None).unwrap();
+    let _rc = client.write_points(points, Some(Precision::Seconds), None);
+    println!("InfluxDbMetricsWriter write error: {:?}", _rc);
     println!("step3");
     // query, it's type is Option<Vec<Node>>
     let res = client.query("select * from test1", None).unwrap();
