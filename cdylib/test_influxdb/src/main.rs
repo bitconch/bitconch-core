@@ -41,7 +41,7 @@ fn main() {
 
 fn get_env_settings() -> (String, String, String, String) {
     let host =
-        env::var("INFLUX_HOST").unwrap_or_else(|_| "https://metrics.solana.com:8086".to_string());
+        env::var("INFLUX_HOST").unwrap_or_else(|_| "https://localhost:8086".to_string());
     let db = env::var("INFLUX_DATABASE").unwrap_or_else(|_| "scratch".to_string());
     let username = env::var("INFLUX_USERNAME").unwrap_or_else(|_| "scratch_writer".to_string());
     let password = env::var("INFLUX_PASSWORD").unwrap_or_else(|_| "topsecret".to_string());
