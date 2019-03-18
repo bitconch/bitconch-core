@@ -1,0 +1,9 @@
+[package]
+name = "test_influxdb"
+version = "0.1.0"
+authors = ["bluewebgeek <BLUE.WEB.GEEK@gmail.com>"]
+edition = "2018"
+
+
+[dependencies]
+influx_db_client = "^0.3.6"
