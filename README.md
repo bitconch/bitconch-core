@@ -37,29 +37,33 @@ This repo is the official implementation of the Bitconch Chain protocol.
 preset.sh
 ```
 
-2. pre-compile source files
-
 ```
-python3 deploy.py
+pip3 install colorama
 ```
 
-3. compile and build binaries to ./cmd folder
-```
-./build/setup.sh
+2. run the leader node
 
 ```
-4. create a leader node
-
-```
-./build/leader.sh
-
+./run1.sh
 ```
 
-5. Open another terminal, create a voter node
+3. open another terminal, and run token bot service
+```
+./run2.sh
+
+```
+4. open another terminal, and run voter node 
+
+```
+./run3.sh
+
+```
+
+5. Open another terminal, and run the bench mark service
 
 
 ```
-./build/voter-x.sh
+./run4.sh
 
 ```
 
