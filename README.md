@@ -102,4 +102,4 @@ Having a BIP here does not make it a formally accepted standard until its status
 
 
 # Magna Carta of Bitconch
-Bitconch is dedicated to build a global community of developers. This part is still in *WIP*, please send your email to caesar@bitconch.io if you have any good ideas.
+Bitconch is dedicated to build a global community of developers. This part is still in *WIP*, please post your ideas to the issue with tag of #BUSIP
