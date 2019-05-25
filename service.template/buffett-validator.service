@@ -1,0 +1,14 @@
+[Unit]
+Description=Bitconch Testnet Validator Node Service
+After=network.target
+StartLimitIntervalsec=0
+Documentation=https://github.com/bitconch/bus
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/buffett/validator-service.sh
+WorkingDirectory=/usr/bin/buffett
+
+[Install]
+WantedBy=multi-user.target

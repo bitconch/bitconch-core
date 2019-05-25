@@ -7,7 +7,8 @@ Use Python3(>=3.6.7) and Shell to build
 import logging
 import stat
 import shutil
-import os, re, argparse, sys
+import os, re, argparse, sys,crypt
+import getpass
 from subprocess import Popen, check_call, PIPE, check_output, CalledProcessError
 from shutil import copy2, copytree, rmtree
 from colorama import init
@@ -140,11 +141,13 @@ def build(release=False):
                 sub01_execute_shell(["rustup", "target", "add", target],
                    shell=False,
                    silent=True,
-                   cwd="vendor/rustelo-rust")
+                   #cwd="vendor/rustelo-rust")
+                   cwd="vendor/rustelo-rust/buffett")
 
             profile = "--release" if release else ''
             sub01_execute_shell(f"cargo build --target {target} {profile}",
-               cwd="vendor/rustelo-rust",
+               #cwd="vendor/rustelo-rust",
+               cwd="vendor/rustelo-rust/buffett",
                env={
                    "CC": f"{prefix[target]}gcc",
                    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_LINKER": f"{prefix[target]}gcc",
@@ -153,28 +156,52 @@ def build(release=False):
 
             if target.endswith("-apple-darwin"):
                 sub01_execute_shell(f"strip -Sx {artifact[target]}",
-                   cwd=f"vendor/rustelo-rust/target/{target}/release", silent=True)
+                   cwd=f"vendor/rustelo-rust/buffett/target/{target}/release", silent=True)
 
             else:
                 sub01_execute_shell(f"{prefix[target]}strip --strip-unneeded -d -x {artifact[target]}",
-                   cwd=f"vendor/rustelo-rust/target/{target}/release")
+                   #cwd=f"vendor/rustelo-rust/target/{target}/release")
+                   cwd=f"vendor/rustelo-rust/buffett/target/{target}/release")
 
-            copy2(f"vendor/rustelo-rust/target/{target}/release/{artifact[target]}", f"libs/{target}/")
+            #copy2(f"vendor/rustelo-rust/target/{target}/release/{artifact[target]}", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-fullnode", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-wallet", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-fullnode-config", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-drone", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-bench-tps", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-ledger-tool", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-bench-streamer", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-upload-perf", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-genesis", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-keygen", f"libs/{target}/")
 
     else:
         target = default_target
 
         # For development; build only the _default_ target
-        prnt_run(f"build the rust+c code in vendor/rustelo-rust for {target}")
-        sub01_execute_shell(f"cargo build  --target {target}", cwd="vendor/rustelo-rust/buffett")
-        sub01_execute_shell(f"cargo build  --target {target}", cwd="vendor/rustelo-rust")
+        prnt_run(f"build the rust+c code in vendor/rustelo-rust/buffett for {target}")
+        sub01_execute_shell(f"cargo build  --release --target {target}", cwd="vendor/rustelo-rust/buffett")
+        # sub01_execute_shell(f"cargo build  --target {target}", cwd="vendor/rustelo-rust")
 
         # Copy _default_ lib over
         prnt_run(f"check the lib folder, if not , create one ")
         if not os.path.exists(f"libs/{target}/"):
             os.makedirs(f"libs/{target}/")
         prnt_run(f"copy the generated artifact file")
-        copy2(f"vendor/rustelo-rust/target/{target}/debug/{artifact[target]}", f"libs/{target}/")
+        # copy2(f"vendor/rustelo-rust/target/{target}/debug/{artifact[target]}", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-fullnode", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-wallet", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-fullnode-config", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-drone", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-bench-tps", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-ledger-tool", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-bench-streamer", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-upload-perf", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-genesis", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-keygen", f"libs/{target}/")
+
+    deploy_bin(target)
+
 
 
 def commit():
@@ -190,6 +217,35 @@ def commit():
         pass
 
 
+
+def createUser(name,username, password):
+    prnt_run(f"create a new user")
+    encPass =crypt.crypt(password,"22")
+    return os.system("useradd -p"+encPass+"-s"+"/bin/bash"+"-d"+"/home/"+username+"-m"+"-c \""+name +"\""+username)
+
+
+def deploy_bin(target):
+    # installation location /usr/bin/bitconch
+    # remove previous installed version
+    if os.path.exists("/usr/bin/bitconch"):
+        prnt_run("Remove previous installed version")
+        rmtree("/usr/bin/bitconch",onerror=rmtree_onerror)
+        prnt_run("Copy the latest service script to /usr/bin/bitconch")
+    # cp the binary into the folder 
+    copytree(f"libs/{target}/", "/usr/bin/bitconch")
+    
+    # seth PATH variable 
+    export PATH="/usr/bin/bitconch:$PATH"
+
+    # cp the service files into service folder
+    if os.path.exists("/etc/systemd/system/buffett-leader.service"):
+        prnt_run("Remove previous installed service file:buffett-leader.service")
+        
+
+
+
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "-R", "--release", help="build in release mode", action="store_true")
@@ -201,5 +257,8 @@ argv = parser.parse_args(sys.argv[1:])
 update_submodules()
 build(release=argv.release)
 
+#createUser("billy","billy","123456")
+# create a bin folder at /usr/bin/bitconch
+prnt_run(getpass.getuser())
 if argv.commit and argv.release:
     commit()
