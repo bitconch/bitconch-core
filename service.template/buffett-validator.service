@@ -7,8 +7,8 @@ Documentation=https://github.com/bitconch/bus
 [Service]
 Type=simple
 User=root
-ExecStart=/usr/bin/buffett/validator-service.sh
-WorkingDirectory=/usr/bin/buffett
+ExecStart=/usr/bin/bitconch/buffett/demo/validator.sh
+WorkingDirectory=/usr/bin/bitconch/buffett/demo
 
 [Install]
 WantedBy=multi-user.target

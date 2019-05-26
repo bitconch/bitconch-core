@@ -7,8 +7,8 @@ Documentation=https://github.com/bitconch/bus
 [Service]
 Type=simple
 User=root
-ExecStart=/usr/bin/bitconch/buffett/tokenbot-service.sh
-WorkingDirectory=/usr/bin/bitconch/buffett
+ExecStart=/usr/bin/bitconch/buffett/demo/tokenbot-service.sh
+WorkingDirectory=/usr/bin/bitconch/buffett/demo
 
 [Install]
 WantedBy=multi-user.target
