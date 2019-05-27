@@ -7,7 +7,7 @@ Documentation=https://github.com/bitconch/bus
 [Service]
 Type=simple
 User=root
-ExecStart=/usr/bin/bitconch/buffett/demo/leader.sh
+ExecStart=/bin/bash -c "PATH=/usr/bin/bitconch:$PATH exec /usr/bin/bitconch/buffett/demo/leader.sh" 
 WorkingDirectory=/usr/bin/bitconch/buffett/demo
 
 [Install]
