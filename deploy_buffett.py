@@ -238,8 +238,7 @@ def deploy_bin(target):
     # seth PATH variable 
     prnt_run(f"Set PATH to include buffett executables ")
     execute_shell("echo 'export PATH=/usr/bin/bitconch:$PATH' >>~/.profile")
-    # reload the profile 
-    execute_shell("source ~/.profile")
+    
 
     # remove the previous installed service file
     if os.path.exists("/etc/systemd/system/buffett-leader.service"):
@@ -271,6 +270,8 @@ argv = parser.parse_args(sys.argv[1:])
 
 update_submodules()
 build(release=argv.release)
+prnt_run("reload the profile ")
+prnt_run("source ~/.profile")
 prnt_run("please run /usr/bin/bitconch/buffett/demo/setup.sh")
 #createUser("billy","billy","123456")
 # create a bin folder at /usr/bin/bitconch
