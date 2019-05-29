@@ -142,12 +142,12 @@ def build(release=False):
                    shell=False,
                    silent=True,
                    #cwd="vendor/rustelo-rust")
-                   cwd="vendor/rustelo-rust/buffett")
+                   cwd="vendor/rustelo-rust/buffett/buffett")
 
             profile = "--release" if release else ''
             sub01_execute_shell(f"cargo build --target {target} {profile}",
                #cwd="vendor/rustelo-rust",
-               cwd="vendor/rustelo-rust/buffett",
+               cwd="vendor/rustelo-rust/buffett/buffett",
                env={
                    "CC": f"{prefix[target]}gcc",
                    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_LINKER": f"{prefix[target]}gcc",
@@ -156,31 +156,31 @@ def build(release=False):
 
             if target.endswith("-apple-darwin"):
                 sub01_execute_shell(f"strip -Sx {artifact[target]}",
-                   cwd=f"vendor/rustelo-rust/buffett/target/{target}/release", silent=True)
+                   cwd=f"vendor/rustelo-rust/buffett/buffett/target/{target}/release", silent=True)
 
             else:
                 sub01_execute_shell(f"{prefix[target]}strip --strip-unneeded -d -x {artifact[target]}",
                    #cwd=f"vendor/rustelo-rust/target/{target}/release")
-                   cwd=f"vendor/rustelo-rust/buffett/target/{target}/release")
+                   cwd=f"vendor/rustelo-rust/buffett/buffett/target/{target}/release")
 
             #copy2(f"vendor/rustelo-rust/target/{target}/release/{artifact[target]}", f"libs/{target}/")
-            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-fullnode", f"libs/{target}/")
-            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-wallet", f"libs/{target}/")
-            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-fullnode-config", f"libs/{target}/")
-            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-drone", f"libs/{target}/")
-            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-bench-tps", f"libs/{target}/")
-            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-ledger-tool", f"libs/{target}/")
-            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-bench-streamer", f"libs/{target}/")
-            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-upload-perf", f"libs/{target}/")
-            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-genesis", f"libs/{target}/")
-            copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-keygen", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-fullnode", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-wallet", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-fullnode-config", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-drone", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-bench-tps", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-ledger-tool", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-bench-streamer", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-upload-perf", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-genesis", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-keygen", f"libs/{target}/")
 
     else:
         target = default_target
 
         # For development; build only the _default_ target
-        prnt_run(f"build the rust+c code in vendor/rustelo-rust/buffett for {target}")
-        sub01_execute_shell(f"cargo build  --release --target {target}", cwd="vendor/rustelo-rust/buffett")
+        prnt_run(f"build the rust+c code in vendor/rustelo-rust/buffett/buffett for {target}")
+        sub01_execute_shell(f"cargo build  --release --target {target}", cwd="vendor/rustelo-rust/buffett/buffett")
         # sub01_execute_shell(f"cargo build  --target {target}", cwd="vendor/rustelo-rust")
 
         # Copy _default_ lib over
@@ -189,16 +189,16 @@ def build(release=False):
             os.makedirs(f"libs/{target}/")
         prnt_run(f"copy the generated artifact file")
         # copy2(f"vendor/rustelo-rust/target/{target}/debug/{artifact[target]}", f"libs/{target}/")
-        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-fullnode", f"libs/{target}/")
-        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-wallet", f"libs/{target}/")
-        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-fullnode-config", f"libs/{target}/")
-        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-drone", f"libs/{target}/")
-        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-bench-tps", f"libs/{target}/")
-        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-ledger-tool", f"libs/{target}/")
-        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-bench-streamer", f"libs/{target}/")
-        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-upload-perf", f"libs/{target}/")
-        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-genesis", f"libs/{target}/")
-        copy2(f"vendor/rustelo-rust/buffett/target/{target}/release/buffett-keygen", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-fullnode", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-wallet", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-fullnode-config", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-drone", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-bench-tps", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-ledger-tool", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-bench-streamer", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-upload-perf", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-genesis", f"libs/{target}/")
+        copy2(f"vendor/rustelo-rust/buffett/buffett/target/{target}/release/buffett-keygen", f"libs/{target}/")
 
     deploy_bin(target)
 
