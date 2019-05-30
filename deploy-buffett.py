@@ -9,6 +9,7 @@ import stat
 import shutil
 import os, re, argparse, sys,crypt
 import getpass
+import click
 from subprocess import Popen, check_call, PIPE, check_output, CalledProcessError
 from shutil import copy2, copytree, rmtree
 from colorama import init
@@ -35,7 +36,7 @@ def rmtree_onerror(self, func, file_path, exc_info):
         raise
 
 
-def sub01_execute_shell(command, silent=False, cwd=None, shell=True, env=None):
+def execute_shell(command, silent=False, cwd=None, shell=True, env=None):
     """
     Execute a system command 
     """
@@ -81,13 +82,13 @@ def update_submodules():
     prnt_warn('This repo uses submodules to manage the codes')
     prnt_run("Use git to update the submodules")
     # Ensure the submodule is initialized
-    sub01_execute_shell("git submodule update --init --recursive", silent=False)
+    execute_shell("git submodule update --init --recursive", silent=False)
 
     # Fetch upstream changes
-    sub01_execute_shell("git submodule foreach --recursive git fetch ", silent=False)
+    execute_shell("git submodule foreach --recursive git fetch ", silent=False)
 
     # Reset to upstream
-    sub01_execute_shell("git submodule foreach git reset --hard origin/HEAD", silent=False)
+    execute_shell("git submodule foreach git reset --hard origin/HEAD", silent=False)
 
     # Update include/
     if os.path.exists("include"):
@@ -101,15 +102,16 @@ def update_submodules():
 
 
 def build(release=False):
-    target_list = sub01_execute_shell("rustup target list", silent=True).decode()
+    target_list = execute_shell("rustup target list", silent=True).decode()
     m = re.search(r"(.*?)\s*\(default\)", target_list)
 
     default_target =m[1]
 
     # building priority:
     # 1. x86_64-pc-windows-gnu  for 64-bit MinGW (Windows 7+)
-    # 2. x86_64-unknown-linux-musl for 64-bit MSVC (Windows 7+)
-    # 3. 
+    # 2. x86_64-unknown-linux-musl for linux musl
+    # 3. x86_64-unknown-linux-musl for linux ubuntu,debian
+    # 4. x86_64-apple-darwin for macOS-10
 
 
     target_list = [
@@ -138,14 +140,14 @@ def build(release=False):
             prnt_run(f"Build rust source for {target}")
 
             if target != default_target:
-                sub01_execute_shell(["rustup", "target", "add", target],
+                execute_shell(["rustup", "target", "add", target],
                    shell=False,
                    silent=True,
                    #cwd="vendor/rustelo-rust")
                    cwd="vendor/rustelo-rust/buffett/buffett")
 
             profile = "--release" if release else ''
-            sub01_execute_shell(f"cargo build --target {target} {profile}",
+            execute_shell(f"cargo build --target {target} {profile}",
                #cwd="vendor/rustelo-rust",
                cwd="vendor/rustelo-rust/buffett/buffett",
                env={
@@ -155,11 +157,11 @@ def build(release=False):
                })
 
             if target.endswith("-apple-darwin"):
-                sub01_execute_shell(f"strip -Sx {artifact[target]}",
+                execute_shell(f"strip -Sx {artifact[target]}",
                    cwd=f"vendor/rustelo-rust/buffett/buffett/target/{target}/release", silent=True)
 
             else:
-                sub01_execute_shell(f"{prefix[target]}strip --strip-unneeded -d -x {artifact[target]}",
+                execute_shell(f"{prefix[target]}strip --strip-unneeded -d -x {artifact[target]}",
                    #cwd=f"vendor/rustelo-rust/target/{target}/release")
                    cwd=f"vendor/rustelo-rust/buffett/buffett/target/{target}/release")
 
@@ -180,8 +182,8 @@ def build(release=False):
 
         # For development; build only the _default_ target
         prnt_run(f"build the rust+c code in vendor/rustelo-rust/buffett/buffett for {target}")
-        sub01_execute_shell(f"cargo build  --release --target {target}", cwd="vendor/rustelo-rust/buffett/buffett")
-        # sub01_execute_shell(f"cargo build  --target {target}", cwd="vendor/rustelo-rust")
+        execute_shell(f"cargo build  --release --target {target}", cwd="vendor/rustelo-rust/buffett/buffett")
+        # execute_shell(f"cargo build  --target {target}", cwd="vendor/rustelo-rust")
 
         # Copy _default_ lib over
         prnt_run(f"check the lib folder, if not , create one ")
@@ -205,12 +207,12 @@ def build(release=False):
 
 
 def commit():
-    sha = sub01_execute_shell("git rev-parse --short HEAD", cwd="vendor/rustelo-rust", silent=True).decode().strip()
-    sub01_execute_shell("git add ./vendor/rustelo-rust ./libs ./include")
+    sha = execute_shell("git rev-parse --short HEAD", cwd="vendor/rustelo-rust", silent=True).decode().strip()
+    execute_shell("git add ./vendor/rustelo-rust ./libs ./include")
 
     try:
-        sub01_execute_shell(f"git commit -m \"build libs/ and sync include/ from rustelo#{sha}\"")
-        sub01_execute_shell("git push")
+        execute_shell(f"git commit -m \"build libs/ and sync include/ from rustelo#{sha}\"")
+        execute_shell("git push")
 
     except CalledProcessError:
         # Commit likely failed because there was nothing to commit
@@ -230,22 +232,35 @@ def deploy_bin(target):
     if os.path.exists("/usr/bin/bitconch"):
         prnt_run("Remove previous installed version")
         rmtree("/usr/bin/bitconch",onerror=rmtree_onerror)
-        prnt_run("Copy the latest service script to /usr/bin/bitconch")
+        prnt_run("Copy the compiled binaries to /usr/bin/bitconch")
     # cp the binary into the folder 
     copytree(f"libs/{target}/", "/usr/bin/bitconch")
     
     # seth PATH variable 
-    export PATH="/usr/bin/bitconch:$PATH"
+    prnt_run(f"Set PATH to include buffett executables ")
+    execute_shell("echo 'export PATH=/usr/bin/bitconch:$PATH' >>~/.profile")
+    
 
-    # cp the service files into service folder
+    # remove the previous installed service file
     if os.path.exists("/etc/systemd/system/buffett-leader.service"):
         prnt_run("Remove previous installed service file:buffett-leader.service")
-        
+        os.remove("/etc/systemd/system/buffett-leader.service")
 
+    if os.path.exists("/etc/systemd/system/buffett-tokenbot.service"):
+        prnt_run("Remove previous installed service file:buffett-tokenbot.service")
+        os.remove("/etc/systemd/system/buffett-tokenbot.service")
+    
+    if os.path.exists("/etc/systemd/system/buffett-validator.service"):
+        prnt_run("Remove previous installed service file:buffett-validator.service")
+        os.remove("/etc/systemd/system/buffett-validator.service")
+    # cp the service files into service folder
+    execute_shell("cp service.template/*  /etc/systemd/system")
 
+    # create the working directory data directory
+    copytree(f"buffett.scripts/demo", "/usr/bin/bitconch/buffett/demo")
+    copytree(f"buffett.scripts/scripts", "/usr/bin/bitconch/buffett/scripts")
 
-
-
+   
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "-R", "--release", help="build in release mode", action="store_true")
@@ -256,9 +271,13 @@ argv = parser.parse_args(sys.argv[1:])
 
 update_submodules()
 build(release=argv.release)
-
+prnt_run("Please run the following command to reload the profile: ")
+prnt_run("source ~/.profile")
+prnt_run("Please run /usr/bin/bitconch/buffett/demo/setup.sh")
+if click.confirm('Do you want to run setup to create genesis file and id files?', default=True):
+    execute_shell("/usr/bin/bitconch/buffett/demo/setup.sh",cwd="/usr/bin/bitconch/buffett/demo")
 #createUser("billy","billy","123456")
 # create a bin folder at /usr/bin/bitconch
-prnt_run(getpass.getuser())
+# prnt_run(getpass.getuser())
 if argv.commit and argv.release:
     commit()
