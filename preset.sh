@@ -178,6 +178,14 @@ install_redis(){
 	apt-get --assume-yes install redis
 }
 
+install_python_module(){
+	echo "Start to install Python Modules"
+	[[ $(uname) = Linux ]] || exit 1
+	[[ $USER = root ]] || exit 1
+
+	pip3 install colorama
+	pip3 install click
+}
 check_os
 echo "----------------------------------------------------------------------------------------"
 update
@@ -203,3 +211,5 @@ echo "--------------------------------------------------------------------------
 install_yarn
 echo "----------------------------------------------------------------------------------------"
 install_redis
+echo "----------------------------------------------------------------------------------------"
+install_python_module
