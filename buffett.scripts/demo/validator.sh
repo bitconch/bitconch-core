@@ -92,7 +92,7 @@ $rsync -vPr "$rsync_leader_url"/config/ "$BUFFETT_LEADER_CONFIG_DIR"
 trap 'kill "$pid" && wait "$pid"' INT TERM
 buffett-fullnode \
   --identity "$validator_json_path" \
-  --network 47.52.129.136 \
+  --network "$leader_address" \
   --ledger "$BUFFETT_LEADER_CONFIG_DIR"/ledger \
   > >($validator_logger) 2>&1 &
 pid=$!

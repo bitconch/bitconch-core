@@ -7,7 +7,7 @@ Documentation=https://github.com/bitconch/bus
 [Service]
 Type=simple
 User=root
-ExecStart=/bin/bash -c "PATH=/usr/bin/bitconch:$PATH exec /usr/bin/bitconch/buffett/demo/validator-x.sh" 
+ExecStart=/bin/bash -c "PATH=/usr/bin/bitconch:$PATH exec /usr/bin/bitconch/buffett/demo/validator.sh -x root@[leader ip]:/usr/bin/bitconch/buffett/demo [leader ip]:8899" 
 WorkingDirectory=/usr/bin/bitconch/buffett/demo
 
 [Install]
