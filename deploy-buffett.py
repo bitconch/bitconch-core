@@ -275,7 +275,7 @@ prnt_run("Please run the following command to reload the profile: ")
 prnt_run("source ~/.profile")
 prnt_run("Please run /usr/bin/bitconch/buffett/demo/setup.sh")
 if click.confirm('Do you want to run setup to create genesis file and id files?', default=True):
-    execute_shell("/usr/bin/bitconch/buffett/demo/setup.sh",cwd="/usr/bin/bitconch/buffett/demo")
+    execute_shell("/usr/bin/bitconch/buffett/demo/setup.sh",cwd="/usr/bin/bitconch/buffett")
 #createUser("billy","billy","123456")
 # create a bin folder at /usr/bin/bitconch
 # prnt_run(getpass.getuser())
