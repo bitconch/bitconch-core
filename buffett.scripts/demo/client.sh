@@ -19,7 +19,7 @@ usage() {
 }
 
 if [[ -z $1 ]]; then # default behavior
-  $buffett_bench_tps --identity config-private/client-id.json --network 127.0.0.1:8001 --duration 9000
+  buffett-bench-tps --identity config-private/client-id.json --network 127.0.0.1:8001 --duration 90
 else
-  $buffett_bench_tps "$@"
+  buffett-bench-tps "$@"
 fi
