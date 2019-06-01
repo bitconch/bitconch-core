@@ -1,9 +1,0 @@
-signing.so
-{
-    global:
-        g_global_data_sim;
-        g_global_data;
-        signing_entry;
-    local:
-        *;
-};
