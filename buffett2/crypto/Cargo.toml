@@ -1,0 +1,19 @@
+[package]
+name = "crypto"
+version = "0.1.0"
+authors = ["Caesar Chad <BLUE.WEB.GEEK@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+bs58="0.2.2"
+rand="0.5.1"
+rayon="1.0.0"
+ring="0.13.2"
+serde_json="1.0.10"
+untrusted="0.6.2"
+buffett-interface="0.1.0"
+sha2="0.7.0"
+generic-array= { version = "0.12.0", default-features = false, features = ["serde"] }
+serde_cbor = "0.9.0"
+serde ="1.0.27"
+serde_derive = "1.0.27"
