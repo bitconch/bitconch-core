@@ -1,8 +1,10 @@
 [package]
-name = "crypto"
-version = "0.1.0"
+name = "buffett-crypto"
+version = "0.1.1"
 authors = ["Caesar Chad <BLUE.WEB.GEEK@gmail.com>"]
 edition = "2018"
+description= "Crypto for bitconch:buffett"
+license = "MIT"
 
 [dependencies]
 bs58="0.2.2"

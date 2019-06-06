@@ -1,3 +1,5 @@
+//! A command-line executable for generating the chain's genesis block.
+
 extern crate atty;
 #[macro_use]
 extern crate clap;
@@ -30,7 +32,7 @@ fn main() -> Result<(), Box<error::Error>> {
                 .value_name("DIR")
                 .takes_value(true)
                 .required(true)
-                .help("Use directory as a dedicated ledgerbook path"),
+                .help("Use directory as persistent ledger location"),
         ).get_matches();
 
     let tokens = value_t_or_exit!(matches, "tokens", i64);

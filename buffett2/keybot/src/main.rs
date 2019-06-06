@@ -10,7 +10,7 @@ use buffett_core::wallet::gen_keypair_file;
 use std::error;
 
 fn main() -> Result<(), Box<error::Error>> {
-    let matches = App::new("buffettt_tokenbot")
+    let matches = App::new("buffettt_keygen")
         .version(crate_version!())
         .arg(
             Arg::with_name("outfile")
@@ -29,8 +29,7 @@ fn main() -> Result<(), Box<error::Error>> {
         path.to_str().unwrap()
     };
 
-    let _tmp = outfile.to_string();
-    let serialized_keypair = gen_keypair_file(_tmp)?;
+    let serialized_keypair = gen_keypair_file(outfile.to_string())?;
     if outfile == "-" {
         println!("{}", serialized_keypair);
     }

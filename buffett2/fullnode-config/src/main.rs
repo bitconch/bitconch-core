@@ -67,7 +67,8 @@ fn main() {
     };
     let pkcs8 = read_pkcs8(id_path).expect("client keypair");
 
-    
+    // we need all the receiving sockets to be bound within the expected
+    // port range that we open on aws
     let config = Config::new(&bind_addr, pkcs8);
     let stdout = io::stdout();
     serde_json::to_writer(stdout, &config).expect("serialize");

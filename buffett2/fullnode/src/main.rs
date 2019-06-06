@@ -49,7 +49,7 @@ fn main() -> () {
                 .value_name("DIR")
                 .takes_value(true)
                 .required(true)
-                .help("use DIR as a dedicated ledgerbook path"),
+                .help("use DIR as persistent ledger location"),
         ).get_matches();
 
     let (keypair, ncp) = if let Some(i) = matches.value_of("identity") {
@@ -72,20 +72,20 @@ fn main() -> () {
 
     let ledger_path = matches.value_of("ledger").unwrap();
 
-    
+    // socketaddr that is initial pointer into the network's gossip (ncp)
     let network = matches
         .value_of("network")
         .map(|network| network.parse().expect("failed to parse network address"));
 
     let node = Node::new_with_external_ip(keypair.pubkey(), &ncp);
 
-    
+    // save off some stuff for airdrop
     let node_info = node.info.clone();
     let pubkey = keypair.pubkey();
 
     let mut fullnode = Fullnode::new(node, ledger_path, keypair, network, false, None);
 
-    
+    // airdrop stuff, probably goes away at some point
     let leader = match network {
         Some(network) => {
             poll_gossip_for_leader(network, None).expect("can't find leader on network")
@@ -95,7 +95,7 @@ fn main() -> () {
 
     let mut client = mk_client(&leader);
 
-    
+    // TODO: maybe have the drone put itself in gossip somewhere instead of hardcoding?
     let drone_addr = match network {
         Some(network) => SocketAddr::new(network.ip(), DRONE_PORT),
         None => SocketAddr::new(ncp.ip(), DRONE_PORT),
@@ -128,6 +128,8 @@ fn main() -> () {
         match status {
             Ok(Some(FullnodeReturnType::LeaderRotation)) => (),
             _ => {
+                // Fullnode tpu/tvu exited for some unexpected
+                // reason, so exit
                 exit(1);
             }
         }
