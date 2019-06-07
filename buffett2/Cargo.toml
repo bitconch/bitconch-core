@@ -1,0 +1,15 @@
+[workspace]
+members = [
+   "benchbot",
+   "interface",
+    "tokenbot",
+    "fullnode",
+    "fullnode-config",
+    "genesis",
+    "keybot",
+    "ledgerbot",
+    "budget",
+    "timing",
+    "crypto",
+    "metrics",
+]

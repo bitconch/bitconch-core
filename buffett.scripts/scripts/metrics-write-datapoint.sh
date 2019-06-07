@@ -15,5 +15,5 @@ if [[ -z $INFLUX_DATABASE || -z $INFLUX_USERNAME || -z $INFLUX_PASSWORD ]]; then
   exit 0
 fi
 
-echo "https://127.0.0.1:8086/write?db=${INFLUX_DATABASE}&u=${INFLUX_USERNAME}&p=${INFLUX_PASSWORD}" \
+echo "http://127.0.0.1:8086/write?db=${INFLUX_DATABASE}&u=${INFLUX_USERNAME}&p=${INFLUX_PASSWORD}" \
   | xargs curl --max-time 5 -XPOST --data-binary "$point"

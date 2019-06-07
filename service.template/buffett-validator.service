@@ -5,7 +5,7 @@ StartLimitIntervalsec=0
 Documentation=https://github.com/bitconch/bus
 
 [Service]
-Type=simple
+Environment=PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/bin/bitconch
 User=root
 ExecStart=/bin/bash -c "PATH=/usr/bin/bitconch:$PATH exec /usr/bin/bitconch/buffett/demo/validator.sh -x root@[leader ip]:/usr/bin/bitconch/buffett/demo [leader ip]:8899" 
 WorkingDirectory=/usr/bin/bitconch/buffett

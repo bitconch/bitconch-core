@@ -1,0 +1,15 @@
+[package]
+name = "buffett-budget"
+version = "0.1.2"
+authors = ["Caesar Chad <BLUE.WEB.GEEK@gmail.com>"]
+edition = "2018"
+description= "Budget for bitconch:buffett"
+license = "MIT"
+
+[dependencies]
+chrono = { version = "0.4.6", features = ["serde"] }
+bincode = "1.1.2"
+buffett-interface="0.1.0"
+serde = "1.0.27"
+serde_derive = "1.0.27"
+log = "0.4.2"

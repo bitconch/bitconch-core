@@ -1,0 +1,9 @@
+[Unit]
+Description=Bitconch Testnet Validator Socket for Buffett
+PartOf=buffett-validator.service
+
+[Socket]
+ListenStream=127.0.0.1:8899
+
+[Install]
+WantedBy=sockets.target

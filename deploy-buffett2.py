@@ -239,14 +239,24 @@ def deploy_bin(target):
     if os.path.exists("/etc/systemd/system/buffett-leader.service"):
         prnt_run("Remove previous installed service file:buffett-leader.service")
         os.remove("/etc/systemd/system/buffett-leader.service")
+    if os.path.exists("/etc/systemd/system/buffett-leader.socket"):
+        prnt_run("Remove previous installed socket file:buffett-leader.socket")
+        os.remove("/etc/systemd/system/buffett-leader.socket")
 
     if os.path.exists("/etc/systemd/system/buffett-tokenbot.service"):
         prnt_run("Remove previous installed service file:buffett-tokenbot.service")
         os.remove("/etc/systemd/system/buffett-tokenbot.service")
-    
+    if os.path.exists("/etc/systemd/system/buffett-tokenbot.socket"):
+        prnt_run("Remove previous installed socket file:buffett-tokenbot.socket")
+        os.remove("/etc/systemd/system/buffett-tokenbot.socket")
+
     if os.path.exists("/etc/systemd/system/buffett-validator.service"):
         prnt_run("Remove previous installed service file:buffett-validator.service")
         os.remove("/etc/systemd/system/buffett-validator.service")
+    if os.path.exists("/etc/systemd/system/buffett-validator.socket"):
+        prnt_run("Remove previous installed socket file:buffett-validator.socket")
+        os.remove("/etc/systemd/system/buffett-validator.socket")
+
     # cp the service files into service folder
     execute_shell("cp service.template/*  /etc/systemd/system")
 
@@ -273,5 +283,7 @@ if click.confirm('Do you want to run setup to create genesis file and id files?'
 #createUser("billy","billy","123456")
 # create a bin folder at /usr/bin/bitconch
 # prnt_run(getpass.getuser())
+if click.confirm('Do you want to reload the systemctl daemon?', default=True):
+    execute_shell("systemctl daemon-reload")
 if argv.commit and argv.release:
     commit()
