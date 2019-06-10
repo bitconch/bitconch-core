@@ -1,9 +1,0 @@
-[Unit]
-Description=Bitconch Testnet Tokenbot Socket for Buffett
-PartOf=buffett-tokenbot.service
-
-[Socket]
-ListenStream=9900
-Accept=true
-[Install]
-WantedBy=sockets.target

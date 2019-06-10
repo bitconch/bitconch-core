@@ -1,9 +1,0 @@
-[Unit]
-Description=Buffett leader socker
-PartOf=buffett-leader.service
-
-[Socket]
-ListenStream=8899
-
-[Install]
-WantedBy=sockets.target
