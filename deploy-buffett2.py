@@ -285,5 +285,17 @@ if click.confirm('Do you want to run setup to create genesis file and id files?'
 # prnt_run(getpass.getuser())
 if click.confirm('Do you want to reload the systemctl daemon?', default=True):
     execute_shell("systemctl daemon-reload")
+
+if click.confirm('Are you running on the leader node?', default=True):
+    # backup the existing rsync configuration file
+    if os.path.exists("/etc/rsyncd.conf"):
+        prnt_run("Backup the existing rsyncd.conf.")
+        copy2(f"/etc/rsyncd.conf", f"/etc/rsyncd.conf.bk")
+        os.remove("/etc/rsyncd.conf")
+    prnt_run("Setup new rsyncd.conf.")
+    copy2(f"rsyncd.conf", f"/etc/rsyncd.conf")
+    execute_shell("systemctl enable rsync")
+    execute_shell("systemctl start rsync")
+
 if argv.commit and argv.release:
     commit()
