@@ -1,0 +1,17 @@
+[package]
+name = "buffett-interface"
+version = "0.1.0"
+description= "program interface for buffett"
+license = "MIT"
+authors = [
+   "Bitconch Core Dev",
+]
+
+[dependencies]
+bincode = "1.0.1"
+bs58 = "0.2.2"
+generic-array = { version = "0.12.0", default-features = false, features = ["serde"] }
+serde = "1.0.84"
+serde_derive = "1.0.84"
+
+

@@ -1,0 +1,17 @@
+[package]
+name = "buffett-tokenbot"
+version = "0.1.0"
+authors = ["Caesar Chad <BLUE.WEB.GEEK@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+bincode = "1.1.2"
+bytes = "0.4"
+clap = "2.32"
+log = "0.4.2"
+serde_json = "1.0.10"
+buffett-core = "0.1.1"
+tokio = "0.1"
+tokio-codec = "0.1"
+buffett-metrics="0.1.3"
+buffett-crypto="0.1.1"

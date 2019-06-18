@@ -1,37 +1,22 @@
 # Bitconch 
+
 A New Distributed Web Protocol for Smart Contracts and DApps. 
 
 This repo is the official implementation of the Bitconch Chain protocol.
 
-## File Structure
+## Testnet
 
-```
-|___blaze_gpu\
-|___build\
-|___cdylib\
-|___common\
-|___core\
-|___crypto\
-|___docs\
-|___gobin\
-|___scripts\
-|___smart_contract\
-|___tokenissue\
-|___vendor\
-|___whitepaper\
-|___deploy.py
-|___preset.sh
+There are two channels of testnet ```stable``` and ```nightly```.
 
-```
+We provided installation scripts for install ```stable``` version of Bitconch chain, code-name "Buffett" on the local machine.
 
-## Build
 
----
+## Build and Deploy
 
 ### Ubuntu
 
 
-1. run preset.sh to install environment
+1. run preset.sh to install pre-requisits
 
 ```
 preset.sh
@@ -41,29 +26,10 @@ preset.sh
 pip3 install colorama
 ```
 
-2. run the leader node
+2. deploy the Bitconch 
 
 ```
-./run1.sh
-```
-
-3. open another terminal, and run token bot service
-```
-./run2.sh
-
-```
-4. open another terminal, and run voter node 
-
-```
-./run3.sh
-
-```
-
-5. Open another terminal, and run the bench mark service
-
-
-```
-./run4.sh
+./deploy-stable.py
 
 ```
 

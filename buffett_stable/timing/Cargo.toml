@@ -1,0 +1,9 @@
+[package]
+name = "buffett-timing"
+version = "0.1.1"
+authors = ["Caesar Chad <BLUE.WEB.GEEK@gmail.com>"]
+edition = "2018"
+description= "Time constant for bitconch:buffett"
+license = "MIT"
+
+[dependencies]
