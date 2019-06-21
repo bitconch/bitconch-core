@@ -165,7 +165,7 @@ def build(release=False):
 
             #copy2(f"vendor/rustelo-rust/target/{target}/release/{artifact[target]}", f"libs/{target}/")
             copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-fullnode", f"libs/{target}/buffett-fullnode")
-            copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-fullnode-config", f"libs/{target}/buffett-fullnode-config")
+            #copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-fullnode-config", f"libs/{target}/buffett-fullnode-config")
             copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-drone", f"libs/{target}/buffett-drone")
             copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-bench-tps", f"libs/{target}/buffett-bench-tps")
             copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-ledger-tool", f"libs/{target}/buffett-ledger-tool")
@@ -176,8 +176,8 @@ def build(release=False):
         target = default_target
 
         # For development; build only the _default_ target
-        prnt_run(f"build the rust+c code in buffett2 for {target}")
-        execute_shell(f"cargo build  --all --release --target {target}", cwd="buffett2")
+        prnt_run(f"build the rust+c code in soros for {target}")
+        execute_shell(f"cargo build  --all --release --target {target}", cwd="vendor/rustelo-rust/soros")
         # execute_shell(f"cargo build  --target {target}", cwd="vendor/rustelo-rust")
 
         # Copy _default_ lib over
@@ -185,14 +185,16 @@ def build(release=False):
         if not os.path.exists(f"libs/{target}/"):
             os.makedirs(f"libs/{target}/")
         prnt_run(f"copy the generated artifact file")
-        # copy2(f"vendor/rustelo-rust/target/{target}/debug/{artifact[target]}", f"libs/{target}/")
+        #copy2(f"vendor/rustelo-rust/target/{target}/debug/{artifact[target]}", f"libs/{target}/")
         copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-fullnode", f"libs/{target}/buffett-fullnode")
-        copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-fullnode-config", f"libs/{target}/buffett-fullnode-config")
+        #copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-fullnode-config", f"libs/{target}/buffett-fullnode-config")
         copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-drone", f"libs/{target}/buffett-drone")
         copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-bench-tps", f"libs/{target}/buffett-bench-tps")
         copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-ledger-tool", f"libs/{target}/buffett-ledger-tool")
         copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-genesis", f"libs/{target}/buffett-genesis")
-        copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-keybot", f"libs/{target}/buffett-keygen")
+        #copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-keybot", f"libs/{target}/buffett-keygen")
+        copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-keygen", f"libs/{target}/buffett-keygen")
+        copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-wallet", f"libs/{target}/buffett-wallet")
 
     deploy_bin(target)
 
@@ -256,11 +258,11 @@ def deploy_bin(target):
         os.remove("/etc/systemd/system/buffett-validator.socket")
 
     # cp the service files into service folder
-    execute_shell("cp service.template/*  /etc/systemd/system")
+    execute_shell("cp soros.service.template/*  /etc/systemd/system")
 
     # create the working directory data directory
-    copytree(f"buffett.scripts/demo", "/usr/bin/bitconch/buffett/demo")
-    copytree(f"buffett.scripts/scripts", "/usr/bin/bitconch/buffett/scripts")
+    copytree(f"soros.scripts/demo", "/usr/bin/bitconch/buffett/demo")
+    copytree(f"soros.scripts/scripts", "/usr/bin/bitconch/buffett/scripts")
 
    
 parser = argparse.ArgumentParser()
@@ -297,3 +299,4 @@ if click.confirm('Are you running on the leader node?', default=True):
 
 if argv.commit and argv.release:
     commit()
+

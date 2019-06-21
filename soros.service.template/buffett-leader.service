@@ -1,0 +1,14 @@
+[Unit]
+Description=Bitconch Testnet Leader Node Service
+After=network.target
+Documentation=https://github.com/bitconch/bus
+
+[Service]
+Type=simple
+User=root
+Environment=PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/bin/bitconch
+ExecStart=/bin/bash -c "exec /usr/bin/bitconch/buffett/demo/bootstrap-leader.sh" 
+WorkingDirectory=/usr/bin/bitconch/buffett
+
+[Install]
+WantedBy=multi-user.target

@@ -157,7 +157,7 @@ def build(release=False):
                })
 
             if target.endswith("-apple-darwin"):
-                execute_shell(f"strip -Sx {artifact[target]}",
+                               execute_shell(f"strip -Sx {artifact[target]}",
                    cwd=f"buffett2/target/{target}/release", silent=True)
 
             else:
@@ -178,8 +178,8 @@ def build(release=False):
         target = default_target
 
         # For development; build only the _default_ target
-        prnt_run(f"build the rust+c code in buffett2 for {target}")
-        execute_shell(f"cargo build  --all --release --target {target}", cwd="buffett2")
+        prnt_run(f"build the rust+c code in buffett_stable for {target}")
+        execute_shell(f"cargo build  --all --release --target {target}", cwd="buffett_stable")
         # execute_shell(f"cargo build  --target {target}", cwd="vendor/rustelo-rust")
 
         # Copy _default_ lib over
@@ -188,13 +188,13 @@ def build(release=False):
             os.makedirs(f"libs/{target}/")
         prnt_run(f"copy the generated artifact file")
         # copy2(f"vendor/rustelo-rust/target/{target}/debug/{artifact[target]}", f"libs/{target}/")
-        copy2(f"buffett2/target/{target}/release/buffett-fullnode", f"libs/{target}/buffett-fullnode")
-        copy2(f"buffett2/target/{target}/release/buffett-fullnode-config", f"libs/{target}/buffett-fullnode-config")
-        copy2(f"buffett2/target/{target}/release/buffett-tokenbot", f"libs/{target}/buffett-drone")
-        copy2(f"buffett2/target/{target}/release/buffett-benchbot", f"libs/{target}/buffett-bench-tps")
-        copy2(f"buffett2/target/{target}/release/buffett-ledgerbot", f"libs/{target}/buffett-ledger-tool")
-        copy2(f"buffett2/target/{target}/release/buffett-genesis", f"libs/{target}/buffett-genesis")
-        copy2(f"buffett2/target/{target}/release/buffett-keybot", f"libs/{target}/buffett-keygen")
+        copy2(f"buffett_stable/target/{target}/release/buffett-fullnode", f"libs/{target}/buffett-fullnode")
+        copy2(f"buffett_stable/target/{target}/release/buffett-fullnode-config", f"libs/{target}/buffett-fullnode-config")
+        copy2(f"buffett_stable/target/{target}/release/buffett-tokenbot", f"libs/{target}/buffett-drone")
+        copy2(f"buffett_stable/target/{target}/release/buffett-benchbot", f"libs/{target}/buffett-bench-tps")
+        copy2(f"buffett_stable/target/{target}/release/buffett-ledgerbot", f"libs/{target}/buffett-ledger-tool")
+        copy2(f"buffett_stable/target/{target}/release/buffett-genesis", f"libs/{target}/buffett-genesis")
+        copy2(f"buffett_stable/target/{target}/release/buffett-keybot", f"libs/{target}/buffett-keygen")
 
     deploy_bin(target)
 
@@ -273,7 +273,7 @@ parser.add_argument(
 
 argv = parser.parse_args(sys.argv[1:])
 
-update_submodules()
+#update_submodules()
 build(release=argv.release)
 prnt_run("Please run the following command to reload the profile: ")
 prnt_run("source ~/.profile")
@@ -299,3 +299,4 @@ if click.confirm('Are you running on the leader node?', default=True):
 
 if argv.commit and argv.release:
     commit()
+
