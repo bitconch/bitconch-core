@@ -7,6 +7,9 @@
 #log files
 */**/*.log
 
+#ledger data file
+*/**/config
+*/**/config-local
 #target
 
 */**/target
