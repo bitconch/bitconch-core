@@ -99,10 +99,13 @@ def update_submodules():
  
 
 
-def build(release=False):
+def build(rust_version,cargoFeatures,release=False):
     target_list = execute_shell("rustup target list", silent=True).decode()
     m = re.search(r"(.*?)\s*\(default\)", target_list)
-
+    
+    #currentWorking directory
+    pwd = os.getcwd()
+    
     default_target =m[1]
 
     # building priority:
@@ -176,25 +179,41 @@ def build(release=False):
         target = default_target
 
         # For development; build only the _default_ target
-        prnt_run(f"build the rust+c code in soros for {target}")
-        execute_shell(f"cargo build  --all --release --target {target}", cwd="vendor/rustelo-rust/soros")
-        # execute_shell(f"cargo build  --target {target}", cwd="vendor/rustelo-rust")
+        prnt_run(f"Build the rust+c code in soros for {target}")
 
+        execute_shell(f"cargo build --all --release --features=erasure", cwd="vendor/rustelo-rust/soros")
+        
         # Copy _default_ lib over
-        prnt_run(f"check the lib folder, if not , create one ")
+        
         if not os.path.exists(f"libs/{target}/"):
+            prnt_run(f"Check the lib folder, if not , create one ")
             os.makedirs(f"libs/{target}/")
-        prnt_run(f"copy the generated artifact file")
-        #copy2(f"vendor/rustelo-rust/target/{target}/debug/{artifact[target]}", f"libs/{target}/")
-        copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-fullnode", f"libs/{target}/buffett-fullnode")
-        #copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-fullnode-config", f"libs/{target}/buffett-fullnode-config")
-        copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-drone", f"libs/{target}/buffett-drone")
-        copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-bench-tps", f"libs/{target}/buffett-bench-tps")
-        copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-ledger-tool", f"libs/{target}/buffett-ledger-tool")
-        copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-genesis", f"libs/{target}/buffett-genesis")
-        #copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-keybot", f"libs/{target}/buffett-keygen")
-        copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-keygen", f"libs/{target}/buffett-keygen")
-        copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-wallet", f"libs/{target}/buffett-wallet")
+        if not os.path.exists(f"libs/{target}/bin/deps"):
+            prnt_run(f"Check the the depslib folder, if not , create one ")
+            os.makedirs(f"libs/{target}/bin/deps/")
+
+        prnt_run(f"Copy the generated artifact file and dependencies")
+
+        BIN_CRATES=[
+            "bench-tps",
+            "drone",
+            "fullnode",
+            "genesis",
+            "gossip",
+            "install",
+            "keygen",
+            "ledger-tool",
+            "wallet"
+        ]
+
+        for crate in BIN_CRATES:
+            # execute_shell(f"set -x && cargo  install --force --path '{crate}' --root '{pwd}/libs/{target}/'  --features='erasure'", cwd="vendor/rustelo-rust/soros")
+            execute_shell(f"set -x && cargo  install --force --path '{crate}' --root '{pwd}/libs/{target}/'  --features='erasure'", cwd="vendor/rustelo-rust/soros")
+
+        # copy dependencies into deps folder
+        # execute_shell(f"set -x && cp *.so {pwd}/libs/{target}/bin/deps",cwd="vendor/rustelo-rust/soros/target/release")
+        execute_shell(f"set -x && cp libsoros*.so {pwd}/libs/{target}/bin/deps",cwd="vendor/rustelo-rust/soros/target/release/deps")
+
 
     deploy_bin(target)
 
@@ -205,7 +224,7 @@ def commit():
     execute_shell("git add ./vendor/rustelo-rust ./libs ./include")
 
     try:
-        execute_shell(f"git commit -m \"build libs/ and sync include/ from rustelo#{sha}\"")
+        execute_shell(f"git commit -m \"Build libs/ and sync include/ from rustelo#{sha}\"")
         execute_shell("git push")
 
     except CalledProcessError:
@@ -215,7 +234,7 @@ def commit():
 
 
 def createUser(name,username, password):
-    prnt_run(f"create a new user")
+    prnt_run(f"Create a new user")
     encPass =crypt.crypt(password,"22")
     return os.system("useradd -p"+encPass+"-s"+"/bin/bash"+"-d"+"/home/"+username+"-m"+"-c \""+name +"\""+username)
 
@@ -231,38 +250,39 @@ def deploy_bin(target):
     copytree(f"libs/{target}/", "/usr/bin/bitconch")
     
     # seth PATH variable 
-    prnt_run(f"Set PATH to include buffett executables ")
-    execute_shell("echo 'export PATH=/usr/bin/bitconch:$PATH' >>~/.profile")
-    
+    prnt_run(f"Set PATH to include soros executables ")
+    execute_shell("echo 'export PATH=/usr/bin/bitconch/bin:$PATH' >>~/.profile")
+    execute_shell("echo 'export PATH=/usr/bin/bitconch/bin/deps:$PATH' >>~/.profile")
+    # execute_shell("source ~/.profile")
 
     # remove the previous installed service file
-    if os.path.exists("/etc/systemd/system/buffett-leader.service"):
-        prnt_run("Remove previous installed service file:buffett-leader.service")
-        os.remove("/etc/systemd/system/buffett-leader.service")
-    if os.path.exists("/etc/systemd/system/buffett-leader.socket"):
-        prnt_run("Remove previous installed socket file:buffett-leader.socket")
-        os.remove("/etc/systemd/system/buffett-leader.socket")
+    if os.path.exists("/etc/systemd/system/soros-leader.service"):
+        prnt_run("Remove previous installed service file:soros-leader.service")
+        os.remove("/etc/systemd/system/soros-leader.service")
+    if os.path.exists("/etc/systemd/system/soros-leader.socket"):
+        prnt_run("Remove previous installed socket file:soros-leader.socket")
+        os.remove("/etc/systemd/system/soros-leader.socket")
 
-    if os.path.exists("/etc/systemd/system/buffett-tokenbot.service"):
-        prnt_run("Remove previous installed service file:buffett-tokenbot.service")
-        os.remove("/etc/systemd/system/buffett-tokenbot.service")
-    if os.path.exists("/etc/systemd/system/buffett-tokenbot.socket"):
-        prnt_run("Remove previous installed socket file:buffett-tokenbot.socket")
-        os.remove("/etc/systemd/system/buffett-tokenbot.socket")
+    if os.path.exists("/etc/systemd/system/soros-tokenbot.service"):
+        prnt_run("Remove previous installed service file:soros-tokenbot.service")
+        os.remove("/etc/systemd/system/soros-tokenbot.service")
+    if os.path.exists("/etc/systemd/system/soros-tokenbot.socket"):
+        prnt_run("Remove previous installed socket file:soros-tokenbot.socket")
+        os.remove("/etc/systemd/system/soros-tokenbot.socket")
 
-    if os.path.exists("/etc/systemd/system/buffett-validator.service"):
-        prnt_run("Remove previous installed service file:buffett-validator.service")
-        os.remove("/etc/systemd/system/buffett-validator.service")
-    if os.path.exists("/etc/systemd/system/buffett-validator.socket"):
-        prnt_run("Remove previous installed socket file:buffett-validator.socket")
-        os.remove("/etc/systemd/system/buffett-validator.socket")
+    if os.path.exists("/etc/systemd/system/soros-validator.service"):
+        prnt_run("Remove previous installed service file:soros-validator.service")
+        os.remove("/etc/systemd/system/soros-validator.service")
+    if os.path.exists("/etc/systemd/system/soros-validator.socket"):
+        prnt_run("Remove previous installed socket file:soros-validator.socket")
+        os.remove("/etc/systemd/system/soros-validator.socket")
 
     # cp the service files into service folder
     execute_shell("cp soros.service.template/*  /etc/systemd/system")
 
     # create the working directory data directory
-    copytree(f"soros.scripts/demo", "/usr/bin/bitconch/buffett/demo")
-    copytree(f"soros.scripts/scripts", "/usr/bin/bitconch/buffett/scripts")
+    copytree(f"soros.scripts/demo", "/usr/bin/bitconch/soros/demo")
+    copytree(f"soros.scripts/scripts", "/usr/bin/bitconch/soros/scripts")
 
    
 parser = argparse.ArgumentParser()
@@ -274,12 +294,12 @@ parser.add_argument(
 argv = parser.parse_args(sys.argv[1:])
 
 update_submodules()
-build(release=argv.release)
-prnt_run("Please run the following command to reload the profile: ")
-prnt_run("source ~/.profile")
-prnt_run("Please run /usr/bin/bitconch/buffett/demo/setup.sh")
+build("1.35","erasure",release=argv.release)
+prnt_run("Update PATH")
+# execute_shell(f"source ~/.profile")
+prnt_run("Please run /usr/bin/bitconch/soros/demo/setup.sh")
 if click.confirm('Do you want to run setup to create genesis file and id files?', default=True):
-    execute_shell("/usr/bin/bitconch/buffett/demo/setup.sh",cwd="/usr/bin/bitconch/buffett")
+    execute_shell("/usr/bin/bitconch/soros/demo/setup.sh",cwd="/usr/bin/bitconch/soros")
 #createUser("billy","billy","123456")
 # create a bin folder at /usr/bin/bitconch
 # prnt_run(getpass.getuser())
