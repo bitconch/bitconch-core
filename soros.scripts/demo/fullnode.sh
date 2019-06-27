@@ -2,6 +2,11 @@
 #
 # Start a full node
 #
+
+
+# Set the PATH 
+PATH=usr/bin/bitconch/bin:$PATH
+
 here=$(dirname "$0")
 # shellcheck source=multinode-demo/common.sh
 source "$here"/common.sh
@@ -37,9 +42,9 @@ read -r leader leader_address shift < <(find_leader "${@:1:2}")
 shift "$shift"
 
 if [[ -n $SOROS_CUDA ]]; then
-  program=$buffett_fullnode_cuda
+  program=soros-fullnode-cuda
 else
-  program=$buffett_fullnode
+  program=soros-fullnode
 fi
 
 : "${fullnode_id_path:=$SOROS_CONFIG_DIR/fullnode-keypair$label.json}"
@@ -48,11 +53,11 @@ ledger_config_dir=$SOROS_CONFIG_DIR/fullnode-ledger$label
 accounts_config_dir=$SOROS_CONFIG_DIR/fullnode-accounts$label
 
 mkdir -p "$SOROS_CONFIG_DIR"
-[[ -r "$fullnode_id_path" ]] || $buffett_keygen -o "$fullnode_id_path"
-[[ -r "$fullnode_vote_id_path" ]] || $buffett_keygen -o "$fullnode_vote_id_path"
+[[ -r "$fullnode_id_path" ]] || soros-keygen -o "$fullnode_id_path"
+[[ -r "$fullnode_vote_id_path" ]] || soros-keygen -o "$fullnode_vote_id_path"
 
-fullnode_id=$($buffett_keygen pubkey "$fullnode_id_path")
-fullnode_vote_id=$($buffett_keygen pubkey "$fullnode_vote_id_path")
+fullnode_id=$(soros-keygen pubkey "$fullnode_id_path")
+fullnode_vote_id=$(soros-keygen pubkey "$fullnode_vote_id_path")
 
 cat <<EOF
 ======================[ Fullnode configuration ]======================
@@ -90,17 +95,14 @@ airdrop() {
   declare amount=$3
 
   declare address
-  address=$($buffett_wallet --keypair "$keypair_file" address)
+  address=$(soros-wallet --keypair "$keypair_file" address)
 
-  # TODO: Until https://github.com/solana-labs/solana/issues/2355 is resolved
-  # a fullnode needs N lamports as its vote account gets re-created on every
-  # node restart, costing it lamports
+  
   declare retries=5
 
-  while ! $buffett_wallet --keypair "$keypair_file" --host "$host" airdrop "$amount"; do
+  while ! soros-wallet --keypair "$keypair_file" --host "$host" airdrop "$amount"; do
 
-    # TODO: Consider moving this retry logic into `solana-wallet airdrop`
-    #   itself, currently it does not retry on "Connection refused" errors.
+  
     ((retries--))
     if [[ $retries -le 0 ]]; then
         echo "Airdrop to $address failed."
@@ -120,10 +122,10 @@ setup_vote_account() {
   declare stake=$4
 
   declare node_id
-  node_id=$($buffett_wallet --keypair "$node_id_path" address)
+  node_id=$(soros-wallet --keypair "$node_id_path" address)
 
   declare vote_id
-  vote_id=$($buffett_wallet --keypair "$vote_id_path" address)
+  vote_id=$(soros-wallet --keypair "$vote_id_path" address)
 
   if [[ -f "$vote_id_path".configured ]]; then
     echo "Vote account has already been configured"
@@ -131,13 +133,13 @@ setup_vote_account() {
     airdrop "$node_id_path" "$drone_address" "$stake" || return $?
 
     # Fund the vote account from the node, with the node as the node_id
-    $buffett_wallet --keypair "$node_id_path" --host "$drone_address" \
+    soros-wallet --keypair "$node_id_path" --host "$drone_address" \
       create-vote-account "$vote_id" "$node_id" $((stake - 1)) || return $?
 
     touch "$vote_id_path".configured
   fi
 
-  $buffett_wallet --keypair "$node_id_path" --host "$drone_address" show-vote-account "$vote_id"
+  soros-wallet --keypair "$node_id_path" --host "$drone_address" show-vote-account "$vote_id"
   return 0
 }
 
@@ -153,7 +155,7 @@ while true; do
 
   if [[ ! -d "$ledger_config_dir" ]]; then
     cp -a "$SOROS_RSYNC_CONFIG_DIR"/ledger/ "$ledger_config_dir"
-    $buffett_ledger_tool --ledger "$ledger_config_dir" verify
+    soros-ledger-tool --ledger "$ledger_config_dir" verify
   fi
 
   trap '[[ -n $pid ]] && kill "$pid" >/dev/null 2>&1 && wait "$pid"' INT TERM ERR

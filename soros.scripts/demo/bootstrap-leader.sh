@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 #
 # Start the bootstrap leader node
-#
+# All binaries will be installed on /usr/bin/bitconch/bin and /usr/bin/bitconch/bin/deps
+
+# Set the PATH 
+PATH=/usr/bin/bitconch/bin:$PATH
 
 here=$(dirname "$0")
 # shellcheck source=multinode-demo/common.sh
@@ -26,18 +29,18 @@ source "$here"/extra-fullnode-args.sh
 }
 
 if [[ -n "$SOROS_CUDA" ]]; then
-  program="$buffett_fullnode_cuda"
+  program="soros-fullnode-cuda"
 else
-  program="$buffett_fullnode"
+  program="soros-fullnode"
 fi
 
 tune_system
 
-$buffett_ledger_tool --ledger "$SOROS_CONFIG_DIR"/bootstrap-leader-ledger verify
+soros-legder-tool --ledger "$SOROS_CONFIG_DIR"/bootstrap-leader-ledger verify
 
 bootstrap_leader_id_path="$SOROS_CONFIG_DIR"/bootstrap-leader-id.json
 bootstrap_leader_vote_id_path="$SOROS_CONFIG_DIR"/bootstrap-leader-vote-id.json
-bootstrap_leader_vote_id=$($buffett_keygen pubkey "$bootstrap_leader_vote_id_path")
+bootstrap_leader_vote_id=$($soros_keygen pubkey "$bootstrap_leader_vote_id_path")
 
 trap 'kill "$pid" && wait "$pid"' INT TERM ERR
 
@@ -49,11 +52,10 @@ default_fullnode_arg --accounts "$SOROS_CONFIG_DIR"/bootstrap-leader-accounts
 default_fullnode_arg --rpc-port 8899
 default_fullnode_arg --rpc-drone-address 127.0.0.1:9900
 default_fullnode_arg --gossip-port 8001
-
+default_fullnode_arg --blockstream /tmp/bitconch-blockstream.sock # Default to location used by the block explorer
 echo "$PS4 $program ${extra_fullnode_args[*]}"
 $program "${extra_fullnode_args[@]}" > >($bootstrap_leader_logger) 2>&1 &
 pid=$!
 oom_score_adj "$pid" 1000
 
 wait "$pid"
-
