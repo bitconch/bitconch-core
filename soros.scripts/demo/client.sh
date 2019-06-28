@@ -24,8 +24,8 @@ usage() {
 
 if [[ -z $1 ]]; then # default behavior
   soros-bench-tps \
-    --network 127.0.0.1:8001 \
-    --drone 127.0.0.1:9900 \
+    --network 127.0.0.1:10001 \
+    --drone 127.0.0.1:11100 \
     --duration 90 \
     --tx_count 50000 \
 
