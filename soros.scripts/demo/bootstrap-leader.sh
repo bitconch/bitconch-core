@@ -52,7 +52,7 @@ default_fullnode_arg --accounts "$SOROS_CONFIG_DIR"/bootstrap-leader-accounts
 default_fullnode_arg --rpc-port 10099
 default_fullnode_arg --rpc-drone-address 127.0.0.1:11100
 default_fullnode_arg --gossip-port 10001
-default_fullnode_arg --blockstream /tmp/bitconch-blockstream.sock # Default to location used by the block explorer
+default_fullnode_arg --blockstream /bitconch/tmp/bitconch-blockstream.sock # Default to location used by the block explorer
 echo "$PS4 $program ${extra_fullnode_args[*]}"
 $program "${extra_fullnode_args[@]}" > >($bootstrap_leader_logger) 2>&1 &
 pid=$!
