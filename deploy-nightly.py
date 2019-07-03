@@ -281,8 +281,8 @@ def deploy_bin(target):
     execute_shell("cp soros.service.template/*  /etc/systemd/system")
 
     # create the working directory data directory
-    copytree(f"soros.scripts/demo", "/usr/bin/bitconch/soros/demo")
-    copytree(f"soros.scripts/scripts", "/usr/bin/bitconch/soros/scripts")
+    copytree(f"soros.scripts/demo", "/bitconch/soros/demo")
+    copytree(f"soros.scripts/scripts", "/bitconch/soros/scripts")
 
    
 parser = argparse.ArgumentParser()
@@ -298,11 +298,13 @@ build("1.35","erasure",release=argv.release)
 prnt_run("Update PATH")
 # execute_shell(f"source ~/.profile")
 prnt_run("Please run /usr/bin/bitconch/soros/demo/setup.sh")
+
+# Setup the boot leader with stake of 500K dif
 if click.confirm('Do you want to run setup to create genesis file and id files?', default=True):
-    execute_shell("/usr/bin/bitconch/soros/demo/setup.sh",cwd="/usr/bin/bitconch/soros")
-#createUser("billy","billy","123456")
-# create a bin folder at /usr/bin/bitconch
-# prnt_run(getpass.getuser())
+    execute_shell("/usr/bin/bitconch/soros/demo/setup.sh -b 500000",cwd="/bitconch/soros")
+
+
+# 
 if click.confirm('Do you want to reload the systemctl daemon?', default=True):
     execute_shell("systemctl daemon-reload")
 
