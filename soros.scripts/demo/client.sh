@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+# Set the PATH 
+PATH=/usr/bin/bitconch/bin:$PATH
+
 here=$(dirname "$0")
 # shellcheck source=demo/common.sh
 source "$here"/common.sh
@@ -20,13 +23,13 @@ usage() {
 }
 
 if [[ -z $1 ]]; then # default behavior
-  $buffett_bench_tps \
-    --network 127.0.0.1:8001 \
-    --drone 127.0.0.1:9900 \
+  soros-bench-tps \
+    --network 127.0.0.1:10001 \
+    --drone 127.0.0.1:11100 \
     --duration 90 \
     --tx_count 50000 \
 
 else
-  $buffett_bench_tps "$@"
+  soros-bench-tps "$@"
 fi
 

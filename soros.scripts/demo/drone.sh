@@ -2,7 +2,13 @@
 #
 # Starts an instance of solana-drone
 #
+set -ex
+
 here=$(dirname "$0")
+
+
+# Set the PATH 
+PATH=/usr/bin/bitconch/bin:$PATH
 
 # shellcheck source=multinode-demo/common.sh
 source "$here"/common.sh
@@ -14,10 +20,10 @@ source "$here"/common.sh
   exit 1
 }
 
-set -ex
+
 
 trap 'kill "$pid" && wait "$pid"' INT TERM ERR
-$buffett_drone \
+soros-drone \
   --keypair "$SOROS_CONFIG_DIR"/mint-id.json \
   "$@" \
   > >($drone_logger) 2>&1 &

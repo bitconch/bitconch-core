@@ -24,12 +24,12 @@ if [[ $(uname) != Linux ]]; then
 fi
 
 if [[ -n $USE_INSTALL || ! -f "$SOROS_ROOT"/Cargo.toml ]]; then
-  buffett_program() {
+  soros_program() {
     declare program="$1"
-    printf "buffett-%s" "$program"
+    printf "soros-%s" "$program"
   }
 else
-  buffett_program() {
+  soros_program() {
     declare program="$1"
     declare features="--features="
     if [[ "$program" =~ ^(.*)-cuda$ ]]; then
@@ -38,30 +38,30 @@ else
     fi
 
     if [[ -r "$SOROS_ROOT/$program"/Cargo.toml ]]; then
-      maybe_package="--package buffett-$program"
+      maybe_package="--package soros-$program"
     fi
     if [[ -n $NDEBUG ]]; then
       maybe_release=--release
     fi
     declare manifest_path="--manifest-path=$SOROS_ROOT/$program/Cargo.toml"
-    printf "cargo run $manifest_path $maybe_release $maybe_package --bin buffett-%s %s -- " "$program" "$features"
+    printf "cargo run $manifest_path $maybe_release $maybe_package --bin soros-%s %s -- " "$program" "$features"
   }
   # shellcheck disable=2154 # 'here' is referenced but not assigned
   LD_LIBRARY_PATH=$(cd "$SOROS_ROOT/target/perf-libs" && pwd):$LD_LIBRARY_PATH
   export LD_LIBRARY_PATH
 fi
 
-buffett_bench_tps=$(buffett_program bench-tps)
-buffett_drone=$(buffett_program drone)
-buffett_fullnode=$(buffett_program fullnode)
-buffett_fullnode_cuda=$(buffett_program fullnode-cuda)
-buffett_genesis=$(buffett_program genesis)
-buffett_gossip=$(buffett_program gossip)
-buffett_keygen=$(buffett_program keygen)
-buffett_ledger_tool=$(buffett_program ledger-tool)
-buffett_wallet=$(buffett_program wallet)
+soros_bench_tps=$(soros_program bench-tps)
+soros_drone=$(soros_program drone)
+soros_fullnode=$(soros_program fullnode)
+soros_fullnode_cuda=$(soros_program fullnode-cuda)
+soros_genesis=$(soros_program genesis)
+soros_gossip=$(soros_program gossip)
+soros_keygen=$(soros_program keygen)
+soros_ledger_tool=$(soros_program ledger-tool)
+soros_wallet=$(soros_program wallet)
 
-export RUST_LOG=${RUST_LOG:-buffett=info} # if RUST_LOG is unset, default to info
+export RUST_LOG=${RUST_LOG:-soros=info} # if RUST_LOG is unset, default to info
 export RUST_BACKTRACE=1
 
 # shellcheck source=scripts/configure-metrics.sh
@@ -112,7 +112,7 @@ fullnode_usage() {
     echo
   fi
   cat <<EOF
-usage: $0 [--blockstream PATH] [--init-complete-file FILE] [--label LABEL] [--stake LAMPORTS] [--no-voting] [--rpc-port port] [rsync network path to bootstrap leader configuration] [network entry point]
+usage: $0 [--blockstream PATH] [--init-complete-file FILE] [--label LABEL] [--stake DIF] [--no-voting] [--rpc-port port] [rsync network path to bootstrap leader configuration] [network entry point]
 
 Start a full node
 
@@ -120,7 +120,7 @@ Start a full node
   --init-complete-file FILE - create this file, if it doesn't already exist, once node initialization is complete
   --label LABEL             - Append the given label to the fullnode configuration files, useful when running
                               multiple fullnodes from the same filesystem location
-  --stake LAMPORTS          - Number of lamports to stake
+  --stake DIF          - Number of dif to stake
   --no-voting               - start node without vote signer
   --rpc-port port           - custom RPC port for this node
 
@@ -133,4 +133,3 @@ SOROS_RSYNC_CONFIG_DIR=$SOROS_ROOT/config
 
 # Configuration that remains local
 SOROS_CONFIG_DIR=$SOROS_ROOT/config-local
-

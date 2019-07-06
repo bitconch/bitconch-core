@@ -13,7 +13,7 @@ fi
 
 extra_fullnode_args=()
 
-stake=43 # number of lamports to assign as stake (plus transaction fee to setup the stake)
+stake=43 # number of difs to assign as stake (plus transaction fee to setup the stake)
 poll_for_new_genesis_block=0
 label=
 fullnode_id_path=
