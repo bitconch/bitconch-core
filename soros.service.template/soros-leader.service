@@ -7,8 +7,8 @@ Documentation=https://github.com/bitconch/bus
 Type=simple
 User=root
 Environment=PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/bin/bitconch/bin:/usr/bin/bitconch/bin/deps
-ExecStart=/bin/bash -c "exec /bitconch/soros/demo/bootstrap-leader.sh" 
-WorkingDirectory=/bitconch/soros
+ExecStart=/bin/bash -c "exec /usr/bin/bitconch/soros/demo/bootstrap-leader.sh" 
+WorkingDirectory=/usr/bin/bitconch/soros
 
 [Install]
 WantedBy=multi-user.target
