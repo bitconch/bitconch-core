@@ -8,7 +8,7 @@ Documentation=https://github.com/bitconch/bus
 Environment=PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/bin/bitconch/bin:/usr/bin/bitconch/bin/deps
 User=root
 ExecStart=/bin/bash -c "PATH=/usr/bin/bitconch:$PATH exec /bitconch/soros/demo/fullnode-x.sh" 
-WorkingDirectory=/usr/bin/bitconch/soros
+WorkingDirectory=/bitconch/soros
 
 [Install]
 WantedBy=multi-user.target
