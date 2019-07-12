@@ -49,18 +49,18 @@ fn dividing_line() {
 }
 //*
 
-// define a public structure named NodeStates with parameters tps and tx, 
-// and the parameter types both are u64  and public
+/// define a public structure named NodeStates with parameters tps and tx, 
+/// and the parameter types both are u64  and public
 pub struct NodeStats {
     pub tps: f64, 
     pub tx: u64,  
 }
 
-// define a function named metrics_submit_token_balance whose parameter is token_balance
+/// define a function named metrics_submit_token_balance whose parameter is token_balance
 fn metrics_submit_token_balance(token_balance: i64) {
- // use  the submit method of the metrics crate  with a reference to Point，
-// and add a new entry named "bench-tps" to the influxdb database
-// add a tag named "op" and a field named "balance" to the entry   
+/// use  the submit method of the metrics crate  with a reference to Point，
+/// and add a new entry named "bench-tps" to the influxdb database
+/// add a tag named "op" and a field named "balance" to the entry   
     metrics::submit(
         influxdb::Point::new("bench-tps")
             .add_tag("op", influxdb::Value::String("token_balance".to_string()))
@@ -69,7 +69,7 @@ fn metrics_submit_token_balance(token_balance: i64) {
     );
 }
 
-// define a function named sample_txx_count with parameters exit_signal, maxes, first_tx_count, v, sample_period
+/// define a function named sample_txx_count with parameters exit_signal, maxes, first_tx_count, v, sample_period
 fn sample_tx_count(
     exit_signal: &Arc<AtomicBool>,
     maxes: &Arc<RwLock<Vec<(SocketAddr, NodeStats)>>>,
@@ -77,36 +77,52 @@ fn sample_tx_count(
     v: &NodeInfo,
     sample_period: u64,
 ) {
-// refer to NodeInfo node information to create a new client
+/// refer to NodeInfo node information to create a new client
     let mut client = new_client(&v);
-// get the current time 
+/// get the current time 
     let mut now = Instant::now();
+/// create the mutable variable initial_tx_count to store the count of transactions on client
     let mut initial_tx_count = client.transaction_count();
+/// create the mutable variable max_tps and initialize it to 0.0
     let mut max_tps = 0.0;
+/// create the mutable variable named total 
     let mut total;
 
+/// create the mutable log_perfix to store the fisrt 21 string of tpu 
     let log_prefix = format!("{:21}:", v.contact_info.tpu.to_string());
-
+/// start loop
     loop {
+/// bound clinet's transactions count to the variable tx_count
         let tx_count = client.transaction_count();
+// assert tx_count >= initial_tx_count
+/// assert expected tx_count({}) >= initial_tx_count({})
         assert!(
             tx_count >= initial_tx_count,
             "expected tx_count({}) >= initial_tx_count({})",
             tx_count,
             initial_tx_count
         );
+/// get the amount of time elapsed since “now” was created.
         let duration = now.elapsed();
+/// get the current time 
         now = Instant::now();
+/// calculate the value of tx_count - initial_tx_count
         let sample = tx_count - initial_tx_count;
+/// bound  tx_count to initial_tx_count
         initial_tx_count = tx_count;
 
+/// calculated the vlaue of duration converted to seconds * 1_000_000 + duration  converted to nanometer
         let ns = duration.as_secs() * 1_000_000_000 + u64::from(duration.subsec_nanos());
+/// calculated the vlaue of sample * 1_000_000_000 / ns 
         let tps = (sample * 1_000_000_000) as f64 / ns as f64;
+/// if tps > max_tps, then max_tps = tps
         if tps > max_tps {
             max_tps = tps;
         }
+/// if tx_count > first_tx_count, then total = tx_count - first_tx_count
         if tx_count > first_tx_count {
             total = tx_count - first_tx_count;
+/// otherwise total = 0
         } else {
             total = 0;
         }
@@ -171,32 +187,42 @@ fn sample_tx_count(
             total
         );
 
-
+/// sleep time is 0
         sleep(Duration::new(sample_period, 0));
 
+///  loads the value of from the bool(no ordering constraints, only atomic operations)
         if exit_signal.load(Ordering::Relaxed) {
             println!("\n| Exit Signal detected, kill threas for this Node:{}", log_prefix);
+/// call the function of print_animation_arrows() 
             print_animation_arrows();
             let stats = NodeStats {
                 tps: max_tps,
                 tx: total,
             };
+/// add v.contact_info.tpu,stats to maxes
             maxes.write().unwrap().push((v.contact_info.tpu, stats));
+/// break loop
             break;
         }
     }
 }
 
-
+/// define function named send_barrier_transaction
 fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash, id: &Keypair) {
+/// get the current time
     let transfer_start = Instant::now();
-
+/// declare a mutable variable and initialization value of 0
     let mut sampel_cnt = 0;
+/// start loop
     loop {
+/// if sampel_cnt > 0 and sampel_cnt % 8 == 0
         if sampel_cnt > 0 && sampel_cnt % 8 == 0 {
         }
 
+/// then get barrier_client's last entry ID 
         *last_id = barrier_client.get_last_id();
+/// Get barrier_client's t transfer result, 
+/// if error, then output "Unable to send barrier transaction"
         let signature = barrier_client
             .transfer(0, &id, id.pubkey(), last_id)
             .expect("Unable to send barrier transaction");
