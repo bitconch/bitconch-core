@@ -43,6 +43,7 @@ use buffett_core::asciiart;
 use std::io::Write; 
 
 //mvp001
+// define the function of dividing_line and output "----------------------------" through the macro
 fn dividing_line() {
     println!("------------------------------------------------------------------------------------------------------------------------");
 }
