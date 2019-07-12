@@ -280,9 +280,13 @@ def deploy_bin(target):
     # cp the service files into service folder
     execute_shell("cp soros.service.template/*  /etc/systemd/system")
 
+    if os.path.exists("/bitconch/soros"):
+        prnt_run("Remove previous installed version")
+        rmtree("/bitconch/soros",onerror=rmtree_onerror)
+        prnt_run("Copy the soros scripts to /bitconch/soros")
     # create the working directory data directory
-    copytree(f"soros.scripts/demo", "/usr/bin/bitconch/soros/demo")
-    copytree(f"soros.scripts/scripts", "/usr/bin/bitconch/soros/scripts")
+    copytree(f"soros.scripts/demo", "/bitconch/soros/demo")
+    copytree(f"soros.scripts/scripts", "/bitconch/soros/scripts")
 
    
 parser = argparse.ArgumentParser()
