@@ -49,13 +49,18 @@ fn dividing_line() {
 }
 //*
 
+// define a public structure named NodeStates with parameters tps and tx, 
+// and the parameter types both are u64  and public
 pub struct NodeStats {
     pub tps: f64, 
     pub tx: u64,  
 }
 
+// define a function named metrics_submit_token_balance whose parameter is token_balance
 fn metrics_submit_token_balance(token_balance: i64) {
-    
+ // use  the submit method of the metrics crate  with a reference to Point，
+// and add a new entry named "bench-tps" to the influxdb database
+// add a tag named "op" and a field named "balance" to the entry   
     metrics::submit(
         influxdb::Point::new("bench-tps")
             .add_tag("op", influxdb::Value::String("token_balance".to_string()))
@@ -64,6 +69,7 @@ fn metrics_submit_token_balance(token_balance: i64) {
     );
 }
 
+// define a function named sample_txx_count with parameters exit_signal, maxes, first_tx_count, v, sample_period
 fn sample_tx_count(
     exit_signal: &Arc<AtomicBool>,
     maxes: &Arc<RwLock<Vec<(SocketAddr, NodeStats)>>>,
@@ -71,7 +77,9 @@ fn sample_tx_count(
     v: &NodeInfo,
     sample_period: u64,
 ) {
+// refer to NodeInfo node information to create a new client
     let mut client = new_client(&v);
+// get the current time 
     let mut now = Instant::now();
     let mut initial_tx_count = client.transaction_count();
     let mut max_tps = 0.0;
