@@ -220,7 +220,7 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
         if sampel_cnt > 0 && sampel_cnt % 8 == 0 {
         }
 
-/// then get ThinClient's last entry ID 
+/// then get ThinClient's last id 
         *last_id = barrier_client.get_last_id();
 /// get barrier_client's t transfer result, 
 /// if error, then output "Unable to send barrier transaction"
@@ -257,18 +257,22 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
                     &Duration::from_millis(100),
                     &Duration::from_secs(10),
                 ).expect("Failed to get balance");
+/// if balance !=1, then will panic
             if balance != 1 {
                 panic!("Expected an account balance of 1 (balance: {}", balance);
             }
+/// break loop
             break;
         }
 
-        
+
+/// if the interval between transfer_start time and current time in milliseconds > 1000 * 60 * 3
+/// then print the error message and input 1 to exit process 
         if duration_ms > 1000 * 60 * 3 {
             println!("Error: Couldn't confirm barrier transaction!");
             exit(1);
         }
-
+/// get ThinClient's last id 
         let new_last_id = barrier_client.get_last_id();
         if new_last_id == *last_id {
             if sampel_cnt > 0 && sampel_cnt % 8 == 0 {
@@ -278,10 +282,12 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
             *last_id = new_last_id;
         }
 
+/// return the value of sampel_cnt += 1
         sampel_cnt += 1;
     }
 }
 
+/// define function of generate_txs
 fn generate_txs(
     shared_txs: &Arc<RwLock<VecDeque<Vec<Transaction>>>>,
     id: &Keypair,
