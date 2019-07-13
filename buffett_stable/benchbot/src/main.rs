@@ -58,9 +58,10 @@ pub struct NodeStats {
 
 /// define a function named metrics_submit_token_balance whose parameter is token_balance
 fn metrics_submit_token_balance(token_balance: i64) {
-/// use  the submit method of the metrics crate  with a reference to Point，
-/// and add a new entry named "bench-tps" to the influxdb database
-/// add a tag named "op" and a field named "balance" to the entry   
+
+/// use the submit method of the metrics crate  and add a new data to "bench-tps" data table of influxdb,
+/// add a tag named "op" with the value of String “token_balance”,
+/// and a field named "balance" whose value is token_balance of type i64
     metrics::submit(
         influxdb::Point::new("bench-tps")
             .add_tag("op", influxdb::Value::String("token_balance".to_string()))
@@ -231,9 +232,13 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
         let confirmatiom = barrier_client.sample_by_signature(&signature);
 /// calculate the interval between transfer_start time and current time in milliseconds
         let duration_ms = duration_in_milliseconds(&transfer_start.elapsed());
-/// if barrier client'signature  exists
+/// if barrier client'signature exists
         if confirmatiom.is_ok() {
 
+/// use the submit method of the metrics crate and add a new data to "bench-tps" data table of influxdb,
+/// add a tag named "op" with the value of String “token_balance”,
+/// add a field named "balance" whose value is mutable variable sampel_cnt with an initial value of 0
+/// add a field named "duration"with the interval between transfer_start time and current time in milliseconds
             metrics::submit(
                 influxdb::Point::new("bench-tps")
                     .add_tag(
@@ -244,7 +249,8 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
                     .to_owned(),
             );
 
-            
+/// get balance through the ID public key
+/// and if there is fail to get balance, then willoutput "Failed to get balance"           
             let balance = barrier_client
                 .sample_balance_by_key_plus(
                     &id.pubkey(),
