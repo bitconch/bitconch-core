@@ -43,7 +43,7 @@ use buffett_core::asciiart;
 use std::io::Write; 
 
 //mvp001
-// define the function of dividing_line and output "----------------------------" through the macro
+/// define the function of dividing_line and output "----------------------------" through the macro
 fn dividing_line() {
     println!("------------------------------------------------------------------------------------------------------------------------");
 }
@@ -219,16 +219,19 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
         if sampel_cnt > 0 && sampel_cnt % 8 == 0 {
         }
 
-/// then get barrier_client's last entry ID 
+/// then get ThinClient's last entry ID 
         *last_id = barrier_client.get_last_id();
-/// Get barrier_client's t transfer result, 
+/// get barrier_client's t transfer result, 
 /// if error, then output "Unable to send barrier transaction"
         let signature = barrier_client
             .transfer(0, &id, id.pubkey(), last_id)
             .expect("Unable to send barrier transaction");
 
+/// check the existence of barrier_client‘signature
         let confirmatiom = barrier_client.sample_by_signature(&signature);
+/// calculate the interval between transfer_start time and current time in milliseconds
         let duration_ms = duration_in_milliseconds(&transfer_start.elapsed());
+/// if barrier client'signature  exists
         if confirmatiom.is_ok() {
 
             metrics::submit(
