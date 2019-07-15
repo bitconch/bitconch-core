@@ -112,7 +112,7 @@ fn sample_tx_count(
 /// bound  tx_count to initial_tx_count
         initial_tx_count = tx_count;
 
-/// calculated the vlaue of duration converted to seconds * 1_000_000 + duration  converted to nanometer
+/// calculated the vlaue of duration * 1_000_000_000 converted to seconds + duration  converted to nanoseconds.
         let ns = duration.as_secs() * 1_000_000_000 + u64::from(duration.subsec_nanos());
 /// calculated the vlaue of sample * 1_000_000_000 / ns 
         let tps = (sample * 1_000_000_000) as f64 / ns as f64;
@@ -320,7 +320,10 @@ fn generate_txs(
     
 /// get the current time
     let signing_start = Instant::now();
-
+/// traversing keypairs Vec, generating a transaction for each keypair in keypairs，
+/// if reclaim is false, the sender of the transaction is id and the recipient is keypair，
+/// if reclaim is true, the sender of the transaction is keypair and the receiver is id
+If reclaim is true, the sender of the transaction is keypair and the receiver is id
     let transactions: Vec<_> = keypairs
         .par_iter()
         .map(|keypair| {
@@ -330,11 +333,13 @@ fn generate_txs(
                 Transaction::system_new(keypair, id.pubkey(), 1, *last_id)
             }
         }).collect();
-
+/// get the amount of time elapsed since “now” was created
     let duration = signing_start.elapsed();
+/// calculated the vlaue of duration * 1_000_000_000 converted to seconds + duration  converted to nanoseconds.
     let ns = duration.as_secs() * 1_000_000_000 + u64::from(duration.subsec_nanos());
     let bsps = (tx_count) as f64 / ns as f64;
-    
+
+/// call the function of dividing_line()    
     dividing_line();
     println!(
         "{0: <2}{1: <40}: {2: <60}",
@@ -351,6 +356,9 @@ fn generate_txs(
     );
     dividing_line();
 
+/// use the submit method of the metrics crate and add a new data to "bench-tps" data table of influxdb,
+/// add a tag named "op" with the value of String “generate_txs”,
+/// add a field named "duration"with the interval between transfer_start time and current time in milliseconds
     metrics::submit(
         influxdb::Point::new("bench-tps")
             .add_tag("op", influxdb::Value::String("generate_txs".to_string()))
