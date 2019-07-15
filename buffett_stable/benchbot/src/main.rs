@@ -320,10 +320,9 @@ fn generate_txs(
     
 /// get the current time
     let signing_start = Instant::now();
-/// traversing keypairs Vec, generating a transaction for each keypair in keypairs，
+/// traverse keypairs, generating transaction for each keypair in keypairs，and transforms it to dynamic Vec collection,
 /// if reclaim is false, the sender of the transaction is id and the recipient is keypair，
 /// if reclaim is true, the sender of the transaction is keypair and the receiver is id
-If reclaim is true, the sender of the transaction is keypair and the receiver is id
     let transactions: Vec<_> = keypairs
         .par_iter()
         .map(|keypair| {
@@ -358,7 +357,7 @@ If reclaim is true, the sender of the transaction is keypair and the receiver is
 
 /// use the submit method of the metrics crate and add a new data to "bench-tps" data table of influxdb,
 /// add a tag named "op" with the value of String “generate_txs”,
-/// add a field named "duration"with the interval between transfer_start time and current time in milliseconds
+/// add a field named "duration"with the interval between duration time and current time in milliseconds
     metrics::submit(
         influxdb::Point::new("bench-tps")
             .add_tag("op", influxdb::Value::String("generate_txs".to_string()))
@@ -368,10 +367,14 @@ If reclaim is true, the sender of the transaction is keypair and the receiver is
             ).to_owned(),
     );
 
+/// calculate the value of the length of Vec's transactions / threads
     let sz = transactions.len() / threads;
+/// in sz steps, slice the transaction Vec and transforms it into Vec collection
     let chunks: Vec<_> = transactions.chunks(sz).collect();
     {
+/// unwraps shared_txs‘s result. yielding the content of an Ok, panics if the value is an Err
         let mut shared_txs_wl = shared_txs.write().unwrap();
+/// traverse the chunks Vec, adding the elements of the chunks Vec to the shared_txs_wl Vec
         for chunk in chunks {
             shared_txs_wl.push_back(chunk.to_vec());
         }
