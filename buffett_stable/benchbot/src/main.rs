@@ -296,8 +296,10 @@ fn generate_txs(
     threads: usize,
     reclaim: bool,
 ) {
+/// get the length of keypairs
     let tx_count = keypairs.len();
     
+/// call the function of dividing_line()
     dividing_line();
     println!(
         "{0: <2}{1: <40}: {2: <10}",
@@ -313,9 +315,10 @@ fn generate_txs(
         "{0: <2}{1: <40}: {2: <60}",
         "|", "Status", "Signing Started"
     );
+/// call the function of dividing_line()
     dividing_line();
     
-
+/// get the current time
     let signing_start = Instant::now();
 
     let transactions: Vec<_> = keypairs
