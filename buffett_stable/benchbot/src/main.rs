@@ -437,13 +437,16 @@ fn send_transaction(
                     .to_owned(),
             );
         }
+/// determine whether to exit, if there is exit signal, then break the loop
         if exit_signal.load(Ordering::Relaxed) {
             break;
         }
     }
 }
 
+/// define a function of airdrop_tokens
 fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_count: i64) {
+/// get leader's airdrop address
     let mut drone_addr = leader.contact_info.tpu;
     drone_addr.set_port(DRONE_PORT);
 
