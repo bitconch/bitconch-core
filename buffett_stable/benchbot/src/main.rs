@@ -381,6 +381,7 @@ fn generate_txs(
     }
 }
 
+/// define function of send_transaction
 fn send_transaction(
     exit_signal: &Arc<AtomicBool>,
     shared_txs: &Arc<RwLock<VecDeque<Vec<Transaction>>>>,
@@ -388,11 +389,14 @@ fn send_transaction(
     shared_tx_thread_count: &Arc<AtomicIsize>,
     total_tx_sent_count: &Arc<AtomicUsize>,
 ) {
+/// refer to NodeInfo node information to create a new client
     let client = new_client(&leader);
     println!("| Begin to sendout transactions in parrallel");
+/// start loop
     loop {
         let txs;
         {
+/// unwraps shared_txs‘s Transaction result
             let mut shared_txs_wl = shared_txs.write().unwrap();
             txs = shared_txs_wl.pop_front();
         }
