@@ -43,24 +43,25 @@ use buffett_core::asciiart;
 use std::io::Write; 
 
 //mvp001
-// define the function of dividing_line and output "----------------------------" through the macro
+/// define the function of dividing_line and output "----------------------------" through the macro
 fn dividing_line() {
     println!("------------------------------------------------------------------------------------------------------------------------");
 }
 //*
 
-// define a public structure named NodeStates with parameters tps and tx, 
-// and the parameter types both are u64  and public
+/// define a public structure named NodeStates with parameters tps and tx, 
+/// and the parameter types both are u64  and public
 pub struct NodeStats {
     pub tps: f64, 
     pub tx: u64,  
 }
 
-// define a function named metrics_submit_token_balance whose parameter is token_balance
+/// define a function named metrics_submit_token_balance whose parameter is token_balance
 fn metrics_submit_token_balance(token_balance: i64) {
- // use  the submit method of the metrics crate  with a reference to Point，
-// and add a new entry named "bench-tps" to the influxdb database
-// add a tag named "op" and a field named "balance" to the entry   
+
+/// use the submit method of the metrics crate  and add a new data to "bench-tps" data table of influxdb,
+/// add a tag named "op" with the value of String “token_balance”,
+/// and a field named "balance" whose value is token_balance of type i64
     metrics::submit(
         influxdb::Point::new("bench-tps")
             .add_tag("op", influxdb::Value::String("token_balance".to_string()))
@@ -69,7 +70,7 @@ fn metrics_submit_token_balance(token_balance: i64) {
     );
 }
 
-// define a function named sample_txx_count with parameters exit_signal, maxes, first_tx_count, v, sample_period
+/// define a function named sample_txx_count with parameters exit_signal, maxes, first_tx_count, v, sample_period
 fn sample_tx_count(
     exit_signal: &Arc<AtomicBool>,
     maxes: &Arc<RwLock<Vec<(SocketAddr, NodeStats)>>>,
@@ -77,36 +78,52 @@ fn sample_tx_count(
     v: &NodeInfo,
     sample_period: u64,
 ) {
-// refer to NodeInfo node information to create a new client
+/// refer to NodeInfo node information to create a new client
     let mut client = new_client(&v);
-// get the current time 
+/// get the current time 
     let mut now = Instant::now();
+/// create the mutable variable initial_tx_count to store the count of transactions on client
     let mut initial_tx_count = client.transaction_count();
+/// create the mutable variable max_tps and initialize it to 0.0
     let mut max_tps = 0.0;
+/// create the mutable variable named total 
     let mut total;
 
+/// create the mutable log_perfix to store the fisrt 21 string of tpu 
     let log_prefix = format!("{:21}:", v.contact_info.tpu.to_string());
-
+/// start loop
     loop {
+/// bound clinet's transactions count to the variable tx_count
         let tx_count = client.transaction_count();
+// assert tx_count >= initial_tx_count
+/// assert expected tx_count({}) >= initial_tx_count({})
         assert!(
             tx_count >= initial_tx_count,
             "expected tx_count({}) >= initial_tx_count({})",
             tx_count,
             initial_tx_count
         );
+/// get the amount of time elapsed since “now” was created.
         let duration = now.elapsed();
+/// get the current time 
         now = Instant::now();
+/// calculate the value of tx_count - initial_tx_count
         let sample = tx_count - initial_tx_count;
+/// bound  tx_count to initial_tx_count
         initial_tx_count = tx_count;
 
+/// calculated the vlaue of duration * 1_000_000_000 converted to seconds + duration  converted to nanoseconds.
         let ns = duration.as_secs() * 1_000_000_000 + u64::from(duration.subsec_nanos());
+/// calculated the vlaue of sample * 1_000_000_000 / ns 
         let tps = (sample * 1_000_000_000) as f64 / ns as f64;
+/// if tps > max_tps, then max_tps = tps
         if tps > max_tps {
             max_tps = tps;
         }
+/// if tx_count > first_tx_count, then total = tx_count - first_tx_count
         if tx_count > first_tx_count {
             total = tx_count - first_tx_count;
+/// otherwise total = 0
         } else {
             total = 0;
         }
@@ -171,40 +188,57 @@ fn sample_tx_count(
             total
         );
 
-
+/// sleep time is 0
         sleep(Duration::new(sample_period, 0));
 
+///  loads the value of from the bool(no ordering constraints, only atomic operations)
         if exit_signal.load(Ordering::Relaxed) {
             println!("\n| Exit Signal detected, kill threas for this Node:{}", log_prefix);
+/// call the function of print_animation_arrows() 
             print_animation_arrows();
             let stats = NodeStats {
                 tps: max_tps,
                 tx: total,
             };
+/// add v.contact_info.tpu,stats to maxes
             maxes.write().unwrap().push((v.contact_info.tpu, stats));
+/// break loop
             break;
         }
     }
 }
 
-
+/// define function named send_barrier_transaction
 fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash, id: &Keypair) {
+/// get the current time
     let transfer_start = Instant::now();
-
+/// declare a mutable variable and initialization value of 0
     let mut sampel_cnt = 0;
+/// start loop
     loop {
+/// if sampel_cnt > 0 and sampel_cnt % 8 == 0
         if sampel_cnt > 0 && sampel_cnt % 8 == 0 {
         }
 
+/// then get ThinClient's last id 
         *last_id = barrier_client.get_last_id();
+/// get barrier_client's t transfer result, 
+/// if error, then output "Unable to send barrier transaction"
         let signature = barrier_client
             .transfer(0, &id, id.pubkey(), last_id)
             .expect("Unable to send barrier transaction");
 
+/// check the existence of barrier_client‘signature
         let confirmatiom = barrier_client.sample_by_signature(&signature);
+/// calculate the interval between transfer_start time and current time in milliseconds
         let duration_ms = duration_in_milliseconds(&transfer_start.elapsed());
+/// if barrier client'signature exists
         if confirmatiom.is_ok() {
 
+/// use the submit method of the metrics crate and add a new data to "bench-tps" data table of influxdb,
+/// add a tag named "op" with the value of String “token_balance”,
+/// add a field named "balance" whose value is mutable variable sampel_cnt with an initial value of 0
+/// add a field named "duration"with the interval between transfer_start time and current time in milliseconds
             metrics::submit(
                 influxdb::Point::new("bench-tps")
                     .add_tag(
@@ -215,25 +249,30 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
                     .to_owned(),
             );
 
-            
+/// get balance through the ID public key
+/// and if there is fail to get balance, then willoutput "Failed to get balance"           
             let balance = barrier_client
                 .sample_balance_by_key_plus(
                     &id.pubkey(),
                     &Duration::from_millis(100),
                     &Duration::from_secs(10),
                 ).expect("Failed to get balance");
+/// if balance !=1, then will panic
             if balance != 1 {
                 panic!("Expected an account balance of 1 (balance: {}", balance);
             }
+/// break loop
             break;
         }
 
-        
+
+/// if the interval between transfer_start time and current time in milliseconds > 1000 * 60 * 3
+/// then print the error message and input 1 to exit process 
         if duration_ms > 1000 * 60 * 3 {
             println!("Error: Couldn't confirm barrier transaction!");
             exit(1);
         }
-
+/// get ThinClient's last id 
         let new_last_id = barrier_client.get_last_id();
         if new_last_id == *last_id {
             if sampel_cnt > 0 && sampel_cnt % 8 == 0 {
@@ -243,10 +282,12 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
             *last_id = new_last_id;
         }
 
+/// return the value of sampel_cnt += 1
         sampel_cnt += 1;
     }
 }
 
+/// define function of generate_txs
 fn generate_txs(
     shared_txs: &Arc<RwLock<VecDeque<Vec<Transaction>>>>,
     id: &Keypair,
@@ -255,8 +296,10 @@ fn generate_txs(
     threads: usize,
     reclaim: bool,
 ) {
+/// get the length of keypairs
     let tx_count = keypairs.len();
     
+/// call the function of dividing_line()
     dividing_line();
     println!(
         "{0: <2}{1: <40}: {2: <10}",
@@ -272,11 +315,14 @@ fn generate_txs(
         "{0: <2}{1: <40}: {2: <60}",
         "|", "Status", "Signing Started"
     );
+/// call the function of dividing_line()
     dividing_line();
     
-
+/// get the current time
     let signing_start = Instant::now();
-
+/// traverse keypairs, generating transaction for each keypair in keypairs，and transforms it to dynamic Vec collection,
+/// if reclaim is false, the sender of the transaction is id and the recipient is keypair，
+/// if reclaim is true, the sender of the transaction is keypair and the receiver is id
     let transactions: Vec<_> = keypairs
         .par_iter()
         .map(|keypair| {
@@ -286,11 +332,13 @@ fn generate_txs(
                 Transaction::system_new(keypair, id.pubkey(), 1, *last_id)
             }
         }).collect();
-
+/// get the amount of time elapsed since “now” was created
     let duration = signing_start.elapsed();
+/// calculated the vlaue of duration * 1_000_000_000 converted to seconds + duration  converted to nanoseconds.
     let ns = duration.as_secs() * 1_000_000_000 + u64::from(duration.subsec_nanos());
     let bsps = (tx_count) as f64 / ns as f64;
-    
+
+/// call the function of dividing_line()    
     dividing_line();
     println!(
         "{0: <2}{1: <40}: {2: <60}",
@@ -307,6 +355,9 @@ fn generate_txs(
     );
     dividing_line();
 
+/// use the submit method of the metrics crate and add a new data to "bench-tps" data table of influxdb,
+/// add a tag named "op" with the value of String “generate_txs”,
+/// add a field named "duration"with the interval between duration time and current time in milliseconds
     metrics::submit(
         influxdb::Point::new("bench-tps")
             .add_tag("op", influxdb::Value::String("generate_txs".to_string()))
@@ -316,16 +367,21 @@ fn generate_txs(
             ).to_owned(),
     );
 
+/// calculate the value of the length of Vec's transactions / threads
     let sz = transactions.len() / threads;
+/// in sz steps, slice the transaction Vec and transforms it into Vec collection
     let chunks: Vec<_> = transactions.chunks(sz).collect();
     {
+/// unwraps shared_txs‘s result. yielding the content of an Ok, panics if the value is an Err
         let mut shared_txs_wl = shared_txs.write().unwrap();
+/// traverse the chunks Vec, adding the elements of the chunks Vec to the shared_txs_wl Vec
         for chunk in chunks {
             shared_txs_wl.push_back(chunk.to_vec());
         }
     }
 }
 
+/// define function of send_transaction
 fn send_transaction(
     exit_signal: &Arc<AtomicBool>,
     shared_txs: &Arc<RwLock<VecDeque<Vec<Transaction>>>>,
@@ -333,11 +389,14 @@ fn send_transaction(
     shared_tx_thread_count: &Arc<AtomicIsize>,
     total_tx_sent_count: &Arc<AtomicUsize>,
 ) {
+/// refer to NodeInfo node information to create a new client
     let client = new_client(&leader);
     println!("| Begin to sendout transactions in parrallel");
+/// start loop
     loop {
         let txs;
         {
+/// unwraps shared_txs‘s Transaction result
             let mut shared_txs_wl = shared_txs.write().unwrap();
             txs = shared_txs_wl.pop_front();
         }
