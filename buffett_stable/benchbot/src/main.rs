@@ -372,7 +372,7 @@ fn generate_txs(
 /// in sz steps, slice the transaction Vec and transforms it into Vec collection
     let chunks: Vec<_> = transactions.chunks(sz).collect();
     {
-/// unwraps shared_txs‘s result. yielding the content of an Ok, panics if the value is an Err
+/// unwraps shared_txs‘s Transaction result. yielding the content of an Ok, panics if the value is an Err
         let mut shared_txs_wl = shared_txs.write().unwrap();
 /// traverse the chunks Vec, adding the elements of the chunks Vec to the shared_txs_wl Vec
         for chunk in chunks {
@@ -396,14 +396,18 @@ fn send_transaction(
     loop {
         let txs;
         {
-/// unwraps shared_txs‘s Transaction result
+/// unwraps shared_txs‘s Transaction content
             let mut shared_txs_wl = shared_txs.write().unwrap();
+/// pop shared_txs‘s Transaction content's first element
             txs = shared_txs_wl.pop_front();
         }
+/// if txs is not null, then add 1 to shared_tx_thread_count
         if let Some(txs0) = txs {
             shared_tx_thread_count.fetch_add(1, Ordering::Relaxed);
-            
+
+/// get the length of txs0         
             let tx_len = txs0.len();
+/// get current time
             let transfer_start = Instant::now();
             for tx in txs0 {
                 client.transfer_signed(&tx).unwrap();
