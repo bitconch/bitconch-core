@@ -305,7 +305,7 @@ prnt_run("Please run /usr/bin/bitconch/soros/demo/setup.sh")
 
 # Setup the boot leader with stake of 500K dif
 if click.confirm('Do you want to run setup to create genesis file and id files?', default=True):
-    execute_shell("/usr/bin/bitconch/soros/demo/setup.sh -b 500000",cwd="/usr/bin/bitconch/soros")
+    execute_shell("/bitconch/soros/demo/setup.sh -b 500000",cwd="/bitconch/soros")
 
 
 # 
