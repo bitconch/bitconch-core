@@ -401,7 +401,7 @@ fn send_transaction(
 /// pop shared_txs‘s Transaction content's first element
             txs = shared_txs_wl.pop_front();
         }
-/// if txs is not null, then add 1 to shared_tx_thread_count
+/// if txs is not null, then add 1 to shared_tx_thread_count (only in atomic operations)
         if let Some(txs0) = txs {
             shared_tx_thread_count.fetch_add(1, Ordering::Relaxed);
 
@@ -409,10 +409,13 @@ fn send_transaction(
             let tx_len = txs0.len();
 /// get current time
             let transfer_start = Instant::now();
+/// traverse txs0, send tx transaction and return signature
             for tx in txs0 {
                 client.transfer_signed(&tx).unwrap();
             }
+/// add -1 to shared_tx_thread_count (only in atomic operations)
             shared_tx_thread_count.fetch_add(-1, Ordering::Relaxed);
+/// add txs0's length to total_tx_sent_count (only in atomic operations)
             total_tx_sent_count.fetch_add(tx_len, Ordering::Relaxed);
             println!(
                 "| > 1 MU sent, to {} in {} ms, TPS: {} ",
@@ -420,6 +423,10 @@ fn send_transaction(
                 duration_in_milliseconds(&transfer_start.elapsed()),
                 tx_len as f32 / duration_in_seconds(&transfer_start.elapsed()),
             );
+/// use the submit method of the metrics crate and add a new data to "bench-tps" data table of influxdb,
+/// add a tag named "op" with the value of String “send_transaction”,
+/// add a field named "duration"with the interval between duration time and current time in milliseconds
+/// add a field named "count"with the value of txs0's length
             metrics::submit(
                 influxdb::Point::new("bench-tps")
                     .add_tag("op", influxdb::Value::String("send_transaction".to_string()))
