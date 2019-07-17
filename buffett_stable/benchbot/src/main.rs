@@ -457,7 +457,7 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
     metrics_submit_token_balance(starting_balance);
 /// output the value of the balance through macros
     println!("starting balance {}", starting_balance);
-/// if balance < tx_count, then output，then output
+/// if balance < tx_count, then output，then output "| Begin to prepare data and send some Transactions:" through macros
     if starting_balance < tx_count {
         
         println!("| Begin to prepare data and send some Transactions:",);
@@ -467,6 +467,7 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
         print_animation_arrows();
         
 
+/// calculate the value of tx_count - starting_balance        
         let airdrop_amount = tx_count - starting_balance;
         println!(
             "Airdropping {:?} tokens from {} for {}",
@@ -474,7 +475,8 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
             drone_addr,
             id.pubkey(),
         );
-
+/// send airdrop request to drone_addr with the number of requests being airdrop_amount, 
+/// if there is error， then will be panic
         if let Err(e) = request_airdrop(&drone_addr, &id.pubkey(), airdrop_amount as u64) {
             panic!(
                 "Error requesting airdrop: {:?} to addr: {:?} amount: {}",
