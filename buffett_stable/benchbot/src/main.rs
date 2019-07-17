@@ -509,6 +509,7 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
             );
             
         }
+/// call the function of metrics_submit_token_balance(current_balance)
         metrics_submit_token_balance(current_balance);
         if current_balance - starting_balance != airdrop_amount {
             println!(
@@ -517,11 +518,13 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
                 current_balance,
                 starting_balance
             );
+/// input 1 then exit the process
             exit(1);
         }
     }
 }
 
+/// define a function of print_status_and_report
 fn print_status_and_report(
     maxes: &Arc<RwLock<Vec<(SocketAddr, NodeStats)>>>,
     _sample_period: u64,
@@ -536,9 +539,13 @@ fn print_status_and_report(
     println!(" Node address        |       Max TPS | Total Transactions");
     println!("---------------------+---------------+--------------------");
 
+/// traversal maxes
     for (sock, stats) in maxes.read().unwrap().iter() {
+/// Match with NodeStats structure’ member of tx
         let maybe_flag = match stats.tx {
+/// if tx is 0 , then return "!!!!!" to maybe_flag
             0 => "!!!!!",
+/// otherwise return ""
             _ => "",
         };
 
