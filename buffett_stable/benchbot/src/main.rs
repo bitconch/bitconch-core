@@ -448,16 +448,22 @@ fn send_transaction(
 fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_count: i64) {
 /// get leader's airdrop address
     let mut drone_addr = leader.contact_info.tpu;
+/// set the port of the airdrop address to DRONE_PORT
     drone_addr.set_port(DRONE_PORT);
-
+/// obtain the balance through id pubkey,
+/// return the balance if it is obtained, and return 0 if it is not obtainable
     let starting_balance = client.sample_balance_by_key(&id.pubkey()).unwrap_or(0);
+/// call the function of metrics_submit_token_balance
     metrics_submit_token_balance(starting_balance);
+/// output the value of the balance through macros
     println!("starting balance {}", starting_balance);
-
+/// if balance < tx_count, then output，then output
     if starting_balance < tx_count {
         
         println!("| Begin to prepare data and send some Transactions:",);
+/// call the function dividing_line()
         dividing_line();
+/// call the function print_animation_arrows()
         print_animation_arrows();
         
 
