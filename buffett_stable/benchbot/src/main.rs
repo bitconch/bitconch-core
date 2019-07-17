@@ -475,7 +475,7 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
             drone_addr,
             id.pubkey(),
         );
-/// send airdrop request to drone_addr with the number of requests being airdrop_amount, 
+/// send airdrop request to drone_addr with the number of requests airdrop_amount, 
 /// if there is error， then will be panic
         if let Err(e) = request_airdrop(&drone_addr, &id.pubkey(), airdrop_amount as u64) {
             panic!(
@@ -485,13 +485,19 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
         }
 
     
+/// get the value of the balance
         let mut current_balance = starting_balance;
+/// 20 cycles
         for _ in 0..20 {
+/// sleep 500 millisenconds
             sleep(Duration::from_millis(500));
+/// obtained the balance by the public key, and if it is obtained, the balance is returned,
+/// and if the balance is not obtained, the output the error message through the macro.
             current_balance = client.sample_balance_by_key(&id.pubkey()).unwrap_or_else(|e| {
                 println!("airdrop error {}", e);
                 starting_balance
             });
+// if the value of starting_balance not equal current_balance，then break the loop
             if starting_balance != current_balance {
                 break;
             }
