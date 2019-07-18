@@ -592,6 +592,7 @@ fn print_status_and_report(
 }
 
 
+/// define a function of should_switch_directions, the type of return value is bool
 fn should_switch_directions(num_tokens_per_account: i64, i: i64) -> bool {
     i % (num_tokens_per_account / 4) == 0 && (i >= (3 * num_tokens_per_account) / 4)
 }
@@ -638,6 +639,7 @@ fn leader_node_selection(){
 
 
 fn main() {
+/// Initialization log
     logger::setup();
     metrics::set_panic_hook("bench-tps");
 
