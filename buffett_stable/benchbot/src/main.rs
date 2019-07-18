@@ -497,7 +497,7 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
                 println!("airdrop error {}", e);
                 starting_balance
             });
-// if the value of starting_balance not equal current_balance，then break the loop
+/// if the value of starting_balance not equal current_balance，then break the loop
             if starting_balance != current_balance {
                 break;
             }
@@ -597,11 +597,14 @@ fn should_switch_directions(num_tokens_per_account: i64, i: i64) -> bool {
     i % (num_tokens_per_account / 4) == 0 && (i >= (3 * num_tokens_per_account) / 4)
 }
 
+/// define a function of print_animation_arrows()
 fn print_animation_arrows(){
     print!("|\n|");
+/// cycle 5 times
     for _ in 0..5 {
         print!(".");
         sleep(Duration::from_millis(300));
+/// refresh standard I/O, if error, then output "some error message"
         std::io::stdout().flush().expect("some error message");
     }
     print!("\n|\n");
@@ -641,16 +644,24 @@ fn leader_node_selection(){
 fn main() {
 /// Initialization log
     logger::setup();
+/// insert data into the "panic" data table 
     metrics::set_panic_hook("bench-tps");
-
+/// create a command line argument named "bitconch-bench-tps" and setting each option
     let matches = App::new("bitconch-bench-tps")
         .version(crate_version!())
         .arg(
+/// creates a new instance of Arg named "network" 
             Arg::with_name("network")
+/// sets the short version of the argument "network"
                 .short("n")
+/// sets the long version of the argument "network"
                 .long("network")
+/// specifies the name for value of option or positional arguments inside of help documentation
                 .value_name("HOST:PORT")
+/// when running the specifies argument is "network"
                 .takes_value(true)
+/// Sets the short help text of the argument， when input -h  
+/// then will output the help information  "Rendezvous with the network at this gossip entry point; defaults to 127.0.0.1:8001"
                 .help("Rendezvous with the network at this gossip entry point; defaults to 127.0.0.1:8001"),
         )
         .arg(
