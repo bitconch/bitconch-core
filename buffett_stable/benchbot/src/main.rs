@@ -734,26 +734,34 @@ fn main() {
         socketaddr!("127.0.0.1:8001")
     };
 
-/// 根据命令行的参数"identity"获取keypair，
 /// get keypair according to the parameter "identity" of the command line,
-/// if failsand then will display the error message
+/// if fails，then will display the error message "can't read client identity"
     let id =
         read_keypair(matches.value_of("identity").unwrap()).expect("can't read client identity");
 
+/// get the value of "threads" 
+/// if fails，then will display the error message "can't parse threads"
     let threads = if let Some(t) = matches.value_of("threads") {
         t.to_string().parse().expect("can't parse threads")
+/// if command line argument's option is not specified, then will return “4usize” to threads
     } else {
         4usize
     };
 
+/// get the value of "num-nodes" 
+/// if fails，then will display the error message "can't parse num-nodes"
     let num_nodes = if let Some(n) = matches.value_of("num-nodes") {
         n.to_string().parse().expect("can't parse num-nodes")
+/// if command line argument's option is not specified, then will return “1usize” to num_nodes
     } else {
         1usize
     };
 
+/// get the value of "duration" ，creates a new Duration
+/// if fails，then will display the error message "can't parse duration"
     let duration = if let Some(s) = matches.value_of("duration") {
         Duration::new(s.to_string().parse().expect("can't parse duration"), 0)
+/// if command line argument's option is not specified, then will return  the largest value to duration
     } else {
         Duration::new(std::u64::MAX, 0)
     };
