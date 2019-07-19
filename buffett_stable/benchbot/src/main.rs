@@ -267,7 +267,7 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
 
 
 /// if the interval between transfer_start time and current time in milliseconds > 1000 * 60 * 3
-/// then print the error message and input 1 to exit process 
+/// then print the error message and exit the process 
         if duration_ms > 1000 * 60 * 3 {
             println!("Error: Couldn't confirm barrier transaction!");
             exit(1);
@@ -518,7 +518,7 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
                 current_balance,
                 starting_balance
             );
-/// input 1 then exit the process
+/// exit the process
             exit(1);
         }
     }
@@ -722,8 +722,7 @@ fn main() {
 /// and the process will exit with the appropriate error code. 
         .get_matches();
 
-/// get the value of "network", if fails then will output the error message , 
-/// enter 1 to exit the program
+/// get the value of "network", if fails then will output the error message , then exit the program
     let network = if let Some(addr) = matches.value_of("network") {
         addr.parse().unwrap_or_else(|e| {
             eprintln!("failed to parse network: {}", e);
@@ -766,14 +765,19 @@ fn main() {
         Duration::new(std::u64::MAX, 0)
     };
 
+/// get the value of "tx_count" 
+/// if fails，then will display the error message "can't parse tx_count"
     let tx_count = if let Some(s) = matches.value_of("tx_count") {
         s.to_string().parse().expect("can't parse tx_count")
+/// else return 500_000 to tx_count
     } else {
         500_000
     };
 
+///  check if the argument "sustained" was present
     let sustained = matches.is_present("sustained");
 
+/// the `ascii_art` module implement fancy ascii arts
     asciiart::welcome();
     dividing_line();
     leader_node_selection();
