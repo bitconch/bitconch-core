@@ -718,17 +718,25 @@ fn main() {
                 .takes_value(true)
                 .help("Number of transactions to send per batch")
         )
+/// starts the parsing process, upon a failed parse an error will be displayed 
+/// and the process will exit with the appropriate error code. 
         .get_matches();
 
+/// get the value of "network", if fails then will output the error message , 
+/// enter 1 to exit the program
     let network = if let Some(addr) = matches.value_of("network") {
         addr.parse().unwrap_or_else(|e| {
             eprintln!("failed to parse network: {}", e);
             exit(1)
         })
+/// if command line argument's option is not specified, then will return "127.0.0.1:8001"
     } else {
         socketaddr!("127.0.0.1:8001")
     };
 
+/// 根据命令行的参数"identity"获取keypair，
+/// get keypair according to the parameter "identity" of the command line,
+/// if failsand then will display the error message
     let id =
         read_keypair(matches.value_of("identity").unwrap()).expect("can't read client identity");
 
