@@ -646,7 +646,8 @@ fn main() {
     logger::setup();
 /// insert data into the "panic" data table 
     metrics::set_panic_hook("bench-tps");
-/// create a command line argument named "bitconch-bench-tps" and setting each option
+/// create a command line  program named "bitconch-bench-tps" 
+/// adds argument to the list of valid possibilities
     let matches = App::new("bitconch-bench-tps")
         .version(crate_version!())
         .arg(
@@ -728,12 +729,12 @@ fn main() {
             eprintln!("failed to parse network: {}", e);
             exit(1)
         })
-/// if command line argument's option is not specified, then will return "127.0.0.1:8001"
+/// if command line program's argument is not specified, then will return "127.0.0.1:8001"
     } else {
         socketaddr!("127.0.0.1:8001")
     };
 
-/// get keypair according to the parameter "identity" of the command line,
+/// get keypair according to the parameter "identity" of the command line program,
 /// if fails，then will display the error message "can't read client identity"
     let id =
         read_keypair(matches.value_of("identity").unwrap()).expect("can't read client identity");
@@ -742,7 +743,7 @@ fn main() {
 /// if fails，then will display the error message "can't parse threads"
     let threads = if let Some(t) = matches.value_of("threads") {
         t.to_string().parse().expect("can't parse threads")
-/// if command line argument's option is not specified, then will return “4usize” to threads
+/// if command line program's argument is not specified, then will return “4usize” to threads
     } else {
         4usize
     };
@@ -751,7 +752,7 @@ fn main() {
 /// if fails，then will display the error message "can't parse num-nodes"
     let num_nodes = if let Some(n) = matches.value_of("num-nodes") {
         n.to_string().parse().expect("can't parse num-nodes")
-/// if command line argument's option is not specified, then will return “1usize” to num_nodes
+/// if command line program's argument is not specified, then will return “1usize” to num_nodes
     } else {
         1usize
     };
@@ -760,7 +761,7 @@ fn main() {
 /// if fails，then will display the error message "can't parse duration"
     let duration = if let Some(s) = matches.value_of("duration") {
         Duration::new(s.to_string().parse().expect("can't parse duration"), 0)
-/// if command line argument's option is not specified, then will return  the largest value to duration
+/// if command line program's argument is not specified, then will return  the largest value to duration
     } else {
         Duration::new(std::u64::MAX, 0)
     };
@@ -809,6 +810,7 @@ fn main() {
 /// search the effective nodes on the network
     let (nodes, leader, ncp) = converge(&leader, &exit_signal, num_nodes);
 
+/// if the length of the node < the number of nodes, then print the error message and exit the program
     if nodes.len() < num_nodes {
         println!(
             "Error: Insufficient nodes discovered.  Expecting {} or more",
@@ -816,6 +818,8 @@ fn main() {
         );
         exit(1);
     }
+/// if command program's argument is "reject-extra-nodes", and the length of the node > the number of nodes
+/// then print the error message and exit the program
     if matches.is_present("reject-extra-nodes") && nodes.len() > num_nodes {
         println!(
             "Error: Extra nodes discovered.  Expecting exactly {}",
@@ -824,11 +828,13 @@ fn main() {
         exit(1);
     }
 
+/// if leader is a None value, then print "no leader", and exit program
     if leader.is_none() {
         println!("no leader");
         exit(1);
     }
 
+/// if command line program's argument "converge-only", then return it
     if matches.is_present("converge-only") {
         return;
     }
