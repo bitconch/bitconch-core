@@ -791,8 +791,11 @@ fn main() {
     print_animation_arrows();
 
 
+/// get leader node information on the network,
+/// if fails，then will display the error message "unable to find leader on network"
     let leader = sample_leader_by_gossip(network, None).expect("unable to find leader on network");
 
+/// define exit signal, default initial value is false
     let exit_signal = Arc::new(AtomicBool::new(false));
     
     dividing_line();
