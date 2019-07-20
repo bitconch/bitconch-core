@@ -806,6 +806,7 @@ fn main() {
     dividing_line();
     sleep(Duration::from_millis(100));
     
+/// search the effective nodes on the network
     let (nodes, leader, ncp) = converge(&leader, &exit_signal, num_nodes);
 
     if nodes.len() < num_nodes {
