@@ -807,7 +807,7 @@ fn main() {
     dividing_line();
     sleep(Duration::from_millis(100));
     
-/// search the effective nodes on the network
+/// call the function of converge, search the effective nodes on the network
     let (nodes, leader, ncp) = converge(&leader, &exit_signal, num_nodes);
 
 /// if the length of the node < the number of nodes, then print the error message and exit the program
@@ -897,8 +897,10 @@ fn main() {
 
     // Sample the first keypair, see if it has tokens, if so then resume
     // to avoid token loss
+/// get the balance through the first pubkey () of keypairs, , if not then return 0
     let keypair0_balance = client.sample_balance_by_key(&keypairs[0].pubkey()).unwrap_or(0);
 
+/// if num_tokens_per_account > keypair0_balance, then call the function of airdrop_tokens()
     if num_tokens_per_account > keypair0_balance {
         airdrop_tokens(
             &mut client,
@@ -907,16 +909,20 @@ fn main() {
             (num_tokens_per_account - keypair0_balance) * tx_count,
         );
     }
+/// call the function of airdrop_tokens()
     airdrop_tokens(&mut barrier_client, &leader, &barrier_id, 1);
 
     
+/// get leader's last id 
     let mut last_id = client.get_last_id();
     
 
+/// get leader's transactions count
     let first_tx_count = client.transaction_count();
     println!("Initial transaction count {}", first_tx_count);
 
     
+/// new a contiguous growable array
     let maxes = Arc::new(RwLock::new(Vec::new()));
     let sample_period = 1; 
     println!("Sampling TPS every {} second...", sample_period);
