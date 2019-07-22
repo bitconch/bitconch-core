@@ -859,9 +859,12 @@ fn main() {
     let mut client = new_client(&leader);
     let mut barrier_client = new_client(&leader);
 
-/// 
+/// declare a mutable variable array seed of type U8 with 32 elements
+///  and initial values is 0
     let mut seed = [0u8; 32];
+/// copy the little-endian-encoded public key bytes of the id into  seed
     seed.copy_from_slice(&id.public_key_bytes()[..32]);
+/// new a GenKeys with the parameter seed
     let mut rnd = GenKeys::new(seed);
 
     //mvp
