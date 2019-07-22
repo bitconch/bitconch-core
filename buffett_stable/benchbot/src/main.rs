@@ -855,9 +855,11 @@ fn main() {
     //*
     //println!("leader is at {} {}", leader.contact_info.rpu, leader.id);
     
+/// refer the leader node information to create different new client
     let mut client = new_client(&leader);
     let mut barrier_client = new_client(&leader);
 
+/// 
     let mut seed = [0u8; 32];
     seed.copy_from_slice(&id.public_key_bytes()[..32]);
     let mut rnd = GenKeys::new(seed);
