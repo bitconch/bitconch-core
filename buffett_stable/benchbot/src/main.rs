@@ -880,7 +880,9 @@ fn main() {
     );
     //*
 
+/// generate keypairs of type Vec based on the value of tx_count / 2
     let keypairs = rnd.gen_n_keypairs(tx_count / 2);
+/// generate the keypair array with 1 as the parameter and pop the element to barrier_id
     let barrier_id = rnd.gen_n_keypairs(1).pop().unwrap();
 
     //mvp001
