@@ -922,15 +922,19 @@ fn main() {
     println!("Initial transaction count {}", first_tx_count);
 
     
-/// new a contiguous growable array
+/// creat a new array
     let maxes = Arc::new(RwLock::new(Vec::new()));
     let sample_period = 1; 
     println!("Sampling TPS every {} second...", sample_period);
+/// use multithread to execute the sample_tx_count function
     let v_threads: Vec<_> = nodes
         .into_iter()
         .map(|v| {
+/// exit_signal get a copy, leaving the original value in place
             let exit_signal = exit_signal.clone();
             let maxes = maxes.clone();
+/// create a thread named "bitconch-client-sample", 
+/// call the sample_tx_count function, and convert the result to Vec type
             Builder::new()
                 .name("bitconch-client-sample".to_string())
                 .spawn(move || {
