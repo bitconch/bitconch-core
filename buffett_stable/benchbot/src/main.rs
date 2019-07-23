@@ -723,7 +723,7 @@ fn main() {
 /// and the process will exit with the appropriate error code. 
         .get_matches();
 
-/// get the value of "network", if fails then will output the error message , then exit the program
+/// get the value of "network", if fails then will output the error message, then exit the program
     let network = if let Some(addr) = matches.value_of("network") {
         addr.parse().unwrap_or_else(|e| {
             eprintln!("failed to parse network: {}", e);
@@ -897,7 +897,7 @@ fn main() {
 
     // Sample the first keypair, see if it has tokens, if so then resume
     // to avoid token loss
-/// get the balance through the first pubkey () of keypairs, , if not then return 0
+/// get the balance through the first pubkey () of keypairs, if not then return 0
     let keypair0_balance = client.sample_balance_by_key(&keypairs[0].pubkey()).unwrap_or(0);
 
 /// if num_tokens_per_account > keypair0_balance, then call the function of airdrop_tokens()
@@ -942,19 +942,24 @@ fn main() {
                 }).unwrap()
         }).collect();
 
+/// creates an empty VecDeque.
     let shared_txs: Arc<RwLock<VecDeque<Vec<Transaction>>>> =
         Arc::new(RwLock::new(VecDeque::new()));
 
     let shared_tx_active_thread_count = Arc::new(AtomicIsize::new(0));
     let total_tx_sent_count = Arc::new(AtomicUsize::new(0));
 
+/// use multithread to execute the function of sample_tx_count
     let s_threads: Vec<_> = (0..threads)
         .map(|_| {
+/// get a copy, leaving the original value in place
             let exit_signal = exit_signal.clone();
             let shared_txs = shared_txs.clone();
             let leader = leader.clone();
             let shared_tx_active_thread_count = shared_tx_active_thread_count.clone();
             let total_tx_sent_count = total_tx_sent_count.clone();
+/// create a thread named "bitconch-client-sender", 
+/// call the sample_tx_count function, and convert the result to Vec type 
             Builder::new()
                 .name("bitconch-client-sender".to_string())
                 .spawn(move || {
@@ -969,11 +974,16 @@ fn main() {
         }).collect();
 
     
+/// get the current time
     let start = Instant::now();
     let mut reclaim_tokens_back_to_source_account = false;
+/// get balance through the first pubkey () of keypairs
     let mut i = keypair0_balance;
+/// while the amount of time elapsed since “now” was created < command line  program's value duration
     while start.elapsed() < duration {
+/// then obtained the balance by the public key, if it's faile then ruturn -1
         let balance = client.sample_balance_by_key(&id.pubkey()).unwrap_or(-1);
+/// call the function of metrics_submit_token_balance()
         metrics_submit_token_balance(balance);
         generate_txs(
             &shared_txs,
