@@ -934,7 +934,7 @@ fn main() {
             let exit_signal = exit_signal.clone();
             let maxes = maxes.clone();
 /// create a thread named "bitconch-client-sample", 
-/// call the sample_tx_count function, and convert the result to Vec type
+/// call the sample_tx_count function, transfer the results to Vec 
             Builder::new()
                 .name("bitconch-client-sample".to_string())
                 .spawn(move || {
@@ -959,7 +959,7 @@ fn main() {
             let shared_tx_active_thread_count = shared_tx_active_thread_count.clone();
             let total_tx_sent_count = total_tx_sent_count.clone();
 /// create a thread named "bitconch-client-sender", 
-/// call the sample_tx_count function, and convert the result to Vec type 
+/// call the sample_tx_count function, and transfer the results to Vec 
             Builder::new()
                 .name("bitconch-client-sender".to_string())
                 .spawn(move || {
@@ -1018,7 +1018,9 @@ fn main() {
     dividing_line(); //mvp001
     println!("| Kill all the remaining threads.");
     print_animation_arrows();
+/// loop v_threads array
     for t in v_threads {
+/// if the v_threads thread goes wrong, then output the error information through macros
         if let Err(err) = t.join() {
             println!("  join() failed with: {:?}", err);
         }
@@ -1026,7 +1028,9 @@ fn main() {
 
     // join the tx send threads
     //println!("Waiting for transmit threads...");
+/// loop s_threads array
     for t in s_threads {
+// if the s_threads thread goes wrong, then output the error information through macros
         if let Err(err) = t.join() {
             println!("  join() failed with: {:?}", err);
         }
