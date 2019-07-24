@@ -976,6 +976,7 @@ fn main() {
     
 /// get the current time
     let start = Instant::now();
+/// define mutable variable reclaim_tokens_back_to_source_account with an initial value of false
     let mut reclaim_tokens_back_to_source_account = false;
 /// get balance through the first pubkey () of keypairs
     let mut i = keypair0_balance;
@@ -1011,6 +1012,7 @@ fn main() {
         }
     }
 
+/// uses true to replace the value of false
     exit_signal.store(true, Ordering::Relaxed);
 
     dividing_line(); //mvp001
