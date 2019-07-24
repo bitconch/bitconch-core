@@ -775,7 +775,7 @@ fn main() {
         500_000
     };
 
-///  check if the argument "sustained" was present
+/// check if the argument "sustained" was present
     let sustained = matches.is_present("sustained");
 
 /// the `ascii_art` module implement fancy ascii arts
@@ -985,6 +985,7 @@ fn main() {
         let balance = client.sample_balance_by_key(&id.pubkey()).unwrap_or(-1);
 /// call the function of metrics_submit_token_balance()
         metrics_submit_token_balance(balance);
+/// call the function of generate_txs()
         generate_txs(
             &shared_txs,
             &id,
@@ -993,11 +994,15 @@ fn main() {
             threads,
             reclaim_tokens_back_to_source_account,
         );
+///  if the argument "sustained" not-exist
         if !sustained {
+/// while shared_tx_active_thread_count > 0 is ture
             while shared_tx_active_thread_count.load(Ordering::Relaxed) > 0 {
+/// sleep 100 milliseconds
                 sleep(Duration::from_millis(100));
             }
         }
+/// call the function of send_barrier_transaction()
         send_barrier_transaction(&mut barrier_client, &mut last_id, &barrier_id);
 
         i += 1;
