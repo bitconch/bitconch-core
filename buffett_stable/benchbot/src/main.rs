@@ -1036,9 +1036,11 @@ fn main() {
         }
     }
 
+/// obtained the balance by the public key, if it's faile then ruturn -1
     let balance = client.sample_balance_by_key(&id.pubkey()).unwrap_or(-1);
     metrics_submit_token_balance(balance);
 
+/// call the function
     print_status_and_report(
         &maxes,
         sample_period,
@@ -1047,9 +1049,11 @@ fn main() {
     );
 
     // join the crdt client threads
+/// 运行 ncp 里的线程
     ncp.join().unwrap();
 }
 
+/// define the function of converge(), whose return values type are Vec<NodeInfo>, Option<NodeInfo>, Ncp
 fn converge(
     leader: &NodeInfo,
     exit_signal: &Arc<AtomicBool>,
