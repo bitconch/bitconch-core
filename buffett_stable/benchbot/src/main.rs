@@ -1060,9 +1060,13 @@ fn converge(
     num_nodes: usize,
 ) -> (Vec<NodeInfo>, Option<NodeInfo>, Ncp) {
     //lets spy on the network
+/// creat node, gossip_socket
     let (node, gossip_socket) = Crdt::spy_node();
+/// create Crdt with a parameter of node, if goes wrong then will output "Crdt:: new" 
     let mut spy_crdt = Crdt::new(node).expect("Crdt::new");
+/// insert leader's NodeInfo into spy_crdt
     spy_crdt.insert(&leader);
+/// Set NodeInfo's id to leader's id
     spy_crdt.set_leader(leader.id);
     let spy_ref = Arc::new(RwLock::new(spy_crdt));
     let window = Arc::new(RwLock::new(default_window()));
