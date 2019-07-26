@@ -1080,13 +1080,18 @@ fn converge(
 /// initialize array
     let mut v: Vec<NodeInfo> = vec![];
     // wait for the network to converge, 30 seconds should be plenty
+/// loop 30 times
     for _ in 0..30 {
         {
+/// read the data of spy_ref's spy_crdt node 
             let spy_ref = spy_ref.read().unwrap();
 
+/// output the node's information through macros
             println!("{}", spy_ref.node_info_trace());
 
+/// if the node has values
             if spy_ref.leader_data().is_some() {
+/// get valid communication address and converting it into a collection
                 v = spy_ref
                     .table
                     .values()
@@ -1108,6 +1113,7 @@ fn converge(
         }
         sleep(Duration::new(1, 0));
     }
+/// clone the data of the leader node
     let leader = spy_ref.read().unwrap().leader_data().cloned();
     (v, leader, ncp)
 }
