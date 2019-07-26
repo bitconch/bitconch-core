@@ -1020,6 +1020,7 @@ fn main() {
     print_animation_arrows();
 /// loop v_threads array
     for t in v_threads {
+/// Waits for the v_threads associated thread to finish running, 
 /// if the v_threads thread goes wrong, then output the error information through macros
         if let Err(err) = t.join() {
             println!("  join() failed with: {:?}", err);
@@ -1030,7 +1031,8 @@ fn main() {
     //println!("Waiting for transmit threads...");
 /// loop s_threads array
     for t in s_threads {
-// if the s_threads thread goes wrong, then output the error information through macros
+/// Waits for the s_threads associated thread to finish running, 
+/// if the s_threads thread goes wrong, then output the error information through macros
         if let Err(err) = t.join() {
             println!("  join() failed with: {:?}", err);
         }
@@ -1049,7 +1051,7 @@ fn main() {
     );
 
     // join the crdt client threads
-/// 运行 ncp 里的线程
+/// running threads in ncp, waits for the associated thread to finish.
     ncp.join().unwrap();
 }
 
@@ -1068,7 +1070,9 @@ fn converge(
     spy_crdt.insert(&leader);
 /// Set NodeInfo's id to leader's id
     spy_crdt.set_leader(leader.id);
+/// creates an empty VecDeque.
     let spy_ref = Arc::new(RwLock::new(spy_crdt));
+/// 
     let window = Arc::new(RwLock::new(default_window()));
     let ncp = Ncp::new(&spy_ref, window, None, gossip_socket, exit_signal.clone());
     let mut v: Vec<NodeInfo> = vec![];
