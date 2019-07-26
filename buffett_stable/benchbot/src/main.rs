@@ -1070,11 +1070,14 @@ fn converge(
     spy_crdt.insert(&leader);
 /// Set NodeInfo's id to leader's id
     spy_crdt.set_leader(leader.id);
-/// creates an empty VecDeque.
+/// create Arc with the argument of spy_crdt
+/// locks this rwlock with shared read access, blocking the current thread until it can be acquired.
     let spy_ref = Arc::new(RwLock::new(spy_crdt));
-/// 
+/// constructs a new Arc with the argument of default_window()
     let window = Arc::new(RwLock::new(default_window()));
+/// create Ncp with the argument of &spy_ref, window, None, gossip_socket, exit_signal.clone()
     let ncp = Ncp::new(&spy_ref, window, None, gossip_socket, exit_signal.clone());
+/// initialize array
     let mut v: Vec<NodeInfo> = vec![];
     // wait for the network to converge, 30 seconds should be plenty
     for _ in 0..30 {
