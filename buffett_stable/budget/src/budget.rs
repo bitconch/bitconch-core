@@ -9,6 +9,7 @@ use std::mem;
 
 #[repr(C)]
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
+/// define a public enueration of Budget,its filed are Pay, After, Or, And
 pub enum Budget {
     
     Pay(Payment),
@@ -23,17 +24,23 @@ pub enum Budget {
     And(Condition, Condition, Payment),
 }
 
+/// implement Budget
 impl Budget {
     
     
+/// define a public final_payment method on the  Budget struct
+/// with the parameter Budget itself and the type of return value is Option<Payment>
     pub fn final_payment(&self) -> Option<Payment> {
+/// match with Budget
         match self {
+/// if 
             Budget::Pay(payment) => Some(payment.clone()),
             _ => None,
         }
     }
 
     
+/// 
     pub fn verify(&self, spendable_balance: i64) -> bool {
         match self {
             Budget::Pay(payment) | Budget::After(_, payment) | Budget::And(_, _, payment) => {
