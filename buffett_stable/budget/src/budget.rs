@@ -28,19 +28,21 @@ pub enum Budget {
 impl Budget {
     
     
-/// define a public final_payment method on the  Budget struct
-/// with the parameter Budget itself and the type of return value is Option<Payment>
+/// define a public final_payment method on the Budget struct
+/// with the parameter Budget's filed and the type of return value is Option<Payment>
     pub fn final_payment(&self) -> Option<Payment> {
 /// match with Budget
         match self {
-/// if 
+/// if Budget filed is Pay's payment, execute the branch and clone payment return it 
             Budget::Pay(payment) => Some(payment.clone()),
+/// else return None
             _ => None,
         }
     }
 
     
-/// 
+/// define a public verify method on the Budget struct
+/// with the parameter of Budget's filed and spendable_balance, the type of return value is bool
     pub fn verify(&self, spendable_balance: i64) -> bool {
         match self {
             Budget::Pay(payment) | Budget::After(_, payment) | Budget::And(_, _, payment) => {
