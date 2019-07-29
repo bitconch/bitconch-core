@@ -44,7 +44,10 @@ impl Budget {
 /// define a public verify method on the Budget struct
 /// with the parameter of Budget's filed and spendable_balance, the type of return value is bool
     pub fn verify(&self, spendable_balance: i64) -> bool {
+/// match with Budget
         match self {
+/// if Budget filed is Pay's payment, or After'payment, or And'payment
+/// execute the branch and return ture or false
             Budget::Pay(payment) | Budget::After(_, payment) | Budget::And(_, _, payment) => {
                 payment.balance == spendable_balance
             }
