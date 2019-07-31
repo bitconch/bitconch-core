@@ -8,6 +8,7 @@ use std::path::Path;
 const CHACHA_IVEC_SIZE: usize = 64;
 
 #[link(name = "cpu-crypt")]
+/// set up an integration with the chacha20_cbc_encrypt function from the C standard library
 extern "C" {
     fn chacha20_cbc_encrypt(
         input: *const u8,
@@ -18,7 +19,9 @@ extern "C" {
     );
 }
 
+/// the chachacha_encrypt_str function encapsulates a unsafe block
 pub fn chacha_encrypt_str(input: &[u8], output: &mut [u8], key: &[u8], ivec: &mut [u8]) {
+/// call the chacha20_cbc_encrypt function within a separate unsafe block
     unsafe {
         chacha20_cbc_encrypt(
             input.as_ptr(),
