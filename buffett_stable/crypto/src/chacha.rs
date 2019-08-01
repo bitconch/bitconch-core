@@ -44,8 +44,11 @@ pub fn chacha_encrypt_files(in_path: &Path, out_path: &Path, key: String) -> io:
 /// panics if path does not already exist, with a panic message "Can't open ledger encrypted data file"
     let mut out_file =
         BufWriter::new(File::create(out_path).expect("Can't open ledger encrypted data file"));
+/// the mutable array named buffer contain 4 * 1024 elements and all be set to the value 0 initially
     let mut buffer = [0; 4 * 1024];
+/// the mutable array named encrypted_buffer contain 4 * 1024 elements and all be set to the value 0 initially
     let mut encrypted_buffer = [0; 4 * 1024];
+/// the mutable array named ivec contain 64 elements and all be set to the value 0 initially
     let mut ivec = [0; CHACHA_IVEC_SIZE];
 
     while let Ok(size) = in_file.read(&mut buffer) {
