@@ -33,10 +33,11 @@ pub fn chacha_encrypt_str(input: &[u8], output: &mut [u8], key: &[u8], ivec: &mu
     }
 }
 
+/// define the function of chachacha_encrypt_files, an the type of return value is Result<()>
 pub fn chacha_encrypt_files(in_path: &Path, out_path: &Path, key: String) -> io::Result<()> {
 /// creates a new BufReader with a default buffer capacity and instantiation it 
 /// with the parameter of in_path open a file in read-only mode 
-/// panics if path does not already exist, with a panic message "Can't open ledger data file"
+/// panics if path does not already exist, with a panic message "Can't open ledger data file"  
     let mut in_file = BufReader::new(File::open(in_path).expect("Can't open ledger data file"));
 /// creates a new BufWriter with a default buffer capacity and instantiation it 
 /// with the parameter of in_path open a file in read-only mode 
@@ -51,11 +52,15 @@ pub fn chacha_encrypt_files(in_path: &Path, out_path: &Path, key: String) -> io:
 /// the mutable array named ivec contain 64 elements and all be set to the value 0 initially
     let mut ivec = [0; CHACHA_IVEC_SIZE];
 
+/// if referenced mut buffer parameter to read the file successfully
     while let Ok(size) = in_file.read(&mut buffer) {
+/// then output of file bytes through macros
         println!("read {} bytes", size);
+/// if size == 0, then break
         if size == 0 {
             break;
         }
+/// call the function of chacha_encrypt_str
         chacha_encrypt_str(
             &buffer[..size],
             &mut encrypted_buffer[..size],
