@@ -35,9 +35,13 @@ pub fn chacha_encrypt_str(input: &[u8], output: &mut [u8], key: &[u8], ivec: &mu
 
 pub fn chacha_encrypt_files(in_path: &Path, out_path: &Path, key: String) -> io::Result<()> {
 /// creates a new BufReader with a default buffer capacity and instantiation it 
-/// open a file in read-only mode with a slice of a path
+/// with the parameter of in_path open a file in read-only mode 
 /// panics if path does not already exist, with a panic message "Can't open ledger data file"
     let mut in_file = BufReader::new(File::open(in_path).expect("Can't open ledger data file"));
+/// creates a new BufWriter with a default buffer capacity and instantiation it 
+/// with the parameter of in_path open a file in read-only mode 
+/// if file does not exist then will will create a file, and will truncate it if it does
+/// panics if path does not already exist, with a panic message "Can't open ledger encrypted data file"
     let mut out_file =
         BufWriter::new(File::create(out_path).expect("Can't open ledger encrypted data file"));
     let mut buffer = [0; 4 * 1024];
