@@ -7,14 +7,18 @@ use sha2::{Digest, Sha256};
 use std::fmt;
 
 #[derive(Serialize, Deserialize, Clone, Copy, Default, Eq, PartialEq, Ord, PartialOrd, Hash)]
+/// define the public Hash tuple structure
 pub struct Hash(GenericArray<u8, U32>);
 
 #[derive(Clone, Default)]
+/// definition public structure Hasher
 pub struct Hasher {
     hasher: Sha256,
 }
 
+/// implementing hash, hashv and result methods on Hasher structure
 impl Hasher {
+    /// defines the hash function and the type of return value is tuple
     pub fn hash(&mut self, val: &[u8]) -> () {
         self.hasher.input(val);
     }
