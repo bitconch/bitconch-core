@@ -20,10 +20,14 @@ pub struct Hasher {
 impl Hasher {
     /// defines the hash function and the type of return value is tuple
     pub fn hash(&mut self, val: &[u8]) -> () {
+        /// create a Sha256 object with then parameter val and write input message
         self.hasher.input(val);
     }
+    /// defines the hashv function and the type of return value is tuple
     pub fn hashv(&mut self, vals: &[&[u8]]) -> () {
+        /// looping vals array
         for val in vals {
+            /// call the function of hash
             self.hash(val);
         }
     }
