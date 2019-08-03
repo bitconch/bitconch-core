@@ -41,8 +41,12 @@ impl Hasher {
     }
 }
 
+/// define as_ref function to implementing AsRef trait on Hash structure,
+/// and will return a reference to the GenericArray‘s first element of type [u8]
 impl AsRef<[u8]> for Hash {
+
     fn as_ref(&self) -> &[u8] {
+        /// 
         &self.0[..]
     }
 }
