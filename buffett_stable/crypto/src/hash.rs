@@ -20,7 +20,7 @@ pub struct Hasher {
 impl Hasher {
     /// defines the hash function and the type of return value is tuple
     pub fn hash(&mut self, val: &[u8]) -> () {
-        /// create a Sha256 object with then parameter val and write input message
+        /// digest input data of val
         self.hasher.input(val);
     }
     /// defines the hashv function and the type of return value is tuple
@@ -69,22 +69,28 @@ impl fmt::Display for Hash {
     }
 }
 
-/// defining an new method on the Hash struct
+/// defining an new method on the Hash structure
 /// construct a GenericArray from a slice by cloning its content by reference parameter hash_slice
-/// and return a Hash struct
+/// and return a Hash structure
 impl Hash {
     pub fn new(hash_slice: &[u8]) -> Self {
         Hash(GenericArray::clone_from_slice(&hash_slice))
     }
 }
 
+/// define a publick function of hashv, and the type of its return value is Hash structure
 pub fn hashv(vals: &[&[u8]]) -> Hash {
+    /// returns Hasher's default value
     let mut hasher = Hasher::default();
+    /// digest input data of vals
     hasher.hashv(vals);
+    /// read hash digest and consume hasher
     hasher.result()
 }
 
 
+/// define the function of hash,
+/// call the function og hashv and return value is Hash 
 pub fn hash(val: &[u8]) -> Hash {
     hashv(&[val])
 }
