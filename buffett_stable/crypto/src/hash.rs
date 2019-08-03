@@ -59,12 +59,19 @@ impl fmt::Debug for Hash {
     }
 }
 
+/// define fmt function to implementing fmt::Display trait on Hash structure,
+/// encoding GenericArray‘s first element into Base58 encoded strings,
+/// and write strictly into the supplied output stream 'f'
+/// returns 'fmt::Result' which indicates whether the operation succeeded or failed.
 impl fmt::Display for Hash {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", bs58::encode(self.0).into_string())
     }
 }
 
+/// defining an new method on the Hash struct
+/// construct a GenericArray from a slice by cloning its content by reference parameter hash_slice
+/// and return a Hash struct
 impl Hash {
     pub fn new(hash_slice: &[u8]) -> Self {
         Hash(GenericArray::clone_from_slice(&hash_slice))
