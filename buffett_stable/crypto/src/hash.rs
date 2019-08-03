@@ -31,8 +31,11 @@ impl Hasher {
             self.hash(val);
         }
     }
+    /// defines the hashv function and the type of return value is Hash structure
     pub fn result(self) -> Hash {
+        /// construct a GenericArray from a slice by cloning its content
         Hash(GenericArray::clone_from_slice(
+            /// read hash digest and consume hasher, and extracts a slice containing the entire array
             self.hasher.result().as_slice(),
         ))
     }
