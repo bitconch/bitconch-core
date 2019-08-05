@@ -40,12 +40,18 @@ impl Signature {
     }
 }
 
+/// define as_ref function to implementing AsRef<[u8]> trait on Signature structure,
+/// and will return a reference to the GenericArray‘s first element of type [u8]
 impl AsRef<[u8]> for Signature {
     fn as_ref(&self) -> &[u8] {
         &self.0[..]
     }
 }
 
+/// define fmt function to implementing fmt::Debug trait on Signature structure,
+/// encoding  GenericArray‘s first element into Base58 encoded strings,
+/// and write strictly into the supplied output stream 'f'
+/// returns 'fmt::Result' which indicates whether the operation succeeded or failed.
 impl fmt::Debug for Signature {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", bs58::encode(self.0).into_string())
