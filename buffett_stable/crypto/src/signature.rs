@@ -29,7 +29,9 @@ impl Signature {
     }
     /// define verify function, and the type of return value is bool
     pub fn verify(&self, pubkey_bytes: &[u8], message_bytes: &[u8]) -> bool {
+        /// construct a new Input for the input bytes of pubkey_bytes
         let pubkey = Input::from(pubkey_bytes);
+        /// construct a new Input for the input bytes of message_bytes
         let message = Input::from(message_bytes);
         let signature = Input::from(self.0.as_slice());
         ring::signature::verify(&ring::signature::ED25519, pubkey, message, signature).is_ok()
