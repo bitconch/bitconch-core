@@ -33,7 +33,9 @@ impl Signature {
         let pubkey = Input::from(pubkey_bytes);
         /// construct a new Input for the input bytes of message_bytes
         let message = Input::from(message_bytes);
+        /// construct a new Input for input bytes the slice of the first element of the GenericArray
         let signature = Input::from(self.0.as_slice());
+        /// verify the signature， and return ture
         ring::signature::verify(&ring::signature::ED25519, pubkey, message, signature).is_ok()
     }
 }
