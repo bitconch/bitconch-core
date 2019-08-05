@@ -15,10 +15,15 @@ use untrusted::Input;
 pub type Keypair = Ed25519KeyPair;
 
 #[derive(Serialize, Deserialize, Clone, Copy, Default, Eq, PartialEq, Ord, PartialOrd, Hash)]
+/// define the public Signature tuple structure
 pub struct Signature(GenericArray<u8, U64>);
 
+/// implementing new and verify methods on Signature structure
 impl Signature {
+    /// define new function, and return value is Signature structure
     pub fn new(signature_slice: &[u8]) -> Self {
+        /// return instantiated Signature structure by cloning the content 
+        /// of reference signature_slice to construct a GenericArray 
         Signature(GenericArray::clone_from_slice(&signature_slice))
     }
     pub fn verify(&self, pubkey_bytes: &[u8], message_bytes: &[u8]) -> bool {
