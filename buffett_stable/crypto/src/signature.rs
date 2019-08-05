@@ -12,6 +12,7 @@ use std::fmt;
 use std::fs::File;
 use untrusted::Input;
 
+/// "Keypair" is a new name for "Ed25519KeyPair"
 pub type Keypair = Ed25519KeyPair;
 
 #[derive(Serialize, Deserialize, Clone, Copy, Default, Eq, PartialEq, Ord, PartialOrd, Hash)]
@@ -26,6 +27,7 @@ impl Signature {
         /// of reference signature_slice to construct a GenericArray 
         Signature(GenericArray::clone_from_slice(&signature_slice))
     }
+    /// define verify function, and the type of return value is bool
     pub fn verify(&self, pubkey_bytes: &[u8], message_bytes: &[u8]) -> bool {
         let pubkey = Input::from(pubkey_bytes);
         let message = Input::from(message_bytes);
