@@ -58,17 +58,23 @@ impl fmt::Debug for Signature {
     }
 }
 
+/// define fmt function to implementing fmt::Display trait on Signature structure,
+/// encoding  GenericArray‘s first element into Base58 encoded strings,
+/// and write strictly into the supplied output stream 'f'
+/// returns 'fmt::Result' which indicates whether the operation succeeded or failed.
 impl fmt::Display for Signature {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", bs58::encode(self.0).into_string())
     }
 }
 
+/// KeypairUtil trait that consists of the behavior provided by new and pubkey method
 pub trait KeypairUtil {
     fn new() -> Self;
     fn pubkey(&self) -> Pubkey;
 }
 
+///  Implementing the KeypairUtil trait on the Ed25519KeyPair types
 impl KeypairUtil for Ed25519KeyPair {
     fn new() -> Self {
         let rng = ring::rand::SystemRandom::new();
