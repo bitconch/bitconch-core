@@ -74,15 +74,22 @@ pub trait KeypairUtil {
     fn pubkey(&self) -> Pubkey;
 }
 
-///  Implementing the KeypairUtil trait on the Ed25519KeyPair types
+/// implementing the KeypairUtil trait on the Ed25519KeyPair types
 impl KeypairUtil for Ed25519KeyPair {
+    /// define a function new, and the type of return value is Ed25519KeyPair
     fn new() -> Self {
+        /// constructs a new SystemRandom
         let rng = ring::rand::SystemRandom::new();
+        /// reference to SystemRandom to generate a new key pair and return the key pair serialized as a PKCS#8 document
+        /// if there is an error, call panic! and output the error message "generate_pkcs8"
         let pkcs8_bytes = Ed25519KeyPair::generate_pkcs8(&rng).expect("generate_pkcs8");
+        /// return an Ed25519 key pair by parsing an reference unencrypted PKCS#8 v2 Ed25519 private key
         Ed25519KeyPair::from_pkcs8(Input::from(&pkcs8_bytes)).expect("from_pcks8")
     }
 
+    /// define a function pubkey, and returns a Pubkey instance
     fn pubkey(&self) -> Pubkey {
+        ///
         Pubkey::new(self.public_key_bytes())
     }
 }
