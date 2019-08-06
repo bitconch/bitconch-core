@@ -136,15 +136,23 @@ impl GenKeys {
     }
 }
 
+/// define a public function of read_pkcs8, the tpye of return value is Result<T, E>
 pub fn read_pkcs8(path: &str) -> Result<Vec<u8>, Box<error::Error>> {
+    /// open the file in read-only mode in path
     let file = File::open(path.to_string())?;
+    /// deserialize an instance of type Vec<u8> from an IO stream of JSON with file as Parameter
     let pkcs8: Vec<u8> = serde_json::from_reader(file)?;
+    /// return the pkcs8 Vec<u8>
     Ok(pkcs8)
 }
 
+/// define a public function of read_keypair, the tpye of return value is Result<T, E>
 pub fn read_keypair(path: &str) -> Result<Keypair, Box<error::Error>> {
+    /// call the read_pkcs8 function with path as parameter to generate pkcs8 vector
     let pkcs8 = read_pkcs8(path)?;
+    /// constructs Ed25519 keypair by parsing an reference unencrypted PKCS#8 v2 Ed25519 private key
     let keypair = Ed25519KeyPair::from_pkcs8(Input::from(&pkcs8))?;
+    /// return the keypair
     Ok(keypair)
 }
 
