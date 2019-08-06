@@ -118,11 +118,17 @@ impl GenKeys {
         seed
     }
 
+    /// define gen_n_seeds function, and return a vector with the type of [u8; 32]
     fn gen_n_seeds(&mut self, n: i64) -> Vec<[u8; 32]> {
+        /// generate fixed type arrays with parameter 0..n, 
+        /// collect the results of iterating over the iterator that’s returned from the call to map into a vector
         (0..n).map(|_| self.gen_seed()).collect()
     }
 
+    /// define gen_n_seeds function, and return a vector with the type of Keypair
     pub fn gen_n_keypairs(&mut self, n: i64) -> Vec<Keypair> {
+        /// constructs a Ed25519 key pair from the private key seed, 
+        /// convert it into vector, and return
         self.gen_n_seeds(n)
             .into_par_iter()
             .map(|seed| Keypair::from_seed_unchecked(Input::from(&seed)).unwrap())
