@@ -94,19 +94,27 @@ impl KeypairUtil for Ed25519KeyPair {
     }
 }
 
+/// define the public GenKeys structure
 pub struct GenKeys {
     generator: ChaChaRng,
 }
 
+/// implementing new, gen_seed, gen_n_seeds and gen_n_keypairs methods on GenKeys structure
 impl GenKeys {
+    /// define new function , and returns a GenKeys instance
     pub fn new(seed: [u8; 32]) -> GenKeys {
+        /// using seed to generating Random Numbers, to returns a GenKeys instance
         let generator = ChaChaRng::from_seed(seed);
         GenKeys { generator }
     }
 
+    /// define gen_seed function, and the type of return value is a fixed-size array
     fn gen_seed(&mut self) -> [u8; 32] {
+        /// all elements initialized to the same value 0
         let mut seed = [0u8; 32];
+        /// reference to random seed bytes to fill dest
         self.generator.fill(&mut seed);
+        /// return the array of seed
         seed
     }
 
