@@ -25,8 +25,11 @@ use std::process::exit;
 use std::thread::sleep;
 use std::time::Duration;
 
+/// declares a main function
 fn main() -> () {
+    /// setting up logs
     logger::setup();
+    /// if fullnode program appears panic, then record panic information into influxdb database
     set_panic_hook("fullnode");
     let matches = App::new("fullnode")
         .version(crate_version!())
