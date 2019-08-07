@@ -35,6 +35,8 @@ fn main() -> () {
     /// automatically set the version of the "fullnode" application
     /// to the same thing as the crate at compile time througth crate_version! macro
     /// and add arguments to the list of valid possibilities
+    /// starts the parsing process, upon a failed parse an error will be displayed to the user 
+    /// and the process will exit with the appropriate error code. 
     let matches = App::new("fullnode")
         .version(crate_version!())
         .arg(
