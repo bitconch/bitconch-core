@@ -29,8 +29,12 @@ use std::time::Duration;
 fn main() -> () {
     /// setting up logs
     logger::setup();
-    /// if fullnode program appears panic, then record panic information into influxdb database
+    /// if there is panic in "fullnode" program, then will record the panic information into influxdb database
     set_panic_hook("fullnode");
+    /// creates a new instance of an application named "fullnode"
+    /// automatically set the version of the "fullnode" application
+    /// to the same thing as the crate at compile time througth crate_version! macro
+    /// and add arguments to the list of valid possibilities
     let matches = App::new("fullnode")
         .version(crate_version!())
         .arg(
