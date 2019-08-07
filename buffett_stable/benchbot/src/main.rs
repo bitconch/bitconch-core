@@ -50,7 +50,7 @@ fn dividing_line() {
 //*
 
 /// define a public structure named NodeStates with parameters tps and tx, 
-/// and the parameter types both are u64  and public
+/// and the parameter types both are u64 and public
 pub struct NodeStats {
     pub tps: f64, 
     pub tx: u64,  
@@ -59,9 +59,9 @@ pub struct NodeStats {
 /// define a function named metrics_submit_token_balance whose parameter is token_balance
 fn metrics_submit_token_balance(token_balance: i64) {
 
-/// use the submit method of the metrics crate  and add a new data to "bench-tps" data table of influxdb,
-/// add a tag named "op" with the value of String “token_balance”,
-/// and a field named "balance" whose value is token_balance of type i64
+    /// use the submit method of the metrics crate and new a Point named "bench-tps" of influxdb,
+    /// add a tag named "op" with the value of string “token_balance”,
+    /// and a field named "balance" whose value is token_balance of type i64
     metrics::submit(
         influxdb::Point::new("bench-tps")
             .add_tag("op", influxdb::Value::String("token_balance".to_string()))
@@ -78,36 +78,35 @@ fn sample_tx_count(
     v: &NodeInfo,
     sample_period: u64,
 ) {
-/// refer to NodeInfo node information to create a new client
+    /// reference to NodeInfo node information to create a new "client" of ThinClient
     let mut client = new_client(&v);
-/// get the current time 
+    /// get the current time 
     let mut now = Instant::now();
-/// create the mutable variable initial_tx_count to store the count of transactions on client
+    /// get the initial count of transactions on the client
     let mut initial_tx_count = client.transaction_count();
-/// create the mutable variable max_tps and initialize it to 0.0
+    /// create the mutable variable "max_tps" and initialize it to 0.0
     let mut max_tps = 0.0;
-/// create the mutable variable named total 
+    /// create the mutable variable named "total" 
     let mut total;
 
-/// create the mutable log_perfix to store the fisrt 21 string of tpu 
+    ///  write formatted text of "tpu" to String
     let log_prefix = format!("{:21}:", v.contact_info.tpu.to_string());
-/// start loop
+    /// infinite loop
     loop {
-/// bound clinet's transactions count to the variable tx_count
+        /// bound clinet's transactions count to the variable "tx_count"
         let tx_count = client.transaction_count();
-// assert tx_count >= initial_tx_count
-/// assert expected tx_count({}) >= initial_tx_count({})
+        /// assert client's initial count of transactions >= clinet's transactions count is ture
         assert!(
             tx_count >= initial_tx_count,
             "expected tx_count({}) >= initial_tx_count({})",
             tx_count,
             initial_tx_count
         );
-/// get the amount of time elapsed since “now” was created.
+        /// get the amount of time elapsed since “now” was created.
         let duration = now.elapsed();
-/// get the current time 
+        /// get the current time 
         now = Instant::now();
-/// calculate the value of tx_count - initial_tx_count
+/       // calculate the value of tx_count - initial_tx_count
         let sample = tx_count - initial_tx_count;
 /// bound  tx_count to initial_tx_count
         initial_tx_count = tx_count;
