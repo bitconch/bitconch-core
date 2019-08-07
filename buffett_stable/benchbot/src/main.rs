@@ -106,9 +106,9 @@ fn sample_tx_count(
         let duration = now.elapsed();
         /// get the current time 
         now = Instant::now();
-/       // calculate the value of tx_count - initial_tx_count
+        /// calculate the value of transactions count - initial count of transactions
         let sample = tx_count - initial_tx_count;
-/// bound  tx_count to initial_tx_count
+        /// bound tx_count to initial_tx_count
         initial_tx_count = tx_count;
 
 /// calculated the vlaue of duration * 1_000_000_000 converted to seconds + duration  converted to nanoseconds.
