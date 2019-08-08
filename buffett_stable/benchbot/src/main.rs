@@ -120,10 +120,11 @@ fn sample_tx_count(
         if tps > max_tps {
             max_tps = tps;
         }
-/// if tx_count > first_tx_count, then total = tx_count - first_tx_count
+        /// if tx_count > first_tx_count, 
+        /// then calculate the value of tx_count - first_tx_conut and bound it to toal
         if tx_count > first_tx_count {
             total = tx_count - first_tx_count;
-/// otherwise total = 0
+        /// otherwise total = 0
         } else {
             total = 0;
         }
