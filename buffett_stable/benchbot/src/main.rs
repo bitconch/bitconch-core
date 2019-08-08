@@ -130,6 +130,8 @@ fn sample_tx_count(
         }
         
         
+        /// starting variable named "node_role" with an underscore to avoid getting unused variable warnings
+        /// and bound "Node's Roles" to "node_role"
         let _node_role="Node's Roles";
         
         if v.id == v.leader_id {
@@ -189,7 +191,7 @@ fn sample_tx_count(
             total
         );
 
-/// sleep time is 0
+        /// sleep 0
         sleep(Duration::new(sample_period, 0));
 
 ///  loads the value of from the bool(no ordering constraints, only atomic operations)
