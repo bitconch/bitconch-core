@@ -108,14 +108,15 @@ fn sample_tx_count(
         now = Instant::now();
         /// calculate the value of transactions count - initial count of transactions
         let sample = tx_count - initial_tx_count;
-        /// bound tx_count to initial_tx_count
+        /// copy "tx_count" into "initial_tx_count"
         initial_tx_count = tx_count;
 
-/// calculated the vlaue of duration * 1_000_000_000 converted to seconds + duration  converted to nanoseconds.
+        /// calculated the sum of the number of whole seconds contained by duration * 1_000_000_000
+        /// and the fractional part of duration in nanoseconds
         let ns = duration.as_secs() * 1_000_000_000 + u64::from(duration.subsec_nanos());
-/// calculated the vlaue of sample * 1_000_000_000 / ns 
+        /// calculated tps vlaue by sample * 1_000_000_000 / ns 
         let tps = (sample * 1_000_000_000) as f64 / ns as f64;
-/// if tps > max_tps, then max_tps = tps
+        /// if tps > max_tps, then copy "tps" into "max_tps"
         if tps > max_tps {
             max_tps = tps;
         }
