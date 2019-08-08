@@ -234,11 +234,14 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
             .transfer(0, &id, id.pubkey(), last_id)
             .expect("Unable to send barrier transaction");
 
-        /// Reference signature to get ThinClient's signature
+        /// reference signature to get ThinClient's signature
         let confirmatiom = barrier_client.sample_by_signature(&signature);
-/// calculate the interval between transfer_start time and current time in milliseconds
+        /// calculate the interval between transfer_start time and current time in milliseconds
+        /// reference transfer_start's time interval to calculated the sum of
+        /// the number of whole seconds contained by transfer_start's time interval * 1000
+        /// and the fractional part of transfer_start's time interval in nanoseconds ／1_000_000
         let duration_ms = duration_in_milliseconds(&transfer_start.elapsed());
-/// if barrier client'signature exists
+        /// if ThinClient'signature exists
         if confirmatiom.is_ok() {
 
 /// use the submit method of the metrics crate and add a new data to "bench-tps" data table of influxdb,
