@@ -205,9 +205,9 @@ fn sample_tx_count(
                 tps: max_tps,
                 tx: total,
             };
-/// add v.contact_info.tpu,stats to maxes
+            /// push the value of tpu and stats onto the end of "maxes"
             maxes.write().unwrap().push((v.contact_info.tpu, stats));
-/// break loop
+            /// exit the loop
             break;
         }
     }
@@ -215,9 +215,9 @@ fn sample_tx_count(
 
 /// define function named send_barrier_transaction
 fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash, id: &Keypair) {
-/// get the current time
+    /// get the current time
     let transfer_start = Instant::now();
-/// declare a mutable variable and initialization value of 0
+    /// declare a mutable variable "sampel_cnt" and initialization the value of 0
     let mut sampel_cnt = 0;
 /// start loop
     loop {
