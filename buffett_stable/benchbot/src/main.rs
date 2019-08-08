@@ -229,7 +229,7 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
         /// and dereference of "last_id"
         *last_id = barrier_client.get_last_id();
         /// get the signature of transfer in ThinClient,
-        /// if failed, call panic! and output the error message "Unable to send barrier transaction" is output
+        /// if failed, call panic! and output the error message "Unable to send barrier transaction"
         let signature = barrier_client
             .transfer(0, &id, id.pubkey(), last_id)
             .expect("Unable to send barrier transaction");
@@ -244,10 +244,10 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
         /// if ThinClient'signature exists
         if confirmatiom.is_ok() {
 
-/// use the submit method of the metrics crate and add a new data to "bench-tps" data table of influxdb,
-/// add a tag named "op" with the value of String “token_balance”,
-/// add a field named "balance" whose value is mutable variable sampel_cnt with an initial value of 0
-/// add a field named "duration"with the interval between transfer_start time and current time in milliseconds
+            /// use the submit method of the metrics crate and new a Point named "bench-tps" of influxdb,
+            /// add a tag named "op" with the value of string “token_balance”,
+            /// and a field named "sampel_cnt" with the value of "mut sampel_cnt" whose type is Integer
+            /// add a field named "duration" with the value of "duration_ms" whose type is i64
             metrics::submit(
                 influxdb::Point::new("bench-tps")
                     .add_tag(
@@ -258,8 +258,11 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
                     .to_owned(),
             );
 
-/// get balance through the ID public key
-/// and if there is fail to get balance, then willoutput "Failed to get balance"           
+            /// get ThinClient's balance every 100 milliseconds through the pubkey, 
+            /// and write the consumed time and the value of balance into the influxdb database.
+            /// if the time-out is 10 seconds, then will failed to get balance, 
+            /// and call panic!, and output the error message of "Failed to get balance",
+            /// and write the consumed time into influxdb database     
             let balance = barrier_client
                 .sample_balance_by_key_plus(
                     &id.pubkey(),
