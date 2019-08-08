@@ -219,21 +219,22 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
     let transfer_start = Instant::now();
     /// declare a mutable variable "sampel_cnt" and initialization the value of 0
     let mut sampel_cnt = 0;
-/// start loop
+    /// infinite loop
     loop {
-/// if sampel_cnt > 0 and sampel_cnt % 8 == 0
+        /// if sampel_cnt > 0 and sampel_cnt % 8 == 0
         if sampel_cnt > 0 && sampel_cnt % 8 == 0 {
         }
 
-/// then get ThinClient's last id 
+        /// then get ThinClient's last id and bound it to "last_id",
+        /// and dereference of "last_id"
         *last_id = barrier_client.get_last_id();
-/// get barrier_client's t transfer result, 
-/// if error, then output "Unable to send barrier transaction"
+        /// get the signature of transfer in ThinClient,
+        /// if failed, call panic! and output the error message "Unable to send barrier transaction" is output
         let signature = barrier_client
             .transfer(0, &id, id.pubkey(), last_id)
             .expect("Unable to send barrier transaction");
 
-/// check the existence of barrier_client‘signature
+        /// Reference signature to get ThinClient's signature
         let confirmatiom = barrier_client.sample_by_signature(&signature);
 /// calculate the interval between transfer_start time and current time in milliseconds
         let duration_ms = duration_in_milliseconds(&transfer_start.elapsed());
