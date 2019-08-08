@@ -194,11 +194,13 @@ fn sample_tx_count(
         /// sleep 0
         sleep(Duration::new(sample_period, 0));
 
-///  loads the value of from the bool(no ordering constraints, only atomic operations)
+        /// loads the value of "exit_signal" is ture (no ordering constraints, only atomic operations)
+        /// print "log_prefix" through macros
         if exit_signal.load(Ordering::Relaxed) {
             println!("\n| Exit Signal detected, kill threas for this Node:{}", log_prefix);
-/// call the function of print_animation_arrows() 
+            /// call the function of print_animation_arrows() 
             print_animation_arrows();
+            /// instantiate NodeStates structure
             let stats = NodeStats {
                 tps: max_tps,
                 tx: total,
