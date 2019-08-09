@@ -286,10 +286,15 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
         }
         /// get a new last id of ThinClient
         let new_last_id = barrier_client.get_last_id();
+        /// if new_last_id == *last_id, excute this arms
         if new_last_id == *last_id {
+            /// if sampel_cnt > 0 and sampel_cnt % 8 == 0
+            /// print "last_id" via dereference 
             if sampel_cnt > 0 && sampel_cnt % 8 == 0 {
                 println!("last_id is not advancing, still at {:?}", *last_id);
             }
+        /// otherwise, copy "new_last_id" into "last_id"
+        /// and dereference of "last_id"
         } else {
             *last_id = new_last_id;
         }
