@@ -337,9 +337,10 @@ fn generate_txs(
     
     /// get the current time
     let signing_start = Instant::now();
-/// traverse keypairs, generating transaction for each keypair in keypairs，and transforms it to dynamic Vec collection,
-/// if reclaim is false, the sender of the transaction is id and the recipient is keypair，
-/// if reclaim is true, the sender of the transaction is keypair and the receiver is id
+    /// traverse keypairs, generate a transaction for each keypair in keypairs，
+    /// and transforms it into vector
+    /// if !reclaim is true, generate a new Transaction with the parameter of id, keypair. pubkey (), 1, last_id 
+    /// if !reclaim is false, generate a new Transaction with the parameter of keypair, id.pubkey(), 1, last_id 
     let transactions: Vec<_> = keypairs
         .par_iter()
         .map(|keypair| {
@@ -372,11 +373,12 @@ fn generate_txs(
         duration_in_milliseconds(&duration)
         
     );
+    /// call the dividing_line() function
     dividing_line();
 
     /// new a Point named "bench-tps" of influxdb,
     /// add a tag named "op" with the value of string “generate_txs”,
-    /// add a field named "duration" with the value of "duration_ms" whose type is i64
+    /// add a field named "duration" with the value of "duration_ms" whose type is i64 
     metrics::submit(
         influxdb::Point::new("bench-tps")
             .add_tag("op", influxdb::Value::String("generate_txs".to_string()))
@@ -386,9 +388,9 @@ fn generate_txs(
             ).to_owned(),
     );
 
-/// calculate the value of the length of Vec's transactions / threads
+    /// calculate the value of the length of transactions voctor / threads
     let sz = transactions.len() / threads;
-/// in sz steps, slice the transaction Vec and transforms it into Vec collection
+    /// in sz steps, slice the transaction voctor and transforms it into voctor
     let chunks: Vec<_> = transactions.chunks(sz).collect();
     {
 /// unwraps shared_txs‘s Transaction result. yielding the content of an Ok, panics if the value is an Err
