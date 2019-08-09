@@ -374,9 +374,9 @@ fn generate_txs(
     );
     dividing_line();
 
-/// use the submit method of the metrics crate and add a new data to "bench-tps" data table of influxdb,
-/// add a tag named "op" with the value of String “generate_txs”,
-/// add a field named "duration"with the interval between duration time and current time in milliseconds
+    /// new a Point named "bench-tps" of influxdb,
+    /// add a tag named "op" with the value of string “generate_txs”,
+    /// add a field named "duration" with the value of "duration_ms" whose type is i64
     metrics::submit(
         influxdb::Point::new("bench-tps")
             .add_tag("op", influxdb::Value::String("generate_txs".to_string()))
