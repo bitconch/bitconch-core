@@ -390,12 +390,13 @@ fn generate_txs(
 
     /// calculate the value of the length of transactions voctor / threads
     let sz = transactions.len() / threads;
-    /// in sz steps, slice the transaction voctor and transforms it into voctor
+    /// Returns a voctor iterator over "sz" elements of the slice transactions voctor
     let chunks: Vec<_> = transactions.chunks(sz).collect();
     {
-/// unwraps shared_txs‘s Transaction result. yielding the content of an Ok, panics if the value is an Err
+        /// yielding the content of an Ok with Transaction, panics if the value is an Err
         let mut shared_txs_wl = shared_txs.write().unwrap();
-/// traverse the chunks Vec, adding the elements of the chunks Vec to the shared_txs_wl Vec
+        /// traverse the chunks Vec, 
+        /// copies chunk into a new Vec, and appends its element to the back of shared_txs_wl Vec
         for chunk in chunks {
             shared_txs_wl.push_back(chunk.to_vec());
         }
