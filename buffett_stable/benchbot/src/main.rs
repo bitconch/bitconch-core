@@ -349,13 +349,15 @@ fn generate_txs(
                 Transaction::system_new(keypair, id.pubkey(), 1, *last_id)
             }
         }).collect();
-/// get the amount of time elapsed since “now” was created
+    /// get the amount of time elapsed since “signing_start” was created
     let duration = signing_start.elapsed();
-/// calculated the vlaue of duration * 1_000_000_000 converted to seconds + duration  converted to nanoseconds.
+    /// calculated the sum of the number of whole seconds contained by duration * 1_000_000_000
+    /// and the fractional part of duration in nanoseconds
     let ns = duration.as_secs() * 1_000_000_000 + u64::from(duration.subsec_nanos());
+    /// convert tx_count and ns to f64 type and calculate the value of tx_count / ns
     let bsps = (tx_count) as f64 / ns as f64;
 
-/// call the function of dividing_line()    
+    /// call the function of dividing_line()    
     dividing_line();
     println!(
         "{0: <2}{1: <40}: {2: <60}",
