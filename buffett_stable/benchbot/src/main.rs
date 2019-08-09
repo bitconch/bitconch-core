@@ -286,7 +286,7 @@ fn send_barrier_transaction(barrier_client: &mut ThinClient, last_id: &mut Hash,
         }
         /// get a new last id of ThinClient
         let new_last_id = barrier_client.get_last_id();
-        /// if new_last_id == *last_id, excute this arms
+        /// if new_last_id == *last_id, excute this branch
         if new_last_id == *last_id {
             /// if sampel_cnt > 0 and sampel_cnt % 8 == 0
             /// print "last_id" via dereference 
@@ -313,10 +313,10 @@ fn generate_txs(
     threads: usize,
     reclaim: bool,
 ) {
-/// get the length of keypairs
+    /// get the length of Keypair array
     let tx_count = keypairs.len();
     
-/// call the function of dividing_line()
+    /// call the function of dividing_line()
     dividing_line();
     println!(
         "{0: <2}{1: <40}: {2: <10}",
@@ -332,10 +332,10 @@ fn generate_txs(
         "{0: <2}{1: <40}: {2: <60}",
         "|", "Status", "Signing Started"
     );
-/// call the function of dividing_line()
+    /// call the function of dividing_line()
     dividing_line();
     
-/// get the current time
+    /// get the current time
     let signing_start = Instant::now();
 /// traverse keypairs, generating transaction for each keypair in keypairs，and transforms it to dynamic Vec collection,
 /// if reclaim is false, the sender of the transaction is id and the recipient is keypair，
