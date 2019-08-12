@@ -470,13 +470,13 @@ fn send_transaction(
     }
 }
 
-/// define a function of airdrop_tokens
+/// define a function of "airdrop_tokens"
 fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_count: i64) {
-/// get leader's airdrop address
+    /// get an internet socket address, either IPv4 or IPv6
     let mut drone_addr = leader.contact_info.tpu;
-/// set the port of the airdrop address to DRONE_PORT
+    /// changes "drone_addr" port number associated with the socket address of const DRONE_PORT
     drone_addr.set_port(DRONE_PORT);
-/// obtain the balance through id pubkey,
+    /// reference to id pubkey to get the balance
 /// return the balance if it is obtained, and return 0 if it is not obtainable
     let starting_balance = client.sample_balance_by_key(&id.pubkey()).unwrap_or(0);
 /// call the function of metrics_submit_token_balance
