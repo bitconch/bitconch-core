@@ -411,16 +411,18 @@ fn send_transaction(
     shared_tx_thread_count: &Arc<AtomicIsize>,
     total_tx_sent_count: &Arc<AtomicUsize>,
 ) {
-/// refer to NodeInfo node information to create a new client
+    /// reference to NodeInfo to create a new client
     let client = new_client(&leader);
     println!("| Begin to sendout transactions in parrallel");
-/// start loop
+    /// start loop
     loop {
+        /// declare variables of "txs"
         let txs;
         {
-/// unwraps shared_txs‘s Transaction content
+            /// Get the OK result of Transaction
             let mut shared_txs_wl = shared_txs.write().unwrap();
-/// pop shared_txs‘s Transaction content's first element
+            /// removes the first element of shared_txs_wl and returns it to "txs", 
+            /// or None if the Vec is empty
             txs = shared_txs_wl.pop_front();
         }
 /// if txs is not null, then add 1 to shared_tx_thread_count (only in atomic operations)
