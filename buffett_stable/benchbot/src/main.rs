@@ -490,13 +490,13 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
     if starting_balance < tx_count {
         
         println!("| Begin to prepare data and send some Transactions:",);
-/// call the function dividing_line()
+        /// call the function of "dividing_line()"
         dividing_line();
-/// call the function print_animation_arrows()
+        /// call the function of "print_animation_arrows()"
         print_animation_arrows();
         
 
-/// calculate the value of tx_count - starting_balance        
+        /// calculate the value of tx_count - starting_balance, to get airdrop amount      
         let airdrop_amount = tx_count - starting_balance;
         println!(
             "Airdropping {:?} tokens from {} for {}",
@@ -504,8 +504,8 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
             drone_addr,
             id.pubkey(),
         );
-/// send airdrop request to drone_addr with the number of requests airdrop_amount, 
-/// if there is error， then will be panic
+        /// destructures the function of "request_airdrop" failed to get signature into "Err(e)",
+        /// evaluate the block "{}"
         if let Err(e) = request_airdrop(&drone_addr, &id.pubkey(), airdrop_amount as u64) {
             panic!(
                 "Error requesting airdrop: {:?} to addr: {:?} amount: {}",
@@ -514,9 +514,9 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
         }
 
     
-/// get the value of the balance
+        /// copy "starting_balance" into mutable variable "current_balance"
         let mut current_balance = starting_balance;
-/// 20 cycles
+        /// 20 cycles
         for _ in 0..20 {
 /// sleep 500 millisenconds
             sleep(Duration::from_millis(500));
