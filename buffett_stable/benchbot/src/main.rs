@@ -518,15 +518,17 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
         let mut current_balance = starting_balance;
         /// 20 cycles
         for _ in 0..20 {
-/// sleep 500 millisenconds
+            /// sleep 500 millisenconds
             sleep(Duration::from_millis(500));
-/// obtained the balance by the public key, and if it is obtained, the balance is returned,
-/// and if the balance is not obtained, the output the error message through the macro.
+            /// get ThinClient's balance every 100 milliseconds reference to id pubkey, 
+            /// and write the consumed time and the value of balance into the influxdb database.
+            /// if the time-out is 1 seconds, then will failed to get balance, 
+            /// and ruturn "starting_balance", and write the consumed time into influxdb database 
             current_balance = client.sample_balance_by_key(&id.pubkey()).unwrap_or_else(|e| {
                 println!("airdrop error {}", e);
                 starting_balance
             });
-/// if the value of starting_balance not equal current_balance，then break the loop
+            /// if starting_balance != current_balance，then quit the loop
             if starting_balance != current_balance {
                 break;
             }
