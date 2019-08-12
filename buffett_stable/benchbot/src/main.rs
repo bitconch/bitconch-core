@@ -476,14 +476,17 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
     let mut drone_addr = leader.contact_info.tpu;
     /// changes "drone_addr" port number associated with the socket address of const DRONE_PORT
     drone_addr.set_port(DRONE_PORT);
-    /// reference to id pubkey to get the balance
-/// return the balance if it is obtained, and return 0 if it is not obtainable
+    /// get ThinClient's balance every 100 milliseconds reference to id pubkey, 
+    /// and write the consumed time and the value of balance into the influxdb database.
+    /// if the time-out is 1 seconds, then will failed to get balance, 
+    /// and ruturn 0, and write the consumed time into influxdb database 
     let starting_balance = client.sample_balance_by_key(&id.pubkey()).unwrap_or(0);
-/// call the function of metrics_submit_token_balance
+    /// call the function of "metrics_submit_token_balance"， new a Point to the influxdb database
     metrics_submit_token_balance(starting_balance);
-/// output the value of the balance through macros
+    /// output the value of "starting_balance" through macros
     println!("starting balance {}", starting_balance);
-/// if balance < tx_count, then output，then output "| Begin to prepare data and send some Transactions:" through macros
+    /// if starting_balance < tx_count, then output，
+    /// then output "| Begin to prepare data and send some Transactions:" through macros
     if starting_balance < tx_count {
         
         println!("| Begin to prepare data and send some Transactions:",);
