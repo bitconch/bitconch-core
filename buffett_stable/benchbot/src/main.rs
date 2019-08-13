@@ -636,13 +636,14 @@ fn print_animation_arrows(){
     for _ in 0..5 {
         print!(".");
         sleep(Duration::from_millis(300));
-        /// flush this output stream, if failed,call panic!, and output the error message of "some error message"
+        /// flush this output stream, if failed, call panic! and output the error message of "some error message"
         std::io::stdout().flush().expect("some error message");
     }
     print!("\n|\n");
     
 }
 
+/// define the funtion of "leader_node_selection"
 fn leader_node_selection(){
     dividing_line();
     println!("| {:?}","Selecting Transaction Validator Nodes from the Predefined High-Reputation Nodes List.");
@@ -674,27 +675,31 @@ fn leader_node_selection(){
 
 
 fn main() {
-/// Initialization log
+    /// initialization log
     logger::setup();
-/// insert data into the "panic" data table 
+    /// if there is panic in "bench-tps" program, then will record the panic information into influxdb database
     metrics::set_panic_hook("bench-tps");
-/// create a command line  program named "bitconch-bench-tps" 
-/// adds argument to the list of valid possibilities
+    /// creates a new instance of an application named "bitconch-bench-tps" 
+    /// automatically set the version of the "bitconch-bench-tps" application
+    /// to the same thing as the crate at compile time througth crate_version! macro.
+    /// Add arguments to the list of valid possibilities
+    /// starts the parsing process, upon a failed parse an error will be displayed to the user 
+    /// and the process will exit with the appropriate error code. 
     let matches = App::new("bitconch-bench-tps")
         .version(crate_version!())
         .arg(
-/// creates a new instance of Arg named "network" 
+            /// creates a new instance of Arg named "network" 
             Arg::with_name("network")
-/// sets the short version of the argument "network"
+                /// sets the short version of the argument "network"
                 .short("n")
-/// sets the long version of the argument "network"
+                /// sets the long version of the argument "network"
                 .long("network")
-/// specifies the name for value of option or positional arguments inside of help documentation
+                /// specifies the name for value of option or positional arguments inside of help documentation
                 .value_name("HOST:PORT")
-/// when running the specifies argument is "network"
+                /// when running the specifies argument is "network"
                 .takes_value(true)
-/// Sets the short help text of the argument， when input -h  
-/// then will output the help information  "Rendezvous with the network at this gossip entry point; defaults to 127.0.0.1:8001"
+                /// Sets the short help text of the argument， when input -h  
+                /// then will output the help information
                 .help("Rendezvous with the network at this gossip entry point; defaults to 127.0.0.1:8001"),
         )
         .arg(
