@@ -516,14 +516,15 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
     
         /// copy "starting_balance" into mutable variable "current_balance"
         let mut current_balance = starting_balance;
-        /// 20 cycles
+        /// 20 cycles ( will take the values: 0, 2, ..., 19 in each iteration )
         for _ in 0..20 {
             /// sleep 500 millisenconds
             sleep(Duration::from_millis(500));
             /// get ThinClient's balance every 100 milliseconds reference to id pubkey, 
             /// and write the consumed time and the value of balance into the influxdb database.
             /// if the time-out is 1 seconds, then will failed to get balance, 
-            /// and ruturn "starting_balance", and write the consumed time into influxdb database 
+            /// will  to print "e" (the error massage) by a closure and ruturn "starting_balance",
+            /// and write the consumed time into influxdb database 
             current_balance = client.sample_balance_by_key(&id.pubkey()).unwrap_or_else(|e| {
                 println!("airdrop error {}", e);
                 starting_balance
@@ -540,7 +541,7 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
             );
             
         }
-/// call the function of metrics_submit_token_balance(current_balance)
+        /// call the function of "metrics_submit_token_balance"
         metrics_submit_token_balance(current_balance);
         if current_balance - starting_balance != airdrop_amount {
             println!(
@@ -549,13 +550,13 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
                 current_balance,
                 starting_balance
             );
-/// exit the process
+            /// exit the process
             exit(1);
         }
     }
 }
 
-/// define a function of print_status_and_report
+/// define a function of "print_status_and_report"
 fn print_status_and_report(
     maxes: &Arc<RwLock<Vec<(SocketAddr, NodeStats)>>>,
     _sample_period: u64,
@@ -570,13 +571,13 @@ fn print_status_and_report(
     println!(" Node address        |       Max TPS | Total Transactions");
     println!("---------------------+---------------+--------------------");
 
-/// traversal maxes
+    /// iterate structures of SocketAddr and NodeStats("maxes") through an Iterator
     for (sock, stats) in maxes.read().unwrap().iter() {
-/// Match with NodeStats structure’ member of tx
+        /// match with NodeStats structure's field of "tx"
         let maybe_flag = match stats.tx {
-/// if tx is 0 , then return "!!!!!" to maybe_flag
+            /// if tx is 0 , then return "!!!!!" to maybe_flag
             0 => "!!!!!",
-/// otherwise return ""
+            /// otherwise return ""
             _ => "",
         };
 
@@ -623,7 +624,7 @@ fn print_status_and_report(
 }
 
 
-/// define a function of should_switch_directions, the type of return value is bool
+/// define a function of should_switch_directions, returns a boolean value
 fn should_switch_directions(num_tokens_per_account: i64, i: i64) -> bool {
     i % (num_tokens_per_account / 4) == 0 && (i >= (3 * num_tokens_per_account) / 4)
 }
