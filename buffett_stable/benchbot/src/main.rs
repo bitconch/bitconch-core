@@ -804,19 +804,19 @@ fn main() {
         Duration::new(std::u64::MAX, 0)
     };
 
-/// get the value of "tx_count" 
-/// if fails，then will display the error message "can't parse tx_count"
+    /// destructures "matches" into "Some(s)", gets the value of "tx_count",
+    /// if fails to prase "tx_count"，then will call panic! and display the error message 
     let tx_count = if let Some(s) = matches.value_of("tx_count") {
         s.to_string().parse().expect("can't parse tx_count")
-/// else return 500_000 to tx_count
+    /// if destructure failed, return 500_000 to "tx_count"
     } else {
         500_000
     };
 
-/// check if the argument "sustained" was present
+    /// returns true if an argument "sustained" was present at runtime, otherwise false.
     let sustained = matches.is_present("sustained");
 
-/// the `ascii_art` module implement fancy ascii arts
+    /// the `ascii_art` module implement fancy ascii arts
     asciiart::welcome();
     dividing_line();
     leader_node_selection();
@@ -830,11 +830,11 @@ fn main() {
     print_animation_arrows();
 
 
-/// get leader node information on the network,
-/// if fails，then will display the error message "unable to find leader on network"
+    /// get leader's information (NodeInfo) by the value of "network",
+    /// if fails，call panic! and display the error message "unable to find leader on network"
     let leader = sample_leader_by_gossip(network, None).expect("unable to find leader on network");
 
-/// define exit signal, default initial value is false
+    /// define exit signal, default initial value is false
     let exit_signal = Arc::new(AtomicBool::new(false));
     
     dividing_line();
@@ -845,10 +845,11 @@ fn main() {
     dividing_line();
     sleep(Duration::from_millis(100));
     
-/// call the function of converge, search the effective nodes on the network
+    /// call the function of "converge", search the effective nodes on the network
     let (nodes, leader, ncp) = converge(&leader, &exit_signal, num_nodes);
 
-/// if the length of the node < the number of nodes, then print the error message and exit the program
+    /// if nodes.len() < num_nodes, then print the error message
+    /// return "num_nodes" and exit the program
     if nodes.len() < num_nodes {
         println!(
             "Error: Insufficient nodes discovered.  Expecting {} or more",
