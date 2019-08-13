@@ -756,17 +756,18 @@ fn main() {
                 .takes_value(true)
                 .help("Number of transactions to send per batch")
         )
-/// starts the parsing process, upon a failed parse an error will be displayed 
-/// and the process will exit with the appropriate error code. 
         .get_matches();
 
-/// get the value of "network", if fails then will output the error message, then exit the program
+    /// destructures "matches" into "Some(addr)", to gets the value of "network", evaluate the block "{}"
+    /// if fail to parse then will output the error message, and terminates the current process with "1"
     let network = if let Some(addr) = matches.value_of("network") {
         addr.parse().unwrap_or_else(|e| {
-            eprintln!("failed to parse network: {}", e);
+            println!("failed to parse network: {}", e);
+            /// Terminates the current process with "1"
             exit(1)
         })
-/// if command line program's argument is not specified, then will return "127.0.0.1:8001"
+    /// if command line program's argument is not specified（destructure failed）, 
+    /// network will not take "127.0.0.1:8001"
     } else {
         socketaddr!("127.0.0.1:8001")
     };
