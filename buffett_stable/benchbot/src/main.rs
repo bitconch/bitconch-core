@@ -632,11 +632,11 @@ fn should_switch_directions(num_tokens_per_account: i64, i: i64) -> bool {
 /// define a function of print_animation_arrows()
 fn print_animation_arrows(){
     print!("|\n|");
-/// cycle 5 times
+    /// cycle 5 times ( will take the values: 0, 2, ..., 4 in each iteration )
     for _ in 0..5 {
         print!(".");
         sleep(Duration::from_millis(300));
-/// refresh standard I/O, if error, then output "some error message"
+        /// flush this output stream, if failed,call panic!, and output the error message of "some error message"
         std::io::stdout().flush().expect("some error message");
     }
     print!("\n|\n");
