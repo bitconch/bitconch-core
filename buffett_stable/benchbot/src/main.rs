@@ -772,34 +772,34 @@ fn main() {
         socketaddr!("127.0.0.1:8001")
     };
 
-/// get keypair according to the parameter "identity" of the command line program,
-/// if fails，then will display the error message "can't read client identity"
+    /// get keypair by the parameter "identity" of the command line program,
+    /// if fails，then will display the error message "can't read client identity"
     let id =
         read_keypair(matches.value_of("identity").unwrap()).expect("can't read client identity");
 
-/// get the value of "threads" 
-/// if fails，then will display the error message "can't parse threads"
+    /// destructures "matches" into "Some(t)", to gets the value of "threads", evaluate the block "{}"
+    /// if fails to prase "threads"，then will call panic! and display the error message "can't parse threads"
     let threads = if let Some(t) = matches.value_of("threads") {
         t.to_string().parse().expect("can't parse threads")
-/// if command line program's argument is not specified, then will return “4usize” to threads
+    /// if destructure failed, then will return "4usize" to threads
     } else {
         4usize
     };
 
-/// get the value of "num-nodes" 
-/// if fails，then will display the error message "can't parse num-nodes"
+    /// destructures "matches" into "Some(n)", to gets the value of "num-nodes", evaluate the block "{}"
+    /// if fails to prase "num-nodes"，then will call panic! and display the error message 
     let num_nodes = if let Some(n) = matches.value_of("num-nodes") {
         n.to_string().parse().expect("can't parse num-nodes")
-/// if command line program's argument is not specified, then will return “1usize” to num_nodes
+    /// if destructure failed, then will return "1usize" to num_nodes
     } else {
         1usize
     };
 
-/// get the value of "duration" ，creates a new Duration
-/// if fails，then will display the error message "can't parse duration"
+    /// destructures "matches" into "Some(s)", gets the value of "duration", to creates a new instance of Duration
+    /// if fails to prase "duration"，then will call panic! and display the error message 
     let duration = if let Some(s) = matches.value_of("duration") {
         Duration::new(s.to_string().parse().expect("can't parse duration"), 0)
-/// if command line program's argument is not specified, then will return  the largest value to duration
+    /// if destructure failed, then will return a new instance of Duration with Maximum number supported by u64
     } else {
         Duration::new(std::u64::MAX, 0)
     };
