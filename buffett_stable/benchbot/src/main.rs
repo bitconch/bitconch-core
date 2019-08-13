@@ -849,7 +849,7 @@ fn main() {
     let (nodes, leader, ncp) = converge(&leader, &exit_signal, num_nodes);
 
     /// if nodes.len() < num_nodes, then print the error message
-    /// return "num_nodes" and exit the program
+    /// and exit the program
     if nodes.len() < num_nodes {
         println!(
             "Error: Insufficient nodes discovered.  Expecting {} or more",
@@ -857,8 +857,9 @@ fn main() {
         );
         exit(1);
     }
-/// if command program's argument is "reject-extra-nodes", and the length of the node > the number of nodes
-/// then print the error message and exit the program
+    /// if command program's argument "reject-extra-nodes" was present at runtime, 
+    /// and the length of the node > the number of nodes
+    /// then print the error message and exit the program
     if matches.is_present("reject-extra-nodes") && nodes.len() > num_nodes {
         println!(
             "Error: Extra nodes discovered.  Expecting exactly {}",
@@ -867,17 +868,18 @@ fn main() {
         exit(1);
     }
 
-/// if leader is a None value, then print "no leader", and exit program
+    /// if leader is a None value, then print "no leader", and exit program
     if leader.is_none() {
         println!("no leader");
         exit(1);
     }
 
-/// if command line program's argument "converge-only", then return it
+    /// if command line program's argument "converge-only" was present at runtime, then return it
     if matches.is_present("converge-only") {
         return;
     }
 
+    /// Moves the value "leader" out of the Option<T> if it is Some(leader)
     let leader = leader.unwrap();
 
     //mvp001
@@ -894,16 +896,16 @@ fn main() {
     //*
     //println!("leader is at {} {}", leader.contact_info.rpu, leader.id);
     
-/// refer the leader node information to create different new client
+    /// reference to "leader" to create two different new clients
     let mut client = new_client(&leader);
     let mut barrier_client = new_client(&leader);
 
-/// declare a mutable variable array seed of type U8 with 32 elements
-///  and initial values is 0
+    /// declare a mutable array "seed" of type u8 with 32 elements
+    /// and initial values is 0
     let mut seed = [0u8; 32];
-/// copy the little-endian-encoded public key bytes of the id into  seed
+    /// copy all elements of the reference little-endian-encoded public key bytes of the id into "seed"
     seed.copy_from_slice(&id.public_key_bytes()[..32]);
-/// new a GenKeys with the parameter seed
+/// new a GenKeys and  instance with the parameter "seed"
     let mut rnd = GenKeys::new(seed);
 
     //mvp
