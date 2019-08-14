@@ -939,10 +939,14 @@ fn main() {
 
     // Sample the first keypair, see if it has tokens, if so then resume
     // to avoid token loss
-/// get the balance through the first pubkey () of keypairs, if not then return 0
+
+    /// get ThinClient's balance every 100 milliseconds reference to the first pubkey of keypairs, 
+    /// and write the consumed time and the value of balance into the influxdb database.
+    /// if the time-out is 1 seconds, then will failed to get balance, a
+    /// and return the default value of "0", and write the consumed time into influxdb database 
     let keypair0_balance = client.sample_balance_by_key(&keypairs[0].pubkey()).unwrap_or(0);
 
-/// if num_tokens_per_account > keypair0_balance, then call the function of airdrop_tokens()
+    /// if num_tokens_per_account > keypair0_balance, then call the function of "airdrop_tokens"
     if num_tokens_per_account > keypair0_balance {
         airdrop_tokens(
             &mut client,
@@ -951,20 +955,20 @@ fn main() {
             (num_tokens_per_account - keypair0_balance) * tx_count,
         );
     }
-/// call the function of airdrop_tokens()
+    /// call the function of "airdrop_tokens"
     airdrop_tokens(&mut barrier_client, &leader, &barrier_id, 1);
 
     
-/// get leader's last id 
+    /// get last id of leader NodeInfo
     let mut last_id = client.get_last_id();
     
 
-/// get leader's transactions count
+    /// get transactions count of leader NodeInfo
     let first_tx_count = client.transaction_count();
     println!("Initial transaction count {}", first_tx_count);
 
     
-/// creat a new array
+    /// creat a new vector
     let maxes = Arc::new(RwLock::new(Vec::new()));
     let sample_period = 1; 
     println!("Sampling TPS every {} second...", sample_period);
