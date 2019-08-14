@@ -868,7 +868,7 @@ fn main() {
         exit(1);
     }
 
-    /// if leader is a None value, then print "no leader", and exit program
+    /// if "leader" is a None value, then print "no leader", and exit program
     if leader.is_none() {
         println!("no leader");
         exit(1);
@@ -879,7 +879,8 @@ fn main() {
         return;
     }
 
-    /// Moves the value "leader" out of the Option<T> if it is Some(leader)
+    /// if the return value "leader" of the "converge" function is encapsulated in Some, 
+    /// then move "leader" out of Option < T>.
     let leader = leader.unwrap();
 
     //mvp001
@@ -905,7 +906,7 @@ fn main() {
     let mut seed = [0u8; 32];
     /// copy all elements of the reference little-endian-encoded public key bytes of the id into "seed"
     seed.copy_from_slice(&id.public_key_bytes()[..32]);
-/// new a GenKeys and  instance with the parameter "seed"
+    /// new a GenKeys and  instance with the parameter "seed"
     let mut rnd = GenKeys::new(seed);
 
     //mvp
@@ -921,9 +922,9 @@ fn main() {
     );
     //*
 
-/// generate keypairs of type Vec based on the value of tx_count / 2
+    /// generate keypairs vector with the value of "tx_count / 2"
     let keypairs = rnd.gen_n_keypairs(tx_count / 2);
-/// generate the keypair array with 1 as the parameter and pop the element to barrier_id
+    /// generate the keypair vector with the parameter of "1" and pop the element to "barrier_id"
     let barrier_id = rnd.gen_n_keypairs(1).pop().unwrap();
 
     //mvp001
