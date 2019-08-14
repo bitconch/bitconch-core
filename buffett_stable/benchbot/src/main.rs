@@ -972,15 +972,15 @@ fn main() {
     let maxes = Arc::new(RwLock::new(Vec::new()));
     let sample_period = 1; 
     println!("Sampling TPS every {} second...", sample_period);
-/// use multithread to execute the sample_tx_count function
+    /// create a new iterator and consume the new iterator and create a vector
     let v_threads: Vec<_> = nodes
         .into_iter()
         .map(|v| {
-/// exit_signal get a copy, leaving the original value in place
+            /// "exit_signal" get a copy, leaving the original value in place
             let exit_signal = exit_signal.clone();
-            let maxes = maxes.clone();
-/// create a thread named "bitconch-client-sample", 
-/// call the sample_tx_count function, transfer the results to Vec 
+            let maxes = maxes.clone(); 
+            /// generates a thread named "bitconch-client-sample"
+            /// spawns a new thread by taking ownership of the Builder and call the function of "sample_tx_count"
             Builder::new()
                 .name("bitconch-client-sample".to_string())
                 .spawn(move || {
