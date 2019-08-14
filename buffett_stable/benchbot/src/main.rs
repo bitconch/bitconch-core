@@ -988,24 +988,24 @@ fn main() {
                 }).unwrap()
         }).collect();
 
-/// creates an empty VecDeque.
+    /// constructs a new Arc<RwLock> 
     let shared_txs: Arc<RwLock<VecDeque<Vec<Transaction>>>> =
         Arc::new(RwLock::new(VecDeque::new()));
 
     let shared_tx_active_thread_count = Arc::new(AtomicIsize::new(0));
     let total_tx_sent_count = Arc::new(AtomicUsize::new(0));
 
-/// use multithread to execute the function of sample_tx_count
+    /// create a new iterator and consume the new iterator and create a vector
     let s_threads: Vec<_> = (0..threads)
         .map(|_| {
-/// get a copy, leaving the original value in place
+            /// get a copy, leaving the original value in place
             let exit_signal = exit_signal.clone();
             let shared_txs = shared_txs.clone();
             let leader = leader.clone();
             let shared_tx_active_thread_count = shared_tx_active_thread_count.clone();
             let total_tx_sent_count = total_tx_sent_count.clone();
-/// create a thread named "bitconch-client-sender", 
-/// call the sample_tx_count function, and transfer the results to Vec 
+            /// create a thread named "bitconch-client-sender", 
+            /// call the function of "sample_tx_count"
             Builder::new()
                 .name("bitconch-client-sender".to_string())
                 .spawn(move || {
@@ -1020,11 +1020,11 @@ fn main() {
         }).collect();
 
     
-/// get the current time
+    /// get the current time
     let start = Instant::now();
-/// define mutable variable reclaim_tokens_back_to_source_account with an initial value of false
+    /// define mutable variable "reclaim_tokens_back_to_source_account" with an initial value of "false"
     let mut reclaim_tokens_back_to_source_account = false;
-/// get balance through the first pubkey () of keypairs
+    /// copy "keypair0_balance" into "i"
     let mut i = keypair0_balance;
 /// while the amount of time elapsed since “now” was created < command line  program's value duration
     while start.elapsed() < duration {
