@@ -1052,6 +1052,8 @@ fn main() {
         send_barrier_transaction(&mut barrier_client, &mut last_id, &barrier_id);
 
         i += 1;
+        /// If the result of the function "should_switch_directions" is ture
+        /// then take the opposite value of "reclaim_tokens_back_to_source_account"
         if should_switch_directions(num_tokens_per_account, i) {
             reclaim_tokens_back_to_source_account = !reclaim_tokens_back_to_source_account;
         }
