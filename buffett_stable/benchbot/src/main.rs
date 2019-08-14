@@ -1026,13 +1026,13 @@ fn main() {
     let mut reclaim_tokens_back_to_source_account = false;
     /// copy "keypair0_balance" into "i"
     let mut i = keypair0_balance;
-/// while the amount of time elapsed since “now” was created < command line  program's value duration
+    /// if the amount of time elapsed since "now" was created < command line  program's value "duration"
     while start.elapsed() < duration {
-/// then obtained the balance by the public key, if it's faile then ruturn -1
+        /// then reference to id pubkey to get the balance by the public key, if failed then ruturn "-1"
         let balance = client.sample_balance_by_key(&id.pubkey()).unwrap_or(-1);
-/// call the function of metrics_submit_token_balance()
+        /// call the function of "metrics_submit_token_balance"
         metrics_submit_token_balance(balance);
-/// call the function of generate_txs()
+        /// call the function of "generate_txs"
         generate_txs(
             &shared_txs,
             &id,
@@ -1041,15 +1041,14 @@ fn main() {
             threads,
             reclaim_tokens_back_to_source_account,
         );
-///  if the argument "sustained" not-exist
+        ///  if "!sustained" is ture
         if !sustained {
-/// while shared_tx_active_thread_count > 0 is ture
+            /// while shared_tx_active_thread_count > 0, then sleep 100 milliseconds
             while shared_tx_active_thread_count.load(Ordering::Relaxed) > 0 {
-/// sleep 100 milliseconds
                 sleep(Duration::from_millis(100));
             }
         }
-/// call the function of send_barrier_transaction()
+        /// call the function of "send_barrier_transaction"
         send_barrier_transaction(&mut barrier_client, &mut last_id, &barrier_id);
 
         i += 1;
