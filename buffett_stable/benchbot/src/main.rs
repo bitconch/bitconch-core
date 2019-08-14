@@ -1059,16 +1059,16 @@ fn main() {
         }
     }
 
-/// uses true to replace the value of false
+    /// stores a value of "ture" into the bool
     exit_signal.store(true, Ordering::Relaxed);
 
     dividing_line(); //mvp001
     println!("| Kill all the remaining threads.");
     print_animation_arrows();
-/// loop v_threads array
+    /// iteration "v_threads" vector
     for t in v_threads {
-/// Waits for the v_threads associated thread to finish running, 
-/// if the v_threads thread goes wrong, then output the error information through macros
+        /// if the associated thread of "v_threads" thread goes wrong when running, 
+        /// then output the error information through macros
         if let Err(err) = t.join() {
             println!("  join() failed with: {:?}", err);
         }
@@ -1076,20 +1076,20 @@ fn main() {
 
     // join the tx send threads
     //println!("Waiting for transmit threads...");
-/// loop s_threads array
+    /// iteration "s_threads" vector
     for t in s_threads {
-/// Waits for the s_threads associated thread to finish running, 
-/// if the s_threads thread goes wrong, then output the error information through macros
+        /// if the associated thread of "s_threads" thread goes wrong when running, 
+        /// then output the error information through macros
         if let Err(err) = t.join() {
             println!("  join() failed with: {:?}", err);
         }
     }
 
-/// obtained the balance by the public key, if it's faile then ruturn -1
+    /// refenrenve to id pubkey to get the balance, if failed then ruturn "-1"
     let balance = client.sample_balance_by_key(&id.pubkey()).unwrap_or(-1);
     metrics_submit_token_balance(balance);
 
-/// call the function
+    /// call the function
     print_status_and_report(
         &maxes,
         sample_period,
