@@ -1098,7 +1098,7 @@ fn main() {
     );
 
     // join the crdt client threads
-/// running threads in ncp, waits for the associated thread to finish.
+    /// waits for the associated thread of "ncp" to finish
     ncp.join().unwrap();
 }
 
@@ -1109,9 +1109,12 @@ fn converge(
     num_nodes: usize,
 ) -> (Vec<NodeInfo>, Option<NodeInfo>, Ncp) {
     //lets spy on the network
-/// creat node, gossip_socket
+    /// creat node, gossip_socket
+    /// use the "spy_node" method of the "Crdt " structure
+    /// Define "node", "gossip_socket " to receive the return value of" spy_node" function
     let (node, gossip_socket) = Crdt::spy_node();
-/// create Crdt with a parameter of node, if goes wrong then will output "Crdt:: new" 
+    /// create Crdt with a parameter of node, panics if the value is an Err and output "Crdt::new" 
+    /// create "Crdt "instances with "node"
     let mut spy_crdt = Crdt::new(node).expect("Crdt::new");
 /// insert leader's NodeInfo into spy_crdt
     spy_crdt.insert(&leader);
