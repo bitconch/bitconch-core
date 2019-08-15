@@ -1114,7 +1114,7 @@ fn converge(
     /// Define "node", "gossip_socket " to receive the return value of" spy_node" function
     let (node, gossip_socket) = Crdt::spy_node();
     /// create Crdt with a parameter of node, panics if the value is an Err and output "Crdt::new" 
-    /// create "Crdt "instances with "node"
+    /// create "Crdt " instances with "node"
     let mut spy_crdt = Crdt::new(node).expect("Crdt::new");
     /// insert leader's NodeInfo into spy_crdt
     /// reference to "leader"to judge whether the node exists
@@ -1122,28 +1122,28 @@ fn converge(
     /// Set NodeInfo's id to leader's id
     /// setthe node of "spy_crdt" by leader.id
     spy_crdt.set_leader(leader.id);
-    /// create Arc with the argument of spy_crdt
-/// locks this rwlock with shared read access, blocking the current thread until it can be acquired.
+    /// create Arc instances with the argument of "spy_crdt"
+    /// locks this rwlock with shared read access, blocking the current thread until it can be acquired.
     let spy_ref = Arc::new(RwLock::new(spy_crdt));
-/// constructs a new Arc with the argument of default_window()
+    /// constructs a new Arc instances  with "default_window()"
     let window = Arc::new(RwLock::new(default_window()));
-/// create Ncp with the argument of &spy_ref, window, None, gossip_socket, exit_signal.clone()
+    /// create Ncp instances 
     let ncp = Ncp::new(&spy_ref, window, None, gossip_socket, exit_signal.clone());
-/// initialize array
+    /// create a empty vector
     let mut v: Vec<NodeInfo> = vec![];
     // wait for the network to converge, 30 seconds should be plenty
-/// loop 30 times
+    /// loop 30 times ( will take the values: 0, 2, ..., 29 in each iteration )
     for _ in 0..30 {
         {
-/// read the data of spy_ref's spy_crdt node 
+            /// many reader locks can be held at once
             let spy_ref = spy_ref.read().unwrap();
 
-/// output the node's information through macros
+            /// output the node's information through macros
             println!("{}", spy_ref.node_info_trace());
 
-/// if the node has values
+            /// if the option of "spy_ref" NodeInfois a Some value
             if spy_ref.leader_data().is_some() {
-/// get valid communication address and converting it into a collection
+                /// get valid socket address and transforms it into vector
                 v = spy_ref
                     .table
                     .values()
@@ -1165,7 +1165,7 @@ fn converge(
         }
         sleep(Duration::new(1, 0));
     }
-/// clone the data of the leader node
+    /// clone the value of "NodeInfo"
     let leader = spy_ref.read().unwrap().leader_data().cloned();
     (v, leader, ncp)
 }
