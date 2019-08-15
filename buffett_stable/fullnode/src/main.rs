@@ -63,23 +63,31 @@ fn main() -> () {
                 .help("use DIR as a dedicated ledgerbook path"),
         ).get_matches();
 
-    /// destructures "matches" into "Some(i)", get the value of "identity"
+    /// destructures "matches" into "Some(i)", get the value of "identity" successfully
     let (keypair, ncp) = if let Some(i) = matches.value_of("identity") {
         /// Converts "i" to a string
         let path = i.to_string();
-        /// if open the file in read-only mode successfully
+        /// if open the file in read-only mode successfully whit "path"
         if let Ok(file) = File::open(path.clone()) {
+            /// deserialize an instance "file" from an IO stream of JSON
             let parse: serde_json::Result<Config> = serde_json::from_reader(file);
+            /// if destructures "parse" into "Ok(data)"
+            /// then return the "keypair" and "ncp" of the file
             if let Ok(data) = parse {
                 (data.keypair(), data.node_info.contact_info.ncp)
+                /// if fail to destructures
+                /// then print the error message and exit the program
             } else {
                 eprintln!("failed to parse {}", path);
                 exit(1);
             }
+            /// if fail to destructures "parse"
+            /// then print the error message and exit the program
         } else {
             eprintln!("failed to read {}", path);
             exit(1);
         }
+        /// if fail to open the file, evaluate the block "{}"
     } else {
         (Keypair::new(), socketaddr!(0, 8000))
     };
