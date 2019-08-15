@@ -761,7 +761,7 @@ fn main() {
     /// if fail to parse then will output the error message, and terminates the current process with "1"
     let network = if let Some(addr) = matches.value_of("network") {
         addr.parse().unwrap_or_else(|e| {
-            println!("failed to parse network: {}", e);
+            eprintln!("failed to parse network: {}", e);
             /// Terminates the current process with "1"
             exit(1)
         })
