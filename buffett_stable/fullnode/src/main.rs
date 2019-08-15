@@ -92,9 +92,12 @@ fn main() -> () {
         (Keypair::new(), socketaddr!(0, 8000))
     };
 
+    /// gets the value of "ledger" argument
     let ledger_path = matches.value_of("ledger").unwrap();
 
     
+    /// gets the value of "network" argument
+    /// takes a closure and creates an iterato to parse network address
     let network = matches
         .value_of("network")
         .map(|network| network.parse().expect("failed to parse network address"));
