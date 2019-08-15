@@ -425,7 +425,6 @@ fn send_transaction(
             /// or None if the Vec is empty
             txs = shared_txs_wl.pop_front();
         }
-        /// if txs is not null, then add 1 to shared_tx_thread_count (only in atomic operations)
         /// destructures "txs" into "Some(txs0)"
         /// add 1 to the current value of "shared_tx_thread_count", returning the previous value
         if let Some(txs0) = txs {
