@@ -63,8 +63,11 @@ fn main() -> () {
                 .help("use DIR as a dedicated ledgerbook path"),
         ).get_matches();
 
+    /// destructures "matches" into "Some(i)", get the value of "identity"
     let (keypair, ncp) = if let Some(i) = matches.value_of("identity") {
+        /// Converts "i" to a string
         let path = i.to_string();
+        /// if open the file in read-only mode successfully
         if let Ok(file) = File::open(path.clone()) {
             let parse: serde_json::Result<Config> = serde_json::from_reader(file);
             if let Ok(data) = parse {
