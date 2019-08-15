@@ -1116,11 +1116,13 @@ fn converge(
     /// create Crdt with a parameter of node, panics if the value is an Err and output "Crdt::new" 
     /// create "Crdt "instances with "node"
     let mut spy_crdt = Crdt::new(node).expect("Crdt::new");
-/// insert leader's NodeInfo into spy_crdt
+    /// insert leader's NodeInfo into spy_crdt
+    /// reference to "leader"to judge whether the node exists
     spy_crdt.insert(&leader);
-/// Set NodeInfo's id to leader's id
+    /// Set NodeInfo's id to leader's id
+    /// setthe node of "spy_crdt" by leader.id
     spy_crdt.set_leader(leader.id);
-/// create Arc with the argument of spy_crdt
+    /// create Arc with the argument of spy_crdt
 /// locks this rwlock with shared read access, blocking the current thread until it can be acquired.
     let spy_ref = Arc::new(RwLock::new(spy_crdt));
 /// constructs a new Arc with the argument of default_window()
