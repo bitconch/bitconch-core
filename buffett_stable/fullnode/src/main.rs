@@ -102,22 +102,30 @@ fn main() -> () {
         .value_of("network")
         .map(|network| network.parse().expect("failed to parse network address"));
 
+    /// generate a "Node" instance
     let node = Node::new_with_external_ip(keypair.pubkey(), &ncp);
 
     
+    /// clnoe "info's NodeInfo" from "node"
     let node_info = node.info.clone();
     let pubkey = keypair.pubkey();
 
+    /// new a "Fullnode" instance
     let mut fullnode = Fullnode::new(node, ledger_path, keypair, network, false, None);
 
     
+    /// "leader" match with "network"
+    /// if "network" in a Some value, generate a OK value of "NodeInfo"
+    /// if it is false then call panic! and print the error message
     let leader = match network {
         Some(network) => {
             sample_leader_by_gossip(network, None).expect("can't find leader on network")
         }
+        /// if is None, then return "node_info"
         None => node_info,
     };
 
+    /// reference to "leader" to create a new client
     let mut client = new_client(&leader);
 
     
