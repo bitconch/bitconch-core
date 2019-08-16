@@ -168,7 +168,10 @@ fn main() -> () {
 
     /// loop
     loop {
+        /// get the result of "FullnodeReturnType::LeaderRotation"
         let status = fullnode.handle_role_transition();
+        /// if the result of "Some(FullnodeReturnType::LeaderRotation)" in a OK value,then return "()"
+        /// otherwise exit the program
         match status {
             Ok(Some(FullnodeReturnType::LeaderRotation)) => (),
             _ => {
