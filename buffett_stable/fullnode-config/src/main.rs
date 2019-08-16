@@ -74,7 +74,11 @@ fn main() {
         bind_addr
     };
 
+    /// get the path to the user's home directory
     let mut path = dirs::home_dir().expect("home directory");
+    /// if "keypair" argument was present at runtime, then get the value of "keypair"
+    /// if not existent, then Extends the "path" with the contents of an iterato, 
+    /// and turn then "path" into a &str slice, and return it
     let id_path = if matches.is_present("keypair") {
         matches.value_of("keypair").unwrap()
     } else {
