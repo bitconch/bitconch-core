@@ -15,7 +15,14 @@ use std::io;
 use std::net::SocketAddr;
 
 fn main() {
+    /// setting up logs
     logger::setup();
+    /// creates a new instance of an application named "fullnode-config"
+    /// automatically set the version of the "fullnode-config" application
+    /// to the same thing as the crate at compile time througth crate_version! macro
+    /// and add arguments to the list of valid possibilities
+    /// starts the parsing process, upon a failed parse an error will be displayed to the user 
+    /// and the process will exit with the appropriate error code.
     let matches = App::new("fullnode-config")
         .version(crate_version!())
         .arg(
