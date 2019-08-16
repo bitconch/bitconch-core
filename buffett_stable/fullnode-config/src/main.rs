@@ -59,15 +59,18 @@ fn main() {
         /// by the value of command-line parameters "bind" and the first number of "FULLNODE_PORT_RANGE" constants
         let mut bind_addr = parse_port_or_addr(matches.value_of("bind"), FULLNODE_PORT_RANGE.0);
         /// if "local" argument was present at runtime
-        /// then get the IP part of a given IpNetwork, and set the ip of "bind_addr"
+        /// then get the local IP part of a given IpNetwork, and set the ip of "bind_addr"
         if matches.is_present("local") {
             let ip = get_ip_addr().unwrap();
             bind_addr.set_ip(ip);
         }
+        /// if "public" argument was present at runtime
+        /// then get the public IP part of a given IpNetwork, and set the ip of "bind_addr"
         if matches.is_present("public") {
             let ip = get_public_ip_addr().unwrap();
             bind_addr.set_ip(ip);
         }
+        /// return the value of "bind_addr"
         bind_addr
     };
 
