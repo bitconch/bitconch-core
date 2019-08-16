@@ -85,10 +85,15 @@ fn main() {
         path.extend(&[".config", "bitconch", "id.json"]);
         path.to_str().unwrap()
     };
+    /// generate pkcs8 vector by "id_path", if failed then call panicand print the error information
     let pkcs8 = read_pkcs8(id_path).expect("client keypair");
 
     
+    /// generate a Config instance
     let config = Config::new(&bind_addr, pkcs8);
+    /// constructs a new handle to the standard output of the current process
     let stdout = io::stdout();
+    /// serialize data structure of "stdout, &config" as JSON into the IO stream
+    /// if failed then call panicand print the error information
     serde_json::to_writer(stdout, &config).expect("serialize");
 }
