@@ -137,8 +137,13 @@ fn main() -> () {
         None => SocketAddr::new(ncp.ip(), DRONE_PORT),
     };
 
+    /// start loop
     loop {
+        /// get the balance of client by referring to the pubkey every 100 milliseconds, 
+        /// and write the consumed time and balance to influxdb database.
+        /// If it exceeds 1 second (timeout), return "0" and write the consumed time into influxdbdatabase
         let balance = client.sample_balance_by_key(&pubkey).unwrap_or(0);
+        /// logging "balance" at the info log level
         info!("Balance value {}", balance);
 
         if balance >= 50 {
@@ -147,7 +152,9 @@ fn main() -> () {
         }
 
         info!("Calling Token-bot for air-drop {}", drone_addr);
+        /// loop
         loop {
+            /// if the rusult of signature is ture, quit the loop 
             if request_airdrop(&drone_addr, &pubkey, 50).is_ok() {
                 break;
             }
@@ -159,6 +166,7 @@ fn main() -> () {
         }
     }
 
+    /// loop
     loop {
         let status = fullnode.handle_role_transition();
         match status {
