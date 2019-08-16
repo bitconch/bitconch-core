@@ -114,7 +114,7 @@ fn main() -> () {
     let mut fullnode = Fullnode::new(node, ledger_path, keypair, network, false, None);
 
     
-    /// "leader" match with "network"
+    /// match with "network"
     /// if "network" in a Some value, generate a OK value of "NodeInfo"
     /// if it is false then call panic! and print the error message
     let leader = match network {
@@ -129,6 +129,9 @@ fn main() -> () {
     let mut client = new_client(&leader);
 
     
+    /// match with "network"
+    ///  if "network" in a Some value, new a SocketAddr instance with "network.ip(), DRONE_PORT"
+    /// if is None, new a SocketAddr instance with "ncp.ip(), DRONE_PORT"
     let drone_addr = match network {
         Some(network) => SocketAddr::new(network.ip(), DRONE_PORT),
         None => SocketAddr::new(ncp.ip(), DRONE_PORT),
