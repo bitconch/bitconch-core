@@ -40,7 +40,10 @@ fn main() -> Result<(), Box<error::Error>> {
                 .help("Use directory as a dedicated ledgerbook path"),
         ).get_matches();
 
+    /// getting a typed value T
+    /// where T implements std::str::FromStr or exiting upon error, instead of returning a Result type
     let tokens = value_t_or_exit!(matches, "tokens", i64);
+    /// get the value of "ledger"
     let ledger_path = matches.value_of("ledger").unwrap();
 
     if is(Stream::Stdin) {
