@@ -67,7 +67,9 @@ fn main() -> Result<(), Box<error::Error>> {
 
     /// opens or creates a LedgerWriter in ledger_path directory
     let mut ledger_writer = LedgerWriter::open(&ledger_path, true)?;
+    /// generation an instance of Entry vector and write it to the ledger
     ledger_writer.write_entries(mint.create_entries())?;
 
+    /// return the success value
     Ok(())
 }
