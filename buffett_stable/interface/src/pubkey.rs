@@ -9,12 +9,15 @@ pub struct Pubkey(GenericArray<u8, U32>);
 
 /// implementing new  method on Pubkey structure
 impl Pubkey {
-    /// define new function, and return value is Pubkey structure
+    /// define new function, 
+    /// and return a Pubkey structure by cloning from a slice "pubkey_vec" to construct a GenericArray  
     pub fn new(pubkey_vec: &[u8]) -> Self {
         Pubkey(GenericArray::clone_from_slice(&pubkey_vec))
     }
 }
 
+/// define as_ref function to implementing AsRef<[u8]> trait on  Pubkey structure,
+/// and will return a reference to the GenericArray‘s first element of type [u8]
 impl AsRef<[u8]> for Pubkey {
     fn as_ref(&self) -> &[u8] {
         &self.0[..]
