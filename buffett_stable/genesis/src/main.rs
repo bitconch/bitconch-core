@@ -12,7 +12,14 @@ use std::error;
 use std::io::{stdin, Read};
 use std::process::exit;
 
+/// declare main function, return value type is Result <T, E>, where T is (), E is Box <error:: Error>
 fn main() -> Result<(), Box<error::Error>> {
+    /// creates a new instance of an application named "bitconch-genesis"
+    /// automatically set the version of the "bitconch-genesis" application
+    /// to the same thing as the crate at compile time througth crate_version! macro
+    /// and add arguments to the list of valid possibilities
+    /// starts the parsing process, upon a failed parse an error will be displayed to the user 
+    /// and the process will exit with the appropriate error code
     let matches = App::new("bitconch-genesis")
         .version(crate_version!())
         .arg(
