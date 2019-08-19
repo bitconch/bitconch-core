@@ -4,9 +4,12 @@ use generic_array::GenericArray;
 use std::fmt;
 
 #[derive(Serialize, Deserialize, Clone, Copy, Default, Eq, PartialEq, Ord, PartialOrd, Hash)]
+/// define the public Pubkey tuple structure
 pub struct Pubkey(GenericArray<u8, U32>);
 
+/// implementing new  method on Pubkey structure
 impl Pubkey {
+    /// define new function, and return value is Pubkey structure
     pub fn new(pubkey_vec: &[u8]) -> Self {
         Pubkey(GenericArray::clone_from_slice(&pubkey_vec))
     }
