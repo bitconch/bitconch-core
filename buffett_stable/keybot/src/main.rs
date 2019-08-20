@@ -25,7 +25,11 @@ fn main() -> Result<(), Box<error::Error>> {
                 .help("Path to generated file"),
         ).get_matches();
 
+    /// get the path to the user's home directory
     let mut path = dirs::home_dir().expect("home directory");
+    /// if argument of "outfile" was present at runtime,
+    /// then get the value of "outfile"
+    /// otherwise extends the "path" with [".config", "bitconch", "id.json"],and return a &str slice path 
     let outfile = if matches.is_present("outfile") {
         matches.value_of("outfile").unwrap()
     } else {
