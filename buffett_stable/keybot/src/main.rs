@@ -39,11 +39,11 @@ fn main() -> Result<(), Box<error::Error>> {
 
     /// converts the str of "outfile" to string
     let _tmp = outfile.to_string();
-    /// serialize the PKCS#8 document as a String of JSON.
+    /// serialize the PKCS#8 document of the new key pair as a String of JSON.
     let serialized_keypair = gen_keypair_file(_tmp)?;
     if outfile == "-" {
         println!("{}", serialized_keypair);
     }
-    /// return the  success value
+    /// return the success value
     Ok(())
 }
