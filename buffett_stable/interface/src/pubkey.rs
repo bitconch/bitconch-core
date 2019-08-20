@@ -34,6 +34,10 @@ impl fmt::Debug for Pubkey {
     }
 }
 
+/// define fmt function to implementing fmt::Display trait on Pubkey structure,
+/// encoding GenericArray‘s first element into Base58 encoded strings,
+/// and write strictly into the supplied output stream 'f'
+/// returns 'fmt::Result' which indicates whether the operation succeeded or failed
 impl fmt::Display for Pubkey {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", bs58::encode(self.0).into_string())
