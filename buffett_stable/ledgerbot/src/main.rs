@@ -69,6 +69,9 @@ fn main() {
         }
     }
 
+    /// estructures the iterator of all the entries in "ledger_path"
+    /// if in a Ok value, then return "entries"
+    /// if is error, then print the error message and exit the program
     let entries = match read_ledger(ledger_path, true) {
         Ok(entries) => entries,
         Err(err) => {
