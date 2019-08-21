@@ -11,7 +11,12 @@ use std::io::{stdout, Write};
 use std::process::exit;
 
 fn main() {
+    /// setting up logs
     logger::setup();
+    /// creates a new instance of an application named "ledger-tool",
+    /// automatically set the version of the "ledger-tool" application,
+    /// starts the parsing process, upon a failed parse an error will be displayed to the user 
+    /// and the process will exit with the appropriate error code
     let matches = App::new("ledger-tool")
         .version(crate_version!())
         .arg(
