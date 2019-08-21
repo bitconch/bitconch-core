@@ -2,6 +2,7 @@ use pubkey::Pubkey;
 
 /// An Account with userdata that is stored on chain
 #[derive(Serialize, Deserialize, Debug, Clone, Default)]
+/// define a publicstruct of Account
 pub struct Account {
     /// tokens in the account
     pub tokens: i64,
@@ -12,6 +13,7 @@ pub struct Account {
     pub program_id: Pubkey,
 }
 
+/// defining an new method on the Account struct, return a instance of Account
 impl Account {
     pub fn new(tokens: i64, space: usize, program_id: Pubkey) -> Account {
         Account {
@@ -23,6 +25,7 @@ impl Account {
 }
 
 #[derive(Debug)]
+/// define a publicstruct of KeyedAccount
 pub struct KeyedAccount<'a> {
     pub key: &'a Pubkey,
     pub account: &'a mut Account,

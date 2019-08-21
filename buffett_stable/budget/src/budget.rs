@@ -9,6 +9,7 @@ use std::mem;
 
 #[repr(C)]
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
+/// define a public enueration of Budget,its variants are Pay, After, Or, And
 pub enum Budget {
     
     Pay(Payment),
@@ -23,33 +24,54 @@ pub enum Budget {
     And(Condition, Condition, Payment),
 }
 
+/// implement Budget
 impl Budget {
     
     
+/// define a public final_payment method on the Budget enum
+/// with the parameter Budget's variants and the type of return value is Option<Payment>
     pub fn final_payment(&self) -> Option<Payment> {
+/// match with Budget
         match self {
+/// if Budget variants is Pay's payment, execute the branch and clone payment return it 
             Budget::Pay(payment) => Some(payment.clone()),
+/// else return None
             _ => None,
         }
     }
 
     
+/// define a public verify method on the Budget enum
+/// with the parameter of Budget's variants and spendable_balance, the type of return value is bool
     pub fn verify(&self, spendable_balance: i64) -> bool {
+/// match with Budget
         match self {
+/// if Budget variants is Pay's payment, or After'payment, or And'payment
+/// execute the branch and return true or false
             Budget::Pay(payment) | Budget::After(_, payment) | Budget::And(_, _, payment) => {
                 payment.balance == spendable_balance
             }
+/// if Budget variants is Or((Condition, Payment), (Condition, Payment))
+/// then execute this branch and returns true or flase
             Budget::Or(a, b) => a.1.balance == spendable_balance && b.1.balance == spendable_balance,
         }
     }
 
     
+/// define a public apply_seal method on the Budget enum
     pub fn apply_seal(&mut self, seal: &Seal, from: &Pubkey) {
+/// match with Budget
         let new_budget = match self {
+/// if the variants of Budget is After (condition, payment),
+/// and the is_satisfied function in condition returns true
             Budget::After(condition, payment) if condition.is_satisfied(seal, from) => {
+/// then clone payment from Budget's Pay variants and store it in Some
                 Some(Budget::Pay(payment.clone()))
             }
+/// if the variants of Budget is the first (condition, payment) in Or,
+/// and the is_satisfied function in condition returns true
             Budget::Or((condition, payment), _) if condition.is_satisfied(seal, from) => {
+/// then clone payment from Budget's Pay variants and store it in Some
                 Some(Budget::Pay(payment.clone()))
             }
             Budget::Or(_, (condition, payment)) if condition.is_satisfied(seal, from) => {
