@@ -48,6 +48,9 @@ fn main() {
                 .long("continue")
                 .help("Continue verify even if verification fails"),
         )
+        /// creates a new instance of a subcommand named "print",
+        /// sets a string with "Print the ledger" describing what the program does,
+        /// and brings both pieces of information together
         .subcommand(SubCommand::with_name("print").about("Print the ledger"))
         .subcommand(SubCommand::with_name("json").about("Print the ledger in JSON format"))
         .subcommand(SubCommand::with_name("verify").about("Verify the ledger's PoH"))
