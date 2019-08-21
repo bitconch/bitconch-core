@@ -69,7 +69,7 @@ fn main() {
         }
     }
 
-    /// estructures the iterator of all the entries in "ledger_path"
+    /// destructure the iterator of all the entries in "ledger_path"
     /// if in a Ok value, then return "entries"
     /// if is error, then print the error message and exit the program
     let entries = match read_ledger(ledger_path, true) {
@@ -80,6 +80,9 @@ fn main() {
         }
     };
 
+    /// destructure the value of "head"
+    /// if "head" in Some value, then parse head，call panic! when it failed, and print the error message
+    /// if is None,then Returns the largest value that can be represented by usize type
     let head = match matches.value_of("head") {
         Some(head) => head.parse().expect("please pass a number for --head"),
         None => <usize>::max_value(),
