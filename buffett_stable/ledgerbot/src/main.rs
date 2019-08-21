@@ -56,8 +56,12 @@ fn main() {
         .subcommand(SubCommand::with_name("verify").about("Verify the ledger's PoH"))
         .get_matches();
 
+    /// get information about the "ledger"
     let ledger_path = matches.value_of("ledger").unwrap();
 
+    /// if argument of "precheck" was present at runtime
+    /// reference to "ledger_path" to verify the ledger , 
+    /// if failed, print the error information and exit the program 
     if matches.is_present("precheck") {
         if let Err(e) = verify_ledger(&ledger_path) {
             eprintln!("ledger precheck failed, error: {:?} ", e);
