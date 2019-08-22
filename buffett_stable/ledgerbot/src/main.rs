@@ -89,7 +89,6 @@ fn main() {
     };
 
     /// destructure the SubCommand
-    /// 
     match matches.subcommand() {
         /// if the subcommand is ("print", _), then destructure the iterator of all the entries in "ledger_path"
         /// if in a Ok value, then return "entries"
@@ -102,6 +101,9 @@ fn main() {
                     exit(1);
                 }
             };
+            /// creates an iterator which gives the current iteration count and the next value
+            /// where "i" is the current index of iteration and "entry "is the value returned by the iterator
+            /// if i >= head, then quit the loop
             for (i, entry) in entries.enumerate() {
                 if i >= head {
                     break;
