@@ -137,9 +137,13 @@ fn main() {
                 eprintln!("verify requires at least 2 entries to run");
                 exit(1);
             }
+            /// generate a instances of Bank
             let bank = Bank::default();
 
             {
+                /// destructures the iterator of all the entries in "ledger_path"
+                /// if in a Ok value, then return "entries"
+                /// if is error, then print the error message and exit the program
                 let genesis = match read_ledger(ledger_path, true) {
                     Ok(entries) => entries,
                     Err(err) => {
