@@ -112,8 +112,12 @@ fn main() {
                 println!("{:?}", entry);
             }
         }
+        /// if the subcommand is ("print", _),
+        /// write an entire buffer of " b"{\"ledger\":[\n" " into stdout(), if failed, call panic! and print the error message
         ("json", _) => {
             stdout().write_all(b"{\"ledger\":[\n").expect("open array");
+            /// creates an iterator which gives the current iteration count and the next value
+            /// if i >= head, then quit the loop
             for (i, entry) in entries.enumerate() {
                 if i >= head {
                     break;
