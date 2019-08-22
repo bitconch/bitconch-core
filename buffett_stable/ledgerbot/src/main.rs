@@ -88,7 +88,12 @@ fn main() {
         None => <usize>::max_value(),
     };
 
+    /// destructure the SubCommand
+    /// 
     match matches.subcommand() {
+        /// if the subcommand is ("print", _), then destructure the iterator of all the entries in "ledger_path"
+        /// if in a Ok value, then return "entries"
+        /// if is error, then print the error message and exit the program
         ("print", _) => {
             let entries = match read_ledger(ledger_path, true) {
                 Ok(entries) => entries,
