@@ -123,7 +123,9 @@ fn main() {
                     break;
                 }
                 let entry = entry.unwrap();
+                /// serialize the standard output and entry as JSON into the IO stream
                 serde_json::to_writer(stdout(), &entry).expect("serialize");
+                /// write an entire buffer of " b"{\"ledger\":[\n" " the standard output, if failed, call panic! and print the error message
                 stdout().write_all(b",\n").expect("newline");
             }
             stdout().write_all(b"\n]}\n").expect("close array");
