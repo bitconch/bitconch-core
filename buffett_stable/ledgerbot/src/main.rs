@@ -112,7 +112,7 @@ fn main() {
                 println!("{:?}", entry);
             }
         }
-        /// if the subcommand is ("print", _),
+        /// if the subcommand is ("json", _),
         /// write an entire buffer of " b"{\"ledger\":[\n" " into stdout(), if failed, call panic! and print the error message
         ("json", _) => {
             stdout().write_all(b"{\"ledger\":[\n").expect("open array");
@@ -130,6 +130,8 @@ fn main() {
             }
             stdout().write_all(b"\n]}\n").expect("close array");
         }
+        /// if the subcommand is ("verify", _), then evaluate the block "{}"
+        /// if head < 2,print the error message and exit
         ("verify", _) => {
             if head < 2 {
                 eprintln!("verify requires at least 2 entries to run");
