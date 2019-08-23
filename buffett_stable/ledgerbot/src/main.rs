@@ -178,6 +178,10 @@ fn main() {
                 if i >= head {
                     break;
                 }
+                /// if reference the last id hash value of the bank to verifies the hashes and counts 
+                /// of a slice of transactions are inconsistent, then print the error message.
+                /// If "continue" of the command parameter of matches does not present at running time, 
+                /// then exit the program 
                 if !entry.verify(&bank.last_id()) {
                     eprintln!("entry.verify() failed at entry[{}]", i + 2);
                     if !matches.is_present("continue") {
