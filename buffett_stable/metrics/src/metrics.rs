@@ -8,15 +8,18 @@ use sys_info::hostname;
 use buffett_timing::timing;
 
 #[derive(Debug)]
+/// define enueration of MetricsComman with the variants of Submit and Flush
 enum MetricsCommand {
     Submit(influxdb::Point),
     Flush(Arc<Barrier>),
 }
 
+/// define struct of MetricsAgent with the fields of sender
 struct MetricsAgent {
     sender: Sender<MetricsCommand>,
 }
 
+/// MetricsWriter trait that consists of the behavior provided by a "write" method
 trait MetricsWriter {
     
     fn write(&self, points: Vec<influxdb::Point>);
