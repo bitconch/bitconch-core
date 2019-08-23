@@ -56,10 +56,14 @@ impl DbWriter {
         let password = env::var("INFLUX_PASSWORD").unwrap_or_else(|_| "topsecret".to_string());
 
         debug!("InfluxDB host={} db={} username={}", host, db, username);
+        /// create a new influxdb client with https of "host, db, None"
+        /// and change the client's user
         let mut client = influxdb::Client::new_with_option(host, db, None)
             .set_authentication(username, password);
 
+        /// set the read timeout value, unit "s" 
         client.set_read_timeout(1 /*second*/);
+        /// set the write timeout value, unit "s" 
         client.set_write_timeout(1 /*second*/);
 
         debug!("InfluxDB version: {:?}", client.get_version());
