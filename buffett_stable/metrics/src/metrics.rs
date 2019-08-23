@@ -42,10 +42,17 @@ impl DbWriter {
     /// its return value type is Option <T> where T is influxdb:: Client
     fn build_client() -> Option<influxdb::Client> {
         /// fetches the environment variable key of "INFLUX_HOST" from the current process 
+        /// if failed then return "https://dashboard.bitconch.org"
         let host = env::var("INFLUX_HOST")
             .unwrap_or_else(|_| "https://dashboard.bitconch.org".to_string());
+        /// fetches the environment variable key of "IINFLUX_DATABASE" from the current process 
+        /// if failed then return "scratch"
         let db = env::var("INFLUX_DATABASE").unwrap_or_else(|_| "scratch".to_string());
+        /// fetches the environment variable key of "INFLUX_USERNAME" from the current process 
+        /// if failed then return "scratch_writer"
         let username = env::var("INFLUX_USERNAME").unwrap_or_else(|_| "scratch_writer".to_string());
+        /// fetches the environment variable key of "NFLUX_PASSWORD" from the current process 
+        /// if failed then return "topsecret"
         let password = env::var("INFLUX_PASSWORD").unwrap_or_else(|_| "topsecret".to_string());
 
         debug!("InfluxDB host={} db={} username={}", host, db, username);
