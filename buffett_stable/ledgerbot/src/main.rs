@@ -188,6 +188,10 @@ fn main() {
                         exit(1);
                     }
                 }
+                /// destructure the process transactions and registration id of bank reference to "entry"
+                /// if failed to verify print the error information
+                /// If "continue" of the command parameter of matches does not present at running time, 
+                /// then exit the program 
                 if let Err(e) = bank.process_entry(&entry) {
                     eprintln!("verify failed at entry[{}], err: {:?}", i + 2, e);
                     if !matches.is_present("continue") {
@@ -196,10 +200,12 @@ fn main() {
                 }
             }
         }
+        /// if the subcommand is ("", _), then print the error message and exit
         ("", _) => {
             eprintln!("{}", matches.usage());
             exit(1);
         }
+        /// otherwise, ndicates unreachable code
         _ => unreachable!(),
     };
 }
