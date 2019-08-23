@@ -25,10 +25,12 @@ trait MetricsWriter {
     fn write(&self, points: Vec<influxdb::Point>);
 }
 
+/// define struct of DbWriter with the fields of client
 struct DbWriter {
     client: Option<influxdb::Client>,
 }
 
+/// implementing new  methods on DbWriter structure
 impl DbWriter {
     fn new() -> Self {
         DbWriter {
@@ -36,7 +38,10 @@ impl DbWriter {
         }
     }
 
+    /// define the function of "build_client",
+    /// its return value type is Option <T> where T is influxdb:: Client
     fn build_client() -> Option<influxdb::Client> {
+        /// fetches the environment variable key of "INFLUX_HOST" from the current process 
         let host = env::var("INFLUX_HOST")
             .unwrap_or_else(|_| "https://dashboard.bitconch.org".to_string());
         let db = env::var("INFLUX_DATABASE").unwrap_or_else(|_| "scratch".to_string());
