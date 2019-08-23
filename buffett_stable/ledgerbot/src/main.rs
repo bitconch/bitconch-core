@@ -171,6 +171,9 @@ fn main() {
             let entries = entries.map(|e| e.unwrap());
 
             let head = head - 2;
+            /// creates an iterator that skips the first 2 elements 
+            /// and gives the current iteration count and the next value
+            /// if i >= head, then quit the loop
             for (i, entry) in entries.skip(2).enumerate() {
                 if i >= head {
                     break;
