@@ -152,8 +152,14 @@ fn main() {
                     }
                 };
 
+                /// takes a closure and creates an iterator that yields its first 2 elements 
+                /// and calls the closure on each element
                 let genesis = genesis.take(2).map(|e| e.unwrap());
 
+                /// destructure processes bank accounts by "genesis" to return the total entry of the account, 
+                /// and if it fails, print the error information.
+                /// If "continue" of the command parameter of matches does not present at running time, 
+                /// then exit the program
                 if let Err(e) = bank.process_ledger(genesis) {
                     eprintln!("verify failed at genesis err: {:?}", e);
                     if !matches.is_present("continue") {
@@ -161,6 +167,7 @@ fn main() {
                     }
                 }
             }
+            /// takes a closure and creates an iterator which calls that closure on each element
             let entries = entries.map(|e| e.unwrap());
 
             let head = head - 2;
