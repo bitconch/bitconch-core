@@ -67,12 +67,16 @@ impl DbWriter {
         client.set_write_timeout(1 /*second*/);
 
         debug!("InfluxDB version: {:?}", client.get_version());
+        ///  "client" is wrapped in "Some" and returned
         Some(client)
     }
 }
 
+/// define write function to implementing MetricsWriter trait on DbWriter structure,
 impl MetricsWriter for DbWriter {
     fn write(&self, points: Vec<influxdb::Point>) {
+        /// references to the fields of DbWriter
+        /// destructure the fields "client" of DbWriter in "Some" value
         if let Some(ref client) = self.client {
             debug!("submitting {} points", points.len());
             if let Err(err) = client.write_points(
