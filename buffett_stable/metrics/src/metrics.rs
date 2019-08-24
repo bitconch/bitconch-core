@@ -72,13 +72,15 @@ impl DbWriter {
     }
 }
 
-/// define write function to implementing MetricsWriter trait on DbWriter structure,
+/// define write function to implementing MetricsWriter trait on DbWriter structure
 impl MetricsWriter for DbWriter {
     fn write(&self, points: Vec<influxdb::Point>) {
-        /// references to the fields of DbWriter
         /// destructure the fields "client" of DbWriter in "Some" value
+        /// format print the length of "points"
         if let Some(ref client) = self.client {
             debug!("submitting {} points", points.len());
+            /// write multiple points to the database
+            /// if failed then format print the error message
             if let Err(err) = client.write_points(
                 influxdb::Points { point: points },
                 Some(influxdb::Precision::Milliseconds),
@@ -90,6 +92,7 @@ impl MetricsWriter for DbWriter {
     }
 }
 
+/// define default function to implementing Default trait on MetricsAgent structure
 impl Default for MetricsAgent {
     fn default() -> Self {
         Self::new(
