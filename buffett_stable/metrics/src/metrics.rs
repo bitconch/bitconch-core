@@ -93,6 +93,7 @@ impl MetricsWriter for DbWriter {
 }
 
 /// define default function to implementing Default trait on MetricsAgent structure
+/// and return a instance of MetricsAgent
 impl Default for MetricsAgent {
     fn default() -> Self {
         Self::new(
