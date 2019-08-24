@@ -32,6 +32,7 @@ struct DbWriter {
 
 /// implementing new  methods on DbWriter structure
 impl DbWriter {
+    /// define the function of new, and return a instance of DbWriter
     fn new() -> Self {
         DbWriter {
             client: Self::build_client(),
@@ -103,8 +104,11 @@ impl Default for MetricsAgent {
     }
 }
 
+/// implementing new and run methods on MetricsAgent structure
 impl MetricsAgent {
+    /// define the function of new, and return a instance of MetricsAgent
     fn new(metrics_writer: Arc<MetricsWriter + Send + Sync>, write_frequency: Duration) -> Self {
+        /// creates a new asynchronous channel, returning the sender/receiver halves with the type of MetricsCommand
         let (sender, receiver) = channel::<MetricsCommand>();
         thread::spawn(move || Self::run(&receiver, &metrics_writer, write_frequency));
         MetricsAgent { sender }
