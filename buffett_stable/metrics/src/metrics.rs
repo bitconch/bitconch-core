@@ -114,17 +114,23 @@ impl MetricsAgent {
         MetricsAgent { sender }
     }
 
+    /// define the function of run
     fn run(
         receiver: &Receiver<MetricsCommand>,
         writer: &Arc<MetricsWriter + Send + Sync>,
         write_frequency: Duration,
     ) {
         trace!("run: enter");
+        /// get the current time
         let mut last_write_time = Instant::now();
+        /// constructs a empty vector
         let mut points = Vec::new();
 
+        /// start loop
         loop {
+            /// destructure the value on receiver with the parameter of "write_frequency / 2"
             match receiver.recv_timeout(write_frequency / 2) {
+                /// if is a "OK" value
                 Ok(cmd) => match cmd {
                     MetricsCommand::Flush(barrier) => {
                         debug!("metrics_thread: flush");
