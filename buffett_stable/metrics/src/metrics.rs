@@ -75,7 +75,7 @@ impl DbWriter {
     }
 }
 
-/// define write function to implementing MetricsWriter trait on DbWriter structure
+/// define write function to implement MetricsWriter trait on DbWriter structure
 impl MetricsWriter for DbWriter {
     fn write(&self, points: Vec<influxdb::Point>) {
         /// destructure the fields "client" of DbWriter in "Some" value
@@ -95,7 +95,7 @@ impl MetricsWriter for DbWriter {
     }
 }
 
-/// define default function to implementing Default trait on MetricsAgent structure
+/// define default function to implement Default trait on MetricsAgent structure
 /// and return a instance of MetricsAgent
 impl Default for MetricsAgent {
     fn default() -> Self {
@@ -190,7 +190,7 @@ impl MetricsAgent {
             point.timestamp = Some(timing::timestamp() as i64);
         }
         debug!("Submitting point: {:?}", point);
-        /// send the value of "point" on sender channel
+        /// send the value of "Submit(point)" on sender channel
         self.sender.send(MetricsCommand::Submit(point)).unwrap();
     }
 
@@ -200,14 +200,18 @@ impl MetricsAgent {
         debug!("Flush");
         /// creates barrier that can block 2 threads
         let barrier = Arc::new(Barrier::new(2));
+        /// send the value of "Flush(Arc::clone(&barrier))" on sender channel
         self.sender
             .send(MetricsCommand::Flush(Arc::clone(&barrier)))
             .unwrap();
 
+        /// blocks the current thread of "barrier" until all threads have rendezvoused here
         barrier.wait();
     }
 }
 
+///  define drop method to implement Drop trait on MetricsAgent structure
+/// disposes the value of flush function
 impl Drop for MetricsAgent {
     fn drop(&mut self) {
         self.flush();
