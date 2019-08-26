@@ -68,6 +68,7 @@ impl DbWriter {
         /// set the write timeout value, unit "s" 
         client.set_write_timeout(1 /*second*/);
 
+        /// logs the message of the version of the InfluxDB database at the debug level
         debug!("InfluxDB version: {:?}", client.get_version());
         ///  "client" is wrapped in "Some" and returned
         Some(client)
@@ -78,7 +79,7 @@ impl DbWriter {
 impl MetricsWriter for DbWriter {
     fn write(&self, points: Vec<influxdb::Point>) {
         /// destructure the fields "client" of DbWriter in "Some" value
-        /// format print the length of "points"
+        /// logs the length of "points" at the debug level 
         if let Some(ref client) = self.client {
             debug!("submitting {} points", points.len());
             /// write multiple points to the influxdb database
@@ -147,8 +148,12 @@ impl MetricsAgent {
                             points = Vec::new();
                             last_write_time = Instant::now();
                         }
+                        /// blocks the current thread of "barrier" until all threads have rendezvoused here.
                         barrier.wait();
                     }
+                    /// if the variants of MetricsCommand enum is "Submit(point)"
+                    /// then logs the message at the debug level
+                    /// and appends the element of "point" to the back of "points" vector
                     MetricsCommand::Submit(point) => {
                         debug!("run: submit {:?}", point);
                         points.push(point);
