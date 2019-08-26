@@ -194,8 +194,11 @@ impl MetricsAgent {
         self.sender.send(MetricsCommand::Submit(point)).unwrap();
     }
 
+    /// declare the function of flush
     pub fn flush(&self) {
+        /// logs the message at the debug level
         debug!("Flush");
+        /// creates barrier that can block 2 threads
         let barrier = Arc::new(Barrier::new(2));
         self.sender
             .send(MetricsCommand::Flush(Arc::clone(&barrier)))
