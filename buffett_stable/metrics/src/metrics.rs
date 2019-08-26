@@ -159,9 +159,12 @@ impl MetricsAgent {
                         points.push(point);
                     }
                 },
+                /// if is a "Err" value of "Timeout", then logs the message at the trace leve
                 Err(RecvTimeoutError::Timeout) => {
                     trace!("run: receive timeout");
                 }
+                /// if is a "Err" value of "Disconnected",
+                /// then logs the message at the debug level, and quit the loop
                 Err(RecvTimeoutError::Disconnected) => {
                     debug!("run: sender disconnected");
                     break;
