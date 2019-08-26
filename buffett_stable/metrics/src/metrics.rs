@@ -56,6 +56,7 @@ impl DbWriter {
         /// if failed then return "topsecret"
         let password = env::var("INFLUX_PASSWORD").unwrap_or_else(|_| "topsecret".to_string());
 
+        /// logs the message at the debug level
         debug!("InfluxDB host={} db={} username={}", host, db, username);
         /// create a new influxdb client with https of "host, db, None"
         /// and change the client's user
@@ -120,6 +121,7 @@ impl MetricsAgent {
         writer: &Arc<MetricsWriter + Send + Sync>,
         write_frequency: Duration,
     ) {
+        /// logs the message at the trace leve
         trace!("run: enter");
         /// get the current time
         let mut last_write_time = Instant::now();
@@ -133,7 +135,7 @@ impl MetricsAgent {
                 /// if is a "OK" value, then destructure MetricsCommand enum
                 Ok(cmd) => match cmd {
                     /// if the variants of MetricsCommand enum is "Flush(barrier)"
-                    /// then Format output the text information
+                    /// then logs the message at the debug level
                     MetricsCommand::Flush(barrier) => {
                         debug!("metrics_thread: flush");
                         /// if the vector of "points" is not empty
