@@ -182,11 +182,15 @@ impl MetricsAgent {
         trace!("run: exit");
     }
 
+    /// declare the function of submit
     pub fn submit(&self, mut point: influxdb::Point) {
+        /// if the timestamp of the point is none
+        /// then create timestamp in timing
         if point.timestamp.is_none() {
             point.timestamp = Some(timing::timestamp() as i64);
         }
         debug!("Submitting point: {:?}", point);
+        /// send the value of "point" on sender channel
         self.sender.send(MetricsCommand::Submit(point)).unwrap();
     }
 
