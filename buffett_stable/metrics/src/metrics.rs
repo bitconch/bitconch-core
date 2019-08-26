@@ -80,7 +80,7 @@ impl MetricsWriter for DbWriter {
         /// format print the length of "points"
         if let Some(ref client) = self.client {
             debug!("submitting {} points", points.len());
-            /// write multiple points to the database
+            /// write multiple points to the influxdb database
             /// if failed then format print the error message
             if let Err(err) = client.write_points(
                 influxdb::Points { point: points },
@@ -130,10 +130,16 @@ impl MetricsAgent {
         loop {
             /// destructure the value on receiver with the parameter of "write_frequency / 2"
             match receiver.recv_timeout(write_frequency / 2) {
-                /// if is a "OK" value
+                /// if is a "OK" value, then destructure MetricsCommand enum
                 Ok(cmd) => match cmd {
+                    /// if the variants of MetricsCommand enum is "Flush(barrier)"
+                    /// then Format output the text information
                     MetricsCommand::Flush(barrier) => {
                         debug!("metrics_thread: flush");
+                        /// if the vector of "points" is not empty
+                        /// then write the "points" vector into influxdb database
+                        /// constructs a empty vector
+                        /// get the current time to write into the influxdb database
                         if !points.is_empty() {
                             writer.write(points);
                             points = Vec::new();
