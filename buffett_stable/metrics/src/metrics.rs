@@ -225,7 +225,7 @@ impl Drop for MetricsAgent {
 /// with the return value type is MetricsAgent structure
 fn get_mutex_agent() -> Arc<Mutex<MetricsAgent>> {
     /// declare a static named "INIT" with the type of synchronization primitive
-    /// and initialization value for static `Once` values
+    /// and initialization value for static "Once" values
     static INIT: Once = ONCE_INIT;
     /// declare a mutable static named "AGENT" with the type of Option<Arc<Mutex<MetricsAgent>>>
     /// and initialization to None
@@ -267,10 +267,15 @@ pub fn flush() {
 }
 
 
+/// define the function of set_panic_hook
 pub fn set_panic_hook(program: &'static str) {
     use std::panic;
+    /// declare a static named "SET_HOOK" with the type of synchronization primitive
+    /// and initialization value for static "Once" values
     static SET_HOOK: Once = ONCE_INIT;
+    /// performs an initialization routine once and only once
     SET_HOOK.call_once(|| {
+        /// unregisters the current panic hook, and returning it
         let default_hook = panic::take_hook();
         panic::set_hook(Box::new(move |ono| {
             default_hook(ono);
