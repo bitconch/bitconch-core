@@ -224,9 +224,11 @@ impl Drop for MetricsAgent {
 /// declare the function of flush get_mutex_agent
 /// with the return value type is MetricsAgent structure
 fn get_mutex_agent() -> Arc<Mutex<MetricsAgent>> {
-    /// creat a synchronization primitive named "INIT"
+    /// declare a static named "INIT" with the type of synchronization primitive
     /// and initialization value for static `Once` values
     static INIT: Once = ONCE_INIT;
+    /// declare a mutable static named "AGENT" with the type of Option<Arc<Mutex<MetricsAgent>>>
+    /// and initialization to None
     static mut AGENT: Option<Arc<Mutex<MetricsAgent>>> = None;
     unsafe {
         INIT.call_once(|| AGENT = Some(Arc::new(Mutex::new(MetricsAgent::default()))));
