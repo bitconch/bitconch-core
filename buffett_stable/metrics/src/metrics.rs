@@ -231,7 +231,12 @@ fn get_mutex_agent() -> Arc<Mutex<MetricsAgent>> {
     /// and initialization to None
     static mut AGENT: Option<Arc<Mutex<MetricsAgent>>> = None;
     unsafe {
+        /// only call "default" once to instance MetricsAgent structure, and will
+        /// otherwise always return the value returned from the first invocation in unsafe block
         INIT.call_once(|| AGENT = Some(Arc::new(Mutex::new(MetricsAgent::default()))));
+        /// match with "AGENT"
+        /// if in "Some" value, then clone agent and return it
+        /// if is None, then call panic! and print the error message
         match AGENT {
             Some(ref agent) => agent.clone(),
             None => panic!("Failed to initialize metrics agent"),
