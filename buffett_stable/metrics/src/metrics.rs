@@ -277,11 +277,17 @@ pub fn set_panic_hook(program: &'static str) {
     SET_HOOK.call_once(|| {
         /// unregisters the current panic hook, and returning it
         let default_hook = panic::take_hook();
+        /// registers a custom panic hook, replacing "default_hook" previously register by "ono"
         panic::set_hook(Box::new(move |ono| {
             default_hook(ono);
+            /// send data to influxdb database on sender channel
             submit(
+                /// create a new point named "panic"
                 influxdb::Point::new("panic")
+                    /// add a tag named "program" with the value of "program"
                     .add_tag("program", influxdb::Value::String(program.to_string()))
+                    /// add a tag named "thread" with the value of the thread's name
+                    /// if failed, then returns the default value of "?"
                     .add_tag(
                         "thread",
                         influxdb::Value::String(
@@ -289,6 +295,7 @@ pub fn set_panic_hook(program: &'static str) {
                         ),
                     )
                     
+                    /// add a field named "one" with the value of integer "1"
                     .add_field("one", influxdb::Value::Integer(1))
                     .add_field(
                         "message",
@@ -310,9 +317,11 @@ pub fn set_panic_hook(program: &'static str) {
                             hostname().unwrap_or_else(|_| "?".to_string())
                         ),
                     )
+                    /// create owned data from borrowed data
                     .to_owned(),
             );
             
+            /// call the function of fulsh write the data into database
             flush();
         }));
     });
