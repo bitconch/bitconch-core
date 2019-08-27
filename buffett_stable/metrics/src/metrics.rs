@@ -245,9 +245,14 @@ fn get_mutex_agent() -> Arc<Mutex<MetricsAgent>> {
 }
 
 
+/// define the function of submit
 pub fn submit(point: influxdb::Point) {
+    /// call the function of "get_mutex_agent" to get the instance of MetricsAgent structure
     let agent_mutex = get_mutex_agent();
+    /// acquires a mutex, blocking the current task until it is able to do so
     let agent = agent_mutex.lock().unwrap();
+    /// determine whether the point timestamp is empty, 
+    /// and send value of "point" on sender channel 
     agent.submit(point);
 }
 
