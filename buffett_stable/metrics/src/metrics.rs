@@ -30,7 +30,7 @@ struct DbWriter {
     client: Option<influxdb::Client>,
 }
 
-/// implementing new  methods on DbWriter structure
+/// implementing new and build_client methods on DbWriter structure
 impl DbWriter {
     /// define the function of new, and return a instance of DbWriter
     fn new() -> Self {
@@ -106,7 +106,7 @@ impl Default for MetricsAgent {
     }
 }
 
-/// implementing new and run methods on MetricsAgent structure
+/// implementing new, run,submit and flush methods on MetricsAgent structure
 impl MetricsAgent {
     /// define the function of new, and return a instance of MetricsAgent
     fn new(metrics_writer: Arc<MetricsWriter + Send + Sync>, write_frequency: Duration) -> Self {
@@ -115,7 +115,7 @@ impl MetricsAgent {
         let (sender, receiver) = channel::<MetricsCommand>();
         /// spawns a new thread to start the run function
         thread::spawn(move || Self::run(&receiver, &metrics_writer, write_frequency));
-        /// eturn the instance of MetricsAgent
+        /// return the instance of MetricsAgent
         MetricsAgent { sender }
     }
 
@@ -257,9 +257,12 @@ pub fn submit(point: influxdb::Point) {
 }
 
 
+/// define the function of flush
 pub fn flush() {
+    /// call the function of "get_mutex_agent" to get the instance of MetricsAgent structure
     let agent_mutex = get_mutex_agent();
     let agent = agent_mutex.lock().unwrap();
+    /// call the "flush" function on the MetricsAgent structure to write the data into database
     agent.flush();
 }
 
