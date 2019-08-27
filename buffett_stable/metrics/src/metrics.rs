@@ -110,9 +110,12 @@ impl Default for MetricsAgent {
 impl MetricsAgent {
     /// define the function of new, and return a instance of MetricsAgent
     fn new(metrics_writer: Arc<MetricsWriter + Send + Sync>, write_frequency: Duration) -> Self {
-        /// creates a new asynchronous channel, returning the sender/receiver halves with the type of MetricsCommand
+        /// creates a new asynchronous channel, 
+        /// returning the sender/receiver halves, the type of  channel is MetricsCommand
         let (sender, receiver) = channel::<MetricsCommand>();
+        /// spawns a new thread to start the run function
         thread::spawn(move || Self::run(&receiver, &metrics_writer, write_frequency));
+        /// eturn the instance of MetricsAgent
         MetricsAgent { sender }
     }
 
@@ -210,7 +213,7 @@ impl MetricsAgent {
     }
 }
 
-///  define drop method to implement Drop trait on MetricsAgent structure
+/// define drop method to implement Drop trait on MetricsAgent structure
 /// disposes the value of flush function
 impl Drop for MetricsAgent {
     fn drop(&mut self) {
