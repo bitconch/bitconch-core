@@ -39,7 +39,9 @@ macro_rules! socketaddr {
 
 /// declare the function of main
 fn main() -> Result<(), Box<error::Error>> {
+    /// initialization log
     logger::setup();
+    /// if there is panic in "tokenbot" program, then will record the panic information into influxdb database
     set_panic_hook("tokenbot");
     let matches = App::new("tokenbot")
         .version(crate_version!())
