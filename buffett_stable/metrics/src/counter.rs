@@ -67,15 +67,21 @@ impl Counter {
         let v = env::var("BITCONCH_DASHBOARD_RATE")
             .map(|x| x.parse().unwrap_or(DEFAULT_METRICS_RATE))
             .unwrap_or(DEFAULT_METRICS_RATE);
+        /// if v == 0, then return the const of DEFAULT_METRICS_RATE
+        /// otherwise return v
         if v == 0 {
             DEFAULT_METRICS_RATE
         } else {
             v
         }
     }
+    /// define the function of inc
     pub fn inc(&mut self, events: usize) {
+        /// adds "events" to the current value of "counts", returning the previous value of "counts"
         let counts = self.counts.fetch_add(events, Ordering::Relaxed);
+        /// add 1 to the current value of "times", and return the previous value of "times"
         let times = self.times.fetch_add(1, Ordering::Relaxed);
+        /// loads the value of "lograte" from the atomic intege
         let mut lograte = self.lograte.load(Ordering::Relaxed);
         if lograte == 0 {
             lograte = Counter::default_log_rate();
