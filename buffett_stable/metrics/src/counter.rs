@@ -61,6 +61,9 @@ impl Counter {
     /// and its return value type is usize
     fn default_log_rate() -> usize {
         /// fetches the environment variable key of "BITCONCH_DASHBOARD_RATE" from the current process
+        /// parse x into the type of usize through closures
+        /// if parsing failed, then return the const of DEFAULT_METRICS_RATE
+        /// if failed to fetches the environment variable key, then return the const of DEFAULT_METRICS_RATE
         let v = env::var("BITCONCH_DASHBOARD_RATE")
             .map(|x| x.parse().unwrap_or(DEFAULT_METRICS_RATE))
             .unwrap_or(DEFAULT_METRICS_RATE);
