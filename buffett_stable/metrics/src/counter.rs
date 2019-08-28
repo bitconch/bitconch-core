@@ -83,12 +83,17 @@ impl Counter {
         let times = self.times.fetch_add(1, Ordering::Relaxed);
         /// loads the value of "lograte" from the atomic intege
         let mut lograte = self.lograte.load(Ordering::Relaxed);
+        /// if lograte == 0
+        /// then call the function "default_log_rate" on Counter structure
+        /// and stores the value of "lograte" into the atomic integer
         if lograte == 0 {
             lograte = Counter::default_log_rate();
             self.lograte.store(lograte, Ordering::Relaxed);
         }
+        /// if times % lograte == 0 and times > 0
         if times % lograte == 0 && times > 0 {
             let lastlog = self.lastlog.load(Ordering::Relaxed);
+            /// logs the message at the Info level
             info!(
                 "COUNTER:{{\"name\": \"{}\", \"counts\": {}, \"samples\": {},  \"now\": {}, \"events\": {}}}",
                 self.name,
@@ -97,6 +102,9 @@ impl Counter {
                 timing::timestamp(),
                 events,
             );
+            /// use the submit method of the metrics crate 
+            /// and new a Point named "counter-{}" with theCounter structure field "name" in format,
+            /// and a field named "count" whose value is "counts - lastlog" of type i64
             metrics::submit(
                 influxdb::Point::new(&format!("counter-{}", self.name))
                     .add_field(
@@ -104,6 +112,7 @@ impl Counter {
                         influxdb::Value::Integer(counts as i64 - lastlog as i64),
                     ).to_owned(),
             );
+            /// stores the value into the atomic integer if the current value is the same as the current value
             self.lastlog
                 .compare_and_swap(lastlog, counts, Ordering::Relaxed);
         }
