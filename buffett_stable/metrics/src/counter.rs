@@ -6,6 +6,8 @@ use buffett_timing::timing;
 
 const DEFAULT_METRICS_RATE: usize = 100;
 
+/// define a public struct of Counter
+/// with the public fields of name, counts, times, lastlog, lograte
 pub struct Counter {
     pub name: &'static str,
     pub counts: AtomicUsize,
@@ -15,6 +17,7 @@ pub struct Counter {
 }
 
 #[macro_export]
+/// using the macro_rules! macro to created a macro named new_counter
 macro_rules! new_counter {
     ($name:expr, $lograte:expr) => {
         Counter {
