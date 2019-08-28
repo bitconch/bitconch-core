@@ -37,6 +37,7 @@ macro_rules! socketaddr {
     }};
 }
 
+/// declare the function of main
 fn main() -> Result<(), Box<error::Error>> {
     logger::setup();
     set_panic_hook("tokenbot");
