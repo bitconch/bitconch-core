@@ -55,8 +55,12 @@ macro_rules! sub_new_counter {($name:expr, $count:expr, $level:expr, $lograte:ex
     }};
 }
 
+/// implementing default_log_rate and inc methods on Counter structure
 impl Counter {
+    /// define the function of default_log_rate,
+    /// and its return value type is usize
     fn default_log_rate() -> usize {
+        /// fetches the environment variable key of "BITCONCH_DASHBOARD_RATE" from the current process
         let v = env::var("BITCONCH_DASHBOARD_RATE")
             .map(|x| x.parse().unwrap_or(DEFAULT_METRICS_RATE))
             .unwrap_or(DEFAULT_METRICS_RATE);
