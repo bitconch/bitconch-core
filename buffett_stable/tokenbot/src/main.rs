@@ -42,11 +42,16 @@ fn main() -> Result<(), Box<error::Error>> {
     /// initialization log
     logger::setup();
     /// if there is panic in "tokenbot" program, then will record the panic information into influxdb database
-    set_panic_hook("tokenbot");
+    set_panic_hook("tokenbot"); 
+    /// creates a new instance of an application named "tokenbot"
+    /// set the version to the same version of the application as crate automatically at compile time
+    /// adds an argument to the list of valid possibilities
     let matches = App::new("tokenbot")
         .version(crate_version!())
         .arg(
+            /// creates a new instance of Arg named "network"
             Arg::with_name("network")
+                /// sets the short version of the argument
                 .short("n")
                 .long("network")
                 .value_name("HOST:PORT")
