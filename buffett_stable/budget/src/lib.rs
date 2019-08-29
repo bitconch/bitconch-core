@@ -8,4 +8,3 @@ extern crate bincode;
 extern crate buffett_interface;
 #[macro_use]
 extern crate serde_derive;
-

@@ -4,74 +4,60 @@ use crate::condition::Condition;
 use buffett_interface::pubkey::Pubkey;
 use std::mem;
 
-
-
-
+///This enum is defined to set a scheme for classification of smart contracts
 #[repr(C)]
 #[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Clone)]
-/// define a public enueration of Budget,its variants are Pay, After, Or, And
 pub enum Budget {
-    
+
+    ///State indicating that all requirements for execution of
+    ///a smart contract have been satisfied.
     Pay(Payment),
 
-    
+    ///State indicating that only one requirement is to be satisfied
+    ///to trigger the execution of a smart contract.
     After(Condition, Payment),
 
-    
+    ///State indicating that either requirement is to be satisfied
+    ///to trigger the execution of a smart contract.
     Or((Condition, Payment), (Condition, Payment)),
 
-    
+    ///State indicating that both requirements are to be satisfied
+    ///to trigger the execution of a smart contract.
     And(Condition, Condition, Payment),
 }
 
-/// implement Budget
 impl Budget {
     
-    
-/// define a public final_payment method on the Budget enum
-/// with the parameter Budget's variants and the type of return value is Option<Payment>
+    ///Check whether or not a Budget variant is a 'Pay(payment)', return an 
+    ///Option variant 'Some' wrapping the payment if so, or an Option variant
+    ///'None' if not.
     pub fn final_payment(&self) -> Option<Payment> {
-/// match with Budget
         match self {
-/// if Budget variants is Pay's payment, execute the branch and clone payment return it 
             Budget::Pay(payment) => Some(payment.clone()),
-/// else return None
             _ => None,
         }
     }
 
-    
-/// define a public verify method on the Budget enum
-/// with the parameter of Budget's variants and spendable_balance, the type of return value is bool
+    ///Check whether or not the balance contained in the 'payment' field of a Budget variant
+    ///is equal to the argument 'spendable_balance', return the bool value of the comparison.
     pub fn verify(&self, spendable_balance: i64) -> bool {
-/// match with Budget
         match self {
-/// if Budget variants is Pay's payment, or After'payment, or And'payment
-/// execute the branch and return true or false
             Budget::Pay(payment) | Budget::After(_, payment) | Budget::And(_, _, payment) => {
                 payment.balance == spendable_balance
             }
-/// if Budget variants is Or((Condition, Payment), (Condition, Payment))
-/// then execute this branch and returns true or flase
             Budget::Or(a, b) => a.1.balance == spendable_balance && b.1.balance == spendable_balance,
         }
     }
 
-    
-/// define a public apply_seal method on the Budget enum
+    ///To change a budget variant to another according to what kind of variant it is now and
+    ///whether or not the requirements in its 'condition' field are met by the arguments
+    ///'seal and 'from'.
     pub fn apply_seal(&mut self, seal: &Seal, from: &Pubkey) {
-/// match with Budget
         let new_budget = match self {
-/// if the variants of Budget is After (condition, payment),
-/// and the is_satisfied function in condition returns true
             Budget::After(condition, payment) if condition.is_satisfied(seal, from) => {
-/// then clone payment from Budget's Pay variants and store it in Some
                 Some(Budget::Pay(payment.clone()))
             }
-/// if the variants of Budget is the first (condition, payment) in Or,
-/// and the is_satisfied function in condition returns true
             Budget::Or((condition, payment), _) if condition.is_satisfied(seal, from) => {
-/// then clone payment from Budget's Pay variants and store it in Some
                 Some(Budget::Pay(payment.clone()))
             }
             Budget::Or(_, (condition, payment)) if condition.is_satisfied(seal, from) => {
@@ -93,4 +79,3 @@ impl Budget {
         }
     }
 }
-
