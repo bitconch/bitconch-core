@@ -53,10 +53,15 @@ fn main() -> Result<(), Box<error::Error>> {
             Arg::with_name("network")
                 /// sets the short version of the argument
                 .short("n")
+                /// sets the long version of the argument
                 .long("network")
+                /// specifies the name for value of option or positional arguments inside of help documentation
                 .value_name("HOST:PORT")
+                /// specifies that the argument takes a value at run time
                 .takes_value(true)
+                /// sets whether or not the argument is required by default
                 .required(true)
+                /// sets the short help text
                 .help("Ip and port number of the leader node"),
         ).arg(
             Arg::with_name("keypair")
