@@ -99,6 +99,8 @@ fn main() -> Result<(), Box<error::Error>> {
             exit(1)
         });
 
+    /// get the keypair from the value of "keypair" in application, 
+    /// and print the error message if it fails.
     let mint_keypair =
         read_keypair(matches.value_of("keypair").unwrap()).expect("failed to read client keypair");
 
