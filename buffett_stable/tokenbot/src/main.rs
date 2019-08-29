@@ -107,14 +107,18 @@ fn main() -> Result<(), Box<error::Error>> {
     /// declare the "time_slice" variable
     let time_slice: Option<u64>;
     /// destructure the value of "slice" in application
-    /// if "slice" wrapped Some value,then parse "slice", if faile to parse, then print the error message,
+    /// if "slice" wrapped Some value,then parse "slice", and return, if faile to parse then print the error message,
     /// if is None, then return None to time_slice
     if let Some(secs) = matches.value_of("slice") {
         time_slice = Some(secs.to_string().parse().expect("failed to parse slice"));
     } else {
         time_slice = None;
     }
+    /// declare the "request_cap" variable
     let request_cap: Option<u64>;
+    /// destructure the value of "cap" in application
+    /// if "cap" wrapped Some value,then parse "cap", and return, if faile to parse then print the error message,
+    /// if is None, then return None to request_cap
     if let Some(c) = matches.value_of("cap") {
         request_cap = Some(c.to_string().parse().expect("failed to parse cap"));
     } else {
