@@ -104,7 +104,11 @@ fn main() -> Result<(), Box<error::Error>> {
     let mint_keypair =
         read_keypair(matches.value_of("keypair").unwrap()).expect("failed to read client keypair");
 
+    /// declare the "time_slice" variable
     let time_slice: Option<u64>;
+    /// destructure the value of "slice" in application
+    /// if "slice" wrapped Some value,then parse "slice", if faile to parse, then print the error message,
+    /// if is None, then return None to time_slice
     if let Some(secs) = matches.value_of("slice") {
         time_slice = Some(secs.to_string().parse().expect("failed to parse slice"));
     } else {
