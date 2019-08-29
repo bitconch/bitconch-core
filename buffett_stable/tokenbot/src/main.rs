@@ -83,8 +83,13 @@ fn main() -> Result<(), Box<error::Error>> {
                 .value_name("NUM")
                 .takes_value(true)
                 .help("Request limit during each interval"),
+        /// starts the parsing process, upon a failed parse an error will be displayed to the user 
+        /// and the process will exit with the appropriate error code.
         ).get_matches();
 
+    /// gets the value of "network", and parse it,
+    /// if faile to parse, then will return the default error message, 
+    /// print the error message, and exits the program
     let network = matches
         .value_of("network")
         .unwrap()
