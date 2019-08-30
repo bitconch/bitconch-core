@@ -152,10 +152,14 @@ fn main() -> Result<(), Box<error::Error>> {
     /// create a new TCP listener associated with this event loop
     let socket = TcpListener::bind(&drone_addr).unwrap();
     println!("Tokenbot started. Listening on: {}", drone_addr);
+    /// consumes "socket" listener, returning a stream of the sockets listener accepts
+    /// and calls a closure on each element of "socket" iterator
+    /// if faile to consumes "socket" listener, then print the error message
     let done = socket
         .incoming()
         .map_err(|e| println!("failed to accept socket; error = {:?}", e))
         .for_each(move |socket| {
+            ///
             let drone2 = drone.clone();
             // let client_ip = socket.peer_addr().expect("drone peer_addr").ip();
             let framed = BytesCodec::new().framed(socket);
