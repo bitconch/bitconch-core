@@ -169,7 +169,10 @@ fn main() -> Result<(), Box<error::Error>> {
             /// break the Stream and Sink interface into separate objects, allowing them to interact more easily
             let (writer, reader) = framed.split();
 
+            /// returns None if the option of "reader" is None,
+            /// otherwise calls closure with the wrapped value and returns the result
             let processor = reader.and_then(move |bytes| {
+                // deserializes a slice of bytes into an instance of DroneRequest using the default configuration
                 let req: DroneRequest = deserialize(&bytes).or_else(|err| {
                     Err(io::Error::new(
                         io::ErrorKind::Other,
