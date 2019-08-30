@@ -172,8 +172,10 @@ fn main() -> Result<(), Box<error::Error>> {
             /// returns None if the option of "reader" is None,
             /// otherwise calls closure with the wrapped value and returns the result
             let processor = reader.and_then(move |bytes| {
-                // deserializes a slice of bytes into an instance of DroneRequest using the default configuration
+                /// deserializes a slice of bytes into an instance of DroneRequest using the default configuration
+                /// if faile to deserializes, then call the closure
                 let req: DroneRequest = deserialize(&bytes).or_else(|err| {
+                    /// creates a new I/O error from formatted string error as well as an arbitrary error payload
                     Err(io::Error::new(
                         io::ErrorKind::Other,
                         format!("deserialize packet in drone: {:?}", err),
@@ -181,6 +183,7 @@ fn main() -> Result<(), Box<error::Error>> {
                 })?;
 
                 println!("Airdrop requested...");
+                /// obtain locks to access the results of "send_airdrop(req)" function in the "drone2" mutex
                 // let res = drone2.lock().unwrap().check_rate_limit(client_ip);
                 let res1 = drone2.lock().unwrap().send_airdrop(req);
                 match res1 {
