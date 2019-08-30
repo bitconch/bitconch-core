@@ -139,10 +139,13 @@ fn main() -> Result<(), Box<error::Error>> {
     )));
 
     let drone1 = drone.clone();
-    ///
+    /// create a new thread to loop
     thread::spawn(move || loop {
+        /// use "lock" method to get locks to access "time_slice" data in "drone1" mutex
         let time = drone1.lock().unwrap().time_slice;
+        /// puts the current thread to sleep
         thread::sleep(time);
+        /// obtain locks to access the results of "clear_request_count" function in the "drone1" mutex
         drone1.lock().unwrap().clear_request_count();
     });
 
