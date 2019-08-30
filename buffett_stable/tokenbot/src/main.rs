@@ -149,6 +149,7 @@ fn main() -> Result<(), Box<error::Error>> {
         drone1.lock().unwrap().clear_request_count();
     });
 
+    /// create a new TCP listener associated with this event loop
     let socket = TcpListener::bind(&drone_addr).unwrap();
     println!("Tokenbot started. Listening on: {}", drone_addr);
     let done = socket
