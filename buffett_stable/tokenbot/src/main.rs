@@ -138,6 +138,7 @@ fn main() -> Result<(), Box<error::Error>> {
         request_cap,
     )));
 
+    /// makes a clone of the "drone" Arc pointer
     let drone1 = drone.clone();
     /// create a new thread to loop
     thread::spawn(move || loop {
@@ -159,10 +160,13 @@ fn main() -> Result<(), Box<error::Error>> {
         .incoming()
         .map_err(|e| println!("failed to accept socket; error = {:?}", e))
         .for_each(move |socket| {
-            ///
+            /// makes a clone of the "drone" Arc pointer
             let drone2 = drone.clone();
+            /// creates a new BytesCodec for shipping around raw bytes
+            /// and provides a Stream and Sink interface for reading and writing to the Io object
             // let client_ip = socket.peer_addr().expect("drone peer_addr").ip();
             let framed = BytesCodec::new().framed(socket);
+            /// break the Stream and Sink interface into separate objects, allowing them to interact more easily
             let (writer, reader) = framed.split();
 
             let processor = reader.and_then(move |bytes| {
