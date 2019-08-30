@@ -125,8 +125,11 @@ fn main() -> Result<(), Box<error::Error>> {
         request_cap = None;
     }
 
+    /// get the airdrop address
     let drone_addr = socketaddr!(0, DRONE_PORT);
 
+    /// generate a instance of Drone
+    /// using an Arc<T> to wrap the Mutex<T> able to share ownership across multiple threads
     let drone = Arc::new(Mutex::new(Drone::new(
         mint_keypair,
         drone_addr,
@@ -136,6 +139,7 @@ fn main() -> Result<(), Box<error::Error>> {
     )));
 
     let drone1 = drone.clone();
+    ///
     thread::spawn(move || loop {
         let time = drone1.lock().unwrap().time_slice;
         thread::sleep(time);
