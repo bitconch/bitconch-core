@@ -1,0 +1,14 @@
+[Unit]
+Description=Bitconch Testnet Tokenbot Service
+After=network.target
+Documentation=https://github.com/bitconch/bus
+
+[Service]
+Type=simple
+Environment=PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/bin/bitconch/bin:/usr/bin/bitconch/bin/deps
+User=root
+ExecStart=/bin/bash -c "PATH=/usr/bin/bitconch:$PATH exec /bitconch/morgan/demo/drone.sh" 
+WorkingDirectory=/bitconch/morgan
+
+[Install]
+WantedBy=multi-user.target
