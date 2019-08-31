@@ -1,0 +1,14 @@
+[Unit]
+Description=Bitconch Testnet Validator Node Service
+After=network.target
+StartLimitIntervalsec=0
+Documentation=https://github.com/bitconch/bus
+
+[Service]
+Environment=PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/bin/bitconch/bin:/usr/bin/bitconch/bin/deps
+User=root
+ExecStart=/bin/bash -c "PATH=/usr/bin/bitconch:$PATH exec /bitconch/morgan/demo/validator-x.sh" 
+WorkingDirectory=/bitconch/morgan
+
+[Install]
+WantedBy=multi-user.target
