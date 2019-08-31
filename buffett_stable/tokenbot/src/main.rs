@@ -206,15 +206,22 @@ fn main() -> Result<(), Box<error::Error>> {
                 /// return a OK value of "response_bytes"
                 Ok(response_bytes)
             });
+            /// process the stream of "processor" into the sink, including flushing
+            /// if processor is None or occurs error, then call the closure
             let server = writer
                 .send_all(processor.or_else(|err| {
+                    /// creates a new I/O error from formatted string error as well as an arbitrary error payload
                     Err(io::Error::new(
                         io::ErrorKind::Other,
                         format!("Tokenbot response: {:?}", err),
                     ))
+                /// 
                 })).then(|_| Ok(()));
+            /// spawns a future or stream, returning it and the new task responsible for running it to completion
             tokio::spawn(server)
         });
+    /// start the Tokio runtime using the supplied future to bootstrap execution
     tokio::run(done);
+    /// return the OK value
     Ok(())
 }
