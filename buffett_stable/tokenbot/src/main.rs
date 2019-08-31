@@ -215,7 +215,6 @@ fn main() -> Result<(), Box<error::Error>> {
                         io::ErrorKind::Other,
                         format!("Tokenbot response: {:?}", err),
                     ))
-                /// 
                 })).then(|_| Ok(()));
             /// spawns a future or stream, returning it and the new task responsible for running it to completion
             tokio::spawn(server)
