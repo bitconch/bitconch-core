@@ -192,7 +192,10 @@ fn main() -> Result<(), Box<error::Error>> {
                 }
                 let response = res1?;
                 println!("Airdrop tx signature: {:?}", response);
+                /// serializes "response" into a Vec of bytes using the default configuration.
+                /// if faile to serialize, then call the closure
                 let response_vec = serialize(&response).or_else(|err| {
+                    /// creates a new I/O error from formatted string error as well as an arbitrary error payload
                     Err(io::Error::new(
                         io::ErrorKind::Other,
                         format!("serialize signature in drone: {:?}", err),
