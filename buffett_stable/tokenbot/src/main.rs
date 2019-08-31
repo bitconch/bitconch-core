@@ -201,7 +201,9 @@ fn main() -> Result<(), Box<error::Error>> {
                         format!("serialize signature in drone: {:?}", err),
                     ))
                 })?;
+                /// creates a new Bytes from clone "response_vec"
                 let response_bytes = Bytes::from(response_vec.clone());
+                /// return a OK value of "response_bytes"
                 Ok(response_bytes)
             });
             let server = writer
