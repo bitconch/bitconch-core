@@ -27,12 +27,18 @@ use tokio::net::TcpListener;
 use tokio::prelude::*;
 use tokio_codec::{BytesCodec, Decoder};
 
+/// create a macro named socketaddr
 macro_rules! socketaddr {
+    /// takes the expression of type "expr"
+    /// and convert tuple into a SocketAddr
     ($ip:expr, $port:expr) => {
         SocketAddr::from((Ipv4Addr::from($ip), $port))
     };
+    /// take the str expression
+    /// parse the str into a SocketAddr
     ($str:expr) => {{
         let a: SocketAddr = $str.parse().unwrap();
+        /// retun the value of SocketAddr
         a
     }};
 }
