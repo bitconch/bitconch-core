@@ -27,7 +27,7 @@ use tokio::net::TcpListener;
 use tokio::prelude::*;
 use tokio_codec::{BytesCodec, Decoder};
 
-/// create a macro named socketaddr
+/// create a macro named socketaddr to genrate SocketAddr
 macro_rules! socketaddr {
     /// takes the expression of type "expr"
     /// and convert tuple into a SocketAddr
