@@ -28,3 +28,6 @@ def rmtree_onerror(self, func, file_path, exc_info):
     if os.path.isdir(file_path):
         #file exists
        func(file_path)
+       else:
+        #handle whatever
+        raise
