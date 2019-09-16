@@ -69,6 +69,9 @@ fn main() {
         }
     }
 
+    /// destructure the iterator of all the entries in "ledger_path"
+    /// if in a Ok value, then return "entries"
+    /// if is error, then print the error message and exit the program
     let entries = match read_ledger(ledger_path, true) {
         Ok(entries) => entries,
         Err(err) => {
@@ -77,12 +80,19 @@ fn main() {
         }
     };
 
+    /// destructure the value of "head"
+    /// if "head" in Some value, then parse head，call panic! when it failed, and print the error message
+    /// if is None,then Returns the largest value that can be represented by usize type
     let head = match matches.value_of("head") {
         Some(head) => head.parse().expect("please pass a number for --head"),
         None => <usize>::max_value(),
     };
 
+    /// destructure the SubCommand
     match matches.subcommand() {
+        /// if the subcommand is ("print", _), then destructure the iterator of all the entries in "ledger_path"
+        /// if in a Ok value, then return "entries"
+        /// if is error, then print the error message and exit the program
         ("print", _) => {
             let entries = match read_ledger(ledger_path, true) {
                 Ok(entries) => entries,
@@ -91,6 +101,9 @@ fn main() {
                     exit(1);
                 }
             };
+            /// creates an iterator which gives the current iteration count and the next value
+            /// where "i" is the current index of iteration and "entry "is the value returned by the iterator
+            /// if i >= head, then quit the loop
             for (i, entry) in entries.enumerate() {
                 if i >= head {
                     break;
@@ -99,26 +112,38 @@ fn main() {
                 println!("{:?}", entry);
             }
         }
+        /// if the subcommand is ("json", _),
+        /// write an entire buffer of " b"{\"ledger\":[\n" " into stdout(), if failed, call panic! and print the error message
         ("json", _) => {
             stdout().write_all(b"{\"ledger\":[\n").expect("open array");
+            /// creates an iterator which gives the current iteration count and the next value
+            /// if i >= head, then quit the loop
             for (i, entry) in entries.enumerate() {
                 if i >= head {
                     break;
                 }
                 let entry = entry.unwrap();
+                /// serialize the standard output and entry as JSON into the IO stream
                 serde_json::to_writer(stdout(), &entry).expect("serialize");
+                /// write an entire buffer of " b"{\"ledger\":[\n" " the standard output, if failed, call panic! and print the error message
                 stdout().write_all(b",\n").expect("newline");
             }
             stdout().write_all(b"\n]}\n").expect("close array");
         }
+        /// if the subcommand is ("verify", _), then evaluate the block "{}"
+        /// if head < 2,print the error message and exit
         ("verify", _) => {
             if head < 2 {
                 eprintln!("verify requires at least 2 entries to run");
                 exit(1);
             }
+            /// generate a instances of Bank
             let bank = Bank::default();
 
             {
+                /// destructures the iterator of all the entries in "ledger_path"
+                /// if in a Ok value, then return "entries"
+                /// if is error, then print the error message and exit the program
                 let genesis = match read_ledger(ledger_path, true) {
                     Ok(entries) => entries,
                     Err(err) => {
@@ -127,8 +152,14 @@ fn main() {
                     }
                 };
 
+                /// takes a closure and creates an iterator that yields its first 2 elements 
+                /// and calls the closure on each element
                 let genesis = genesis.take(2).map(|e| e.unwrap());
 
+                /// destructure processes bank accounts by "genesis" to return the total entry of the account, 
+                /// and if it fails, print the error information.
+                /// If "continue" of the command parameter of matches does not present at running time, 
+                /// then exit the program
                 if let Err(e) = bank.process_ledger(genesis) {
                     eprintln!("verify failed at genesis err: {:?}", e);
                     if !matches.is_present("continue") {
@@ -136,19 +167,31 @@ fn main() {
                     }
                 }
             }
+            /// takes a closure and creates an iterator which calls that closure on each element
             let entries = entries.map(|e| e.unwrap());
 
             let head = head - 2;
+            /// creates an iterator that skips the first 2 elements 
+            /// and gives the current iteration count and the next value
+            /// if i >= head, then quit the loop
             for (i, entry) in entries.skip(2).enumerate() {
                 if i >= head {
                     break;
                 }
+                /// if reference the last id hash value of the bank to verifies the hashes and counts 
+                /// of a slice of transactions are inconsistent, then print the error message.
+                /// If "continue" of the command parameter of matches does not present at running time, 
+                /// then exit the program 
                 if !entry.verify(&bank.last_id()) {
                     eprintln!("entry.verify() failed at entry[{}]", i + 2);
                     if !matches.is_present("continue") {
                         exit(1);
                     }
                 }
+                /// destructure the process transactions and registration id of bank reference to "entry"
+                /// if failed to verify print the error information
+                /// If "continue" of the command parameter of matches does not present at running time, 
+                /// then exit the program 
                 if let Err(e) = bank.process_entry(&entry) {
                     eprintln!("verify failed at entry[{}], err: {:?}", i + 2, e);
                     if !matches.is_present("continue") {
@@ -157,10 +200,12 @@ fn main() {
                 }
             }
         }
+        /// if the subcommand is ("", _), then print the error message and exit
         ("", _) => {
             eprintln!("{}", matches.usage());
             exit(1);
         }
+        /// otherwise, ndicates unreachable code
         _ => unreachable!(),
     };
 }

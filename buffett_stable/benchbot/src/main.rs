@@ -43,8 +43,8 @@ use buffett_core::asciiart;
 use std::io::Write; 
 
 //mvp001
-/// define the function of dividing_line and output "----------------------------" through the macro
-fn dividing_line() {
+/// define the function of split_line and output "----------------------------" through the macro
+fn split_line() {
     println!("------------------------------------------------------------------------------------------------------------------------");
 }
 //*
@@ -316,8 +316,8 @@ fn generate_txs(
     /// get the length of Keypair array
     let tx_count = keypairs.len();
     
-    /// call the function of dividing_line()
-    dividing_line();
+    /// call the function of split_line()
+    split_line();
     println!(
         "{0: <2}{1: <40}: {2: <10}",
         "|", "Transactions to be signed", tx_count
@@ -326,14 +326,14 @@ fn generate_txs(
         "{0: <2}{1: <40}: {2: <10}",
         "|", "Reclaimed Tokens", reclaim
     );
-    dividing_line();
+    split_line();
     
     println!(
         "{0: <2}{1: <40}: {2: <60}",
         "|", "Status", "Signing Started"
     );
-    /// call the function of dividing_line()
-    dividing_line();
+    /// call the function of split_line()
+    split_line();
     
     /// get the current time
     let signing_start = Instant::now();
@@ -358,8 +358,8 @@ fn generate_txs(
     /// convert tx_count and ns to f64 type and calculate the value of tx_count / ns
     let bsps = (tx_count) as f64 / ns as f64;
 
-    /// call the function of dividing_line()    
-    dividing_line();
+    /// call the function of split_line()    
+    split_line();
     println!(
         "{0: <2}{1: <40}: {2: <60}",
         "|", "Status", "Signing Finished"
@@ -373,8 +373,8 @@ fn generate_txs(
         duration_in_milliseconds(&duration)
         
     );
-    /// call the dividing_line() function
-    dividing_line();
+    /// call the split_line() function
+    split_line();
 
     /// new a Point named "bench-tps" of influxdb,
     /// add a tag named "op" with the value of string “generate_txs”,
@@ -489,8 +489,8 @@ fn airdrop_tokens(client: &mut ThinClient, leader: &NodeInfo, id: &Keypair, tx_c
     if starting_balance < tx_count {
         
         println!("| Begin to prepare data and send some Transactions:",);
-        /// call the function of "dividing_line()"
-        dividing_line();
+        /// call the function of "split_line()"
+        split_line();
         /// call the function of "print_animation_arrows()"
         print_animation_arrows();
         
@@ -644,7 +644,7 @@ fn print_animation_arrows(){
 
 /// define the funtion of "leader_node_selection"
 fn leader_node_selection(){
-    dividing_line();
+    split_line();
     println!("| {:?}","Selecting Transaction Validator Nodes from the Predefined High-Reputation Nodes List.");
     sleep(Duration::from_millis(100));
     std::io::stdout().flush().expect("some error message");
@@ -663,13 +663,13 @@ fn leader_node_selection(){
     println!("| {:?}","For MVP demo, we only use 5 nodes from 5 different countries.");
     sleep(Duration::from_millis(100));
     std::io::stdout().flush().expect("some error message");
-    dividing_line();
+    split_line();
     sleep(Duration::from_millis(100));
     std::io::stdout().flush().expect("some error message");
     print_animation_arrows();
-    dividing_line();
+    split_line();
     println!("| {:?}","Transaction Validator Nodes Selection Process Complete!!");
-    dividing_line();
+    split_line();
 }
 
 
@@ -817,7 +817,7 @@ fn main() {
 
     /// the `ascii_art` module implement fancy ascii arts
     asciiart::welcome();
-    dividing_line();
+    split_line();
     leader_node_selection();
 
     
@@ -825,7 +825,7 @@ fn main() {
         "{0: <2}{1: <40}: {2: <60}",
         "|", "Search for Leader Node On Network", network
     );
-    dividing_line();
+    split_line();
     print_animation_arrows();
 
 
@@ -836,12 +836,12 @@ fn main() {
     /// define exit signal, default initial value is false
     let exit_signal = Arc::new(AtomicBool::new(false));
     
-    dividing_line();
+    split_line();
     println!(
         "| Leader Node is found!, ID: {:?}",
         &leader.id
     );
-    dividing_line();
+    split_line();
     sleep(Duration::from_millis(100));
     
     /// call the function of "converge", search the effective nodes on the network
@@ -883,7 +883,7 @@ fn main() {
     let leader = leader.unwrap();
 
     //mvp001
-    dividing_line();
+    split_line();
     println!(
         "{0: <2}{1: <40}: {2: <60}",
         "|", "Leader Node Contact Information", leader.contact_info.rpu
@@ -892,7 +892,7 @@ fn main() {
         "{0: <2}{1: <40}: {2: <60}",
         "|", "Leader Node ID", leader.id
     );
-    dividing_line();
+    split_line();
     //*
     //println!("leader is at {} {}", leader.contact_info.rpu, leader.id);
     
@@ -910,7 +910,7 @@ fn main() {
 
     //mvp
     println!("| Begin to prepare data and send some Transactions:");
-    dividing_line();
+    split_line();
     print_animation_arrows();
     //println!("Creating {} keypairs...", tx_count / 2);
     println!(
@@ -1061,7 +1061,7 @@ fn main() {
     /// stores a value of "ture" into the bool
     exit_signal.store(true, Ordering::Relaxed);
 
-    dividing_line(); //mvp001
+    split_line(); //mvp001
     println!("| Kill all the remaining threads.");
     print_animation_arrows();
     /// iteration "v_threads" vector
