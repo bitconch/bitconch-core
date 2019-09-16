@@ -31,3 +31,18 @@ def rmtree_onerror(self, func, file_path, exc_info):
        else:
         #handle whatever
         raise
+
+
+def execute_shell(command, silent=False, cwd=None, shell=True, env=None):
+    """
+    Execute a system command 
+    """
+    if env is not None:
+        env = dict(**os.environ, **env)
+
+    if silent:
+        p = Popen(
+            command, shell=shell, stdout=PIPE, stderr=PIPE, cwd=cwd, env=env)
+        stdout, _ = p.communicate()
+
+        return stdout
