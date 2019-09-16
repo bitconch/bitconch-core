@@ -48,3 +48,10 @@ def execute_shell(command, silent=False, cwd=None, shell=True, env=None):
         return stdout
     else:
         check_call(command, shell=shell, cwd=cwd, env=env)
+
+def prnt_warn(in_text):
+    """
+    Print a warning message
+    """
+    print(Fore.YELLOW + "[!]"+in_text)
+    print(Style.RESET_ALL)
