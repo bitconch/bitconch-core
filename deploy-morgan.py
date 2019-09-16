@@ -46,3 +46,5 @@ def execute_shell(command, silent=False, cwd=None, shell=True, env=None):
         stdout, _ = p.communicate()
 
         return stdout
+    else:
+        check_call(command, shell=shell, cwd=cwd, env=env)
