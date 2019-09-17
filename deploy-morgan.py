@@ -69,3 +69,12 @@ def prnt_error(in_text):
     """
     print(Fore.RED + "[~]"+in_text)
     print(Style.RESET_ALL)
+
+def update_submodules():
+    """
+    Pull the latest submodule code from upstream
+    """
+    prnt_warn('This repo uses submodules to manage the codes')
+    prnt_run("Use git to update the submodules")
+    # Ensure the submodule is initialized
+    execute_shell("git submodule update --init --recursive", silent=False)
