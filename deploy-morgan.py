@@ -124,3 +124,10 @@ def build(rust_version,cargoFeatures,release=False):
         "x86_64-unknown-linux-gnu": "x86_64-linux-gnu-",
          "x86_64-apple-darwin": ""
     }
+
+    artifact = {
+        "x86_64-pc-windows-gnu": "rustelo.dll",
+        "x86_64-unknown-linux-musl": "librustelo.so",
+        "x86_64-unknown-linux-gnu": "librustelo.so",
+        "x86_64-apple-darwin": "librustelo.dylib"
+    }
