@@ -81,3 +81,6 @@ def update_submodules():
     
     # Fetch upstream changes
     execute_shell("git submodule foreach --recursive git fetch ", silent=False)
+
+    # Reset to upstream
+    execute_shell("git submodule foreach git reset --hard origin/HEAD", silent=False)
