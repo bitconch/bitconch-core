@@ -131,3 +131,14 @@ def build(rust_version,cargoFeatures,release=False):
         "x86_64-unknown-linux-gnu": "librustelo.so",
         "x86_64-apple-darwin": "librustelo.dylib"
     }
+
+    if release:
+        for target in target_list:
+            prnt_run(f"Build rust source for {target}")
+
+            if target != default_target:
+                execute_shell(["rustup", "target", "add", target],
+                   shell=False,
+                   silent=True,
+                   #cwd="vendor/rustelo-rust")
+                   cwd="buffett2")
