@@ -152,3 +152,7 @@ def build(rust_version,cargoFeatures,release=False):
                     "CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_LINKER": f"{prefix[target]}gcc",
                     "CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER": f"{prefix[target]}gcc",
                 })
+
+            if target.endswith("-apple-darwin"):
+                execute_shell(f"strip -Sx {artifact[target]}",
+                   cwd=f"vendor/rustelo-rust/soros/target/{target}/release", silent=True)
