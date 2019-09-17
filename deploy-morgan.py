@@ -287,7 +287,7 @@ def deploy_bin(target):
         os.remove("/etc/systemd/system/soros-validator.socket")
 
     # cp the service files into service folder
-    # execute_shell("cp soros.service.template/*  /etc/systemd/system")
+    execute_shell("cp morgan.service.template/*  /etc/systemd/system")
 
     if os.path.exists("/bitconch/morgan"):
         prnt_run("Remove previous installed version")
