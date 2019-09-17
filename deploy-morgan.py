@@ -14,6 +14,7 @@ from colorama import init
 init()
 from colorama import Fore, Back, Style
 
+
 def rmtree_onerror(self, func, file_path, exc_info):
     """
     Error handler for ``shutil.rmtree``.
@@ -28,7 +29,7 @@ def rmtree_onerror(self, func, file_path, exc_info):
     if os.path.isdir(file_path):
         #file exists
        func(file_path)
-       else:
+    else:
         #handle whatever
         raise
 
@@ -46,6 +47,7 @@ def execute_shell(command, silent=False, cwd=None, shell=True, env=None):
         stdout, _ = p.communicate()
 
         return stdout
+
     else:
         check_call(command, shell=shell, cwd=cwd, env=env)
 
@@ -70,6 +72,7 @@ def prnt_error(in_text):
     print(Fore.RED + "[~]"+in_text)
     print(Style.RESET_ALL)
 
+
 def update_submodules():
     """
     Pull the latest submodule code from upstream
@@ -78,7 +81,7 @@ def update_submodules():
     prnt_run("Use git to update the submodules")
     # Ensure the submodule is initialized
     execute_shell("git submodule update --init --recursive", silent=False)
-    
+
     # Fetch upstream changes
     execute_shell("git submodule foreach --recursive git fetch ", silent=False)
 
@@ -92,13 +95,19 @@ def update_submodules():
         prnt_run("Copy the latest header file from vendor/rustelo-rust/include")
     copytree("vendor/rustelo-rust/include", "include")
 
-
+def add_submodules():
+    """
+    Add submodule into vendor
+    """
+    if not os.path.exists(f"vendor/morgan"):
+        prnt_run("Use git to add the submodules")
+        execute_shell("git submodule add  https://github.com/luhuimao/morgan.git", silent=False, cwd="vendor")
 
 
 def build(rust_version,cargoFeatures,release=False):
     target_list = execute_shell("rustup target list", silent=True).decode()
     m = re.search(r"(.*?)\s*\(default\)", target_list)
-
+    
     #currentWorking directory
     pwd = os.getcwd()
     
@@ -145,13 +154,13 @@ def build(rust_version,cargoFeatures,release=False):
 
             profile = "--release" if release else ''
             execute_shell(f"cargo build --all --target {target} {profile}",
-                #cwd="vendor/rustelo-rust",
-                cwd="buffett2",
-                env={
-                    "CC": f"{prefix[target]}gcc",
-                    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_LINKER": f"{prefix[target]}gcc",
-                    "CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER": f"{prefix[target]}gcc",
-                })
+               #cwd="vendor/rustelo-rust",
+               cwd="buffett2",
+               env={
+                   "CC": f"{prefix[target]}gcc",
+                   "CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_LINKER": f"{prefix[target]}gcc",
+                   "CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER": f"{prefix[target]}gcc",
+               })
 
             if target.endswith("-apple-darwin"):
                 execute_shell(f"strip -Sx {artifact[target]}",
@@ -161,7 +170,7 @@ def build(rust_version,cargoFeatures,release=False):
                 execute_shell(f"{prefix[target]}strip --strip-unneeded -d -x {artifact[target]}",
                    #cwd=f"vendor/rustelo-rust/target/{target}/release")
                    cwd=f"vendor/rustelo-rust/soros/target/{target}/release")
-            
+
             #copy2(f"vendor/rustelo-rust/target/{target}/release/{artifact[target]}", f"libs/{target}/")
             copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-fullnode", f"libs/{target}/buffett-fullnode")
             #copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-fullnode-config", f"libs/{target}/buffett-fullnode-config")
@@ -178,9 +187,9 @@ def build(rust_version,cargoFeatures,release=False):
         prnt_run(f"Build the rust+c code in soros for {target}")
 
         execute_shell(f"cargo build --all --release --features=erasure", cwd="./vendor/morgan")
-
+        
         # Copy _default_ lib over
-
+        
         if not os.path.exists(f"libs/{target}/"):
             prnt_run(f"Check the lib folder, if not , create one ")
             os.makedirs(f"libs/{target}/")
@@ -194,7 +203,7 @@ def build(rust_version,cargoFeatures,release=False):
             "bench-exchange",
             "bench-streamer",
             "benchbot",
-            "drone",
+            "tokenbot",
             "genesis",
             "gossip",
             "install",
@@ -214,3 +223,116 @@ def build(rust_version,cargoFeatures,release=False):
 
 
     deploy_bin(target)
+
+
+
+
+
+def commit():
+    sha = execute_shell("git rev-parse --short HEAD", cwd="vendor/rustelo-rust", silent=True).decode().strip()
+    execute_shell("git add ./vendor/rustelo-rust ./libs ./include")
+
+    try:
+        execute_shell(f"git commit -m \"Build libs/ and sync include/ from rustelo#{sha}\"")
+        execute_shell("git push")
+
+    except CalledProcessError:
+        # Commit likely failed because there was nothing to commit
+        pass
+
+
+
+def createUser(name,username, password):
+    prnt_run(f"Create a new user")
+    encPass =crypt.crypt(password,"22")
+    return os.system("useradd -p"+encPass+"-s"+"/bin/bash"+"-d"+"/home/"+username+"-m"+"-c \""+name +"\""+username)
+
+
+def deploy_bin(target):
+    # installation location /usr/bin/bitconch
+    # remove previous installed version
+    if os.path.exists("/usr/bin/bitconch"):
+        prnt_run("Remove previous installed version")
+        rmtree("/usr/bin/bitconch",onerror=rmtree_onerror)
+        prnt_run("Copy the compiled binaries to /usr/bin/bitconch")
+    # cp the binary into the folder 
+    copytree(f"libs/{target}/", "/usr/bin/bitconch")
+    
+    # seth PATH variable 
+    prnt_run(f"Set PATH to include soros executables ")
+    execute_shell("echo 'export PATH=/usr/bin/bitconch/bin:$PATH' >>~/.profile")
+    execute_shell("echo 'export PATH=/usr/bin/bitconch/bin/deps:$PATH' >>~/.profile")
+    # execute_shell("source ~/.profile")
+
+    # remove the previous installed service file
+    if os.path.exists("/etc/systemd/system/soros-leader.service"):
+        prnt_run("Remove previous installed service file:soros-leader.service")
+        os.remove("/etc/systemd/system/soros-leader.service")
+    if os.path.exists("/etc/systemd/system/soros-leader.socket"):
+        prnt_run("Remove previous installed socket file:soros-leader.socket")
+        os.remove("/etc/systemd/system/soros-leader.socket")
+
+    if os.path.exists("/etc/systemd/system/soros-tokenbot.service"):
+        prnt_run("Remove previous installed service file:soros-tokenbot.service")
+        os.remove("/etc/systemd/system/soros-tokenbot.service")
+    if os.path.exists("/etc/systemd/system/soros-tokenbot.socket"):
+        prnt_run("Remove previous installed socket file:soros-tokenbot.socket")
+        os.remove("/etc/systemd/system/soros-tokenbot.socket")
+
+    if os.path.exists("/etc/systemd/system/soros-validator.service"):
+        prnt_run("Remove previous installed service file:soros-validator.service")
+        os.remove("/etc/systemd/system/soros-validator.service")
+    if os.path.exists("/etc/systemd/system/soros-validator.socket"):
+        prnt_run("Remove previous installed socket file:soros-validator.socket")
+        os.remove("/etc/systemd/system/soros-validator.socket")
+
+    # cp the service files into service folder
+    # execute_shell("cp soros.service.template/*  /etc/systemd/system")
+
+    if os.path.exists("/bitconch/morgan"):
+        prnt_run("Remove previous installed version")
+        rmtree("/bitconch/morgan",onerror=rmtree_onerror)
+        prnt_run("Copy the morgan scripts to /bitconch/morgan")
+    # create the working directory data directory
+    copytree(f"vendor/morgan/multinode-demo", "/bitconch/morgan/demo")
+    copytree(f"vendor/morgan/scripts", "/bitconch/morgan/scripts")
+
+   
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "-R", "--release", help="build in release mode", action="store_true")
+parser.add_argument(
+    "-C", "--commit", help="commit include/ and libs/", action="store_true")
+
+argv = parser.parse_args(sys.argv[1:])
+
+#add_submodules()
+#update_submodules()
+build("1.35","erasure",release=argv.release)
+prnt_run("Update PATH")
+# execute_shell(f"source ~/.profile")
+prnt_run("Please run /usr/bin/bitconch/morgan/demo/setup.sh")
+
+# Setup the boot leader with stake of 500K dif
+if click.confirm('Do you want to run setup to create genesis file and id files?', default=True):
+    execute_shell("/bitconch/morgan/demo/setup.sh",cwd="/bitconch/morgan")
+
+
+# 
+if click.confirm('Do you want to reload the systemctl daemon?', default=True):
+    execute_shell("systemctl daemon-reload")
+
+if click.confirm('Are you running on the leader node?', default=True):
+    # backup the existing rsync configuration file
+    if os.path.exists("/etc/rsyncd.conf"):
+        prnt_run("Backup the existing rsyncd.conf.")
+        copy2(f"/etc/rsyncd.conf", f"/etc/rsyncd.conf.bk")
+        os.remove("/etc/rsyncd.conf")
+    prnt_run("Setup new rsyncd.conf.")
+    copy2(f"rsyncd-soros.conf", f"/etc/rsyncd.conf")
+    execute_shell("systemctl enable rsync")
+    execute_shell("systemctl start rsync")
+
+if argv.commit and argv.release:
+    commit()
+
