@@ -156,3 +156,17 @@ def build(rust_version,cargoFeatures,release=False):
             if target.endswith("-apple-darwin"):
                 execute_shell(f"strip -Sx {artifact[target]}",
                    cwd=f"vendor/rustelo-rust/soros/target/{target}/release", silent=True)
+
+            else:
+                execute_shell(f"{prefix[target]}strip --strip-unneeded -d -x {artifact[target]}",
+                   #cwd=f"vendor/rustelo-rust/target/{target}/release")
+                   cwd=f"vendor/rustelo-rust/soros/target/{target}/release")
+            
+            #copy2(f"vendor/rustelo-rust/target/{target}/release/{artifact[target]}", f"libs/{target}/")
+            copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-fullnode", f"libs/{target}/buffett-fullnode")
+            #copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-fullnode-config", f"libs/{target}/buffett-fullnode-config")
+            copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-drone", f"libs/{target}/buffett-drone")
+            copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-bench-tps", f"libs/{target}/buffett-bench-tps")
+            copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-ledgerbot", f"libs/{target}/buffett-ledgerbot")
+            copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-genesis", f"libs/{target}/buffett-genesis")
+            copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-keybot", f"libs/{target}/buffett-keybot")
