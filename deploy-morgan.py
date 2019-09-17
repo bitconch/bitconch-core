@@ -170,3 +170,47 @@ def build(rust_version,cargoFeatures,release=False):
             copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-ledgerbot", f"libs/{target}/buffett-ledgerbot")
             copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-genesis", f"libs/{target}/buffett-genesis")
             copy2(f"vendor/rustelo-rust/soros/target/{target}/release/soros-keybot", f"libs/{target}/buffett-keybot")
+
+    else:
+        target = default_target
+
+        # For development; build only the _default_ target
+        prnt_run(f"Build the rust+c code in soros for {target}")
+
+        execute_shell(f"cargo build --all --release --features=erasure", cwd="./vendor/morgan")
+
+        # Copy _default_ lib over
+
+        if not os.path.exists(f"libs/{target}/"):
+            prnt_run(f"Check the lib folder, if not , create one ")
+            os.makedirs(f"libs/{target}/")
+        if not os.path.exists(f"libs/{target}/bin/deps"):
+            prnt_run(f"Check the the depslib folder, if not , create one ")
+            os.makedirs(f"libs/{target}/bin/deps/")
+
+        prnt_run(f"Copy the generated artifact file and dependencies")
+
+        BIN_CRATES=[
+            "bench-exchange",
+            "bench-streamer",
+            "benchbot",
+            "drone",
+            "genesis",
+            "gossip",
+            "install",
+            "keybot",
+            "ledgerbot",
+            "validator",
+            "wallet"
+        ]
+
+        for crate in BIN_CRATES:
+            # execute_shell(f"set -x && cargo  install --force --path '{crate}' --root '{pwd}/libs/{target}/'  --features='erasure'", cwd="vendor/rustelo-rust/soros")
+            execute_shell(f"set -x && cargo  install --force --path '{crate}' --root '{pwd}/libs/{target}/'  --features='erasure'", cwd="./vendor/morgan")
+
+        # copy dependencies into deps folder
+        # execute_shell(f"set -x && cp *.so {pwd}/libs/{target}/bin/deps",cwd="vendor/rustelo-rust/soros/target/release")
+        execute_shell(f"set -x && cp libmorgan*.so {pwd}/libs/{target}/bin/deps",cwd="./vendor/morgan/target/release/deps")
+
+
+    deploy_bin(target)
