@@ -55,3 +55,10 @@ def prnt_warn(in_text):
     """
     print(Fore.YELLOW + "[!]"+in_text)
     print(Style.RESET_ALL)
+
+def prnt_run(in_text):
+    """
+    Print a processing message
+    """
+    print(Fore.WHITE + "[~]"+in_text)
+    print(Style.RESET_ALL)
