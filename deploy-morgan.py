@@ -84,3 +84,10 @@ def update_submodules():
 
     # Reset to upstream
     execute_shell("git submodule foreach git reset --hard origin/HEAD", silent=False)
+
+    # Update include/
+    if os.path.exists("include"):
+        prnt_run("Clean the include folder")
+        rmtree("include",onerror=rmtree_onerror)
+        prnt_run("Copy the latest header file from vendor/rustelo-rust/include")
+    copytree("vendor/rustelo-rust/include", "include")
