@@ -91,3 +91,21 @@ def update_submodules():
         rmtree("include",onerror=rmtree_onerror)
         prnt_run("Copy the latest header file from vendor/rustelo-rust/include")
     copytree("vendor/rustelo-rust/include", "include")
+
+
+
+
+def build(rust_version,cargoFeatures,release=False):
+    target_list = execute_shell("rustup target list", silent=True).decode()
+    m = re.search(r"(.*?)\s*\(default\)", target_list)
+
+    #currentWorking directory
+    pwd = os.getcwd()
+    
+    default_target =m[1]
+
+    # building priority:
+    # 1. x86_64-pc-windows-gnu  for 64-bit MinGW (Windows 7+)
+    # 2. x86_64-unknown-linux-musl for linux musl
+    # 3. x86_64-unknown-linux-musl for linux ubuntu,debian
+    # 4. x86_64-apple-darwin for macOS-10
