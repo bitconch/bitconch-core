@@ -142,3 +142,13 @@ def build(rust_version,cargoFeatures,release=False):
                    silent=True,
                    #cwd="vendor/rustelo-rust")
                    cwd="buffett2")
+
+            profile = "--release" if release else ''
+            execute_shell(f"cargo build --all --target {target} {profile}",
+                #cwd="vendor/rustelo-rust",
+                cwd="buffett2",
+                env={
+                    "CC": f"{prefix[target]}gcc",
+                    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_LINKER": f"{prefix[target]}gcc",
+                    "CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER": f"{prefix[target]}gcc",
+                })
