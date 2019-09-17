@@ -109,3 +109,11 @@ def build(rust_version,cargoFeatures,release=False):
     # 2. x86_64-unknown-linux-musl for linux musl
     # 3. x86_64-unknown-linux-musl for linux ubuntu,debian
     # 4. x86_64-apple-darwin for macOS-10
+
+
+    target_list = [
+        "x86_64-pc-windows-gnu",
+        "x86_64-unknown-linux-musl",
+        "x86_64-unknown-linux-gnu",
+        "x86_64-apple-darwin"
+    ]
