@@ -62,3 +62,10 @@ def prnt_run(in_text):
     """
     print(Fore.WHITE + "[~]"+in_text)
     print(Style.RESET_ALL)
+
+def prnt_error(in_text):
+    """
+    Print an error message
+    """
+    print(Fore.RED + "[~]"+in_text)
+    print(Style.RESET_ALL)
