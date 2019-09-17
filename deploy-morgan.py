@@ -78,3 +78,6 @@ def update_submodules():
     prnt_run("Use git to update the submodules")
     # Ensure the submodule is initialized
     execute_shell("git submodule update --init --recursive", silent=False)
+    
+    # Fetch upstream changes
+    execute_shell("git submodule foreach --recursive git fetch ", silent=False)
