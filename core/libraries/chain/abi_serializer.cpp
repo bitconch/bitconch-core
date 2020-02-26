@@ -9,7 +9,6 @@
 #include <bccio/chain/transaction.hpp>
 #include <bccio/chain/asset.hpp>
 #include <bccio/chain/exceptions.hpp>
-#include <fc/string.hpp>
 #include <fc/io/raw.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 #include <fc/io/varint.hpp>
@@ -107,10 +106,7 @@ namespace bccio { namespace chain {
    void abi_serializer::set_abi(const abi_def& abi, const fc::microseconds& max_serialization_time) {
       impl::abi_traverse_context ctx(max_serialization_time);
 
-      string abi_version = abi.version.c_str();
-      fc::replace_all_distinct(abi_version, "eosio", "bccio");
-      
-      BCC_ASSERT(starts_with(abi_version, "bccio::abi/1."), unsupported_abi_version_exception, "ABI has an unsupported version");
+      BCC_ASSERT(starts_with(abi.version, "bccio::abi/1."), unsupported_abi_version_exception, "ABI has an unsupported version");
 
       typedefs.clear();
       structs.clear();
